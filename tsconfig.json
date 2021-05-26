@@ -2,7 +2,11 @@
   "compilerOptions": {
     "baseUrl": "src",
     "target": "ES6",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -16,19 +20,12 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    // mui options
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "strictNullChecks": true,
-    // custom paths
-    "paths": {
-      "@component/*": ["components/*"],
-      "@data/*": ["data/*"],
-      "@context/*": ["contexts/*"],
-      "@hook/*": ["hooks/*"],
-      "@utils/*": ["utils/*"],
-      "@reducer/*": ["reducers/*"]
-    }
+    "strictNullChecks": true
   },
-  "include": ["src"]
+  "extends": "./tsconfig.extend.json",
+  "include": [
+    "src"
+  ]
 }
