@@ -24,18 +24,18 @@ const primary = {
   900: "#D91F33",
 };
 
-const secondary = {
-  100: "#F3F6F9",
-  200: "#B7C2CF",
-  300: "#879AB0",
-  400: "#335278",
-  500: "#0F3460",
-  600: "#0D2F58",
-  700: "#0B274E",
-  800: "#082144",
-  900: "#041533",
-  main: "#0F3460",
-};
+// const secondary = {
+//   100: "#F3F6F9",
+//   200: "#B7C2CF",
+//   300: "#879AB0",
+//   400: "#335278",
+//   500: "#0F3460",
+//   600: "#0D2F58",
+//   700: "#0B274E",
+//   800: "#082144",
+//   900: "#041533",
+//   main: "#0F3460",
+// };
 
 const error = {
   100: "#FFEAEA",
@@ -88,11 +88,11 @@ const fontFamily = [
 // Create a theme instance.
 const theme = createTheme({
   palette: {
-    primary: {
-      ...primary,
-      light: primary[100],
-    },
-    secondary,
+    // primary: {
+    //   ...primary,
+    //   light: primary[100],
+    // },
+    // secondary,
     error,
     warning,
     success,

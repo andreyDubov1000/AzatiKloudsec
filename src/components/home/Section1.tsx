@@ -1,5 +1,6 @@
+import { H1, Paragraph } from "@component/atoms/Typography";
 import XBox from "@component/XBox";
-import { Button, Container, Grid, Theme, Typography } from "@material-ui/core";
+import { Button, Container, Grid, Theme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import React from "react";
 import { Link as Scroll } from "react-scroll";
@@ -23,16 +24,16 @@ const Section1 = () => {
         <Grid container spacing={6} alignItems="center">
           <Grid item sm={6} xs={12}>
             <XBox>
-              <Typography variant="h4" letterSpacing={1.1} gutterBottom>
+              <H1 mb="1.5rem" fontSize="36px" letterSpacing={1.1}>
                 Automate your infrastructure <br /> security from commit to{" "}
                 <br /> cloud
-              </Typography>
+              </H1>
             </XBox>
 
-            <Typography variant="body1" gutterBottom>
+            <Paragraph fontSize="17px" color="whitesmoke" mb="1.5rem">
               Streamline cloud security and enforce policies throughout the
               entire development lifecycle.
-            </Typography>
+            </Paragraph>
 
             <div className="flex">
               <Scroll
@@ -43,28 +44,25 @@ const Section1 = () => {
               >
                 <Button
                   variant="contained"
-                  color="primary"
-                  sx={{ marginRight: "1rem" }}
+                  color="secondary"
+                  disableElevation
+                  sx={{ marginRight: "1rem", px: "1.5rem", borderRadius: 300 }}
                 >
-                  Get Service
+                  Get Started For Free
                 </Button>
               </Scroll>
-              <a
-                href="https://www.fiverr.com/shahalihridoy"
-                rel="noopener noreferrer"
-                target="_blank"
+              <Button
+                variant="outlined"
+                color="secondary"
+                sx={{
+                  borderColor: "rgba(255,255,255,0.53)",
+                  color: "white",
+                  px: "1.5rem",
+                  borderRadius: 300,
+                }}
               >
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  sx={{
-                    borderColor: "rgba(255,255,255,0.53)",
-                    color: "white",
-                  }}
-                >
-                  Fiverr
-                </Button>
-              </a>
+                Schedule A Demo
+              </Button>
             </div>
           </Grid>
           <Grid item sm={6} xs={12}>
