@@ -21,7 +21,7 @@ const useStyles = makeStyles(({ palette }: Theme) => ({
     height: 130,
     width: 130,
     transform: "rotate(-15deg)",
-    border: `4px solid ${palette.text.disabled}`,
+    border: `4px solid ${palette.primary.light}`,
   },
   verticalBar: {
     height: 64,
@@ -46,7 +46,7 @@ const CustomerStory: React.FC<CustomerStoryProps> = () => {
           src="/assets/images/faces/face-6.jpg"
         />
         <Fab
-          color="primary"
+          color="secondary"
           sx={{
             position: "absolute",
             bottom: -10,

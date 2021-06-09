@@ -1,6 +1,7 @@
 import { H1, Paragraph } from "@component/atoms/Typography";
-import XBox from "@component/XBox";
+import XBox from "@component/atoms/XBox";
 import { Button, Container, Grid, Theme } from "@material-ui/core";
+import { alpha } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/styles";
 import React from "react";
 import { Link as Scroll } from "react-scroll";
@@ -8,7 +9,10 @@ import Topbar from "./Topbar";
 
 const useStyles = makeStyles(({ palette, ...theme }: Theme) => ({
   section: {
-    backgroundImage: "linear-gradient(#6E5BFF, #5727C2)",
+    // backgroundImage: "linear-gradient(#6E5BFF, #5727C2)",
+    backgroundImage: `linear-gradient(${alpha(palette.primary.main, 0.85)}, ${
+      palette.primary.main
+    })`,
     paddingBottom: "5rem",
   },
 }));

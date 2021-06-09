@@ -1,10 +1,11 @@
+import XBox from "@component/atoms/XBox";
 import { Button, Container, Theme, useMediaQuery } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/styles";
 import { Box } from "@material-ui/system";
 import clsx from "clsx";
 import { debounce } from "lodash";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Link as Scroll } from "react-scroll";
 
@@ -41,37 +42,6 @@ const useStyles = makeStyles(({ palette, ...theme }: Theme) => ({
       overflow: "auto",
       transition: "all 250ms cubic-bezier(0.17, 0.67, 0.83, 0.67)",
     },
-  },
-  topbarContent: {
-    // maxWidth: 1170,
-    // margin: "0 auto",
-    // padding: "0 1rem",
-    // flexGrow: 1,
-    // display: "flex",
-    // justifyContent: "space-between",
-    // alignItems: "center",
-    // [theme.breakpoints.down("xs")]: {
-    //   flexDirection: "column",
-    //   justifyContent: "flex-start",
-    //   alignItems: "flex-start",
-    //   height: "100vh",
-    //   padding: 0,
-    //   "& .logo": {
-    //     paddingLeft: "1.25rem",
-    //     margin: "1.25rem 0 !important",
-    //     "& h4": {
-    //       fontSize: "1rem !important",
-    //     },
-    //   },
-    //   "& a": {
-    //     width: "100%",
-    //   },
-    //   "& [class^='MuiButtonBase-']": {
-    //     justifyContent: "flex-start",
-    //     margin: "0 !important",
-    //     padding: "1rem 1.25rem !important",
-    //   },
-    // },
   },
 
   // new code
@@ -120,78 +90,87 @@ const Topbar = () => {
   }, [isMobile, scrollListener, scrollableElement]);
 
   return (
-    <div
-      className={clsx({
-        [classes.topbarNormal]: true,
-        [classes.topbarFixed]: isTopbarFixed,
-      })}
-    >
-      <Container
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
+    <Fragment>
+      <div
+        className={clsx({
+          [classes.topbarNormal]: true,
+          [classes.topbarFixed]: isTopbarFixed,
+        })}
       >
-        <img src="/logo192.png" height="36px" alt="logo" />
+        <Container
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src={isTopbarFixed ? "/logo.svg" : "/logo-white.svg"}
+            height="36px"
+            alt="logo"
+          />
 
-        <Box sx={{ display: "flex" }}>
-          <Scroll
-            to="intro1"
-            duration={400}
-            smooth={true}
-            onClick={toggleSidenav}
-          >
-            <Button className={classes.linkButton}>Home</Button>
-          </Scroll>
-          <Scroll
-            to="services1"
-            smooth={true}
-            duration={400}
-            onClick={toggleSidenav}
-            offset={isTopbarFixed ? (isMobile ? 0 : -fixedTopbarHeight) : -65}
-          >
-            <Button className={classes.linkButton}>Services</Button>
-          </Scroll>
-          <Scroll
-            to="gallery1"
-            smooth={true}
-            duration={400}
-            onClick={toggleSidenav}
-            offset={isTopbarFixed ? (isMobile ? 0 : -fixedTopbarHeight) : -65}
-          >
-            <Button className={classes.linkButton}>Projects</Button>
-          </Scroll>
-          <Scroll
-            to="testimonial2"
-            smooth={true}
-            duration={400}
-            onClick={toggleSidenav}
-            offset={isTopbarFixed ? (isMobile ? 0 : -fixedTopbarHeight) : -65}
-          >
-            <Button className={classes.linkButton}>Reviews</Button>
-          </Scroll>
-          <Scroll
-            to="contact1"
-            smooth={true}
-            duration={400}
-            onClick={toggleSidenav}
-            offset={
-              isTopbarFixed
-                ? isMobile
-                  ? -80
-                  : -(fixedTopbarHeight + 80)
-                : -145
-            }
-          >
-            <Button className={classes.linkButton}>Contact</Button>
-          </Scroll>
-          <Link to="/login" onClick={toggleSidenav}>
-            <Button className={classes.linkButton}>Login</Button>
-          </Link>
-        </Box>
-      </Container>
-    </div>
+          <Box sx={{ display: "flex" }}>
+            <Scroll
+              to="intro1"
+              duration={400}
+              smooth={true}
+              onClick={toggleSidenav}
+            >
+              <Button className={classes.linkButton}>Home</Button>
+            </Scroll>
+            <Scroll
+              to="services1"
+              smooth={true}
+              duration={400}
+              onClick={toggleSidenav}
+              offset={isTopbarFixed ? (isMobile ? 0 : -fixedTopbarHeight) : -65}
+            >
+              <Button className={classes.linkButton}>Services</Button>
+            </Scroll>
+            <Scroll
+              to="pricing"
+              smooth={true}
+              duration={400}
+              onClick={toggleSidenav}
+              offset={isTopbarFixed ? (isMobile ? 0 : -fixedTopbarHeight) : -65}
+            >
+              <Button className={classes.linkButton}>Pricing</Button>
+            </Scroll>
+            <Scroll
+              to="testimonial2"
+              smooth={true}
+              duration={400}
+              onClick={toggleSidenav}
+              offset={isTopbarFixed ? (isMobile ? 0 : -fixedTopbarHeight) : -65}
+            >
+              <Button className={classes.linkButton}>Reviews</Button>
+            </Scroll>
+            <Scroll
+              to="contact1"
+              smooth={true}
+              duration={400}
+              onClick={toggleSidenav}
+              offset={
+                isTopbarFixed
+                  ? isMobile
+                    ? -80
+                    : -(fixedTopbarHeight + 80)
+                  : -145
+              }
+            >
+              <Button className={classes.linkButton}>Contact</Button>
+            </Scroll>
+            <Link to="/login" onClick={toggleSidenav}>
+              <Button className={classes.linkButton}>Login</Button>
+            </Link>
+          </Box>
+        </Container>
+      </div>
+      <XBox
+        sx={{ height: isTopbarFixed ? normalTopbarHeight : 0, width: "100%" }}
+      ></XBox>
+    </Fragment>
   );
 };
 

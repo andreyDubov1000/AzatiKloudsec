@@ -1,4 +1,4 @@
-import { createTheme } from "@material-ui/core/styles";
+import { alpha, createTheme } from "@material-ui/core/styles";
 
 const grey = {
   900: "#2B3445", // Main Text
@@ -13,16 +13,24 @@ const grey = {
 };
 
 const primary = {
-  100: "#FCE9EC",
+  100: alpha("#1B75BB", 0.1),
   200: "#F8C7CF",
   300: "#F07D90",
   400: "#EC6178",
-  500: "rgb(233, 69, 96)", //"#D23F57"
-  600: "#E63E58",
-  700: "#E3364E",
-  800: "#DF2E44",
-  900: "#D91F33",
+  500: "#1B75BB",
 };
+
+// const primary = {
+//   100: "#FCE9EC",
+//   200: "#F8C7CF",
+//   300: "#F07D90",
+//   400: "#EC6178",
+//   500: "rgb(233, 69, 96)", //"#D23F57"
+//   600: "#E63E58",
+//   700: "#E3364E",
+//   800: "#DF2E44",
+//   900: "#D91F33",
+// };
 
 // const secondary = {
 //   100: "#F3F6F9",
@@ -93,6 +101,17 @@ const theme = createTheme({
     //   light: primary[100],
     // },
     // secondary,
+    primary: {
+      light: "#00BFF2",
+      main: "#1B75BB",
+      ...primary,
+    },
+    secondary: {
+      light: "#757ce8",
+      main: "#3f50b5",
+      dark: "#002884",
+      contrastText: "#fff",
+    },
     error,
     warning,
     success,
@@ -172,6 +191,11 @@ const theme = createTheme({
             paddingRight: "1rem",
           },
         },
+      },
+    },
+    MuiCard: {
+      defaultProps: {
+        style: { borderRadius: 8 },
       },
     },
     MuiDialog: {
