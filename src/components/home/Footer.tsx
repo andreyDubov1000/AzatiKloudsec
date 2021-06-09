@@ -89,8 +89,8 @@ const Footer = () => {
               sx={{ flexDirection: "column", alignItems: "center", width: 84 }}
             >
               <XImage
-                src="footer-logo.svg"
-                alt="footer-logo"
+                src="logo-white.svg"
+                alt="KloudSec"
                 width="64px"
                 sx={{ mb: "1rem" }}
               />
