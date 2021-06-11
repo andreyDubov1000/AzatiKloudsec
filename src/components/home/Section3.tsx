@@ -6,7 +6,7 @@ import CustomerStory from "./CustomerStory";
 
 const Section3 = () => {
   return (
-    <Box py="5rem">
+    <Box py="5rem" id="customers">
       <Container>
         <Carousel totalSlides={4} visibleSlides={1} autoPlay>
           <CustomerStory />

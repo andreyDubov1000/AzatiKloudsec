@@ -10,6 +10,7 @@ import {
   useMediaQuery,
 } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
+import { ArrowDropDown } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/styles";
 import { Box } from "@material-ui/system";
 import clsx from "clsx";
@@ -17,6 +18,7 @@ import { debounce } from "lodash";
 import React, { Fragment, useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Link as Scroll } from "react-scroll";
+import LandingSidenav from "./LandingSidenav";
 import topbarNavigations from "./topbarNavigations";
 
 const fixedTopbarHeight = 64;
@@ -53,7 +55,6 @@ const useStyles = makeStyles(({ palette, ...theme }: Theme) => ({
 }));
 
 const Topbar = () => {
-  // const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isTopbarFixed, setTopbarFixed] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
@@ -70,10 +71,6 @@ const Topbar = () => {
     }, 18),
     []
   );
-
-  // const toggleSidenav = () => {
-  //   setSidebarOpen(!isSidebarOpen);
-  // };
 
   useEffect(() => {
     scrollableElement.addEventListener("scroll", scrollListener);
@@ -97,9 +94,47 @@ const Topbar = () => {
           [classes.topbarFixed]: isTopbarFixed,
         })}
       >
+        {/* Mobile Topbar */}
+        <FlexBox
+          sx={{
+            display: {
+              sm: "flex",
+              md: "none",
+            },
+            position: "relative",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "100%",
+          }}
+        >
+          <LandingSidenav
+            isTopbarFixed={isTopbarFixed}
+            isMobile={isMobile}
+            fixedTopbarHeight={fixedTopbarHeight}
+          />
+
+          <Scroll
+            to="intro1"
+            duration={400}
+            smooth={true}
+            offset={isTopbarFixed ? (isMobile ? 0 : -fixedTopbarHeight) : -65}
+          >
+            <XImage
+              src={isTopbarFixed ? "/logo.svg" : "/logo-white.svg"}
+              height="36px"
+              alt="logo"
+              sx={{ display: "block" }}
+            />
+          </Scroll>
+        </FlexBox>
+
+        {/* Desktop Topbar */}
         <Container
           sx={{
-            display: "flex",
+            display: {
+              xs: "none",
+              md: "flex",
+            },
             justifyContent: "space-between",
             alignItems: "center",
           }}
@@ -119,7 +154,7 @@ const Topbar = () => {
           </Scroll>
 
           <FlexBox sx={{ flexWrap: "wrap" }}>
-            {topbarNavigations.map((item) =>
+            {topbarNavigations.map((item, ind) =>
               item.children ? (
                 <Box
                   position="relative"
@@ -128,7 +163,13 @@ const Topbar = () => {
                   }}
                   key={item.title}
                 >
-                  <Button className={classes.linkButton}>{item.title}</Button>
+                  <Button
+                    className={classes.linkButton}
+                    sx={{ pr: "0.5rem !important" }}
+                  >
+                    {item.title}
+                    <ArrowDropDown fontSize="small" sx={{ ml: "2px" }} />
+                  </Button>
                   <Box
                     className="dropdown-menu"
                     display="none"
@@ -137,13 +178,11 @@ const Topbar = () => {
                   >
                     <Card
                       elevation={6}
-                      sx={{ minWidth: 120, marginTop: "0.8rem" }}
+                      sx={{ minWidth: 120, marginTop: "0.8rem", py: "0.25rem" }}
                     >
                       {item.children.map((child, ind) => (
                         <Link to={child.url} key={child.title}>
-                          <a href={child.url}>
-                            <MenuItem>{child.title}</MenuItem>
-                          </a>
+                          <MenuItem>{child.title}</MenuItem>
                         </Link>
                       ))}
                     </Card>
@@ -163,15 +202,19 @@ const Topbar = () => {
                 </Scroll>
               ) : (
                 <Link to={item.url || "/"} key={item.title}>
-                  <a href={item.url}>
-                    <Button
-                      className={classes.linkButton}
-                      variant={item.outlined ? "outlined" : "text"}
-                      sx={{ borderRadius: item.outlined ? "300px" : "4px" }}
-                    >
-                      {item.title}
-                    </Button>
-                  </a>
+                  <Button
+                    className={classes.linkButton}
+                    variant={item.outlined ? "outlined" : "text"}
+                    sx={{
+                      borderRadius: item.outlined ? "300px" : "4px",
+                      marginRight:
+                        ind === topbarNavigations.length - 1
+                          ? "0px !important"
+                          : "0.25rem",
+                    }}
+                  >
+                    {item.title}
+                  </Button>
                 </Link>
               )
             )}
