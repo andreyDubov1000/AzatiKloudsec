@@ -12,7 +12,7 @@ const useStyles = makeStyles(({ palette, ...theme }: Theme) => ({
     paddingTop: "5rem",
     paddingBottom: "5rem",
     color: palette.primary.contrastText,
-    backgroundImage: `linear-gradient(${alpha(palette.primary.main, 0.85)}, ${
+    backgroundImage: `linear-gradient(${alpha(palette.primary.main, 0.95)}, ${
       palette.primary.main
     })`,
   },
@@ -26,6 +26,7 @@ const useStyles = makeStyles(({ palette, ...theme }: Theme) => ({
     borderRadius: "4px",
     padding: "0.5rem 1rem",
     textTransform: "capitalize",
+    textAlign: "left",
   },
 }));
 
@@ -91,7 +92,7 @@ const Footer = () => {
               <XImage
                 src="logo-white.svg"
                 alt="KloudSec"
-                width="64px"
+                height="44px"
                 sx={{ mb: "1rem" }}
               />
 

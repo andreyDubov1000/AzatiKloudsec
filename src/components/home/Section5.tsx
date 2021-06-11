@@ -1,6 +1,6 @@
 import FlexBox from "@component/atoms/FlexBox";
 import { H2, H3, Paragraph, Span } from "@component/atoms/Typography";
-import { Button, Card, Container, Grid } from "@material-ui/core";
+import { Button, Card, Grid } from "@material-ui/core";
 import { Done } from "@material-ui/icons";
 import { Box } from "@material-ui/system";
 import React from "react";
@@ -8,7 +8,7 @@ import React from "react";
 const Section5 = () => {
   return (
     <Box py="5rem" bgcolor="primary.main" id="pricing">
-      <Container sx={{ maxWidth: { lg: "80%" } }}>
+      <Box sx={{ maxWidth: 1050, mx: "auto", px: "1rem" }}>
         <Grid container spacing={4}>
           {planList.map((plan, ind) => (
             <Grid item md={4} sm={6} xs={12} key={plan.name}>
@@ -19,7 +19,7 @@ const Section5 = () => {
                   p: "2.16em",
                   border: "2px solid",
                   borderColor: plan.color,
-                  height: "100%",
+                  // height: "100%",
                 }}
               >
                 <Box>
@@ -73,7 +73,7 @@ const Section5 = () => {
             </Grid>
           ))}
         </Grid>
-      </Container>
+      </Box>
     </Box>
   );
 };

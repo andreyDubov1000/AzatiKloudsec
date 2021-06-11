@@ -1,5 +1,14 @@
+import FlexBox from "@component/atoms/FlexBox";
 import XBox from "@component/atoms/XBox";
-import { Button, Container, Theme, useMediaQuery } from "@material-ui/core";
+import XImage from "@component/atoms/XImage";
+import {
+  Button,
+  Card,
+  Container,
+  MenuItem,
+  Theme,
+  useMediaQuery,
+} from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/styles";
 import { Box } from "@material-ui/system";
@@ -8,10 +17,11 @@ import { debounce } from "lodash";
 import React, { Fragment, useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Link as Scroll } from "react-scroll";
+import topbarNavigations from "./topbarNavigations";
 
 const fixedTopbarHeight = 64;
 const normalTopbarHeight = 128;
-const sidenavWidth = 260;
+// const sidenavWidth = 260;
 
 const useStyles = makeStyles(({ palette, ...theme }: Theme) => ({
   topbarNormal: {
@@ -32,16 +42,6 @@ const useStyles = makeStyles(({ palette, ...theme }: Theme) => ({
     background: palette.background.paper,
     boxShadow: theme.shadows[3],
     zIndex: 999,
-    [theme.breakpoints.down("xs")]: {
-      height: "auto",
-      bottom: 0,
-      right: "unset",
-      width: sidenavWidth,
-      left: (props: any) => (props.isSidebarOpen ? 0 : -sidenavWidth),
-      alignItems: "flex-start",
-      overflow: "auto",
-      transition: "all 250ms cubic-bezier(0.17, 0.67, 0.83, 0.67)",
-    },
   },
 
   // new code
@@ -53,11 +53,11 @@ const useStyles = makeStyles(({ palette, ...theme }: Theme) => ({
 }));
 
 const Topbar = () => {
-  const [isSidebarOpen, setSidebarOpen] = useState(false);
+  // const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isTopbarFixed, setTopbarFixed] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
-  const classes = useStyles({ isSidebarOpen });
+  const classes = useStyles();
 
   let scrollableElement =
     document.querySelector(".scrollable-content") || window;
@@ -71,9 +71,9 @@ const Topbar = () => {
     []
   );
 
-  const toggleSidenav = () => {
-    setSidebarOpen(!isSidebarOpen);
-  };
+  // const toggleSidenav = () => {
+  //   setSidebarOpen(!isSidebarOpen);
+  // };
 
   useEffect(() => {
     scrollableElement.addEventListener("scroll", scrollListener);
@@ -104,67 +104,78 @@ const Topbar = () => {
             alignItems: "center",
           }}
         >
-          <img
-            src={isTopbarFixed ? "/logo.svg" : "/logo-white.svg"}
-            height="36px"
-            alt="logo"
-          />
+          <Scroll
+            to="intro1"
+            duration={400}
+            smooth={true}
+            offset={isTopbarFixed ? (isMobile ? 0 : -fixedTopbarHeight) : -65}
+          >
+            <XImage
+              src={isTopbarFixed ? "/logo.svg" : "/logo-white.svg"}
+              height="36px"
+              alt="logo"
+              sx={{ cursor: "pointer" }}
+            />
+          </Scroll>
 
-          <Box sx={{ display: "flex" }}>
-            <Scroll
-              to="intro1"
-              duration={400}
-              smooth={true}
-              onClick={toggleSidenav}
-            >
-              <Button className={classes.linkButton}>Home</Button>
-            </Scroll>
-            <Scroll
-              to="services1"
-              smooth={true}
-              duration={400}
-              onClick={toggleSidenav}
-              offset={isTopbarFixed ? (isMobile ? 0 : -fixedTopbarHeight) : -65}
-            >
-              <Button className={classes.linkButton}>Services</Button>
-            </Scroll>
-            <Scroll
-              to="pricing"
-              smooth={true}
-              duration={400}
-              onClick={toggleSidenav}
-              offset={isTopbarFixed ? (isMobile ? 0 : -fixedTopbarHeight) : -65}
-            >
-              <Button className={classes.linkButton}>Pricing</Button>
-            </Scroll>
-            <Scroll
-              to="testimonial2"
-              smooth={true}
-              duration={400}
-              onClick={toggleSidenav}
-              offset={isTopbarFixed ? (isMobile ? 0 : -fixedTopbarHeight) : -65}
-            >
-              <Button className={classes.linkButton}>Reviews</Button>
-            </Scroll>
-            <Scroll
-              to="contact1"
-              smooth={true}
-              duration={400}
-              onClick={toggleSidenav}
-              offset={
-                isTopbarFixed
-                  ? isMobile
-                    ? -80
-                    : -(fixedTopbarHeight + 80)
-                  : -145
-              }
-            >
-              <Button className={classes.linkButton}>Contact</Button>
-            </Scroll>
-            <Link to="/login" onClick={toggleSidenav}>
-              <Button className={classes.linkButton}>Login</Button>
-            </Link>
-          </Box>
+          <FlexBox sx={{ flexWrap: "wrap" }}>
+            {topbarNavigations.map((item) =>
+              item.children ? (
+                <Box
+                  position="relative"
+                  sx={{
+                    "&:hover": { "& .dropdown-menu": { display: "block" } },
+                  }}
+                  key={item.title}
+                >
+                  <Button className={classes.linkButton}>{item.title}</Button>
+                  <Box
+                    className="dropdown-menu"
+                    display="none"
+                    position="absolute"
+                    top="100%"
+                  >
+                    <Card
+                      elevation={6}
+                      sx={{ minWidth: 120, marginTop: "0.8rem" }}
+                    >
+                      {item.children.map((child, ind) => (
+                        <Link to={child.url} key={child.title}>
+                          <a href={child.url}>
+                            <MenuItem>{child.title}</MenuItem>
+                          </a>
+                        </Link>
+                      ))}
+                    </Card>
+                  </Box>
+                </Box>
+              ) : item.sectionId ? (
+                <Scroll
+                  to={item.sectionId}
+                  duration={400}
+                  smooth={true}
+                  key={item.title}
+                  offset={
+                    isTopbarFixed ? (isMobile ? 0 : -fixedTopbarHeight) : -65
+                  }
+                >
+                  <Button className={classes.linkButton}>{item.title}</Button>
+                </Scroll>
+              ) : (
+                <Link to={item.url || "/"} key={item.title}>
+                  <a href={item.url}>
+                    <Button
+                      className={classes.linkButton}
+                      variant={item.outlined ? "outlined" : "text"}
+                      sx={{ borderRadius: item.outlined ? "300px" : "4px" }}
+                    >
+                      {item.title}
+                    </Button>
+                  </a>
+                </Link>
+              )
+            )}
+          </FlexBox>
         </Container>
       </div>
       <XBox

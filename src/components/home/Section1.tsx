@@ -1,3 +1,4 @@
+import FlexBox from "@component/atoms/FlexBox";
 import { H1, Paragraph } from "@component/atoms/Typography";
 import XBox from "@component/atoms/XBox";
 import { Button, Container, Grid, Theme } from "@material-ui/core";
@@ -39,7 +40,7 @@ const Section1 = () => {
               entire development lifecycle.
             </Paragraph>
 
-            <div className="flex">
+            <FlexBox sx={{ m: "-0.5rem", flexWrap: "wrap" }}>
               <Scroll
                 to="contact1"
                 duration={400}
@@ -50,7 +51,12 @@ const Section1 = () => {
                   variant="contained"
                   color="secondary"
                   disableElevation
-                  sx={{ marginRight: "1rem", px: "1.5rem", borderRadius: 300 }}
+                  sx={{
+                    m: "0.5rem",
+                    px: "1.5rem",
+                    borderRadius: 300,
+                    // whiteSpace: "pre",
+                  }}
                 >
                   Get Started For Free
                 </Button>
@@ -62,12 +68,14 @@ const Section1 = () => {
                   borderColor: "rgba(255,255,255,0.53)",
                   color: "white",
                   px: "1.5rem",
+                  m: "0.5rem",
                   borderRadius: 300,
+                  // whiteSpace: "pre",
                 }}
               >
                 Schedule A Demo
               </Button>
-            </div>
+            </FlexBox>
           </Grid>
           <Grid item sm={6} xs={12}>
             <div>

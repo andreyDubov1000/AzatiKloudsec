@@ -195,7 +195,7 @@ const theme = createTheme({
     },
     MuiCard: {
       defaultProps: {
-        style: { borderRadius: 8 },
+        style: { borderRadius: 6 },
       },
     },
     MuiDialog: {
