@@ -59,7 +59,11 @@ const LandingSidenav: React.FC<LandingSidenavProps> = ({
 
         {topbarNavigations.map((item, ind) =>
           item.children ? (
-            <XAccordion title={item.title} buttonSx={{ mb: "0.25rem" }}>
+            <XAccordion
+              title={item.title}
+              buttonSx={{ mb: "0.25rem" }}
+              key={item.title}
+            >
               <XBox sx={{ bgcolor: "grey.100" }}>
                 {item.children.map((child, ind) => (
                   <Link to={child.url} key={child.title}>

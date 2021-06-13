@@ -193,6 +193,11 @@ const theme = createTheme({
         },
       },
     },
+    MuiTextField: {
+      defaultProps: {
+        size: "small",
+      },
+    },
     MuiCard: {
       defaultProps: {
         style: { borderRadius: 6 },

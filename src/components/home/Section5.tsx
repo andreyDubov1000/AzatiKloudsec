@@ -19,6 +19,7 @@ const Section5 = () => {
                   p: "2.16em",
                   border: "2px solid",
                   borderColor: plan.color,
+                  borderRadius: "8px !important",
                   // height: "100%",
                 }}
               >
