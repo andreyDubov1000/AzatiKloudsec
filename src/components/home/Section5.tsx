@@ -10,7 +10,21 @@ const Section5 = () => {
     <Box
       id="pricing"
       sx={{
+        position: "relative",
         py: "5rem",
+        bgcolor: "grey.100",
+        zIndex: 1,
+        "&:after": {
+          content: '"KloudSec"',
+          fontSize: "20vw",
+          color: "grey.300",
+          fontWeight: 700,
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          zIndex: -1,
+        },
         // background: "url(/assets/images/pricing-bg.svg) center/cover",
       }}
     >
