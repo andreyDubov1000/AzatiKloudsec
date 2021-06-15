@@ -7,7 +7,13 @@ import React from "react";
 
 const Section5 = () => {
   return (
-    <Box py="5rem" bgcolor="primary.main" id="pricing">
+    <Box
+      id="pricing"
+      sx={{
+        py: "5rem",
+        // background: "url(/assets/images/pricing-bg.svg) center/cover",
+      }}
+    >
       <Box sx={{ maxWidth: 1050, mx: "auto", px: "1rem" }}>
         <Grid container spacing={4}>
           {planList.map((plan, ind) => (
@@ -17,7 +23,7 @@ const Section5 = () => {
                 sx={{
                   textAlign: "center",
                   p: "2.16em",
-                  border: "2px solid",
+                  border: "1px solid",
                   borderColor: plan.color,
                   borderRadius: "8px !important",
                   // height: "100%",

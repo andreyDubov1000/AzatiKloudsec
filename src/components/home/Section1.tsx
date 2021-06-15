@@ -11,9 +11,10 @@ import Topbar from "./Topbar";
 const useStyles = makeStyles(({ palette, ...theme }: Theme) => ({
   section: {
     // backgroundImage: "linear-gradient(#6E5BFF, #5727C2)",
-    backgroundImage: `linear-gradient(${alpha(palette.primary.main, 0.85)}, ${
-      palette.primary.main
-    })`,
+    backgroundImage: `linear-gradient(to left, ${alpha(
+      palette.primary.main,
+      0.85
+    )}, ${palette.primary.dark})`,
     paddingBottom: "5rem",
   },
 }));
@@ -49,13 +50,15 @@ const Section1 = () => {
               >
                 <Button
                   variant="contained"
-                  color="secondary"
-                  disableElevation
+                  color="primary"
                   sx={{
                     m: "0.5rem",
                     px: "1.5rem",
                     borderRadius: 300,
-                    // whiteSpace: "pre",
+                    boxShadow: "0px 11px 10px rgba(0, 0, 0, 0.18)",
+                    "&:hover": {
+                      bgcolor: "primary.main",
+                    },
                   }}
                 >
                   Get Started For Free
@@ -70,7 +73,6 @@ const Section1 = () => {
                   px: "1.5rem",
                   m: "0.5rem",
                   borderRadius: 300,
-                  // whiteSpace: "pre",
                 }}
               >
                 Schedule A Demo
@@ -79,11 +81,7 @@ const Section1 = () => {
           </Grid>
           <Grid item sm={6} xs={12}>
             <div>
-              <img
-                src="/assets/images/business-1.svg"
-                alt="business1"
-                width="100%"
-              />
+              <img src="/assets/images/intro.svg" alt="intro" width="100%" />
             </div>
           </Grid>
         </Grid>

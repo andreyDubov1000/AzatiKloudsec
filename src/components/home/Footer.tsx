@@ -12,9 +12,10 @@ const useStyles = makeStyles(({ palette, ...theme }: Theme) => ({
     paddingTop: "5rem",
     paddingBottom: "5rem",
     color: palette.primary.contrastText,
-    backgroundImage: `linear-gradient(${alpha(palette.primary.main, 0.95)}, ${
-      palette.primary.main
-    })`,
+    backgroundImage: `linear-gradient(to left, ${alpha(
+      palette.primary.main,
+      0.95
+    )}, ${palette.primary.dark})`,
   },
   logo: {
     letterSpacing: 2.5,
