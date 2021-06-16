@@ -3,15 +3,12 @@ import Login from "pages/auth/Login";
 import Signup from "pages/auth/Signup";
 import ConfirmUser from "pages/auth/UserConfirmation";
 import Home from "pages/Home";
-import React, { useEffect } from "react";
+import React from "react";
+import { NotificationContainer } from "react-notifications";
+import "react-notifications/lib/notifications.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { initializeAxios } from "services/axios";
 
 const App = () => {
-  useEffect(() => {
-    initializeAxios();
-  }, []);
-
   return (
     <MuiTheme>
       <Router>
@@ -22,6 +19,7 @@ const App = () => {
           <Route path="/" component={Home} />
         </Switch>
       </Router>
+      <NotificationContainer />
     </MuiTheme>
   );
 };

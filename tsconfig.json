@@ -25,6 +25,7 @@
   },
   "extends": "./tsconfig.extend.json",
   "include": [
-    "src"
+    "src",
+    "index.d.ts"
   ]
 }

@@ -11,14 +11,10 @@ const Signup: React.FC<SignupProps> = () => {
   const history = useHistory();
 
   const handleFormSubmit = async (values: any) => {
-    try {
-      const { data: user } = await createNewUser(values);
-      console.log(user);
+    const user = await createNewUser(values);
+    console.log(user);
 
-      history.push(`/confirm?user_id=${user.user_id}&email=${user.email}`);
-    } catch (error) {
-      console.log(error.response?.data?.error_message);
-    }
+    history.push(`/confirm?user_id=${user.user_id}&email=${user.email}`);
   };
 
   return (

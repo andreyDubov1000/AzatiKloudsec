@@ -149,18 +149,12 @@ const theme = createTheme({
           fontFamily,
           fontSize,
         },
-        "& #nprogress .bar": {
-          position: "fixed",
-          top: 0,
-          left: 0,
-          height: 3,
-          borderRadius: "0px 300px 300px 0px",
-          zIndex: 1031,
-          background: primary[500],
-          overflow: "hidden",
+        "& .notification-container": {
+          paddingBottom: "15px !important",
         },
-        "& #nprogress .peg": {
-          boxShadow: `0 0 10px ${primary[500]}, 0 0 5px ${primary[500]}`,
+        "& .notification": {
+          borderRadius: "6px !important",
+          boxShadow: "0px 1px 3px rgba(3, 0, 71, 0.09) !important",
         },
       },
     },

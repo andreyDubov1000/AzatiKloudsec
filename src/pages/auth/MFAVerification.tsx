@@ -1,3 +1,4 @@
+import NotificationManager from "@component/atoms/NotificationManager";
 import { Button, Card, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 import { verifyMFA } from "services/authService";
@@ -27,6 +28,9 @@ const MFAVerification: React.FC<MFAVerificationProps> = ({
       verification_type,
     });
 
+    if (data) {
+      NotificationManager.success("Login Successful");
+    }
     console.log(data);
   };
 

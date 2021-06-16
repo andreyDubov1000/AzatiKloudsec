@@ -1,3 +1,4 @@
+import NotificationManager from "@component/atoms/NotificationManager";
 import { Button, Card, TextField } from "@material-ui/core";
 import { Formik } from "formik";
 import React, { useState } from "react";
@@ -11,9 +12,16 @@ const Login = () => {
 
   const handleFormSubmit = async (values: any) => {
     console.log(values);
-    const { data: loggedUser } = await login(values);
-    console.log(loggedUser);
-    setUser(loggedUser);
+    const loggedUser = await login(values);
+
+    if (loggedUser) {
+      setUser(loggedUser);
+
+      NotificationManager.success(
+        "You are one step away from login. Please provide your OTP code."
+      );
+    }
+
     // history.push("/payment");
   };
 

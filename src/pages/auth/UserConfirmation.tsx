@@ -20,14 +20,10 @@ const UserConfirmation = () => {
 
   const handleFormSubmit = async (values: any) => {
     if (user_id) {
-      try {
-        const { data: user } = await confirmUser(values, user_id);
-        console.log(user);
+      const user = await confirmUser(values, user_id);
+      console.log(user);
 
-        setQrCodeUrl(user.qr_code_secret_url);
-      } catch (error) {
-        console.log(error.response?.data?.error_message);
-      }
+      setQrCodeUrl(user.qr_code_secret_url);
     }
     // history.push("/payment");
   };
