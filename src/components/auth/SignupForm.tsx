@@ -1,6 +1,6 @@
 import FlexBox from "@component/atoms/FlexBox";
 import NotificationManager from "@component/atoms/NotificationManager";
-import { Span } from "@component/atoms/Typography";
+import { H4, Span } from "@component/atoms/Typography";
 import { TextField } from "@material-ui/core";
 import { LoadingButton } from "@material-ui/lab";
 import { Formik } from "formik";
@@ -41,11 +41,15 @@ const SignupForm: React.FC<SignupFormProps> = () => {
         isSubmitting,
       }) => (
         <form onSubmit={handleSubmit}>
+          <H4 mb="2rem" color="primary.main" textAlign="center">
+            Create Account
+          </H4>
+
           <TextField
             name="full_name"
             label="Full Name"
             fullWidth
-            sx={{ mb: "1.5rem" }}
+            sx={{ mb: "1.25rem" }}
             onBlur={handleBlur}
             onChange={handleChange}
             value={values.full_name || ""}
@@ -57,7 +61,7 @@ const SignupForm: React.FC<SignupFormProps> = () => {
             label="Email"
             type="email"
             fullWidth
-            sx={{ mb: "1.5rem" }}
+            sx={{ mb: "1.25rem" }}
             onBlur={handleBlur}
             onChange={handleChange}
             value={values.email || ""}

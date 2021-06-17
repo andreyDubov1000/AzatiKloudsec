@@ -54,8 +54,8 @@ const LoginForm: React.FC<LoginFormProps> = () => {
         isSubmitting,
       }) => (
         <form onSubmit={handleSubmit}>
-          <H4 mb="2.5rem" color="primary.main" textAlign="center">
-            Login your account
+          <H4 mb="2rem" color="primary.main" textAlign="center">
+            Login Your Account
           </H4>
 
           <TextField
@@ -63,7 +63,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
             label="Email"
             type="email"
             fullWidth
-            sx={{ mb: "1.5rem" }}
+            sx={{ mb: "1.25rem" }}
             onBlur={handleBlur}
             onChange={handleChange}
             value={values.email || ""}
