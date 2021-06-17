@@ -1,6 +1,8 @@
 import NotificationManager from "@component/atoms/NotificationManager";
-import { Button, Card, TextField } from "@material-ui/core";
-import React, { useState } from "react";
+import { H4 } from "@component/atoms/Typography";
+import { TextField } from "@material-ui/core";
+import { LoadingButton } from "@material-ui/lab";
+import React, { Fragment, useState } from "react";
 import { verifyMFA } from "services/authService";
 
 export interface MFAVerificationProps {
@@ -14,6 +16,7 @@ const MFAVerification: React.FC<MFAVerificationProps> = ({
   verification_type,
   verification_session,
 }) => {
+  const [loading, setLoading] = useState(false);
   const [otp, setOtp] = useState("");
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,12 +24,18 @@ const MFAVerification: React.FC<MFAVerificationProps> = ({
   };
 
   const handleLogin = async () => {
+    if (!!!otp.trim()) return;
+
+    setLoading(true);
+
     const data = await verifyMFA({
       otp_code: otp,
       email,
       verification_session,
       verification_type,
     });
+
+    setLoading(false);
 
     if (data) {
       NotificationManager.success("Login Successful");
@@ -35,18 +44,33 @@ const MFAVerification: React.FC<MFAVerificationProps> = ({
   };
 
   return (
-    <Card sx={{ p: "2rem", maxWidth: 550, mx: "auto", mt: "2rem" }}>
+    <Fragment>
+      <H4 mb="2.5rem" color="primary.main" textAlign="center">
+        Verify it's you
+      </H4>
+
       <TextField
         label="OTP"
         fullWidth
-        sx={{ mb: "1rem" }}
+        sx={{ mb: "1.5rem" }}
         onChange={handleChange}
       />
 
-      <Button variant="contained" color="primary" onClick={handleLogin}>
+      <LoadingButton
+        variant="contained"
+        color="primary"
+        sx={{
+          display: "flex",
+          px: "2rem",
+          mx: "auto",
+          borderRadius: "50px",
+        }}
+        loading={loading}
+        onClick={handleLogin}
+      >
         Confirm Login
-      </Button>
-    </Card>
+      </LoadingButton>
+    </Fragment>
   );
 };
 
