@@ -1,7 +1,8 @@
 import MuiTheme from "@component/theme/MuiTheme";
+import AccountConfirmation from "pages/auth/AccountConfirmation";
 import Login from "pages/auth/Login";
+import PasswordConfirmation from "pages/auth/PasswordConfirmation";
 import Signup from "pages/auth/Signup";
-import ConfirmUser from "pages/auth/UserConfirmation";
 import Home from "pages/Home";
 import React from "react";
 import { NotificationContainer } from "react-notifications";
@@ -13,7 +14,8 @@ const App = () => {
     <MuiTheme>
       <Router>
         <Switch>
-          <Route path="/confirm" component={ConfirmUser} />
+          <Route path="/confirm-password" component={PasswordConfirmation} />
+          <Route path="/confirm-account" component={AccountConfirmation} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/" component={Home} />

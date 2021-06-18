@@ -21,7 +21,9 @@ const SignupForm: React.FC<SignupFormProps> = () => {
       NotificationManager.success("Account was created successfully");
       NotificationManager.info("A temporary password was sent to your email.");
       console.log(user);
-      history.push(`/confirm?user_id=${user.user_id}&email=${user.email}`);
+      history.push(
+        `/confirm-password?user_id=${user.user_id}&email=${user.email}`
+      );
     }
   };
 
@@ -103,11 +105,11 @@ const SignupForm: React.FC<SignupFormProps> = () => {
           <FlexBox
             sx={{ mt: "2rem", justifyContent: "center", fontSize: "12px" }}
           >
-            <Span color="grey.600" mr="0.25rem">
+            <Span color="grey.600" mr="0.25rem" fontSize="inherit">
               Already have an account?
             </Span>
             <Link to="/login">
-              <Span color="primary.main" letterSpacing="1.1">
+              <Span color="primary.main" letterSpacing="1.1" fontSize="inherit">
                 Login
               </Span>
             </Link>

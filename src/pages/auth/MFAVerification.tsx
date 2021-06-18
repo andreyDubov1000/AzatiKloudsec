@@ -23,7 +23,7 @@ const MFAVerification: React.FC<MFAVerificationProps> = ({
     setOtp(e.target.value);
   };
 
-  const handleLogin = async () => {
+  const handleMFAVerification = async () => {
     if (!!!otp.trim()) return;
 
     setLoading(true);
@@ -66,7 +66,7 @@ const MFAVerification: React.FC<MFAVerificationProps> = ({
           borderRadius: "50px",
         }}
         loading={loading}
-        onClick={handleLogin}
+        onClick={handleMFAVerification}
       >
         Confirm Login
       </LoadingButton>

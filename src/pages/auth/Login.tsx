@@ -4,7 +4,10 @@ import React from "react";
 
 const Login = () => {
   return (
-    <AuthLayout greetingText="Welcome back">
+    <AuthLayout
+      greetingText="Welcome back"
+      imgUrl="/assets/images/illustrations/login.svg"
+    >
       <LoginForm />
     </AuthLayout>
   );

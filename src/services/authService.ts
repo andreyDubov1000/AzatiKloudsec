@@ -5,7 +5,7 @@ type createNewUserProps = {
   email: string;
 };
 
-type confirmUserProps = {
+type confirmPasswordProps = {
   user_id: string;
   email: string;
   qr_code_secret_url: string;
@@ -17,17 +17,28 @@ type loginPops = {
   verification_session: string;
 };
 
-export const createNewUser = async (data: any): Promise<createNewUserProps> =>
-  await KloudApi.post("/users", data);
+// ============== Signup API ========================
 
-export const confirmUser = async (
+export const createNewUser = async (data: any): Promise<createNewUserProps> => {
+  return await KloudApi.post("/users", data);
+};
+
+export const confirmPassword = async (
   data: any,
   user_id: string
-): Promise<confirmUserProps> =>
-  await KloudApi.post(`/users/${user_id}/confirm`, data);
+): Promise<confirmPasswordProps> => {
+  return await KloudApi.post(`/users/${user_id}/confirm-password`, data);
+};
 
-export const login = async (data: any): Promise<loginPops> =>
-  await KloudApi.post("/login", data);
+export const confirmAccount = async (data: any, user_id: string) => {
+  return await KloudApi.post(`/users/${user_id}/confirm`, data);
+};
+
+// ============== Login API ========================
+
+export const login = async (data: any): Promise<loginPops> => {
+  return await KloudApi.post("/login", data);
+};
 
 export const verifyMFA = async (data: any) => {
   return await KloudApi.post("/mfa-verify", data);
