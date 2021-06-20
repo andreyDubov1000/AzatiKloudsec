@@ -149,6 +149,9 @@ const theme = createTheme({
           fontFamily,
           fontSize,
         },
+        form: {
+          width: "100%",
+        },
         "& .notification-container": {
           paddingBottom: "15px !important",
         },

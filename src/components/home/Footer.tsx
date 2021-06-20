@@ -68,7 +68,7 @@ const Footer = () => {
               </TouchRipple>
             ))}
           </Grid>
-          <Grid item md={2} xs={6}>
+          {/* <Grid item md={2} xs={6}>
             <H5 mb="1rem">FEATURES</H5>
 
             {productLink.map((item, ind) => (
@@ -76,7 +76,7 @@ const Footer = () => {
                 {item}
               </TouchRipple>
             ))}
-          </Grid>
+          </Grid> */}
           {/* <Grid item md={2} xs={6}>
             <H5 mb="1rem">FREQUENT LINKS</H5>
 

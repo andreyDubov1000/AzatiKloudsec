@@ -101,13 +101,11 @@ const PasswordConfirmationForm = () => {
 };
 
 const initialValues = {
-  //   email: "lusanleng824@gmail.com",
-  temporary_password: "7VB8uWJTP_P%Rh",
-  new_password: "7VB8uW548JTP_P%Rh",
+  temporary_password: "",
+  new_password: "",
 };
 
 const formSchema = yup.object().shape({
-  //   email: yup.string().email("invalid email").required("required"),
   temporary_password: yup.string().required("required").max(250),
   new_password: yup.string().required("required").max(250),
 });

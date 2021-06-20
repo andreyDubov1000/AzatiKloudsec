@@ -27,8 +27,6 @@ const LoginForm: React.FC<LoginFormProps> = () => {
         "You are one step away from login. Please provide your OTP code."
       );
     }
-
-    // history.push("/payment");
   };
 
   return user ? (
@@ -110,7 +108,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
               Create Account
             </Span>
           </Link>
-          <Link to="/signup">
+          <Link to="/resend-otp">
             <Span
               display="block"
               color="primary.main"
