@@ -3,6 +3,7 @@
     "baseUrl": "./src",
     "paths": {
       "@component/*": ["./components/*"],
+      "@redux/*": ["./redux/*"],
       "@data/*": ["./data/*"],
       "@context/*": ["./contexts/*"],
       "@hook/*": ["./hooks/*"],

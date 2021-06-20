@@ -40,7 +40,7 @@ const Footer = () => {
   return (
     <section className={classes.section} id="footer">
       <Container>
-        <Grid container spacing={3}>
+        <Grid container spacing={3} justifyContent="center">
           <Grid item md={2} xs={6}>
             <H5 mb="1rem">PRODUCT</H5>
 
@@ -77,7 +77,7 @@ const Footer = () => {
               </TouchRipple>
             ))}
           </Grid>
-          <Grid item md={2} xs={6}>
+          {/* <Grid item md={2} xs={6}>
             <H5 mb="1rem">FREQUENT LINKS</H5>
 
             {supportLink.map((item, ind) => (
@@ -85,7 +85,7 @@ const Footer = () => {
                 {item}
               </TouchRipple>
             ))}
-          </Grid>
+          </Grid> */}
           <Grid item md={2} xs={6}>
             <FlexBox
               sx={{ flexDirection: "column", alignItems: "center", width: 84 }}
