@@ -1,4 +1,4 @@
-import { styled } from "@material-ui/system";
+import { experimentalStyled as styled } from "@material-ui/core/styles";
 
 const CustomImage = styled("img")({});
 

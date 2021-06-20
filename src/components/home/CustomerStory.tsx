@@ -1,5 +1,8 @@
+import CustomBox from "@component/atoms/CustomBox";
+import CustomFlexBox from "@component/atoms/CustomFlexBox";
+import CustomImage from "@component/atoms/CustomImage";
 import { H5, Paragraph, Span } from "@component/atoms/Typography";
-import { Avatar, Fab, Grid, Theme } from "@material-ui/core";
+import { Avatar, Fab, Theme } from "@material-ui/core";
 import { FormatQuote } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/styles";
 import React from "react";
@@ -43,7 +46,7 @@ const CustomerStory: React.FC<CustomerStoryProps> = () => {
       <div className={classes.avatarHolder}>
         <Avatar
           className={classes.avatar}
-          src="/assets/images/faces/face-6.jpg"
+          src="/assets/images/faces/Hafedh_Mounir.png"
         />
         <Fab
           color="secondary"
@@ -64,7 +67,32 @@ const CustomerStory: React.FC<CustomerStoryProps> = () => {
         of security.
       </Paragraph>
 
-      <Grid container spacing={0} alignItems="center">
+      <CustomFlexBox sx={{ width: "100%", alignItems: "center" }}>
+        <CustomBox sx={{ flex: "1 1 0" }}>
+          <div>
+            <H5 letterSpacing={1.1} mb="0.5rem">
+              Hafedh Mounir
+            </H5>
+            <Span fontSize="16px" whiteSpace="pre-wrap" letterSpacing={2}>
+              CEO / Security Manager
+            </Span>
+          </div>
+        </CustomBox>
+        <div className={classes.verticalBar} />
+        <CustomBox sx={{ flex: "1 1 0" }}>
+          <CustomImage
+            src="/assets/images/company/Cloudinit_Logo.png"
+            alt="brex"
+            sx={{
+              maxHeight: 80,
+              maxWidth: "100%",
+              mx: "auto",
+              display: "block",
+            }}
+          />
+        </CustomBox>
+      </CustomFlexBox>
+      {/* <Grid container spacing={0} alignItems="center">
         <Grid item sm={5} xs={6}>
           <H5 letterSpacing={1.1} mb="0.5rem">
             Hafedh Mounir
@@ -77,16 +105,18 @@ const CustomerStory: React.FC<CustomerStoryProps> = () => {
           <div className={classes.verticalBar} />
         </Grid>
         <Grid item sm={5} xs={5}>
-          <img
-            src="/assets/images/brex.png"
-            style={{
-              maxHeight: 38,
-              maxWidth: "100%",
-            }}
+          <CustomImage
+            src="/assets/images/company/Cloudinit_Logo.png"
             alt="brex"
+            sx={{
+              maxHeight: 80,
+              maxWidth: "100%",
+              mx: "auto",
+              display: "block",
+            }}
           />
         </Grid>
-      </Grid>
+      </Grid> */}
     </div>
   );
 };
