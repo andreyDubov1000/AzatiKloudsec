@@ -1,17 +1,17 @@
+import DevTeam from "@component/home/DevTeam";
 import Footer from "@component/home/Footer";
-import Section1 from "@component/home/Section1";
-import Section2 from "@component/home/Section2";
-import Section3 from "@component/home/Section3";
-import Section5 from "@component/home/Section5";
+import Introduction from "@component/home/Introduction";
+import Pricing from "@component/home/Pricing";
+import Testimonial from "@component/home/Testimonial";
 import { Box } from "@material-ui/system";
 
 const Home = () => {
   return (
     <Box bgcolor="white">
-      <Section1 />
-      <Section3 />
-      <Section5 />
-      <Section2 />
+      <Introduction />
+      <Testimonial />
+      <Pricing />
+      <DevTeam />
       <Footer />
     </Box>
   );

@@ -27,11 +27,11 @@ export const confirmPassword = async (
   data: any,
   user_id: string
 ): Promise<confirmPasswordProps> => {
-  return await KloudApi.post(`/users/${user_id}/confirm-password`, data);
+  return await KloudApi.post(`/users/${user_id}/confirm`, data);
 };
 
 export const confirmAccount = async (data: any, user_id: string) => {
-  return await KloudApi.post(`/users/${user_id}/confirm`, data);
+  return await KloudApi.post(`/users/${user_id}/confirm-mfa`, data);
 };
 
 // ============== Login API ========================

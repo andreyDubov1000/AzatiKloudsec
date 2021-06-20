@@ -1,6 +1,6 @@
-import FlexBox from "@component/atoms/FlexBox";
+import XBox from "@component/atoms/CustomBox";
+import FlexBox from "@component/atoms/CustomFlexBox";
 import { H1, Paragraph } from "@component/atoms/Typography";
-import XBox from "@component/atoms/XBox";
 import { Button, Container, Grid, Theme } from "@material-ui/core";
 import { alpha } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/styles";
@@ -19,7 +19,7 @@ const useStyles = makeStyles(({ palette, ...theme }: Theme) => ({
   },
 }));
 
-const Section1 = () => {
+const Introduction = () => {
   const classes = useStyles();
 
   return (
@@ -31,14 +31,14 @@ const Section1 = () => {
           <Grid item sm={6} xs={12}>
             <XBox>
               <H1 mb="1.5rem" fontSize="36px" letterSpacing={1.1}>
-                Automate your infrastructure <br /> security from commit to{" "}
-                <br /> cloud
+                Automate your cloud infrastructure <br /> security from commit
+                to <br /> deployment
               </H1>
             </XBox>
 
             <Paragraph fontSize="17px" color="whitesmoke" mb="1.5rem">
-              Streamline cloud security and enforce policies throughout the
-              entire development lifecycle.
+              Scan your cloud infrastructure and enforce the security of your
+              entire assets.
             </Paragraph>
 
             <FlexBox sx={{ m: "-0.5rem", flexWrap: "wrap" }}>
@@ -90,4 +90,4 @@ const Section1 = () => {
   );
 };
 
-export default Section1;
+export default Introduction;

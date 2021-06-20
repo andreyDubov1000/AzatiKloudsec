@@ -4,14 +4,11 @@ import { Box } from "@material-ui/system";
 import React from "react";
 import CustomerStory from "./CustomerStory";
 
-const Section3 = () => {
+const Testimonial = () => {
   return (
-    <Box py="5rem" id="customers">
+    <Box py="5rem" id="testimonial">
       <Container>
-        <Carousel totalSlides={4} visibleSlides={1} autoPlay>
-          <CustomerStory />
-          <CustomerStory />
-          <CustomerStory />
+        <Carousel totalSlides={1} visibleSlides={1} autoPlay>
           <CustomerStory />
         </Carousel>
       </Container>
@@ -19,4 +16,4 @@ const Section3 = () => {
   );
 };
 
-export default Section3;
+export default Testimonial;

@@ -13,7 +13,7 @@ interface MenuProps {
   elevation?: number;
 }
 
-const XMenu: React.FC<MenuProps> = ({
+const CustomMenu: React.FC<MenuProps> = ({
   open,
   handler,
   direction,
@@ -67,9 +67,9 @@ const XMenu: React.FC<MenuProps> = ({
   );
 };
 
-XMenu.defaultProps = {
+CustomMenu.defaultProps = {
   direction: "left",
   shouldCloseOnItemClick: true,
 };
 
-export default XMenu;
+export default CustomMenu;

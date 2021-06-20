@@ -1,11 +1,11 @@
-import FlexBox from "@component/atoms/FlexBox";
+import FlexBox from "@component/atoms/CustomFlexBox";
 import { H2, H3, Paragraph, Span } from "@component/atoms/Typography";
 import { Button, Card, Grid } from "@material-ui/core";
 import { Done } from "@material-ui/icons";
 import { Box } from "@material-ui/system";
 import React from "react";
 
-const Section5 = () => {
+const Pricing = () => {
   return (
     <Box
       id="pricing"
@@ -102,45 +102,48 @@ const Section5 = () => {
 const planList = [
   {
     color: "primary.main",
-    name: "Community",
-    subtitle: "IaC scanning for small infrastructure projects.",
-    price: 0,
-    offerings: "For up to 50 resources",
-    buttonText: "START FOR FREE",
+    name: "Developer",
+    subtitle: "For individual engineers.",
+    price: 15,
+    offerings: "For up to 100 resources",
+    buttonText: "START FREE TRIAL",
     serviceList: [
-      "IaC scanning powered by Checkov",
-      "Access to core Bridgecrew platform",
-      "Pull request fixes for IaC",
+      "Api Key: 10 calls per day",
+      "Scheduled Scans: Once every 24 hours",
+      "Dashboards and reports",
+      "On-Demand Scans: 10 per day",
     ],
   },
   {
     color: "secondary.main",
     name: "Standard",
-    subtitle: "Commit to cloud security coverage for teams.",
-    price: 99,
-    offerings: "For 150 resources",
-    buttonText: "START FREE TRIAL",
+    subtitle: "Customized codified cloud security for your team.",
+    price: 79,
+    offerings: "For up to 200 resources",
+    buttonText: "SCHEDULE A DEMO",
     serviceList: [
-      "IaC, cloud, and workload scanning",
-      "Resource and policy management",
-      "Dashboards and reports",
-      "Custom policies",
+      "Everything in Developer",
+      "Api Key: 50 calls per day",
+      "Scheduled Scans: Once every 6 hours",
+      "On-Demand Scans: 50 per day",
+      "Engineering support",
     ],
   },
   {
     color: "secondary.dark",
-    name: "Premium",
-    subtitle: "Customized codified cloud security for your team.",
-    price: 999,
-    offerings: "Starts at 300 resources",
+    name: "Enterprise",
+    subtitle: "Dedicated team for your cloud security.",
+    price: 799,
+    offerings: "Starting from 201 resources",
     buttonText: "SCHEDULE A DEMO",
     serviceList: [
       "Everything in Standard",
-      "Roles and teams",
-      "On-prem/self-hosted VCS",
-      "Priority support and engineering support",
+      "Api Key: starting from 51 calls per day",
+      "Scheduled Scans: Till Once every 5 minutes",
+      "On-Demand Scans: 51 per day and more",
+      "Dedicated Engineering support team",
     ],
   },
 ];
 
-export default Section5;
+export default Pricing;

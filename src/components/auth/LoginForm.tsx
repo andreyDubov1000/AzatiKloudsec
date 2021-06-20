@@ -129,8 +129,8 @@ const LoginForm: React.FC<LoginFormProps> = () => {
 };
 
 const initialValues = {
-  email: "lusanleng824@gmail.com",
-  password: "7VB8uW548JTP_P%Rh",
+  email: "",
+  password: "",
 };
 
 const formSchema = yup.object().shape({

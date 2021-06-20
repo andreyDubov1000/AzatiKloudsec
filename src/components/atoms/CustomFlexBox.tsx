@@ -1,7 +1,7 @@
 import { experimentalStyled as styled } from "@material-ui/core/styles";
 
-const FlexBox = styled("div")({
+const CustomFlexBox = styled("div")({
   display: "flex",
 });
 
-export default FlexBox;
+export default CustomFlexBox;

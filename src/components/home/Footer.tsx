@@ -1,6 +1,6 @@
-import FlexBox from "@component/atoms/FlexBox";
+import FlexBox from "@component/atoms/CustomFlexBox";
+import XImage from "@component/atoms/CustomImage";
 import { H5 } from "@component/atoms/Typography";
-import XImage from "@component/atoms/XImage";
 import { Container, Grid, Theme } from "@material-ui/core";
 import TouchRipple from "@material-ui/core/ButtonBase";
 import { alpha } from "@material-ui/core/styles";

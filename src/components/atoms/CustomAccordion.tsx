@@ -3,14 +3,14 @@ import { KeyboardArrowDown } from "@material-ui/icons";
 import { SxProps } from "@material-ui/system";
 import React, { Fragment, useCallback, useEffect, useState } from "react";
 
-export interface XAccordionProps {
+export interface CustomAccordionProps {
   title: any;
   exapnded?: boolean;
   buttonSx?: SxProps;
   showIcon?: boolean;
 }
 
-const XAccordion: React.FC<XAccordionProps> = ({
+const CustomAccordion: React.FC<CustomAccordionProps> = ({
   title,
   exapnded,
   buttonSx,
@@ -49,9 +49,9 @@ const XAccordion: React.FC<XAccordionProps> = ({
   );
 };
 
-XAccordion.defaultProps = {
+CustomAccordion.defaultProps = {
   buttonSx: {},
   showIcon: true,
 };
 
-export default XAccordion;
+export default CustomAccordion;

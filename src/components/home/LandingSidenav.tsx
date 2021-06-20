@@ -1,7 +1,7 @@
+import XAccordion from "@component/atoms/CustomAccordion";
+import XBox from "@component/atoms/CustomBox";
+import XImage from "@component/atoms/CustomImage";
 import Sidenav from "@component/atoms/Sidenav";
-import XAccordion from "@component/atoms/XAccordion";
-import XBox from "@component/atoms/XBox";
-import XImage from "@component/atoms/XImage";
 import { Button, IconButton } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 import React, { useState } from "react";

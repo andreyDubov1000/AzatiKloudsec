@@ -19,7 +19,7 @@ const AccountConfirmationForm: React.FC<AccountConfirmationFormProps> = () => {
   const { search } = useLocation();
   const history = useHistory();
 
-  const qr_code = state.qr_code;
+  const qr_code = state?.qr_code;
 
   const searchParams = new URLSearchParams(search.substr(1));
   const user_id = searchParams.get("user_id");
@@ -30,7 +30,7 @@ const AccountConfirmationForm: React.FC<AccountConfirmationFormProps> = () => {
   };
 
   const handleAccountConfirmation = async () => {
-    if (!!!otp.trim() || !user_id || !qr_code) return;
+    if (!!!otp.trim() || !user_id) return;
 
     setLoading(true);
 
@@ -59,13 +59,19 @@ const AccountConfirmationForm: React.FC<AccountConfirmationFormProps> = () => {
         Verify it's you
       </H4> */}
 
-      <Box maxWidth="120px" mx="auto" mb="1rem">
-        <img src={qr_code} width="100%" alt="qr-code" />
-      </Box>
+      {qr_code ? (
+        <Fragment>
+          <Box maxWidth="120px" mx="auto" mb="1rem">
+            <img src={qr_code} width="100%" alt="qr-code" />
+          </Box>
 
-      <Span fontSize="12px" color="grey.600" textAlign="center" mb="1.5rem">
-        Scan this QR Code with Google Authenticator to get OTP
-      </Span>
+          <Span fontSize="12px" color="grey.600" textAlign="center" mb="1.5rem">
+            Scan this QR Code with Google Authenticator to get OTP
+          </Span>
+        </Fragment>
+      ) : (
+        <Box mb="1rem"></Box>
+      )}
 
       <TextField
         label="OTP"

@@ -1,8 +1,9 @@
-import FlexBox from "@component/atoms/FlexBox";
-import { Card, Grid } from "@material-ui/core";
+import FlexBox from "@component/atoms/CustomFlexBox";
+import { Box, Card, Grid } from "@material-ui/core";
 import { Theme } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/styles";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(
   ({ palette: { primary }, breakpoints }: Theme) => ({
@@ -70,6 +71,11 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
           </Grid>
           <Grid item md={5} sm={5} xs={12}>
             <div className={classes.cardTitle}>{greetingText}</div>
+            <Box maxWidth="64px" mx="auto" mb="0rem">
+              <Link to="/">
+                <img src="/logo.svg" width="100%" alt="logo" />
+              </Link>
+            </Box>
             <FlexBox
               sx={{
                 flexDirection: "column",

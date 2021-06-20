@@ -57,19 +57,20 @@ const CustomerStory: React.FC<CustomerStoryProps> = () => {
         </Fab>
       </div>
       <Paragraph fontSize="16px" mb="3rem" textAlign="center">
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled
+        At Cloudinit the security of AWS infrastructure is something important.
+        The consulting compaany has tens of sensitive workloads served from AWS
+        cloud and used by millions of customers, so the security is taken very
+        seriousely and KloudSec helped us to achieve a very high standard level
+        of security.
       </Paragraph>
 
       <Grid container spacing={0} alignItems="center">
         <Grid item sm={5} xs={6}>
           <H5 letterSpacing={1.1} mb="0.5rem">
-            Adward Johnson
+            Hafedh Mounir
           </H5>
           <Span fontSize="16px" letterSpacing={2}>
-            Security Manager
+            CEO / Security Manager
           </Span>
         </Grid>
         <Grid item xs={1}>

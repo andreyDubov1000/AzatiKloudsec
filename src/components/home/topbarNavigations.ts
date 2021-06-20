@@ -5,7 +5,7 @@ const topbarNavigations = [
   },
   {
     title: "Customers",
-    sectionId: "customers",
+    sectionId: "testimonial",
   },
   {
     title: "Pricing",

@@ -1,6 +1,6 @@
-import FlexBox from "@component/atoms/FlexBox";
-import XBox from "@component/atoms/XBox";
-import XImage from "@component/atoms/XImage";
+import XBox from "@component/atoms/CustomBox";
+import FlexBox from "@component/atoms/CustomFlexBox";
+import XImage from "@component/atoms/CustomImage";
 import {
   Button,
   Card,

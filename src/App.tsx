@@ -15,7 +15,7 @@ const App = () => {
       <Router>
         <Switch>
           <Route path="/confirm-password" component={PasswordConfirmation} />
-          <Route path="/confirm-account" component={AccountConfirmation} />
+          <Route path="/confirm" component={AccountConfirmation} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/" component={Home} />

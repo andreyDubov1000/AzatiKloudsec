@@ -1,4 +1,4 @@
-import FlexBox from "@component/atoms/FlexBox";
+import CustomFlexBox from "@component/atoms/CustomFlexBox";
 import NotificationManager from "@component/atoms/NotificationManager";
 import { H4, Span } from "@component/atoms/Typography";
 import { TextField } from "@material-ui/core";
@@ -102,7 +102,7 @@ const SignupForm: React.FC<SignupFormProps> = () => {
             Create Account
           </LoadingButton>
 
-          <FlexBox
+          <CustomFlexBox
             sx={{ mt: "2rem", justifyContent: "center", fontSize: "12px" }}
           >
             <Span color="grey.600" mr="0.25rem" fontSize="inherit">
@@ -113,7 +113,7 @@ const SignupForm: React.FC<SignupFormProps> = () => {
                 Login
               </Span>
             </Link>
-          </FlexBox>
+          </CustomFlexBox>
         </form>
       )}
     </Formik>
