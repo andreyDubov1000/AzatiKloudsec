@@ -5,13 +5,15 @@ import { TextField } from "@material-ui/core";
 import { LoadingButton } from "@material-ui/lab";
 import { Formik } from "formik";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { createNewUser } from "services/authService";
 import * as yup from "yup";
 
 export interface SignupFormProps {}
 
 const SignupForm: React.FC<SignupFormProps> = () => {
+  const history = useHistory();
+
   const handleFormSubmit = async (values: any) => {
     const user = await createNewUser(values);
 
@@ -20,6 +22,7 @@ const SignupForm: React.FC<SignupFormProps> = () => {
         "Thanks for your signup, you will receive an email shortly to confirm your registration"
       );
       console.log(user);
+      history.push("/");
       // history.push(
       //   `/confirm-password?user_id=${user.user_id}&email=${user.email}`
       // );

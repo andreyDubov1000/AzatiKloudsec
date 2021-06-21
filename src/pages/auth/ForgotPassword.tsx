@@ -5,17 +5,20 @@ import { TextField } from "@material-ui/core";
 import { LoadingButton } from "@material-ui/lab";
 import { Formik } from "formik";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { forgotPassword } from "services/authService";
 import * as yup from "yup";
 
 const ForgotPassword = () => {
+  const history = useHistory();
+
   const handleFormSubmit = async (values: any) => {
     const data = await forgotPassword(values);
     if (data) {
       NotificationManager.success(
         "You will receive an email shortly. Please follow the link to reset your password."
       );
+      history.push("/login");
     }
   };
 

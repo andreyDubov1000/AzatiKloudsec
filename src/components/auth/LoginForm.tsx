@@ -70,7 +70,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
           />
           <TextField
             name="password"
-            label="Full Name"
+            label="Password"
             type="password"
             fullWidth
             sx={{ mb: "1.5rem" }}
