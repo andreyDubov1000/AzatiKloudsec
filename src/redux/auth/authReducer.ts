@@ -1,6 +1,8 @@
-const initialState: any[] = [];
+const initialState: any = {
+  user: "sdfadfsda",
+};
 
-const AuthReducer = function (state = initialState, action: any) {
+const authReducer = function (state = initialState, action: any) {
   switch (action.type) {
     // case GET_NOTIFICATION: {
     //     return [...action.payload]
@@ -15,9 +17,9 @@ const AuthReducer = function (state = initialState, action: any) {
     //     return [...action.payload]
     // }
     default: {
-      return [...state];
+      return { ...state };
     }
   }
 };
 
-export default AuthReducer;
+export default authReducer;

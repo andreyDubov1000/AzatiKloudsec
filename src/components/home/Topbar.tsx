@@ -1,6 +1,6 @@
-import XBox from "@component/atoms/CustomBox";
+import CustomBox from "@component/atoms/CustomBox";
 import FlexBox from "@component/atoms/CustomFlexBox";
-import XImage from "@component/atoms/CustomImage";
+import CustomImage from "@component/atoms/CustomImage";
 import {
   Button,
   Card,
@@ -119,7 +119,7 @@ const Topbar = () => {
             smooth={true}
             offset={isTopbarFixed ? (isMobile ? 0 : -fixedTopbarHeight) : -65}
           >
-            <XImage
+            <CustomImage
               src={isTopbarFixed ? "/logo.svg" : "/logo-white.svg"}
               height="36px"
               alt="logo"
@@ -145,7 +145,7 @@ const Topbar = () => {
             smooth={true}
             offset={isTopbarFixed ? (isMobile ? 0 : -fixedTopbarHeight) : -65}
           >
-            <XImage
+            <CustomImage
               src={isTopbarFixed ? "/logo.svg" : "/logo-white.svg"}
               height="36px"
               alt="logo"
@@ -221,9 +221,9 @@ const Topbar = () => {
           </FlexBox>
         </Container>
       </div>
-      <XBox
+      <CustomBox
         sx={{ height: isTopbarFixed ? normalTopbarHeight : 0, width: "100%" }}
-      ></XBox>
+      ></CustomBox>
     </Fragment>
   );
 };

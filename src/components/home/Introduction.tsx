@@ -1,4 +1,4 @@
-import XBox from "@component/atoms/CustomBox";
+import CustomBox from "@component/atoms/CustomBox";
 import FlexBox from "@component/atoms/CustomFlexBox";
 import { H1, Paragraph } from "@component/atoms/Typography";
 import { Button, Container, Grid, Theme } from "@material-ui/core";
@@ -29,12 +29,12 @@ const Introduction = () => {
       <Container sx={{ color: "white" }}>
         <Grid container spacing={6} alignItems="center">
           <Grid item sm={6} xs={12}>
-            <XBox>
+            <CustomBox>
               <H1 mb="1.5rem" fontSize="36px" letterSpacing={1.1}>
                 Automate your cloud infrastructure <br /> security from commit
                 to <br /> deployment
               </H1>
-            </XBox>
+            </CustomBox>
 
             <Paragraph fontSize="17px" color="whitesmoke" mb="1.5rem">
               Scan your cloud infrastructure and enforce the security of your

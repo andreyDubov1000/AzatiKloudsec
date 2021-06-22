@@ -1,6 +1,6 @@
-import XAccordion from "@component/atoms/CustomAccordion";
-import XBox from "@component/atoms/CustomBox";
-import XImage from "@component/atoms/CustomImage";
+import CustomAccordion from "@component/atoms/CustomAccordion";
+import CustomBox from "@component/atoms/CustomBox";
+import CustomImage from "@component/atoms/CustomImage";
 import Sidenav from "@component/atoms/Sidenav";
 import { Button, IconButton } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
@@ -41,7 +41,7 @@ const LandingSidenav: React.FC<LandingSidenavProps> = ({
         </IconButton>
       }
     >
-      <XBox sx={{ p: "1rem", width: "100%" }}>
+      <CustomBox sx={{ p: "1rem", width: "100%" }}>
         <Scroll
           to="intro1"
           duration={400}
@@ -49,7 +49,7 @@ const LandingSidenav: React.FC<LandingSidenavProps> = ({
           offset={isTopbarFixed ? (isMobile ? 0 : -fixedTopbarHeight) : -65}
           onClick={toggleSidenav}
         >
-          <XImage
+          <CustomImage
             src="/logo.svg"
             height="36px"
             alt="logo"
@@ -59,12 +59,12 @@ const LandingSidenav: React.FC<LandingSidenavProps> = ({
 
         {topbarNavigations.map((item, ind) =>
           item.children ? (
-            <XAccordion
+            <CustomAccordion
               title={item.title}
               buttonSx={{ mb: "0.25rem" }}
               key={item.title}
             >
-              <XBox sx={{ bgcolor: "grey.100" }}>
+              <CustomBox sx={{ bgcolor: "grey.100" }}>
                 {item.children.map((child, ind) => (
                   <Link to={child.url} key={child.title}>
                     <Button
@@ -76,8 +76,8 @@ const LandingSidenav: React.FC<LandingSidenavProps> = ({
                     </Button>
                   </Link>
                 ))}
-              </XBox>
-            </XAccordion>
+              </CustomBox>
+            </CustomAccordion>
           ) : item.sectionId ? (
             <Scroll
               to={item.sectionId}
@@ -106,7 +106,7 @@ const LandingSidenav: React.FC<LandingSidenavProps> = ({
             </Link>
           )
         )}
-      </XBox>
+      </CustomBox>
     </Sidenav>
   );
 };

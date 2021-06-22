@@ -57,7 +57,7 @@ const Sidenav: React.FC<SidenavProps> = ({
 };
 
 Sidenav.defaultProps = {
-  width: 280,
+  width: 260,
   position: "left",
   open: false,
 };

@@ -133,7 +133,14 @@ const initialValues = {
 
 const formSchema = yup.object().shape({
   email: yup.string().email("invalid email").required("required"),
-  password: yup.string().required("required").max(250),
+  password: yup
+    .string()
+    .required("required")
+    .max(250)
+    .matches(
+      /^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{15,}$/,
+      "Password must contain 15 characters, one uppercase, one lowercase, one number and one special case character"
+    ),
 });
 
 export default LoginForm;

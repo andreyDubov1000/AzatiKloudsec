@@ -1,5 +1,5 @@
 import FlexBox from "@component/atoms/CustomFlexBox";
-import XImage from "@component/atoms/CustomImage";
+import CustomImage from "@component/atoms/CustomImage";
 import { H5 } from "@component/atoms/Typography";
 import { Container, Grid, Theme } from "@material-ui/core";
 import TouchRipple from "@material-ui/core/ButtonBase";
@@ -90,7 +90,7 @@ const Footer = () => {
             <FlexBox
               sx={{ flexDirection: "column", alignItems: "center", width: 84 }}
             >
-              <XImage
+              <CustomImage
                 src="logo-white.svg"
                 alt="KloudSec"
                 height="44px"
@@ -99,7 +99,7 @@ const Footer = () => {
 
               <FlexBox>
                 {socialLinks.map((item, ind) => (
-                  <XImage
+                  <CustomImage
                     src={item.imgUrl}
                     alt="social-icon"
                     width="20px"
