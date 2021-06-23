@@ -33,10 +33,106 @@
     />
 
     <title>KloudSec</title>
+
+    <style>
+      .loader-container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .loader-wraper {
+        position: relative;
+        width: 50px;
+        height: 50px;
+      }
+      .gradient-circle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 300px;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(45deg, white, #00bff2, #3f50b5);
+        -webkit-animation: rotation 1000ms infinite linear;
+        animation: rotation 1000ms infinite linear;
+      }
+      .white-circle {
+        border-radius: 300px;
+        height: 85%;
+        width: 85%;
+        background: white;
+      }
+      .loader-image {
+        position: absolute;
+        width: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      @keyframes rotation {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        50% {
+          -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root">
+      <div class="loader-container">
+        <div class="loader-wraper">
+          <div class="gradient-circle">
+            <div class="white-circle"></div>
+          </div>
+          <img src="/logo.svg" alt="logo" class="loader-image" />
+        </div>
+      </div>
+    </div>
+    <!-- <div style={{ width: 100, height: 100, position: "relative" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: "300px",
+          height: "100%",
+          width: "100%",
+          background: "linear-gradient(45deg, #00BFF2, #002884)",
+        }}
+      >
+        <div
+          style={{
+            background: "white",
+            height: 90,
+            width: 90,
+            borderRadius: "300px",
+          }}
+        ></div>
+      </div>
+      <img
+        style={{
+          position: "absolute",
+          width: "50%",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+        src="/logo.svg"
+        alt=""
+      />
+    </div> -->
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
