@@ -1,40 +1,38 @@
 import Loader from "@component/atoms/Loader";
-import React from "react";
+import { SAVE_TOKEN } from "@redux/auth/authTypes";
+import { useAppDispatch, useAppSelector } from "@redux/hooks";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
+import { refreshToken } from "services/authService";
 
 const Auth: React.FC = ({ children }) => {
-  // const history = useHistory();
-  // const { state } = useLocation();
-  // const storeRef = useRef(null);
-  const loading = true;
-  // const { store, updateStore } = useContext(AppContext);
-  // const { loading } = store;
+  const [loading, setLoading] = useState(true);
 
-  // storeRef.current = store;
+  const dispatch = useAppDispatch();
+  const { token } = useAppSelector((store) => store.auth);
 
-  // useEffect(() => {
-  // updateStore((store) => ({ ...store, loading: true }));
-  // auth.onAuthStateChanged(
-  //   async (user) => {
-  //     if (user?.uid) {
-  //       let userDetails = (await getUserDetails(user.uid)) || {};
-  //       userDetails.uid = user.uid;
-  //       userDetails.emailVerified = user.emailVerified ? true : false;
-  //       updateStore((store) => ({
-  //         ...store,
-  //         loading: false,
-  //         user: userDetails,
-  //       }));
-  //     } else {
-  //       updateStore((store) => ({ ...store, user: null, loading: false }));
-  //     }
-  //   },
-  //   (err) => {
-  //     console.log(err);
-  //   }
-  // );
-  // }, [history, state, updateStore]);
+  const checkToken = useCallback(async () => {
+    const tokenString = localStorage.getItem("token");
 
-  return loading ? <Loader /> : <>{children}</>;
+    if (tokenString) {
+      const { email, refresh_token } = JSON.parse(tokenString);
+      const data = await refreshToken({ email, refresh_token });
+      if (data) {
+        dispatch({ type: SAVE_TOKEN, data });
+      }
+    }
+
+    setLoading(false);
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (token) {
+      setLoading(false);
+    } else {
+      checkToken();
+    }
+  }, [checkToken, dispatch, token]);
+
+  return loading ? <Loader /> : <Fragment>{children}</Fragment>;
 };
 
 export default Auth;

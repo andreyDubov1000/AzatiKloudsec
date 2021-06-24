@@ -1,21 +1,15 @@
-const initialState: any = {
-  user: "sdfadfsda",
+import { AuthAction, InitialAuthState, SAVE_TOKEN } from "./authTypes";
+
+const initialState: InitialAuthState = {
+  token: null,
 };
 
-const authReducer = function (state = initialState, action: any) {
+const authReducer = (state = initialState, action: AuthAction) => {
   switch (action.type) {
-    // case GET_NOTIFICATION: {
-    //     return [...action.payload]
-    // }
-    // case CREATE_NOTIFICATION: {
-    //     return [...action.payload]
-    // }
-    // case DELETE_NOTIFICATION: {
-    //     return [...action.payload]
-    // }
-    // case DELETE_ALL_NOTIFICATION: {
-    //     return [...action.payload]
-    // }
+    case SAVE_TOKEN: {
+      localStorage.setItem("token", JSON.stringify(action.data));
+      return { ...state, token: action.data };
+    }
     default: {
       return { ...state };
     }

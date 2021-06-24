@@ -17,8 +17,9 @@ const LoginForm: React.FC<LoginFormProps> = () => {
   const [user, setUser] = useState<MFAVerificationProps>();
 
   const handleFormSubmit = async (values: any) => {
-    console.log(values);
     const loggedUser = await login(values);
+
+    console.log(loggedUser);
 
     if (loggedUser) {
       setUser(loggedUser);
@@ -133,14 +134,11 @@ const initialValues = {
 
 const formSchema = yup.object().shape({
   email: yup.string().email("invalid email").required("required"),
-  password: yup
-    .string()
-    .required("required")
-    .max(250)
-    .matches(
-      /^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{15,}$/,
-      "Password must contain 15 characters, one uppercase, one lowercase, one number and one special case character"
-    ),
+  password: yup.string().required("required"),
 });
+// .matches(
+//   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{15,}$/,
+//   "Password must contain 15 characters, one uppercase, one lowercase, one number and one special case character"
+// ),
 
 export default LoginForm;

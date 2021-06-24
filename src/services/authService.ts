@@ -51,3 +51,7 @@ export const forgotPassword = async (data: any) => {
 export const resetPassword = async (data: any, user_id: string) => {
   return await KloudApi.post(`users/${user_id}/confirm-password`, data);
 };
+
+export const refreshToken = async (data: any) => {
+  return await KloudApi.post(`refresh-token`, data);
+};
