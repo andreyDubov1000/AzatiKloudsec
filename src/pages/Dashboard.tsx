@@ -3,7 +3,12 @@ import React from "react";
 export interface DashboardProps {}
 
 const Dashboard: React.FC<DashboardProps> = () => {
-  return <Loader />;
+  return (
+    <div>
+      <div>testing.....</div>
+      <Loader />
+    </div>
+  );
 };
 
 export default Dashboard;

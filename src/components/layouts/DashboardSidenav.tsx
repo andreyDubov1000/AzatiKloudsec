@@ -1,6 +1,6 @@
 import CustomBox from "@component/atoms/CustomBox";
 import CustomImage from "@component/atoms/CustomImage";
-import { Box, MenuItem } from "@material-ui/core";
+import { MenuItem } from "@material-ui/core";
 import { styled } from "@material-ui/core/styles";
 import {
   AccountBalance,
@@ -10,7 +10,7 @@ import {
   People,
   PersonAdd,
 } from "@material-ui/icons";
-import React, { Fragment } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 type DashboardSidenavProps = {
@@ -18,9 +18,10 @@ type DashboardSidenavProps = {
 };
 
 const SidenavMenuItem = styled(MenuItem)({
+  justifyContent: "center",
   borderRadius: "4px",
-  paddingTop: "10px",
-  paddingBottom: "10px",
+  height: 36,
+  width: 36,
   marginBottom: "0.25rem",
   "&:hover": {
     background: "rgba(255, 255, 255, 0.16)",
@@ -47,67 +48,89 @@ const DashboardSidenav: React.FC<DashboardSidenavProps> = ({
   return (
     <CustomBox
       sx={{
-        background:
-          "linear-gradient(rgba(34, 42, 69, 0.96), rgba(34, 42, 69, 0.96)), url(/assets/images/backgrounds/sidenav-bg-dark.jpg)",
-        backgroundSize: "cover",
-        backgroundPosition: "center top",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        bgcolor: "secondary.dark",
         color: "white",
         height: "100vh",
-        p: "1rem",
-        width: 260,
+        width: 64,
+        py: "1rem",
         overflow: "auto",
       }}
     >
-      <Link to="/">
+      <Link to="/dashboard">
         <CustomImage
-          src="/logo.svg"
+          src="/logo-white.svg"
           alt="logo"
-          sx={{ display: "block", mx: "auto", height: 44, mb: "2rem" }}
+          width="100%"
+          sx={{ display: "block", mx: "auto", mb: "2rem", px: "1rem" }}
         />
       </Link>
 
-      <Box>
-        <Link to="/">
-          <SidenavMenuItem onClick={handleLinkClick}>
-            <Dashboard fontSize="small" />
-            <Box ml="0.75rem">Dashboard</Box>
-          </SidenavMenuItem>
-        </Link>
-        <Link to="/book/add">
-          <SidenavMenuItem onClick={handleLinkClick}>
-            <CloudUpload fontSize="small" />
-            <Box ml="0.75rem">Upload Book</Box>
-          </SidenavMenuItem>
-        </Link>
-        <Link to="/books">
-          <SidenavMenuItem onClick={handleLinkClick}>
-            <Assignment fontSize="small" />
-            <Box ml="0.75rem">Book List</Box>
-          </SidenavMenuItem>
-        </Link>
-        {/* {isPublisher && ( */}
-        <Fragment>
-          <Link to="/authors/add">
-            <SidenavMenuItem onClick={handleLinkClick}>
-              <PersonAdd fontSize="small" />
-              <Box ml="0.75rem">Add Author</Box>
-            </SidenavMenuItem>
-          </Link>
-          <Link to="/authors">
-            <SidenavMenuItem onClick={handleLinkClick}>
-              <People fontSize="small" />
-              <Box ml="0.75rem">Author List</Box>
-            </SidenavMenuItem>
-          </Link>
-        </Fragment>
-        {/* )} */}
-        <Link to="/bank-account">
-          <SidenavMenuItem onClick={handleLinkClick}>
-            <AccountBalance fontSize="small" />
-            <Box ml="0.75rem">Bank Account</Box>
-          </SidenavMenuItem>
-        </Link>
-      </Box>
+      <Link to="/">
+        <SidenavMenuItem onClick={handleLinkClick}>
+          <Dashboard fontSize="small" />
+          {/* <Box ml="0.75rem">Dashboard</Box> */}
+        </SidenavMenuItem>
+      </Link>
+      <Link to="/book/add">
+        <SidenavMenuItem onClick={handleLinkClick}>
+          <CloudUpload fontSize="small" />
+          {/* <Box ml="0.75rem">Upload Book</Box> */}
+        </SidenavMenuItem>
+      </Link>
+      <Link to="/books">
+        <SidenavMenuItem onClick={handleLinkClick}>
+          <Assignment fontSize="small" />
+          {/* <Box ml="0.75rem">Book List</Box> */}
+        </SidenavMenuItem>
+      </Link>
+      <Link to="/authors/add">
+        <SidenavMenuItem onClick={handleLinkClick}>
+          <PersonAdd fontSize="small" />
+          {/* <Box ml="0.75rem">Add Author</Box> */}
+        </SidenavMenuItem>
+      </Link>
+      <Link to="/authors">
+        <SidenavMenuItem onClick={handleLinkClick}>
+          <People fontSize="small" />
+          {/* <Box ml="0.75rem">Author List</Box> */}
+        </SidenavMenuItem>
+      </Link>
+      <Link to="/bank-account">
+        <SidenavMenuItem onClick={handleLinkClick}>
+          <AccountBalance fontSize="small" />
+          {/* <Box ml="0.75rem">Bank Account</Box> */}
+        </SidenavMenuItem>
+      </Link>
+
+      {/* ------------------------------------ */}
+
+      <Link to="/books">
+        <SidenavMenuItem onClick={handleLinkClick}>
+          <Assignment fontSize="small" />
+          {/* <Box ml="0.75rem">Book List</Box> */}
+        </SidenavMenuItem>
+      </Link>
+      <Link to="/authors/add">
+        <SidenavMenuItem onClick={handleLinkClick}>
+          <PersonAdd fontSize="small" />
+          {/* <Box ml="0.75rem">Add Author</Box> */}
+        </SidenavMenuItem>
+      </Link>
+      <Link to="/authors">
+        <SidenavMenuItem onClick={handleLinkClick}>
+          <People fontSize="small" />
+          {/* <Box ml="0.75rem">Author List</Box> */}
+        </SidenavMenuItem>
+      </Link>
+      <Link to="/bank-account">
+        <SidenavMenuItem onClick={handleLinkClick}>
+          <AccountBalance fontSize="small" />
+          {/* <Box ml="0.75rem">Bank Account</Box> */}
+        </SidenavMenuItem>
+      </Link>
     </CustomBox>
   );
 };
