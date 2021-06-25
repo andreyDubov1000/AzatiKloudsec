@@ -11,39 +11,33 @@ import {
   PersonAdd,
 } from "@material-ui/icons";
 import React from "react";
-import { Link } from "react-router-dom";
-
-type DashboardSidenavProps = {
-  toggleDashboardSidenav?: () => any;
-};
+import { Link, useLocation } from "react-router-dom";
 
 const SidenavMenuItem = styled(MenuItem)({
   justifyContent: "center",
   borderRadius: "4px",
-  height: 36,
-  width: 36,
+  height: 40,
+  width: 40,
+  fontSize: "1.5rem",
   marginBottom: "0.25rem",
   "&:hover": {
     background: "rgba(255, 255, 255, 0.16)",
   },
 });
 
-const DashboardSidenav: React.FC<DashboardSidenavProps> = ({
-  toggleDashboardSidenav,
-}) => {
+const DashboardSidenav = () => {
+  const { pathname } = useLocation();
   // const history = useHistory();
   // const { store } = useContext(AppContext);
   // const { user } = store;
   // const isPublisher = user?.user_type === "publisher";
 
-  const handleLinkClick = () => {
-    if (toggleDashboardSidenav) toggleDashboardSidenav();
-  };
-
   // const handleSignOut = async () => {
   //   await signOut();
   //   history.push("/signin");
   // };
+
+  console.log(pathname);
 
   return (
     <CustomBox
@@ -51,7 +45,7 @@ const DashboardSidenav: React.FC<DashboardSidenavProps> = ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        bgcolor: "secondary.dark",
+        bgcolor: "primary.main",
         color: "white",
         height: "100vh",
         width: 64,
@@ -69,38 +63,38 @@ const DashboardSidenav: React.FC<DashboardSidenavProps> = ({
       </Link>
 
       <Link to="/">
-        <SidenavMenuItem onClick={handleLinkClick}>
-          <Dashboard fontSize="small" />
+        <SidenavMenuItem sx={{ bgcolor: "rgba(255, 255, 255, 0.16)" }}>
+          <Dashboard fontSize="inherit" />
           {/* <Box ml="0.75rem">Dashboard</Box> */}
         </SidenavMenuItem>
       </Link>
       <Link to="/book/add">
-        <SidenavMenuItem onClick={handleLinkClick}>
-          <CloudUpload fontSize="small" />
+        <SidenavMenuItem>
+          <CloudUpload fontSize="inherit" />
           {/* <Box ml="0.75rem">Upload Book</Box> */}
         </SidenavMenuItem>
       </Link>
       <Link to="/books">
-        <SidenavMenuItem onClick={handleLinkClick}>
-          <Assignment fontSize="small" />
+        <SidenavMenuItem>
+          <Assignment fontSize="inherit" />
           {/* <Box ml="0.75rem">Book List</Box> */}
         </SidenavMenuItem>
       </Link>
       <Link to="/authors/add">
-        <SidenavMenuItem onClick={handleLinkClick}>
-          <PersonAdd fontSize="small" />
+        <SidenavMenuItem>
+          <PersonAdd fontSize="inherit" />
           {/* <Box ml="0.75rem">Add Author</Box> */}
         </SidenavMenuItem>
       </Link>
       <Link to="/authors">
-        <SidenavMenuItem onClick={handleLinkClick}>
-          <People fontSize="small" />
+        <SidenavMenuItem>
+          <People fontSize="inherit" />
           {/* <Box ml="0.75rem">Author List</Box> */}
         </SidenavMenuItem>
       </Link>
       <Link to="/bank-account">
-        <SidenavMenuItem onClick={handleLinkClick}>
-          <AccountBalance fontSize="small" />
+        <SidenavMenuItem>
+          <AccountBalance fontSize="inherit" />
           {/* <Box ml="0.75rem">Bank Account</Box> */}
         </SidenavMenuItem>
       </Link>
@@ -108,26 +102,26 @@ const DashboardSidenav: React.FC<DashboardSidenavProps> = ({
       {/* ------------------------------------ */}
 
       <Link to="/books">
-        <SidenavMenuItem onClick={handleLinkClick}>
-          <Assignment fontSize="small" />
+        <SidenavMenuItem>
+          <Assignment fontSize="inherit" />
           {/* <Box ml="0.75rem">Book List</Box> */}
         </SidenavMenuItem>
       </Link>
       <Link to="/authors/add">
-        <SidenavMenuItem onClick={handleLinkClick}>
-          <PersonAdd fontSize="small" />
+        <SidenavMenuItem>
+          <PersonAdd fontSize="inherit" />
           {/* <Box ml="0.75rem">Add Author</Box> */}
         </SidenavMenuItem>
       </Link>
       <Link to="/authors">
-        <SidenavMenuItem onClick={handleLinkClick}>
-          <People fontSize="small" />
+        <SidenavMenuItem>
+          <People fontSize="inherit" />
           {/* <Box ml="0.75rem">Author List</Box> */}
         </SidenavMenuItem>
       </Link>
       <Link to="/bank-account">
-        <SidenavMenuItem onClick={handleLinkClick}>
-          <AccountBalance fontSize="small" />
+        <SidenavMenuItem>
+          <AccountBalance fontSize="inherit" />
           {/* <Box ml="0.75rem">Bank Account</Box> */}
         </SidenavMenuItem>
       </Link>

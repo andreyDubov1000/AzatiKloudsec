@@ -137,8 +137,8 @@ const formSchema = yup.object().shape({
     .string()
     .required("required")
     .matches(
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$^`\-,_.!%*#?&()[\]{}:'"])[A-Za-z\d@$^`\-,_.!%*#?&()[\]{}:'"]{14,99}$/,
-      "Password must contain 15 characters, one uppercase, one lowercase, one number and one special case character"
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\^$*.[\]{}()?\-“!@#%/,><’:;|_~`])\S{14,99}$/,
+      "Password must contain 14 characters, one uppercase, one lowercase, one number and one special case character"
     ),
 });
 
