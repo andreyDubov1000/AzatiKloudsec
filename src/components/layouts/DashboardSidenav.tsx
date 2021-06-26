@@ -3,10 +3,10 @@ import CustomImage from "@component/atoms/CustomImage";
 import { MenuItem } from "@material-ui/core";
 import { styled } from "@material-ui/core/styles";
 import {
-  AccountBalance,
   Assignment,
   CloudUpload,
   Dashboard,
+  Extension,
   People,
   PersonAdd,
 } from "@material-ui/icons";
@@ -94,34 +94,7 @@ const DashboardSidenav = () => {
       </Link>
       <Link to="/bank-account">
         <SidenavMenuItem>
-          <AccountBalance fontSize="inherit" />
-          {/* <Box ml="0.75rem">Bank Account</Box> */}
-        </SidenavMenuItem>
-      </Link>
-
-      {/* ------------------------------------ */}
-
-      <Link to="/books">
-        <SidenavMenuItem>
-          <Assignment fontSize="inherit" />
-          {/* <Box ml="0.75rem">Book List</Box> */}
-        </SidenavMenuItem>
-      </Link>
-      <Link to="/authors/add">
-        <SidenavMenuItem>
-          <PersonAdd fontSize="inherit" />
-          {/* <Box ml="0.75rem">Add Author</Box> */}
-        </SidenavMenuItem>
-      </Link>
-      <Link to="/authors">
-        <SidenavMenuItem>
-          <People fontSize="inherit" />
-          {/* <Box ml="0.75rem">Author List</Box> */}
-        </SidenavMenuItem>
-      </Link>
-      <Link to="/bank-account">
-        <SidenavMenuItem>
-          <AccountBalance fontSize="inherit" />
+          <Extension fontSize="inherit" />
           {/* <Box ml="0.75rem">Bank Account</Box> */}
         </SidenavMenuItem>
       </Link>

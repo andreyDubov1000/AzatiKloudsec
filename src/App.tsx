@@ -24,8 +24,8 @@ const App = () => {
                   key={item.path}
                 />
               ))}
-              <Route path="/dashboard" component={DashboardLayout} />
-              <Route path="/" component={Home} />
+              <Route path="/" component={Home} exact />
+              <Route path="/" component={DashboardLayout} />
             </Switch>
           </Suspense>
         </Router>
