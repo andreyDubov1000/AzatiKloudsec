@@ -29,7 +29,9 @@ const IntegrationsSidenav = () => {
         },
       }}
     >
-      <H4 fontWeight="500">INTEGRATIONS</H4>
+      <H4 fontWeight="500" mt="0.35rem">
+        INTEGRATIONS
+      </H4>
 
       {integrationsNavigations.map((item) => (
         <CustomBox sx={{ mt: "2rem" }} key={item.title}>

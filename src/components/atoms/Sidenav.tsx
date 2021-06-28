@@ -42,7 +42,7 @@ const Sidenav: React.FC<SidenavProps> = ({
         open={sidenavOpen}
         anchor={position}
         onClose={toggleSidenav || handleToggleSidenav}
-        SlideProps={{ style: { width: width || 280 } }}
+        SlideProps={{ style: { width: width || 280 }, unmountOnExit: true }}
       >
         {children}
       </Drawer>
