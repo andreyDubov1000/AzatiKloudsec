@@ -1,7 +1,13 @@
-import { AuthAction, InitialAuthState, SAVE_TOKEN } from "./authTypes";
+import {
+  AuthAction,
+  InitialAuthState,
+  SAVE_TOKEN,
+  SAVE_USER_INFO,
+} from "./authTypes";
 
 const initialState: InitialAuthState = {
   token: null,
+  user: null,
 };
 
 const authReducer = (state = initialState, action: AuthAction) => {
@@ -9,6 +15,9 @@ const authReducer = (state = initialState, action: AuthAction) => {
     case SAVE_TOKEN: {
       localStorage.setItem("token", JSON.stringify(action.data));
       return { ...state, token: action.data };
+    }
+    case SAVE_USER_INFO: {
+      return { ...state, user: action.data };
     }
     default: {
       return { ...state };

@@ -11,7 +11,7 @@ import {
   PersonAdd,
 } from "@material-ui/icons";
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const SidenavMenuItem = styled(MenuItem)({
   justifyContent: "center",
@@ -51,53 +51,58 @@ const DashboardSidenav = () => {
         width: 64,
         py: "1rem",
         overflow: "auto",
+        "& .active": {
+          "& > *": {
+            bgcolor: "rgba(255, 255, 255, 0.16)",
+          },
+        },
       }}
     >
-      <Link to="/dashboard">
+      <NavLink to="/dashboard">
         <CustomImage
           src="/logo-white.svg"
           alt="logo"
           width="100%"
           sx={{ display: "block", mx: "auto", mb: "2rem", px: "1rem" }}
         />
-      </Link>
+      </NavLink>
 
-      <Link to="/">
-        <SidenavMenuItem sx={{ bgcolor: "rgba(255, 255, 255, 0.16)" }}>
+      <NavLink activeClassName="active" to="/integrations">
+        <SidenavMenuItem>
           <Dashboard fontSize="inherit" />
           {/* <Box ml="0.75rem">Dashboard</Box> */}
         </SidenavMenuItem>
-      </Link>
-      <Link to="/book/add">
+      </NavLink>
+      <NavLink activeClassName="active" to="/book/add">
         <SidenavMenuItem>
           <CloudUpload fontSize="inherit" />
           {/* <Box ml="0.75rem">Upload Book</Box> */}
         </SidenavMenuItem>
-      </Link>
-      <Link to="/books">
+      </NavLink>
+      <NavLink activeClassName="active" to="/books">
         <SidenavMenuItem>
           <Assignment fontSize="inherit" />
           {/* <Box ml="0.75rem">Book List</Box> */}
         </SidenavMenuItem>
-      </Link>
-      <Link to="/authors/add">
+      </NavLink>
+      <NavLink activeClassName="active" to="/authors/add">
         <SidenavMenuItem>
           <PersonAdd fontSize="inherit" />
           {/* <Box ml="0.75rem">Add Author</Box> */}
         </SidenavMenuItem>
-      </Link>
-      <Link to="/authors">
+      </NavLink>
+      <NavLink activeClassName="active" to="/authors">
         <SidenavMenuItem>
           <People fontSize="inherit" />
           {/* <Box ml="0.75rem">Author List</Box> */}
         </SidenavMenuItem>
-      </Link>
-      <Link to="/bank-account">
+      </NavLink>
+      <NavLink activeClassName="active" to="/bank-account">
         <SidenavMenuItem>
           <Extension fontSize="inherit" />
           {/* <Box ml="0.75rem">Bank Account</Box> */}
         </SidenavMenuItem>
-      </Link>
+      </NavLink>
     </CustomBox>
   );
 };

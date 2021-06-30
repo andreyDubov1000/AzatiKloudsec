@@ -1,3 +1,4 @@
+import { User } from "@redux/auth/authTypes";
 import KloudApi from "./kloudApi";
 
 type createNewUserProps = {
@@ -49,9 +50,17 @@ export const forgotPassword = async (data: any) => {
 };
 
 export const resetPassword = async (data: any, user_id: string) => {
-  return await KloudApi.post(`users/${user_id}/confirm-password`, data);
+  return await KloudApi.post(`/users/${user_id}/confirm-password`, data);
 };
 
 export const refreshToken = async (data: any) => {
-  return await KloudApi.post(`refresh-token`, data);
+  return await KloudApi.post(`/refresh-token`, data);
+};
+
+export const getUserInfo = async (): Promise<User> => {
+  return await KloudApi.get(`/userinfos`);
+};
+
+export const setApiHeader = (id_token: string) => {
+  KloudApi.setHeader(id_token);
 };

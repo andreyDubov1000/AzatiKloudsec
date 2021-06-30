@@ -31,3 +31,7 @@ export const Paragraph: React.FC<TypographyProps> = ({ ...props }) => (
 export const Span: React.FC<TypographyProps> = ({ ...props }) => (
   <Typography variant="body1" component="span" fontSize="14px" {...props} />
 );
+
+export const Small: React.FC<TypographyProps> = ({ ...props }) => (
+  <Typography variant="body1" component="span" fontSize="12px" {...props} />
+);

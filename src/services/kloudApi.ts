@@ -11,6 +11,15 @@ class KloudApi {
     },
   });
 
+  public static setHeader = (id_token: string) => {
+    KloudApi.axios.defaults.headers = {
+      common: {
+        "x-api-key": process.env.REACT_APP_X_API_KEY,
+        Authorization: `Bearer ${id_token}`,
+      },
+    };
+  };
+
   public static get = async (
     url: string,
     config?: AxiosRequestConfig | undefined

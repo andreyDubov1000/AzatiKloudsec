@@ -4,19 +4,19 @@ const integrationsNavigations = [
     navlist: [
       {
         title: "AWS Read Only",
-        path: "/integrations",
+        path: "/integrations/aws",
       },
       {
         title: "AWS Remediation Stack",
-        path: "/sdfsdfdsfds",
+        path: "/integrations/aws-remediaton-stack",
       },
       {
         title: "GCP Read Only",
-        path: "/sdfsdfdsfds",
+        path: "/integrations/gcp",
       },
       {
         title: "Azure Read Only",
-        path: "/sdfsdfdsfds",
+        path: "/integrations/azure",
       },
     ],
   },

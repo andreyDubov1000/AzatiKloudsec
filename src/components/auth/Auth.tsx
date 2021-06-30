@@ -1,8 +1,8 @@
 import Loader from "@component/atoms/Loader";
-import { SAVE_TOKEN } from "@redux/auth/authTypes";
+import { SAVE_TOKEN, SAVE_USER_INFO } from "@redux/auth/authTypes";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
 import React, { Fragment, useCallback, useEffect, useState } from "react";
-import { refreshToken } from "services/authService";
+import { getUserInfo, refreshToken, setApiHeader } from "services/authService";
 
 const Auth: React.FC = ({ children }) => {
   const [loading, setLoading] = useState(true);
@@ -27,6 +27,11 @@ const Auth: React.FC = ({ children }) => {
   useEffect(() => {
     if (token) {
       setLoading(false);
+      // get user info
+      setApiHeader(token.id_token);
+      getUserInfo().then((data) => {
+        dispatch({ type: SAVE_USER_INFO, data });
+      });
     } else {
       checkToken();
     }
