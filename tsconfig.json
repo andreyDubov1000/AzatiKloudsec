@@ -20,7 +20,5 @@
     "noImplicitThis": true,
     "strictNullChecks": true
   },
-  "extends": "./tsconfig.base.json",
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "build"]
+  "extends": "./tsconfig.base.json"
 }

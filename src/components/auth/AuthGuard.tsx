@@ -15,6 +15,7 @@ const AuthGuard: React.FC<AuthGuardProps> = ({
 
   const checkRouteAccess = () => {
     return !!token?.id_token;
+    // return true;
   };
 
   return (

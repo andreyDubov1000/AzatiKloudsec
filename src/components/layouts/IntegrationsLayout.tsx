@@ -11,7 +11,15 @@ const IntegrationsLayout = () => {
   return (
     <CustomFlexBox>
       <IntegrationsSidenav />
-      <CustomBox sx={{ p: "1rem", bgcolor: "white", flex: "1 1 0" }}>
+      <CustomBox
+        sx={{
+          p: "1rem",
+          bgcolor: "white",
+          flex: "1 1 0",
+          height: "100vh",
+          overflow: "auto",
+        }}
+      >
         <Suspense fallback={<Loader />}>
           <Switch>
             {integrationRoutes.map((item, ind) => (

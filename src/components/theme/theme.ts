@@ -159,6 +159,17 @@ const theme = createTheme({
           borderRadius: "6px !important",
           boxShadow: "0px 1px 3px rgba(3, 0, 71, 0.09) !important",
         },
+        "& .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-cell:focus": {
+          outline: "none !important",
+        },
+        "& .MuiDataGrid-columnHeaderTitleContainer": {
+          paddingLeft: "0 !important",
+          paddingRight: "0 !important",
+        },
+        "& .MuiCircularProgress-root": {
+          height: "1.75rem !important",
+          width: "1.75rem !important",
+        },
       },
     },
     MuiMenuItem: {
