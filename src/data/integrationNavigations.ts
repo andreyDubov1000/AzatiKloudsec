@@ -3,29 +3,24 @@ const integrationsNavigations = [
     title: "CLOUD PROVIDERS",
     navlist: [
       {
-        title: "AWS Read Only",
+        title: "AWS",
         path: "/integrations/aws",
       },
       {
-        title: "AWS Remediation Stack",
-        path: "/integrations/aws-remediaton-stack",
+        title: "AZURE",
+        path: "/integrations/azure",
       },
       {
-        title: "GCP Read Only",
+        title: "GOOGLE CLOUD",
         path: "/integrations/gcp",
       },
       {
-        title: "Azure Read Only",
-        path: "/integrations/azure",
+        title: "ALIBABA CLOUD",
+        path: "/integrations/alibaba",
       },
-    ],
-  },
-  {
-    title: "KUBERNETES",
-    navlist: [
       {
-        title: "Workloads",
-        path: "/integrations/workloads",
+        title: "IBM CLOUD",
+        path: "/integrations/ibm",
       },
     ],
   },

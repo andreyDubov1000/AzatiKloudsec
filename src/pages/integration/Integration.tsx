@@ -97,7 +97,7 @@ const Integration = () => {
       </CustomFlexBox>
 
       <DataGrid
-        rows={accounts}
+        rows={accountList}
         columns={columns}
         pageSize={20}
         loading={loading}
