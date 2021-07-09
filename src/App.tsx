@@ -1,5 +1,5 @@
 import Loader from "@component/atoms/Loader";
-import DashboardLayout from "@component/layouts/DashboardLayout";
+import ProtectedLayout from "@component/layouts/ProtectedLayout";
 import MuiTheme from "@component/theme/MuiTheme";
 import authRoutes from "@page/auth/authRoutes";
 import reduxStore from "@redux/reduxStore";
@@ -25,7 +25,7 @@ const App = () => {
                 />
               ))}
               <Route path="/" component={Home} exact />
-              <Route path="/" component={DashboardLayout} />
+              <Route path="/" component={ProtectedLayout} />
             </Switch>
           </Suspense>
         </Router>

@@ -5,7 +5,7 @@ import Menu from "@material-ui/icons/Menu";
 import Notifications from "@material-ui/icons/Notifications";
 import Person from "@material-ui/icons/Person";
 import React from "react";
-import DashboardSidenav from "./DashboardSidenav";
+import DashboardSidenav from "./ProtectedLayoutSidenav";
 
 const DashboardTopbar = () => {
   return (

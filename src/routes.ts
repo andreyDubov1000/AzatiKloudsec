@@ -8,4 +8,8 @@ export const protectedRoutes = [
     path: "/integrations",
     component: lazy(() => import("@component/layouts/IntegrationsLayout")),
   },
+  {
+    path: "/risk-management-dashboard",
+    component: lazy(() => import("@page/dashboard/RiskManagementDashboard")),
+  },
 ];

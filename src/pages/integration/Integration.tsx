@@ -5,33 +5,12 @@ import AWSIcon from "@component/icons/AWSIcon";
 import AddAccount from "@component/integrations/AddAccount";
 // import IntegrationAccount from "@component/integrations/IntegrationAccount";
 import { IconButton } from "@material-ui/core";
-import { DataGrid, GridColDef } from "@material-ui/data-grid";
+import { DataGrid, GridCellParams, GridColDef } from "@material-ui/data-grid";
+import { Done } from "@material-ui/icons";
+import Close from "@material-ui/icons/Close";
 import { useAppSelector } from "@redux/hooks";
 import React, { useEffect, useState } from "react";
 import { getAWSAccounts } from "services/integrationsService";
-
-const columns: GridColDef[] = [
-  { field: "AccountId", headerName: "Account ID", flex: 1 },
-  { field: "AccountAlias", headerName: "Account Alias", flex: 1 },
-  {
-    field: "CfTemplateVersion",
-    headerName: "Cf Template Version",
-    flex: 1,
-    align: "center",
-    headerAlign: "center",
-  },
-  // {
-  //   field: "fullName",
-  //   headerName: "Full name",
-  //   description: "This column has a value getter and is not sortable.",
-  //   sortable: false,
-  //   width: 160,
-  //   valueGetter: (params: GridValueGetterParams) =>
-  //     `${params.getValue(params.id, "firstName") || ""} ${
-  //       params.getValue(params.id, "lastName") || ""
-  //     }`,
-  // },
-];
 
 const Integration = () => {
   const [accountList, setAccountList] = useState([]);
@@ -106,98 +85,32 @@ const Integration = () => {
         disableColumnSelector
         disableColumnMenu
       />
-
-      {/* {accountList.map((item, ind) => (
-        <IntegrationAccount {...item} key={ind} />
-      ))} */}
     </CustomBox>
   );
 };
 
-const accounts = [
+const columns: GridColDef[] = [
+  { field: "AccountId", headerName: "Account ID", flex: 1 },
+  { field: "AccountAlias", headerName: "Account Alias", flex: 1 },
   {
-    id: 1,
-    CfTemplateVersion: "1.0",
-    AccountAlias: "tarek-cheikh-gmail",
-    AccountId: "138550989274",
+    field: "CfTemplateVersion",
+    headerName: "Cf Template Version",
+    flex: 1,
+    align: "center",
+    headerAlign: "center",
   },
   {
-    id: 2,
-    CfTemplateVersion: "1.0",
-    AccountAlias: "tocconsulting",
-    AccountId: "976885663559",
-  },
-  {
-    id: 3,
-    CfTemplateVersion: "1.0",
-    AccountAlias: "kloudsec-test",
-    AccountId: "307191486697",
-  },
-  {
-    id: 4,
-    CfTemplateVersion: "1.0",
-    AccountAlias: "kloudsec-tooling",
-    AccountId: "039423356527",
-  },
-  {
-    id: 5,
-    CfTemplateVersion: "1.0",
-    AccountAlias: "kloudsec-api",
-    AccountId: "667841609565",
-  },
-  {
-    id: 6,
-    CfTemplateVersion: "1.0",
-    AccountAlias: "kloudsec-billing",
-    AccountId: "864677565010",
-  },
-  {
-    id: 7,
-    CfTemplateVersion: "1.0",
-    AccountAlias: "kloudsec-cicd",
-    AccountId: "019149532256",
-  },
-  {
-    id: 8,
-    CfTemplateVersion: "1.0",
-    AccountAlias: "kloudsec-corp",
-    AccountId: "842777995490",
-  },
-  {
-    id: 9,
-    CfTemplateVersion: "1.0",
-    AccountAlias: "kjkjlkjklj",
-    AccountId: "111206599912",
-  },
-  {
-    id: 10,
-    CfTemplateVersion: "1.0",
-    AccountAlias: "kloudsec-analytics",
-    AccountId: "142481957006",
-  },
-  {
-    id: 11,
-    CfTemplateVersion: "1.0",
-    AccountAlias: "kloudsec-finance",
-    AccountId: "010818925550",
-  },
-  {
-    id: 12,
-    CfTemplateVersion: "1.0",
-    AccountAlias: "kloudsec-hr",
-    AccountId: "880430133219",
-  },
-  {
-    id: 13,
-    CfTemplateVersion: "1.0",
-    AccountAlias: "kloudsec-infra",
-    AccountId: "984219001985",
-  },
-  {
-    id: 14,
-    CfTemplateVersion: "1.0",
-    AccountAlias: "kloudsec-lab",
-    AccountId: "873785870250",
+    field: "Reachability",
+    headerName: "Reachability",
+    flex: 1,
+    align: "center",
+    headerAlign: "center",
+    renderCell: (params: GridCellParams) =>
+      params.getValue(params.id, "Reachability") ? (
+        <Done fontSize="small" color="success" />
+      ) : (
+        <Close fontSize="small" color="error" />
+      ),
   },
 ];
 

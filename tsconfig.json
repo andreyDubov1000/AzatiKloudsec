@@ -2,7 +2,10 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "target": "ES6",
-    "lib": ["es6", "dom"],
+    "lib": [
+      "es6",
+      "dom"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -20,5 +23,8 @@
     "noImplicitThis": true,
     "strictNullChecks": true
   },
-  "extends": "./tsconfig.base.json"
+  "extends": "./tsconfig.base.json",
+  "include": [
+    "src"
+  ]
 }

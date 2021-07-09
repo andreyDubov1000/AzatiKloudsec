@@ -73,7 +73,6 @@ const success = {
 
 const warning = {
   main: "#FFCD4E",
-  contrastText: "#FFFFFF",
 };
 
 const fontSize = 14;
@@ -122,7 +121,7 @@ const theme = createTheme({
       secondary: grey[800],
       disabled: grey[400],
     },
-    divider: grey[200],
+    divider: grey[700],
     grey: { ...grey },
     background: {
       default: grey[100],
@@ -158,6 +157,9 @@ const theme = createTheme({
         "& .notification": {
           borderRadius: "6px !important",
           boxShadow: "0px 1px 3px rgba(3, 0, 71, 0.09) !important",
+        },
+        ".MuiDataGrid-root": {
+          border: "none !important",
         },
         "& .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-cell:focus": {
           outline: "none !important",

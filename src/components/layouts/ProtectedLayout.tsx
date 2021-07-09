@@ -5,17 +5,13 @@ import AuthGuard from "@component/auth/AuthGuard";
 import React, { Suspense } from "react";
 import { Switch } from "react-router-dom";
 import { protectedRoutes } from "routes";
-import DashboardSidenav from "./DashboardSidenav";
-// import AuthGuard from "./auth/AuthGuard";
-// import Loader from "./components/Loader";
-// import DashboardSidenav from "./components/DashboardSidenav";
-// import Footer from "app/components/Footer";
+import ProtectedLayoutSidenav from "./ProtectedLayoutSidenav";
 
-const DashboardLayout = () => {
+const ProtectedLayout = () => {
   return (
     <Auth>
       <CustomBox sx={{ height: "100vh", display: "flex", overflow: "hidden" }}>
-        <DashboardSidenav />
+        <ProtectedLayoutSidenav />
 
         <CustomBox
           sx={{
@@ -40,4 +36,4 @@ const DashboardLayout = () => {
   );
 };
 
-export default DashboardLayout;
+export default ProtectedLayout;
