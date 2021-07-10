@@ -1,64 +1,32 @@
 import CustomBox from "@component/atoms/CustomBox";
 import FlexBox from "@component/atoms/CustomFlexBox";
 import CustomImage from "@component/atoms/CustomImage";
+import { landingConstants } from "@data/constants";
 import {
   Button,
   Card,
   Container,
   MenuItem,
-  Theme,
   useMediaQuery,
 } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
 import { ArrowDropDown } from "@material-ui/icons";
-import { makeStyles } from "@material-ui/styles";
 import { Box } from "@material-ui/system";
 import clsx from "clsx";
 import { debounce } from "lodash";
-import React, { Fragment, useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Link as Scroll } from "react-scroll";
 import LandingSidenav from "./LandingSidenav";
+import TopbarWrapper from "./Topbar.style";
 import topbarNavigations from "./topbarNavigations";
-
-const fixedTopbarHeight = 64;
-const normalTopbarHeight = 128;
-// const sidenavWidth = 260;
-
-const useStyles = makeStyles(({ palette, ...theme }: Theme) => ({
-  topbarNormal: {
-    height: normalTopbarHeight,
-    display: "flex",
-    alignItems: "center",
-    background: "transparent",
-    color: palette.primary.contrastText,
-    transition: "height 250ms cubic-bezier(0.17, 0.67, 0.83, 0.67)",
-  },
-  topbarFixed: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    color: palette.text.primary,
-    height: fixedTopbarHeight,
-    background: palette.background.paper,
-    boxShadow: theme.shadows[3],
-    zIndex: 999,
-  },
-
-  // new code
-  linkButton: {
-    margin: "0px 0.25rem",
-    paddingLeft: "1rem",
-    paddingRight: "1rem",
-  },
-}));
 
 const Topbar = () => {
   const [isTopbarFixed, setTopbarFixed] = useState(false);
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
-  const classes = useStyles();
+  const { normalTopbarHeight, fixedTopbarHeight } = landingConstants;
 
   let scrollableElement =
     document.querySelector(".scrollable-content") || window;
@@ -87,11 +55,11 @@ const Topbar = () => {
   }, [isMobile, scrollListener, scrollableElement]);
 
   return (
-    <Fragment>
+    <TopbarWrapper>
       <div
         className={clsx({
-          [classes.topbarNormal]: true,
-          [classes.topbarFixed]: isTopbarFixed,
+          topbar: true,
+          "topbar-fixed": isTopbarFixed,
         })}
       >
         {/* Mobile Topbar */}
@@ -164,7 +132,7 @@ const Topbar = () => {
                   key={item.title}
                 >
                   <Button
-                    className={classes.linkButton}
+                    className="button-link"
                     sx={{ pr: "0.5rem !important" }}
                   >
                     {item.title}
@@ -198,12 +166,12 @@ const Topbar = () => {
                     isTopbarFixed ? (isMobile ? 0 : -fixedTopbarHeight) : -65
                   }
                 >
-                  <Button className={classes.linkButton}>{item.title}</Button>
+                  <Button className="button-link">{item.title}</Button>
                 </Scroll>
               ) : (
                 <Link to={item.url || "/"} key={item.title}>
                   <Button
-                    className={classes.linkButton}
+                    className="button-link"
                     variant={item.outlined ? "outlined" : "text"}
                     sx={{
                       borderRadius: item.outlined ? "300px" : "4px",
@@ -224,7 +192,7 @@ const Topbar = () => {
       <CustomBox
         sx={{ height: isTopbarFixed ? normalTopbarHeight : 0, width: "100%" }}
       ></CustomBox>
-    </Fragment>
+    </TopbarWrapper>
   );
 };
 

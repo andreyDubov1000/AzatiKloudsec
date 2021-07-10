@@ -1,26 +1,25 @@
 import FlexBox from "@component/atoms/CustomFlexBox";
 import CustomImage from "@component/atoms/CustomImage";
 import { H5 } from "@component/atoms/Typography";
-import { Container, Grid, Theme } from "@material-ui/core";
+import { Container, Grid } from "@material-ui/core";
 import TouchRipple from "@material-ui/core/ButtonBase";
-import { alpha } from "@material-ui/core/styles";
-import { makeStyles } from "@material-ui/styles";
+import { alpha, styled } from "@material-ui/core/styles";
 import React from "react";
 
-const useStyles = makeStyles(({ palette, ...theme }: Theme) => ({
-  section: {
-    paddingTop: "5rem",
-    paddingBottom: "5rem",
-    color: palette.primary.contrastText,
-    backgroundImage: `linear-gradient(to left, ${alpha(
-      palette.primary.main,
-      0.95
-    )}, ${palette.primary.dark})`,
-  },
-  logo: {
+const Section = styled("section")(({ theme: { palette } }) => ({
+  paddingTop: "5rem",
+  paddingBottom: "5rem",
+  color: palette.primary.contrastText,
+  backgroundImage: `linear-gradient(to left, ${alpha(
+    palette.primary.main,
+    0.95
+  )}, ${palette.primary.dark})`,
+
+  "& .logo": {
     letterSpacing: 2.5,
   },
-  rippleLink: {
+
+  "& .ripple-link": {
     width: "100%",
     justifyContent: "flex-start",
     marginLeft: "-1rem",
@@ -32,20 +31,19 @@ const useStyles = makeStyles(({ palette, ...theme }: Theme) => ({
 }));
 
 const Footer = () => {
-  const classes = useStyles();
   const productLink = ["feature", "use cases", "pricing"];
   const supportLink = ["Blog", "FAQ", "Support"];
   const companyLink = ["About", "Privacy Policy", "Terms of Service"];
 
   return (
-    <section className={classes.section} id="footer">
+    <Section id="footer">
       <Container>
         <Grid container spacing={3} justifyContent="center">
           <Grid item md={2} xs={6}>
             <H5 mb="1rem">PRODUCT</H5>
 
             {productLink.map((item, ind) => (
-              <TouchRipple className={classes.rippleLink} key={ind}>
+              <TouchRipple className="ripple-link" key={ind}>
                 {item}
               </TouchRipple>
             ))}
@@ -54,7 +52,7 @@ const Footer = () => {
             <H5 mb="1rem">SUPPORT</H5>
 
             {supportLink.map((item, ind) => (
-              <TouchRipple className={classes.rippleLink} key={ind}>
+              <TouchRipple className="ripple-link" key={ind}>
                 {item}
               </TouchRipple>
             ))}
@@ -63,7 +61,7 @@ const Footer = () => {
             <H5 mb="1rem">COMPANY</H5>
 
             {companyLink.map((item, ind) => (
-              <TouchRipple className={classes.rippleLink} key={ind}>
+              <TouchRipple className="ripple-link" key={ind}>
                 {item}
               </TouchRipple>
             ))}
@@ -72,7 +70,7 @@ const Footer = () => {
             <H5 mb="1rem">FEATURES</H5>
 
             {productLink.map((item, ind) => (
-              <TouchRipple className={classes.rippleLink} key={ind}>
+              <TouchRipple className='ripple-link' key={ind}>
                 {item}
               </TouchRipple>
             ))}
@@ -81,7 +79,7 @@ const Footer = () => {
             <H5 mb="1rem">FREQUENT LINKS</H5>
 
             {supportLink.map((item, ind) => (
-              <TouchRipple className={classes.rippleLink} key={ind}>
+              <TouchRipple className='ripple-link' key={ind}>
                 {item}
               </TouchRipple>
             ))}
@@ -113,7 +111,7 @@ const Footer = () => {
           </Grid>
         </Grid>
       </Container>
-    </section>
+    </Section>
   );
 };
 

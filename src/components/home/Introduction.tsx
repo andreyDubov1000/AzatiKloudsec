@@ -1,29 +1,23 @@
 import CustomBox from "@component/atoms/CustomBox";
 import FlexBox from "@component/atoms/CustomFlexBox";
 import { H1, Paragraph } from "@component/atoms/Typography";
-import { Button, Container, Grid, Theme } from "@material-ui/core";
-import { alpha } from "@material-ui/core/styles";
-import { makeStyles } from "@material-ui/styles";
+import { Button, Container, Grid } from "@material-ui/core";
+import { alpha, styled } from "@material-ui/core/styles";
 import React from "react";
 import { Link as Scroll } from "react-scroll";
 import Topbar from "./Topbar";
 
-const useStyles = makeStyles(({ palette, ...theme }: Theme) => ({
-  section: {
-    // backgroundImage: "linear-gradient(#6E5BFF, #5727C2)",
-    backgroundImage: `linear-gradient(to left, ${alpha(
-      palette.primary.main,
-      0.85
-    )}, ${palette.primary.dark})`,
-    paddingBottom: "5rem",
-  },
+const Section = styled("section")(({ theme: { palette } }) => ({
+  backgroundImage: `linear-gradient(to left, ${alpha(
+    palette.primary.main,
+    0.85
+  )}, ${palette.primary.dark})`,
+  paddingBottom: "5rem",
 }));
 
 const Introduction = () => {
-  const classes = useStyles();
-
   return (
-    <section className={classes.section} id="intro1">
+    <Section id="intro1">
       <Topbar />
 
       <Container sx={{ color: "white" }}>
@@ -86,7 +80,7 @@ const Introduction = () => {
           </Grid>
         </Grid>
       </Container>
-    </section>
+    </Section>
   );
 };
 
