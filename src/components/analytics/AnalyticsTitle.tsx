@@ -3,12 +3,12 @@ import { H3 } from "@component/atoms/Typography";
 import { Button } from "@material-ui/core";
 import React from "react";
 
-export interface DashboardTitleProps {
+export interface AnalyticsTitleProps {
   total?: number;
   title: string;
 }
 
-const DashboardTitle: React.FC<DashboardTitleProps> = ({ title, total }) => {
+const AnalyticsTitle: React.FC<AnalyticsTitleProps> = ({ title, total }) => {
   return (
     <CustomFlexBox
       sx={{
@@ -32,4 +32,4 @@ const DashboardTitle: React.FC<DashboardTitleProps> = ({ title, total }) => {
   );
 };
 
-export default DashboardTitle;
+export default AnalyticsTitle;

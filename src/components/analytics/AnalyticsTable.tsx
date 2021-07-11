@@ -14,7 +14,7 @@ type Account = {
   MEDIUM: number;
 };
 
-export interface DashboardTableProps {
+export interface AnalyticsTableProps {
   accountList: Account[];
   loading: boolean;
 }
@@ -26,13 +26,14 @@ const CustomChip = styled(Chip)(({ theme }) => ({
   boxShadow: theme.shadows[2],
 }));
 
-const DashboardTable: React.FC<DashboardTableProps> = ({
+const AnalyticsTable: React.FC<AnalyticsTableProps> = ({
   accountList = [],
   loading,
 }) => {
   return (
-    <Card>
+    <Card sx={{ mb: "1.5rem" }}>
       <H5 p="1rem">AWS Account List</H5>
+
       <DataGrid
         rows={accountList}
         columns={columns}
@@ -68,6 +69,7 @@ const renderChipCell =
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "Account ID", flex: 1 },
+  { field: "alias", headerName: "Account Alias", flex: 1 },
   {
     field: "LOW",
     headerName: "Low",
@@ -94,4 +96,4 @@ const columns: GridColDef[] = [
   },
 ];
 
-export default DashboardTable;
+export default AnalyticsTable;

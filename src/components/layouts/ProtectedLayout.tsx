@@ -21,12 +21,8 @@ const ProtectedLayout = () => {
         >
           <Suspense fallback={<Loader />}>
             <Switch>
-              {protectedRoutes.map((item, ind) => (
-                <AuthGuard
-                  path={item.path}
-                  component={item.component}
-                  key={item.path}
-                />
+              {protectedRoutes.map((item) => (
+                <AuthGuard {...item} key={item.path} />
               ))}
             </Switch>
           </Suspense>

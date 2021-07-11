@@ -23,11 +23,7 @@ const IntegrationsLayout = () => {
         <Suspense fallback={<Loader />}>
           <Switch>
             {integrationRoutes.map((item, ind) => (
-              <AuthGuard
-                path={item.path}
-                component={item.component}
-                key={item.path}
-              />
+              <AuthGuard {...item} key={item.path} />
             ))}
           </Switch>
         </Suspense>

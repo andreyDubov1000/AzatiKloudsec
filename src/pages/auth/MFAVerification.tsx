@@ -38,7 +38,7 @@ const MFAVerification: React.FC<MFAVerificationProps> = ({
     if (data) {
       data.email = email;
       dispatch({ type: SAVE_TOKEN, data });
-      history.push("/integrations/aws");
+      history.push("/dashboard/risk-management");
       NotificationManager.success("Login Successful");
     }
   };

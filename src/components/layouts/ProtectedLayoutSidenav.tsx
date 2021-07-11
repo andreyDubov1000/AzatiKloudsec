@@ -39,6 +39,7 @@ const ProtectedLayoutSidenav = () => {
         color: "white",
         height: "100vh",
         width: 64,
+        minWidth: 64,
         py: "1rem",
         overflow: "auto",
         "& .active": {

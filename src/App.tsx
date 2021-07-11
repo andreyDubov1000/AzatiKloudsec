@@ -18,11 +18,7 @@ const App = () => {
           <Suspense fallback={<Loader />}>
             <Switch>
               {authRoutes.map((item) => (
-                <Route
-                  path={item.path}
-                  component={item.component}
-                  key={item.path}
-                />
+                <Route {...item} key={item.path} />
               ))}
               <Route path="/" component={Home} exact />
               <Route path="/" component={ProtectedLayout} />

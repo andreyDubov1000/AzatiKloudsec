@@ -4,7 +4,7 @@ import { Vulnerability } from "@data/types";
 import { Card, Grid } from "@material-ui/core";
 import React from "react";
 
-export interface DashboardOverViewCardsProps {
+export interface AnalyticsCardsProps {
   CRITICAL: number;
   HIGH: number;
   LOW: number;
@@ -13,9 +13,7 @@ export interface DashboardOverViewCardsProps {
   [key: string]: any;
 }
 
-const DashboardOverViewCards: React.FC<DashboardOverViewCardsProps> = (
-  vulnerabilities
-) => {
+const AnalyticsCards: React.FC<AnalyticsCardsProps> = (vulnerabilities) => {
   return (
     <Grid container spacing={3} sx={{ mb: "1.5rem" }}>
       {Object.keys(vulnerabilities).map((key, ind) => (
@@ -43,4 +41,4 @@ const DashboardOverViewCards: React.FC<DashboardOverViewCardsProps> = (
   );
 };
 
-export default DashboardOverViewCards;
+export default AnalyticsCards;

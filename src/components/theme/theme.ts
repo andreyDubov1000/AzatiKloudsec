@@ -164,11 +164,15 @@ const theme = createTheme({
         "& .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-cell:focus": {
           outline: "none !important",
         },
+        "& .MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within, .MuiDataGrid-root .MuiDataGrid-cell:focus-within":
+          {
+            outline: "none !important",
+          },
         "& .MuiDataGrid-columnHeaderTitleContainer": {
           paddingLeft: "0 !important",
           paddingRight: "0 !important",
         },
-        "& .MuiCircularProgress-root": {
+        "& .MuiDataGrid-root .MuiCircularProgress-root": {
           height: "1.75rem !important",
           width: "1.75rem !important",
         },

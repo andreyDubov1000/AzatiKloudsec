@@ -2,7 +2,7 @@ import { Dashboard, Extension } from "@material-ui/icons";
 
 const protectedLayoutSidenavNavigations = [
   {
-    path: "/risk-management-dashboard",
+    path: "/dashboard/risk-management",
     icon: Dashboard,
   },
   {
