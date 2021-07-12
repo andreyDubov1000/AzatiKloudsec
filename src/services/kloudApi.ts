@@ -30,6 +30,8 @@ class KloudApi {
     } catch (error) {
       const message = error.response?.data?.error_message || "Unknown error";
       NotificationManager.error(message);
+      console.log(error);
+
       return null;
     }
   };
@@ -45,6 +47,8 @@ class KloudApi {
     } catch (error) {
       const message = error.response?.data?.error_message || "Unknown error";
       NotificationManager.error(message);
+      console.log(error);
+
       return null;
     }
   };
