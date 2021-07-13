@@ -1,5 +1,5 @@
 import Loader from "@component/atoms/Loader";
-import { SAVE_TOKEN, SAVE_USER_INFO } from "@redux/auth/authTypes";
+import { SAVE_TOKEN, SAVE_USER_INFO, SIGN_OUT } from "@redux/auth/authTypes";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
 import React, { Fragment, useCallback, useEffect, useState } from "react";
 import { getUserInfo, refreshToken, setApiHeader } from "services/authService";
@@ -18,7 +18,11 @@ const Auth: React.FC = ({ children }) => {
       const data = await refreshToken({ email, refresh_token });
       if (data) {
         dispatch({ type: SAVE_TOKEN, data });
+      } else {
+        dispatch({ type: SIGN_OUT });
       }
+    } else {
+      dispatch({ type: SIGN_OUT });
     }
 
     setLoading(false);
@@ -36,6 +40,19 @@ const Auth: React.FC = ({ children }) => {
       checkToken();
     }
   }, [checkToken, dispatch, token]);
+
+  // refresh token after 1 hour
+  useEffect(() => {
+    let interval: any = null;
+
+    interval = setInterval(() => {
+      checkToken();
+    }, 3540 * 1000);
+
+    return () => {
+      interval && clearInterval(interval);
+    };
+  }, [checkToken]);
 
   return loading ? <Loader /> : <Fragment>{children}</Fragment>;
 };

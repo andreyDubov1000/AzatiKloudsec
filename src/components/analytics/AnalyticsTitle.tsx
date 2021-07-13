@@ -25,7 +25,7 @@ const AnalyticsTitle: React.FC<AnalyticsTitleProps> = ({ title, total }) => {
           color="primary"
           sx={{ borderRadius: "300px" }}
         >
-          Total Account: {total}
+          Total AWS Account: {total}
         </Button>
       )}
     </CustomFlexBox>

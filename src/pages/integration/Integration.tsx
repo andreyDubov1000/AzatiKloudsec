@@ -106,7 +106,7 @@ const columns: GridColDef[] = [
     align: "center",
     headerAlign: "center",
     renderCell: (params: GridCellParams) =>
-      params.getValue(params.id, "Reachability") ? (
+      params.getValue(params.id, "Reachability") === "OK" ? (
         <Done fontSize="small" color="success" />
       ) : (
         <Close fontSize="small" color="error" />

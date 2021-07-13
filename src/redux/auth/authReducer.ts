@@ -3,6 +3,7 @@ import {
   InitialAuthState,
   SAVE_TOKEN,
   SAVE_USER_INFO,
+  SIGN_OUT,
 } from "./authTypes";
 
 const initialState: InitialAuthState = {
@@ -18,6 +19,9 @@ const authReducer = (state = initialState, action: AuthAction) => {
     }
     case SAVE_USER_INFO: {
       return { ...state, user: action.data };
+    }
+    case SIGN_OUT: {
+      return initialState;
     }
     default: {
       return { ...state };
