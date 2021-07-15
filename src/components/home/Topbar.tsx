@@ -23,6 +23,7 @@ import topbarNavigations from "./topbarNavigations";
 
 const Topbar = () => {
   const [isTopbarFixed, setTopbarFixed] = useState(false);
+  const [navList, setNavList] = useState(topbarNavigations);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
@@ -53,6 +54,24 @@ const Topbar = () => {
       scrollableElement.removeEventListener("scroll", scrollListener);
     } else scrollableElement.addEventListener("scroll", scrollListener);
   }, [isMobile, scrollListener, scrollableElement]);
+
+  useEffect(() => {
+    const tokenString = localStorage.getItem("token");
+
+    if (tokenString) {
+      const list = topbarNavigations.filter(
+        (item) => !["/login", "/signup"].includes(item.url || "")
+      );
+
+      list.push({
+        title: "Dashboard",
+        url: "/dashboard/risk-management",
+        outlined: true,
+      });
+
+      setNavList(list);
+    }
+  }, []);
 
   return (
     <TopbarWrapper>
@@ -122,7 +141,7 @@ const Topbar = () => {
           </Scroll>
 
           <FlexBox sx={{ flexWrap: "wrap" }}>
-            {topbarNavigations.map((item, ind) =>
+            {navList.map((item, ind) =>
               item.children ? (
                 <Box
                   position="relative"

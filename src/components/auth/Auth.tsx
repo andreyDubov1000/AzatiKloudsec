@@ -16,16 +16,16 @@ const Auth: React.FC = ({ children }) => {
     if (tokenString) {
       const { email, refresh_token } = JSON.parse(tokenString);
       const data = await refreshToken({ email, refresh_token });
-
       if (data) {
-        setLoading(false);
         dispatch({ type: SAVE_TOKEN, data });
-        return;
+      } else {
+        dispatch({ type: SIGN_OUT });
       }
+    } else {
+      dispatch({ type: SIGN_OUT });
     }
 
     setLoading(false);
-    dispatch({ type: SIGN_OUT });
   }, [dispatch]);
 
   useEffect(() => {

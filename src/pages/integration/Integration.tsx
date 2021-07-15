@@ -14,14 +14,12 @@ import { getAWSAccounts } from "services/integrationsService";
 
 const Integration = () => {
   const [accountList, setAccountList] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const { user } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
     // let interval: any = null;
-    setLoading(true);
-
     const getAccountList = async (user_id: string) => {
       const list = await getAWSAccounts(user_id);
       console.log(list);

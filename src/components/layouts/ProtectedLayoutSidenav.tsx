@@ -49,7 +49,7 @@ const ProtectedLayoutSidenav = () => {
         },
       }}
     >
-      <NavLink to="/dashboard">
+      <NavLink to="/dashboard/risk-management">
         <CustomImage
           src="/logo-white.svg"
           alt="logo"
