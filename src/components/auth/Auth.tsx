@@ -16,16 +16,16 @@ const Auth: React.FC = ({ children }) => {
     if (tokenString) {
       const { email, refresh_token } = JSON.parse(tokenString);
       const data = await refreshToken({ email, refresh_token });
+
       if (data) {
+        setLoading(false);
         dispatch({ type: SAVE_TOKEN, data });
-      } else {
-        dispatch({ type: SIGN_OUT });
+        return;
       }
-    } else {
-      dispatch({ type: SIGN_OUT });
     }
 
     setLoading(false);
+    dispatch({ type: SIGN_OUT });
   }, [dispatch]);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const Auth: React.FC = ({ children }) => {
 
     interval = setInterval(() => {
       checkToken();
-    }, 3540 * 1000);
+    }, 3000 * 1000);
 
     return () => {
       interval && clearInterval(interval);

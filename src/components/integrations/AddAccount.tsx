@@ -1,7 +1,7 @@
 import CustomBox from "@component/atoms/CustomBox";
 import CustomImage from "@component/atoms/CustomImage";
 import Sidenav from "@component/atoms/Sidenav";
-import { H6, Paragraph } from "@component/atoms/Typography";
+import { H6, Paragraph, Span } from "@component/atoms/Typography";
 import { Button, IconButton } from "@material-ui/core";
 import Close from "@material-ui/icons/Close";
 import React, { useState } from "react";
@@ -56,17 +56,22 @@ const AddAccount: React.FC<AddAccountProps> = ({ user_id }) => {
 
         <CustomImage
           src="/assets/images/icons/aws.svg"
-          width="100%"
-          sx={{ opacity: 0.5 }}
+          // width="100%"
+          height="200px"
+          sx={{ opacity: 0.5, maxWidth: "100%" }}
         />
 
         <Paragraph textAlign="left" mb="2.5rem">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was
+          The cloudformation stack will creates an AWS IAM Role named{" "}
+          <b>KloudSecRole</b>, The purpose of this role is to allow KloudSec app
+          to scan all the account services and fetch potential security
+          vulnerabilities. <br />
+          KloudSecRole role uses an <b>ExternalID</b> in order to protect the
+          cross account session. Please do not change this value! <br />
+          Your ExternalID is:{" "}
+          <Span fontWeight="700" color="error.main">
+            {user_id}
+          </Span>
         </Paragraph>
 
         <a

@@ -72,7 +72,7 @@ const Integration = () => {
           <H5>AWS Read Only</H5>
         </CustomFlexBox>
 
-        <AddAccount user_id={user?.user_id} />
+        {user?.user_id && <AddAccount user_id={user.user_id} />}
       </CustomFlexBox>
 
       <DataGrid
