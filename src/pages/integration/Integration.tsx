@@ -1,5 +1,6 @@
 import CustomBox from "@component/atoms/CustomBox";
 import CustomFlexBox from "@component/atoms/CustomFlexBox";
+import PageTitle from "@component/atoms/PageTitle";
 import { H5 } from "@component/atoms/Typography";
 import AWSIcon from "@component/icons/AWSIcon";
 import AddAccount from "@component/integrations/AddAccount";
@@ -51,6 +52,7 @@ const Integration = () => {
 
   return (
     <CustomBox>
+      <PageTitle title="Integrations" />
       <CustomFlexBox
         sx={{
           alignItems: "center",

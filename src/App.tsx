@@ -7,6 +7,7 @@ import Home from "pages/home/Home";
 import React, { Suspense } from "react";
 import { NotificationContainer } from "react-notifications";
 import "react-notifications/lib/notifications.css";
+import "react-perfect-scrollbar/dist/css/styles.css";
 import { Provider as ReduxProvider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 

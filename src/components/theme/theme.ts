@@ -219,6 +219,29 @@ const theme = createTheme({
         style: { borderRadius: 6 },
       },
     },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          textDecoration: "none",
+        },
+      },
+    },
+    MuiTabs: {
+      styleOverrides: {
+        root: {
+          minHeight: 40,
+        },
+      },
+    },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          textTransform: "none",
+          minHeight: 40,
+          borderRadius: 4,
+        },
+      },
+    },
     MuiDialog: {
       styleOverrides: {
         paper: {

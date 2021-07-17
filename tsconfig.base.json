@@ -8,7 +8,7 @@
       "@data/*": ["./data/*"],
       "@context/*": ["./contexts/*"],
       "@hook/*": ["./hooks/*"],
-      "@utils/*": ["./utils/*"],
+      "@utils": ["./utils"],
       "@reducer/*": ["./reducers/*"]
     }
   }

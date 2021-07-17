@@ -4,7 +4,7 @@ import protectedLayoutSidenavNavigations from "@data/protectedLayoutSidenavNavig
 import { MenuItem } from "@material-ui/core";
 import { styled } from "@material-ui/core/styles";
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const SidenavMenuItem = styled(MenuItem)({
   justifyContent: "center",
@@ -49,14 +49,14 @@ const ProtectedLayoutSidenav = () => {
         },
       }}
     >
-      <NavLink to="/dashboard/risk-management">
+      <Link to="/dashboard/risk-management">
         <CustomImage
           src="/logo-white.svg"
           alt="logo"
           width="100%"
           sx={{ display: "block", mx: "auto", mb: "2rem", px: "1rem" }}
         />
-      </NavLink>
+      </Link>
 
       {protectedLayoutSidenavNavigations.map((item) => (
         <NavLink activeClassName="active" to={item.path} key={item.path}>

@@ -5,6 +5,7 @@ import { Card, Chip } from "@material-ui/core";
 import { styled } from "@material-ui/core/styles";
 import { DataGrid, GridCellParams, GridColDef } from "@material-ui/data-grid";
 import React from "react";
+import { Link } from "react-router-dom";
 
 type Account = {
   AccountId: string;
@@ -67,8 +68,18 @@ const renderChipCell =
       />
     );
 
+const renderAccountId = (params: GridCellParams) => {
+  const accountId = params.getValue(params.id, "id");
+  return <Link to={`/incidents/${accountId}`}>{accountId}</Link>;
+};
+
 const columns: GridColDef[] = [
-  { field: "id", headerName: "Account ID", flex: 1 },
+  {
+    field: "id",
+    headerName: "Account ID",
+    flex: 1,
+    renderCell: renderAccountId,
+  },
   { field: "alias", headerName: "Account Alias", flex: 1 },
   {
     field: "LOW",

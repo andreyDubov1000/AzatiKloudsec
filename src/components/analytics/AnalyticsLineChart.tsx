@@ -174,7 +174,12 @@ const AnalyticsLineChart: React.FC<AnalyticsLineChartProps> = ({
     <Card sx={{ p: "1rem" }}>
       <H5 mb="1rem">Vulnerability History</H5>
 
-      <CustomBox sx={{ position: "relative", height: "60vh" }}>
+      <CustomBox
+        sx={{
+          position: "relative",
+          height: "60vh",
+        }}
+      >
         <Line type="line" data={data} options={options} plugins={plugins} />
       </CustomBox>
     </Card>
