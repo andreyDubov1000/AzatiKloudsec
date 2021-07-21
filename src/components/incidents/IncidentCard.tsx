@@ -11,6 +11,7 @@ import React from "react";
 
 export interface IncidentCardProps {
   sx?: SxProps;
+  id?: string;
   AccountId: string;
   Category: string;
   CloudService: string;
@@ -60,12 +61,14 @@ const IncidentCard: React.FC<IncidentCardProps> = ({
           alignItems: "center",
           justifyContent: "space-between",
           textAlign: "center",
-          width: 56,
+          width: 60,
         }}
       >
-        <Small display="block" color="grey.600" mb="0.5rem">
-          {format(new Date(VulnerabilityDate), "dd MMM, yy hh:mm a")}
-        </Small>
+        {!!VulnerabilityDate && (
+          <Small display="block" color="grey.600" mb="0.5rem">
+            {format(new Date(VulnerabilityDate), "dd MMM, yy hh:mm a")}
+          </Small>
+        )}
         <RadioButtonChecked
           fontSize="small"
           sx={{ color: vulnerabilityColor[Severity].bgColor }}

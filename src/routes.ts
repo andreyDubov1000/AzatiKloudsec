@@ -1,6 +1,6 @@
 import dashboardRoutes from "@page/analytics/analyticsRoutes";
 import authRoutes from "@page/auth/authRoutes";
-import incidentRoutes from "@page/incident.tsx/incidentRoutes";
+import incidentRoutes from "@page/incidents/incidentRoutes";
 import { lazy } from "react";
 
 export const simpleRoutes = [...authRoutes];

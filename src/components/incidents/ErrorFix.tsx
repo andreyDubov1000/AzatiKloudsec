@@ -5,7 +5,7 @@ import { IncidentCardProps } from "./IncidentCard";
 const ErrorFix: React.FC<IncidentCardProps> = ({ VulnerabilityDoc }) => {
   return (
     <Link href={VulnerabilityDoc} target="_blank" rel="noopener noreferrer">
-      Document
+      {VulnerabilityDoc}
     </Link>
   );
 };
