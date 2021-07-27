@@ -10,6 +10,10 @@ export const protectedRoutes = [
     path: "/integrations",
     component: lazy(() => import("@component/layouts/IntegrationsLayout")),
   },
+  {
+    path: "/docs",
+    component: lazy(() => import("@component/layouts/DocLayout")),
+  },
   ...dashboardRoutes,
   ...incidentRoutes,
 ];

@@ -1,7 +1,7 @@
 import CustomBox from "@component/atoms/CustomBox";
 import CustomImage from "@component/atoms/CustomImage";
 import protectedLayoutSidenavNavigations from "@data/protectedLayoutSidenavNavigations";
-import { MenuItem } from "@material-ui/core";
+import { MenuItem, Tooltip } from "@material-ui/core";
 import { styled } from "@material-ui/core/styles";
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
@@ -60,9 +60,11 @@ const ProtectedLayoutSidenav = () => {
 
       {protectedLayoutSidenavNavigations.map((item) => (
         <NavLink activeClassName="active" to={item.path} key={item.path}>
-          <SidenavMenuItem>
-            <item.icon fontSize="inherit" />
-          </SidenavMenuItem>
+          <Tooltip title={item.title} placement="right">
+            <SidenavMenuItem>
+              <item.icon fontSize="inherit" />
+            </SidenavMenuItem>
+          </Tooltip>
         </NavLink>
       ))}
     </CustomBox>

@@ -6,6 +6,12 @@ export const landingConstants = {
   sidenavWidth: 260,
 };
 
+export const docConstants = {
+  fixedTopbarHeight: 64,
+  normalTopbarHeight: 128,
+  sidenavWidth: 260,
+};
+
 export const vulnerabilityColor = {
   CRITICAL: {
     bgColor: "secondary.main",

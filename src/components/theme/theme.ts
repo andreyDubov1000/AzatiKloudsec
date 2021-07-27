@@ -148,6 +148,9 @@ const theme = createTheme({
           fontFamily,
           fontSize,
         },
+        ul: {
+          margin: 0,
+        },
         form: {
           width: "100%",
         },

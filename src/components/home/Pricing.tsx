@@ -1,3 +1,4 @@
+import CustomBox from "@component/atoms/CustomBox";
 import FlexBox from "@component/atoms/CustomFlexBox";
 import { H2, H3, Paragraph, Span } from "@component/atoms/Typography";
 import { Button, Card, Grid } from "@material-ui/core";
@@ -7,25 +8,29 @@ import React from "react";
 
 const Pricing = () => {
   return (
-    <Box
+    <CustomBox
       id="pricing"
       sx={{
         position: "relative",
         py: "5rem",
-        bgcolor: "grey.100",
+        backgroundColor: "grey.100",
         zIndex: 1,
+        height: "100%",
+        color: "grey.300",
         "&:after": {
           content: '"KloudSec"',
           fontSize: "20vw",
-          color: "grey.300",
+          color: "inherit",
+          background: "inherit",
           fontWeight: 700,
           position: "absolute",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
           zIndex: -1,
+          maxHeight: "100%",
         },
-        // background: "url(/assets/images/pricing-bg.svg) center/cover",
+        // background: "url(/assets/images/backgrounds/pricing.svg) center/cover",
       }}
     >
       <Box sx={{ maxWidth: 1050, mx: "auto", px: "1rem" }}>
@@ -40,7 +45,6 @@ const Pricing = () => {
                   border: "1px solid",
                   borderColor: plan.color,
                   borderRadius: "8px !important",
-                  // height: "100%",
                 }}
               >
                 <Box>
@@ -95,7 +99,7 @@ const Pricing = () => {
           ))}
         </Grid>
       </Box>
-    </Box>
+    </CustomBox>
   );
 };
 

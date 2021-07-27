@@ -1,7 +1,6 @@
 import Loader from "@component/atoms/Loader";
 import ProtectedLayout from "@component/layouts/ProtectedLayout";
 import MuiTheme from "@component/theme/MuiTheme";
-import authRoutes from "@page/auth/authRoutes";
 import reduxStore from "@redux/reduxStore";
 import Home from "pages/home/Home";
 import React, { Suspense } from "react";
@@ -10,6 +9,7 @@ import "react-notifications/lib/notifications.css";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import { Provider as ReduxProvider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { simpleRoutes } from "routes";
 
 const App = () => {
   return (
@@ -18,7 +18,7 @@ const App = () => {
         <Router>
           <Suspense fallback={<Loader />}>
             <Switch>
-              {authRoutes.map((item) => (
+              {simpleRoutes.map((item) => (
                 <Route {...item} key={item.path} />
               ))}
               <Route path="/" component={Home} exact />

@@ -2,12 +2,12 @@ import CustomAccordion from "@component/atoms/CustomAccordion";
 import CustomBox from "@component/atoms/CustomBox";
 import CustomImage from "@component/atoms/CustomImage";
 import Sidenav from "@component/atoms/Sidenav";
+import topbarNavigations from "@data/topbarNavigations";
 import { Button, IconButton } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Link as Scroll } from "react-scroll";
-import topbarNavigations from "./topbarNavigations";
 
 export interface LandingSidenavProps {
   isTopbarFixed: boolean;

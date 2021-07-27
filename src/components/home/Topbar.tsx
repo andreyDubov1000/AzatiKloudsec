@@ -17,9 +17,9 @@ import { debounce } from "lodash";
 import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Link as Scroll } from "react-scroll";
+import topbarNavigations from "../../data/topbarNavigations";
 import LandingSidenav from "./LandingSidenav";
 import TopbarWrapper from "./Topbar.style";
-import topbarNavigations from "./topbarNavigations";
 
 const Topbar = () => {
   const [isTopbarFixed, setTopbarFixed] = useState(false);
