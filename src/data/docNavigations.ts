@@ -8,8 +8,15 @@ const docNavigations = [
     children: [
       {
         title: "AWS",
-        url: "/docs/aws",
         children: [
+          {
+            title: "AWS Security Introduction",
+            url: "/docs/aws/introduction",
+          },
+          {
+            title: "Identity and Access Management",
+            url: "/docs/aws/iam",
+          },
           {
             title: "Logging and Monitoring",
             url: "/docs/aws/logging-and-monitoring",
@@ -21,10 +28,6 @@ const docNavigations = [
           {
             title: "Network",
             url: "/docs/aws/network",
-          },
-          {
-            title: "Identity and Access Management",
-            url: "/docs/aws/iam",
           },
           {
             title: "Infrastructure",

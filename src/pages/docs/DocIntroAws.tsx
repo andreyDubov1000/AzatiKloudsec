@@ -24,8 +24,10 @@ const DocIntroAws: React.FC<DocIntroAwsProps> = () => {
         <Paragraph lineHeight="1.625" mb="1.75rem">
           The Kloudsec security allows you to find all related vulnerabilities inside your aws resources.
           For the moment, we are supporting the following aws services: <br /> <br />
-          - EC2: Elastic Compute Cloud
-	  - ELB: Elastic Load Balancer
+          <ul>
+            <li>EC2: Elastic Compute Cloud</li>
+            <li>ELB: Elastic Load Balancer</li>
+          </ul>
         </Paragraph>
 
       </Card>

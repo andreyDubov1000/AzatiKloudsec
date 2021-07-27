@@ -6,7 +6,7 @@ const docRoutes = [
     component: lazy(() => import("./DocIntro")),
   },
   {
-    path: "/docs/aws",
+    path: "/docs/aws/introduction",
     component: lazy(() => import("./DocIntroAws")),
   },
 ];
