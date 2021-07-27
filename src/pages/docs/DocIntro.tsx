@@ -82,7 +82,7 @@ def workflow(_request, settings):
         </Code>
 
         <ReactPlayer
-          url="https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+          url="https://jsfiddle.net/krkcvx9s/"
           controls
         />
 
