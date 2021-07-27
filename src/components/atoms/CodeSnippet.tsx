@@ -1,3 +1,4 @@
+import { SxProps } from "@material-ui/system";
 import React from "react";
 import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -5,15 +6,21 @@ import CustomBox from "./CustomBox";
 
 export interface CodeSnippetProps {
   language?: Language;
+  sx?: SxProps;
 }
 
-const CodeSnippet: React.FC<CodeSnippetProps> = ({ children, language }) => {
+const CodeSnippet: React.FC<CodeSnippetProps> = ({
+  children,
+  language,
+  sx = {},
+}) => {
   return (
     <CustomBox
       sx={{
         "& pre": {
           padding: "1rem 0.25rem !important",
         },
+        ...sx,
       }}
     >
       <SyntaxHighlighter

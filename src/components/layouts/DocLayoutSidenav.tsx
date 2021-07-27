@@ -17,7 +17,7 @@ const DocLayoutSidenav: React.FC<DocLayoutSidenavProps> = () => {
         return (
           <CustomAccordion
             title={item.title}
-            buttonSx={{ pl: "1rem" }}
+            buttonSx={{ pl: "1rem", ml: "-1rem" }}
             key={item.title}
           >
             <CustomBox sx={{ pl: "1rem" }}>
@@ -28,7 +28,10 @@ const DocLayoutSidenav: React.FC<DocLayoutSidenavProps> = () => {
       } else {
         return (
           <NavLink to={item.url} key={item.title}>
-            <Button fullWidth sx={{ justifyContent: "flex-start", pl: "1rem" }}>
+            <Button
+              fullWidth
+              sx={{ justifyContent: "flex-start", pl: "1rem", ml: "-1rem" }}
+            >
               {item.title}
             </Button>
           </NavLink>
@@ -51,7 +54,7 @@ const DocLayoutSidenav: React.FC<DocLayoutSidenavProps> = () => {
           },
         }}
       >
-        <H4 fontWeight="500" mt="0.35rem" mb="1.5rem" ml="1rem">
+        <H4 fontWeight="500" mt="0.35rem" mb="1.5rem">
           DOCUMENTATION
         </H4>
         {/* <CustomImage

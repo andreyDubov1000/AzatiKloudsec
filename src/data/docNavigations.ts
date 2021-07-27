@@ -1,5 +1,9 @@
 const docNavigations = [
   {
+    title: "How to Add Doc",
+    url: "/docs/how-to",
+  },
+  {
     title: "Introduction",
     url: "/docs/introduction",
   },
