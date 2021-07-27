@@ -7,9 +7,9 @@ import { Card, Divider } from "@material-ui/core";
 import React from "react";
 import ReactPlayer from "react-player/lazy";
 
-export interface DocIntroProps {}
+export interface DocIntroAwsProps {}
 
-const DocIntro: React.FC<DocIntroProps> = () => {
+const DocIntroAws: React.FC<DocIntroAwsProps> = () => {
   return (
     <CustomFlexBox>
       <Card sx={{ flex: "1 1 0", p: "1.5rem", bgcolor: "white", m: "1rem" }}>
@@ -36,4 +36,4 @@ const DocIntro: React.FC<DocIntroProps> = () => {
   );
 };
 
-export default DocIntro;
+export default DocIntroAws;

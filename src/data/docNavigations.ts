@@ -1,9 +1,5 @@
 const docNavigations = [
   {
-    title: "How to Add Doc",
-    url: "/docs/how-to",
-  },
-  {
     title: "Introduction",
     url: "/docs/introduction",
   },
@@ -16,27 +12,27 @@ const docNavigations = [
         children: [
           {
             title: "Logging and Monitoring",
-            url: "/docs/logging-and-monitoring",
+            url: "/docs/aws/logging-and-monitoring",
           },
           {
             title: "Data Protection",
-            url: "/docs/data-protection",
+            url: "/docs/aws/data-protection",
           },
           {
             title: "Network",
-            url: "/docs/network",
+            url: "/docs/aws/network",
           },
           {
             title: "Identity and Access Management",
-            url: "/docs/iam",
+            url: "/docs/aws/iam",
           },
           {
             title: "Infrastructure",
-            url: "/docs/infrastructure",
+            url: "/docs/aws/infrastructure",
           },
           {
             title: "General",
-            url: "/docs/general",
+            url: "/docs/aws/general",
           },
         ],
       },
