@@ -1,10 +1,11 @@
 import CustomBox from "@component/atoms/CustomBox";
 import Loader from "@component/atoms/Loader";
+import AuthGuard from "@component/auth/AuthGuard";
 import DocLayoutSidenav from "@component/layouts/DocLayoutSidenav";
 import docRoutes from "@page/docs/DocRoutes";
 import React, { Suspense } from "react";
 import ScrollBar from "react-perfect-scrollbar";
-import { Route, Switch } from "react-router-dom";
+import { Switch } from "react-router-dom";
 
 export interface DocLayoutProps {}
 
@@ -34,7 +35,7 @@ const DocLayout: React.FC<DocLayoutProps> = () => {
           <Suspense fallback={<Loader />}>
             <Switch>
               {docRoutes.map((item) => (
-                <Route {...item} key={item.path} />
+                <AuthGuard {...item} key={item.path} />
               ))}
             </Switch>
           </Suspense>
