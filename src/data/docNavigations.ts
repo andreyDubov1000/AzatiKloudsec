@@ -8,28 +8,53 @@ const docNavigations = [
     url: "/docs/introduction",
   },
   {
-    title: "Getting Started",
+    title: "Cloud Providers",
     children: [
       {
-        title: "React",
-        url: "/docs/react",
-      },
-      {
-        title: "Vue",
-        url: "/docs/vue",
-      },
-      {
-        title: "test",
+        title: "AWS",
+        url: "/docs/aws",
         children: [
           {
-            title: "React",
-            url: "/docs/react",
+            title: "Logging and Monitoring",
+            url: "/docs/logging-and-monitoring",
           },
           {
-            title: "Vue",
-            url: "/docs/vue",
+            title: "Data Protection",
+            url: "/docs/data-protection",
+          },
+          {
+            title: "Network",
+            url: "/docs/network",
+          },
+          {
+            title: "Identity and Access Management",
+            url: "/docs/iam",
+          },
+          {
+            title: "Infrastructure",
+            url: "/docs/infrastructure",
+          },
+          {
+            title: "General",
+            url: "/docs/general",
           },
         ],
+      },
+      {
+        title: "AZURE",
+        url: "/docs/azure",
+      },
+      {
+        title: "GOOGLE CLOUD",
+        url: "/docs/gcp",
+      },
+      {
+        title: "ALIBABA CLOUD",
+        url: "/docs/alibaba",
+      },
+      {
+        title: "IBM CLOUD",
+        url: "/docs/ibm",
       },
     ],
   },

@@ -13,8 +13,8 @@ const DocIntro: React.FC<DocIntroProps> = () => {
   return (
     <CustomFlexBox>
       <Card sx={{ flex: "1 1 0", p: "1.5rem", bgcolor: "white", m: "1rem" }}>
-        <H1 mb="0.75rem">Workflows</H1>
-        <Span>Build custom HR data processes with your own business logic</Span>
+        <H1 mb="0.75rem">Kloudsec</H1>
+        <Span>Secure your cloud infrastrcture</Span>
 
         <Divider
           sx={{ borderWidth: "1px", borderColor: "grey.300", my: "1.75rem" }}
@@ -22,72 +22,43 @@ const DocIntro: React.FC<DocIntroProps> = () => {
 
         <H2 mb="0.75rem">Overview</H2>
         <Paragraph lineHeight="1.625" mb="1.75rem">
-          The new HrFlow Workflows feature allows you to run your HR-related
-          pipelines without ever worrying about servers. Whether you need to
-          continuously run some routines or have a triggered execution both
-          scenarios are possible with Workflows. Two main execution modes are
-          available: Catch and Pull. <br /> <br />
-          The Catch mode is a webhook-like setup that allows you to execute your
+          The Kloudsec security allows you to run confidently your cloud related
+          resources without ever worrying about security vulnerabilities. Whether you need to
+          continuously run some CI/CD pipelines that creates cloud resources  or create them using
+          your cloud provider interafce. Kloudsec will catch all those vulnerabilities
+          and notify you, using the right channel, the one you've configured. <br /> <br />
+          Once those vulnerabilities detected, you have the choice to: 
           code whenever a request is made to a precise endpoint. The Pull mode
-          is similar to a cron job which is executed at the rate of your
-          choosing. In both modes, the code you submit can leverage the hrflow
-          sdk to seamlessly create value with your HR data and HrFlow's
-          AI-Powered Job & Profile API.
         </Paragraph>
 
-        <CustomAlert severity="error" sx={{ mb: "1.5rem" }}>
-          The Catch mode is a webhook-like setup that allows you to execute your
-          code whenever a request is made to a precise endpoint. The Pull mode
-          is similar to a cron job which is executed at the rate of your
-          choosing. In both modes, the code you submit can leverage the hrflow
-          sdk to seamlessly create value with your HR data and HrFlow's
-          AI-Powered Job & Profile API.
-        </CustomAlert>
         <CustomAlert severity="info" sx={{ mb: "1.75rem" }}>
           <ul>
-            <li>application/json</li>
-            <li>multipart/form-data</li>
-            <li>application/x-www-form-urlencoded</li>
+            <li>Use the proposed documentation to fix the vulnerabilities</li>
+            <li>Use the button remediate in order to launch the appropriate remdiation scripts and fix those vulnerabilities</li>
+            <li>Silent those vulnerabilities by adding them to the security exceptions</li>
+            <li>For Enterprise Premium customers, you can also contact your Kloudsec cloud security engeenir in order to assist you on those tasks</li>
           </ul>
         </CustomAlert>
 
-        <Code language="jsx">
-          {`
-import json
-import requests
-
-from hrflow import Hrflow
-
-def workflow(_request, settings):
-    client = Hrflow(api_secret=settings["API_KEY"], api_user=settings["USER_EMAIL"])
-    
-    file_url = _request["file_url"]
-    file_content = requests.get(file_url, allow_redirects=True).content
-    
-    client.profile.parsing.add_file(
-        source_key=settings["SOURCE_KEY"]),
-        profile_file=file_content,
-        profile_content_type="application/pdf",
-        reference="profile_reference"
-    )
-    
-    id = requests.post(settings["OTHER_SERVICE_URL"], data={"key": "value"}).json()["id"]
-    
-    return dict(
-        status_code=201,
-        headers={"Content-Type": "application/json"},
-        body=json.dumps({"id": id})
-    )
-`.trim()}
-        </Code>
+        <H2 mb="0.75rem">A tour of the interface</H2>
+        <Paragraph lineHeight="1.625" mb="1.75rem">
+          In this video, we will introduce you to the kloudsec interace, to familirize you 
+          with all the concepts behind it.
+        </Paragraph>
 
         <ReactPlayer
-          url="https://jsfiddle.net/krkcvx9s/"
+          url="https://kloudsec-public-assets.s3.eu-west-1.amazonaws.com/KloudSecApp_Interface.mov"
           controls
         />
 
+        <H2 mb="0.75rem">A quick Overview of the API</H2>
+        <Paragraph lineHeight="1.625" mb="1.75rem">
+          In order to support your frequent infrastrcture deployments you can use either our API or our terraform provider
+          to detect security issues inside your changes of infrastrcture, this can act as a gate for production deployment validation.
+        </Paragraph>
+
         <CustomImage
-          src="https://images.unsplash.com/photo-1508919801845-fc2ae1bc2a28?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aW1nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"
+          src="https://kloudsec-public-assets.s3.eu-west-1.amazonaws.com/Kloudsec_Api_Demo.png"
           width="100%"
           sx={{ mt: "1.5rem", borderRadius: 1 }}
         />
