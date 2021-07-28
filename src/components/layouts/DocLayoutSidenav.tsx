@@ -30,7 +30,12 @@ const DocLayoutSidenav: React.FC<DocLayoutSidenavProps> = () => {
           <NavLink to={item.url} key={item.title}>
             <Button
               fullWidth
-              sx={{ justifyContent: "flex-start", pl: "1rem", ml: "-1rem" }}
+              sx={{
+                justifyContent: "flex-start",
+                pl: "1rem",
+                ml: "-1rem",
+                textAlign: "left",
+              }}
             >
               {item.title}
             </Button>

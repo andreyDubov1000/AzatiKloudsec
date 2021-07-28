@@ -18,7 +18,7 @@ const protectedLayoutSidenavNavigations = [
   },
   {
     title: "Documentation",
-    path: "/docs/introduction",
+    path: "/docs",
     icon: Assignment,
   },
 ];

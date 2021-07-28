@@ -1,4 +1,3 @@
-import Code from "@component/atoms/CodeSnippet";
 import CustomAlert from "@component/atoms/CustomAlert";
 import CustomFlexBox from "@component/atoms/CustomFlexBox";
 import CustomImage from "@component/atoms/CustomImage";
@@ -23,27 +22,38 @@ const DocIntro: React.FC<DocIntroProps> = () => {
         <H2 mb="0.75rem">Overview</H2>
         <Paragraph lineHeight="1.625" mb="1.75rem">
           The Kloudsec security allows you to run confidently your cloud related
-          resources without ever worrying about security vulnerabilities. Whether you need to
-          continuously run some CI/CD pipelines that creates cloud resources  or create them using
-          your cloud provider interafce. Kloudsec will catch all those vulnerabilities
-          and notify you, using the right channel, the one you've configured. <br /> <br />
-          Once those vulnerabilities detected, you have the choice to: 
-          code whenever a request is made to a precise endpoint. The Pull mode
+          resources without ever worrying about security vulnerabilities.
+          Whether you need to continuously run some CI/CD pipelines that creates
+          cloud resources or create them using your cloud provider interafce.
+          Kloudsec will catch all those vulnerabilities and notify you, using
+          the right channel, the one you've configured. <br /> <br />
+          Once those vulnerabilities detected, you have the choice to: code
+          whenever a request is made to a precise endpoint. The Pull mode
         </Paragraph>
 
         <CustomAlert severity="info" sx={{ mb: "1.75rem" }}>
           <ul>
             <li>Use the proposed documentation to fix the vulnerabilities</li>
-            <li>Use the button remediate in order to launch the appropriate remdiation scripts and fix those vulnerabilities</li>
-            <li>Silent those vulnerabilities by adding them to the security exceptions</li>
-            <li>For Enterprise Premium customers, you can also contact your Kloudsec cloud security engeenir in order to assist you on those tasks</li>
+            <li>
+              Use the button remediate in order to launch the appropriate
+              remdiation scripts and fix those vulnerabilities
+            </li>
+            <li>
+              Silent those vulnerabilities by adding them to the security
+              exceptions
+            </li>
+            <li>
+              For Enterprise Premium customers, you can also contact your
+              Kloudsec cloud security engeenir in order to assist you on those
+              tasks
+            </li>
           </ul>
         </CustomAlert>
 
         <H2 mb="0.75rem">A tour of the interface</H2>
         <Paragraph lineHeight="1.625" mb="1.75rem">
-          In this video, we will introduce you to the kloudsec interace, to familirize you 
-          with all the concepts behind it.
+          In this video, we will introduce you to the kloudsec interace, to
+          familirize you with all the concepts behind it.
         </Paragraph>
 
         <ReactPlayer
@@ -51,16 +61,20 @@ const DocIntro: React.FC<DocIntroProps> = () => {
           controls
         />
 
-        <H2 mb="0.75rem">A quick Overview of the API</H2>
-        <Paragraph lineHeight="1.625" mb="1.75rem">
-          In order to support your frequent infrastrcture deployments you can use either our API or our terraform provider
-          to detect security issues inside your changes of infrastrcture, this can act as a gate for production deployment validation.
+        <H2 mb="0.75rem" mt="1.75rem">
+          A quick Overview of the API
+        </H2>
+        <Paragraph lineHeight="1.625" mb="1rem">
+          In order to support your frequent infrastrcture deployments you can
+          use either our API or our terraform provider to detect security issues
+          inside your changes of infrastrcture, this can act as a gate for
+          production deployment validation.
         </Paragraph>
 
         <CustomImage
           src="https://kloudsec-public-assets.s3.eu-west-1.amazonaws.com/Kloudsec_Api_Demo.png"
           width="100%"
-          sx={{ mt: "1.5rem", borderRadius: 1 }}
+          sx={{ borderRadius: 1 }}
         />
       </Card>
       {/* <Card sx={{ my: "1rem", mr: "1rem", p: "1rem", bgcolor: "white" }}>

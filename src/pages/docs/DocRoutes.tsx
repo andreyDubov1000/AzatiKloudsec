@@ -1,4 +1,5 @@
 import { lazy } from "react";
+import { Redirect } from "react-router-dom";
 
 const docRoutes = [
   {
@@ -8,6 +9,10 @@ const docRoutes = [
   {
     path: "/docs/aws/introduction",
     component: lazy(() => import("./DocIntroAws")),
+  },
+  {
+    path: "/docs",
+    component: () => <Redirect to="/docs/introduction" />,
   },
 ];
 
