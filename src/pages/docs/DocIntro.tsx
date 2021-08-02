@@ -1,6 +1,7 @@
 import CustomAlert from "@component/atoms/CustomAlert";
 import CustomFlexBox from "@component/atoms/CustomFlexBox";
 import CustomImage from "@component/atoms/CustomImage";
+import PageTitle from "@component/atoms/PageTitle";
 import { H1, H2, Paragraph, Span } from "@component/atoms/Typography";
 import { Card, Divider } from "@material-ui/core";
 import React from "react";
@@ -11,6 +12,7 @@ export interface DocIntroProps {}
 const DocIntro: React.FC<DocIntroProps> = () => {
   return (
     <CustomFlexBox>
+      <PageTitle title="Documentation | Introduction" />
       <Card sx={{ flex: "1 1 0", p: "1.5rem", bgcolor: "white", m: "1rem" }}>
         <H1 mb="0.75rem">Kloudsec</H1>
         <Span>Secure your cloud infrastrcture</Span>

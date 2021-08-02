@@ -1,11 +1,17 @@
 import React from "react";
 import CustomBox from "./CustomBox";
+import { H5 } from "./Typography";
 
-const Loader = () => {
+interface LoaderProps {
+  title?: string;
+}
+
+const Loader: React.FC<LoaderProps> = ({ title }) => {
   return (
     <CustomBox
       sx={{
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
         position: "absolute",
@@ -21,6 +27,8 @@ const Loader = () => {
         </div>
         <img src="/logo.svg" alt="logo" className="loader-image" />
       </div>
+
+      {title && <H5 mt="0.5rem">{title}</H5>}
     </CustomBox>
   );
 };

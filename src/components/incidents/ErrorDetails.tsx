@@ -9,11 +9,13 @@ const ErrorDetails: React.FC<IncidentCardProps> = ({
 }: any) => {
   return (
     <div>
-      {Object.keys(props).map((key) => (
-        <Typography mb="0.25rem">
-          <Span color="grey.600">{key}: </Span> {props[key]?.toString()}
-        </Typography>
-      ))}
+      {Object.keys(props)
+        .slice(1)
+        .map((key) => (
+          <Typography mb="0.25rem" key={key}>
+            <Span color="grey.600">{key}: </Span> {props[key]?.toString()}
+          </Typography>
+        ))}
     </div>
   );
 };

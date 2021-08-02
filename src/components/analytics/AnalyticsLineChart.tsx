@@ -122,8 +122,6 @@ const AnalyticsLineChart: React.FC<AnalyticsLineChartProps> = ({
     const criticalList: number[] = [];
 
     if (vulnerabilityHistory) {
-      console.log(vulnerabilityHistory);
-
       vulnerabilityHistory.forEach((item) => {
         const metrics = item.UserVulnerabilityMetrics;
 

@@ -1,6 +1,7 @@
 import dashboardRoutes from "@page/analytics/analyticsRoutes";
 import authRoutes from "@page/auth/authRoutes";
 import incidentRoutes from "@page/incidents/incidentRoutes";
+import scansRoutes from "@page/scans/scansRoues";
 import { lazy } from "react";
 
 export const simpleRoutes = [...authRoutes];
@@ -16,4 +17,5 @@ export const protectedRoutes = [
   },
   ...dashboardRoutes,
   ...incidentRoutes,
+  ...scansRoutes,
 ];

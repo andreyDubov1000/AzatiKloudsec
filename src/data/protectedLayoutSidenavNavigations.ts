@@ -1,4 +1,10 @@
-import { Assignment, Dashboard, Extension, GppMaybe } from "@material-ui/icons";
+import {
+  Assignment,
+  Dashboard,
+  Extension,
+  FindInPage,
+  GppMaybe,
+} from "@material-ui/icons";
 
 const protectedLayoutSidenavNavigations = [
   {
@@ -15,6 +21,11 @@ const protectedLayoutSidenavNavigations = [
     title: "Integrations",
     path: "/integrations/aws",
     icon: Extension,
+  },
+  {
+    title: "Scans",
+    path: "/scans/aws",
+    icon: FindInPage,
   },
   {
     title: "Documentation",

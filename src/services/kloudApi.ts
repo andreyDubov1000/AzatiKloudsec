@@ -20,6 +20,18 @@ class KloudApi {
     };
   };
 
+  private static handleError = (error: any) => {
+    const message =
+      error.response?.data?.error_message ||
+      error.response?.data?.message ||
+      "Unknown error";
+    NotificationManager.error(message);
+
+    console.log(error);
+
+    return null;
+  };
+
   public static get = async (
     url: string,
     config?: AxiosRequestConfig | undefined
@@ -28,11 +40,7 @@ class KloudApi {
       const response = await KloudApi.axios.get(url, config);
       return response.data;
     } catch (error) {
-      const message = error.response?.data?.error_message || "Unknown error";
-      NotificationManager.error(message);
-      console.log(error);
-
-      return null;
+      return KloudApi.handleError(error);
     }
   };
 
@@ -45,11 +53,7 @@ class KloudApi {
       const response = await KloudApi.axios.post(url, data, config);
       return response.data;
     } catch (error) {
-      const message = error.response?.data?.error_message || "Unknown error";
-      NotificationManager.error(message);
-      console.log(error);
-
-      return null;
+      return KloudApi.handleError(error);
     }
   };
 }
