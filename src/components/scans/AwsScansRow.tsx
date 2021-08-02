@@ -1,9 +1,9 @@
 import CustomBox from "@component/atoms/CustomBox";
-import CustomFlexBox from "@component/atoms/CustomFlexBox";
 import CustomImage from "@component/atoms/CustomImage";
 import CustomTableRow from "@component/atoms/CustomTableRow";
 import { Span } from "@component/atoms/Typography";
-import { Checkbox, FormControlLabel } from "@material-ui/core";
+import { Autocomplete, Checkbox, TextField } from "@material-ui/core";
+import { CheckBox, CheckBoxOutlineBlank } from "@material-ui/icons";
 import { LoadingButton } from "@material-ui/lab";
 import React, { useEffect, useState } from "react";
 import { scanAwsAccount } from "services/scanService";
@@ -27,20 +27,8 @@ const AwsScansRow: React.FC<AwsScansRowProps> = ({
   const [requestId, setRequestId] = useState("");
   const [checkedList, setCheckedList] = useState<string[]>([]);
 
-  const handleChange = async (e: any) => {
-    const name = e.currentTarget.name;
-
-    if (checkedList?.includes(name)) {
-      if (name === "all") {
-        return setCheckedList([]);
-      }
-      setCheckedList(checkedList.filter((item) => item !== name));
-    } else {
-      if (name === "all") {
-        return setCheckedList(scanOptions.map((item) => item.value));
-      }
-      setCheckedList([...checkedList, name]);
-    }
+  const handleChange = async (e: any, list: any[]) => {
+    setCheckedList(list.map((item) => item.value));
   };
 
   const handleScan = async () => {
@@ -61,36 +49,49 @@ const AwsScansRow: React.FC<AwsScansRowProps> = ({
   }, [AccountId, requestId]);
 
   return (
-    <CustomTableRow sx={{ p: "0.5rem 1rem", mb: "0.5rem" }}>
+    <CustomTableRow sx={{ p: "0.75rem 1rem", mb: "0.5rem" }}>
       <Span color="text.hint" mr="1rem">
         {AccountId}
       </Span>
-      {scanOptions.map((item) => (
-        <FormControlLabel
-          name={item.value}
-          key={item.value}
-          label={
-            <CustomFlexBox sx={{ alignItems: "center" }}>
-              {item.value !== "all" && (
-                <CustomImage
-                  width="20px"
-                  src={`/assets/images/icons/${item.label}_32.svg`}
-                  alt="iam"
-                  sx={{ borderRadius: 1, mr: "0.5rem" }}
-                />
-              )}
-              <Span>{item.label}</Span>
-            </CustomFlexBox>
-          }
-          control={
+
+      <Autocomplete
+        multiple
+        size="small"
+        limitTags={3}
+        disableCloseOnSelect
+        options={scanOptions}
+        getOptionLabel={(option) => option.label}
+        ChipProps={{
+          sx: { textTransform: "capitalize" },
+        }}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            margin="none"
+            label="Service Type"
+            variant="outlined"
+          />
+        )}
+        renderOption={(props, option, { selected }) => (
+          <li {...props}>
             <Checkbox
-              checked={checkedList?.includes(item.value)}
-              size="small"
-              onChange={handleChange}
+              icon={<CheckBoxOutlineBlank fontSize="small" />}
+              checkedIcon={<CheckBox fontSize="small" />}
+              checked={selected}
+              sx={{ mr: "0rem" }}
             />
-          }
-        />
-      ))}
+            {option.value !== "all" && (
+              <CustomImage
+                src={`/assets/images/icons/${option.value}_32.svg`}
+                sx={{ mr: "0.5rem", width: 20, borderRadius: 1 }}
+                alt={option.value}
+              />
+            )}
+            {option.label}
+          </li>
+        )}
+        onChange={handleChange}
+      />
 
       <CustomBox sx={{ textAlign: "center" }}>
         <LoadingButton

@@ -3,6 +3,7 @@ import Loader from "@component/atoms/Loader";
 import PageTitle from "@component/atoms/PageTitle";
 import { H3 } from "@component/atoms/Typography";
 import AwsScansRow from "@component/scans/AwsScansRow";
+import awsServiceList from "@data/awsServiceList";
 import { useAppSelector } from "@redux/hooks";
 import React, { useEffect, useState } from "react";
 import { getAWSAccounts } from "services/integrationsService";
@@ -51,26 +52,7 @@ const scanOptions = [
     label: "All",
     value: "all",
   },
-  {
-    label: "ec2",
-    value: "ec2",
-  },
-  {
-    label: "s3",
-    value: "s3",
-  },
-  {
-    label: "iam",
-    value: "iam",
-  },
-  {
-    label: "elb",
-    value: "elb",
-  },
-  {
-    label: "rds",
-    value: "rds",
-  },
+  ...awsServiceList,
 ];
 
 export default AwsScans;

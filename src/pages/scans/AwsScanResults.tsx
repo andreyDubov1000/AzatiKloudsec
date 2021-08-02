@@ -8,7 +8,7 @@ import { useAppSelector } from "@redux/hooks";
 import { uuid } from "@utils";
 import { debounce } from "lodash";
 import React, { useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { checkAwsScanReqest } from "services/scanService";
 
 const AwsScanResults = () => {
@@ -20,6 +20,7 @@ const AwsScanResults = () => {
   const { user } = useAppSelector((store) => store.auth);
 
   const { request_id, account_id } = useParams<any>();
+  const history = useHistory();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleSearch = useCallback(
@@ -78,6 +79,7 @@ const AwsScanResults = () => {
           if (!data) {
             clearInterval(interval);
             setLoading(false);
+            history.push("/scans/aws");
             return;
           } else if (data?.Vulnerabilities) {
             const list = data.Vulnerabilities.map((item: any) => ({
@@ -92,7 +94,7 @@ const AwsScanResults = () => {
         });
       }, 5000);
     }
-  }, [account_id, request_id, user]);
+  }, [account_id, history, request_id, user]);
 
   return (
     <CustomBox sx={{ p: "1.5rem" }}>

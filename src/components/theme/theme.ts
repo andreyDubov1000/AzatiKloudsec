@@ -176,6 +176,10 @@ const theme = createTheme({
           height: "1.75rem !important",
           width: "1.75rem !important",
         },
+        "& .MuiAutocomplete-listbox li.MuiAutocomplete-option": {
+          padding: "0rem 0.25rem !important",
+          textTransform: "capitalize",
+        },
       },
     },
     MuiMenuItem: {
