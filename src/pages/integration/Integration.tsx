@@ -4,7 +4,6 @@ import PageTitle from "@component/atoms/PageTitle";
 import { H5 } from "@component/atoms/Typography";
 import AWSIcon from "@component/icons/AWSIcon";
 import AddAccount from "@component/integrations/AddAccount";
-// import IntegrationAccount from "@component/integrations/IntegrationAccount";
 import { IconButton } from "@material-ui/core";
 import { DataGrid, GridCellParams, GridColDef } from "@material-ui/data-grid";
 import { Done } from "@material-ui/icons";
@@ -20,7 +19,6 @@ const Integration = () => {
   const { user } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
-    // let interval: any = null;
     const getAccountList = async (user_id: string) => {
       const list = await getAWSAccounts(user_id);
       console.log(list);
@@ -38,17 +36,7 @@ const Integration = () => {
     };
 
     if (user?.user_id) getAccountList(user.user_id);
-
-    // if (user?.user_id && !interval) {
-    //   interval = setInterval(async () => {
-    //     getAccountList(user.user_id);
-    //   }, 5 * 60 * 1000);
-    // }
-
-    // return () => interval && clearInterval(interval);
   }, [user]);
-
-  console.log(accountList);
 
   return (
     <CustomBox>

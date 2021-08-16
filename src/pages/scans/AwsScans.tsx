@@ -6,6 +6,7 @@ import AwsScansRow from "@component/scans/AwsScansRow";
 import awsServiceList from "@data/awsServiceList";
 import { useAppSelector } from "@redux/hooks";
 import React, { useEffect, useState } from "react";
+import ScrollBar from "react-perfect-scrollbar";
 import { getAWSAccounts } from "services/integrationsService";
 
 const AwsScans = () => {
@@ -29,21 +30,23 @@ const AwsScans = () => {
   }, [user]);
 
   return (
-    <CustomBox sx={{ p: "1.5rem" }}>
-      <PageTitle title="Scans | AWS" />
-      <H3 mb="1.5rem">Scans | AWS</H3>
+    <ScrollBar>
+      <CustomBox sx={{ p: "1.5rem" }}>
+        <PageTitle title="Scans | AWS" />
+        <H3 mb="1.5rem">Scans | AWS</H3>
 
-      {loading && <Loader />}
+        {loading && <Loader />}
 
-      {accountList.map((item: any) => (
-        <AwsScansRow
-          {...item}
-          scanOptions={scanOptions}
-          userId={user?.user_id}
-          key={item.AccountId}
-        />
-      ))}
-    </CustomBox>
+        {accountList.map((item: any) => (
+          <AwsScansRow
+            {...item}
+            scanOptions={scanOptions}
+            userId={user?.user_id}
+            key={item.AccountId}
+          />
+        ))}
+      </CustomBox>
+    </ScrollBar>
   );
 };
 
