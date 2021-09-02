@@ -11,6 +11,7 @@ import { scanAwsAccount } from "services/scanService";
 export interface AwsScansRowProps {
   userId: string;
   AccountId: string;
+  AccountAlias: string;
   scanOptions: {
     label: string;
     value: string;
@@ -22,6 +23,7 @@ const AwsScansRow: React.FC<AwsScansRowProps> = ({
   userId,
   AccountId,
   scanOptions,
+  AccountAlias,
 }) => {
   const [loading, setLoading] = useState(false);
   const [requestId, setRequestId] = useState("");
@@ -52,6 +54,10 @@ const AwsScansRow: React.FC<AwsScansRowProps> = ({
     <CustomTableRow sx={{ p: "0.75rem 1rem", mb: "0.5rem" }}>
       <Span color="text.hint" mr="1rem">
         {AccountId}
+      </Span>
+
+      <Span color="text.hint" mr="1rem">
+        {AccountAlias}
       </Span>
 
       <Autocomplete
