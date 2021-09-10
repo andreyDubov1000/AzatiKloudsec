@@ -70,6 +70,7 @@ const AwsScansRow: React.FC<AwsScansRowProps> = ({
         ChipProps={{
           sx: { textTransform: "capitalize" },
         }}
+        sx={{ maxWidth: 200 }}
         renderInput={(params) => (
           <TextField
             {...params}

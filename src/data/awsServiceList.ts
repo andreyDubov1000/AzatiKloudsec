@@ -1,9 +1,5 @@
 const awsServiceList = [
   {
-    label: "All",
-    value: "all",
-  },
-  {
     label: "ec2",
     value: "ec2",
   },

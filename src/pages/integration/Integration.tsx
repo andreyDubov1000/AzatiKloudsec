@@ -4,7 +4,7 @@ import PageTitle from "@component/atoms/PageTitle";
 import { H5 } from "@component/atoms/Typography";
 import AWSIcon from "@component/icons/AWSIcon";
 import AddAccount from "@component/integrations/AddAccount";
-import { IconButton } from "@material-ui/core";
+import { Button, IconButton } from "@material-ui/core";
 import { DataGrid, GridCellParams, GridColDef } from "@material-ui/data-grid";
 import { Done } from "@material-ui/icons";
 import Close from "@material-ui/icons/Close";
@@ -27,6 +27,7 @@ const Integration = () => {
         setAccountList(
           list.AwsAccounts.map((item: any) => ({
             id: item.AccountId,
+            user_id,
             ...item,
           }))
         );
@@ -99,6 +100,41 @@ const columns: GridColDef[] = [
       ) : (
         <Close fontSize="small" color="error" />
       ),
+  },
+  {
+    field: "KloudsecRoleCfTemplateUpToDate",
+    headerName: "Actions",
+    flex: 1,
+    align: "center",
+    headerAlign: "center",
+    renderCell: (params: GridCellParams) => {
+      const CfTemplateUpToDate = params.getValue(
+        params.id,
+        "KloudsecRoleCfTemplateUpToDate"
+      );
+      const CfStackId = params.getValue(params.id, "CfStackId");
+      const UserId = params.getValue(params.id, "user_id");
+
+      return CfTemplateUpToDate === true ? (
+        <a
+          href={`https://eu-west-1.console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/update?stackId=${CfStackId}&templateURL=https%3A%2F%2Fs3.eu-west-1.amazonaws.com%2Fkloudsec-public-assets%2FKloudSecCustomerRole.yaml&param_ExternalID=${UserId}`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Button
+            sx={{ borderRadius: "300px" }}
+            size="small"
+            color="primary"
+            variant="contained"
+            disableElevation
+          >
+            Update KloudSec Role Stack
+          </Button>
+        </a>
+      ) : (
+        <div />
+      );
+    },
   },
 ];
 
