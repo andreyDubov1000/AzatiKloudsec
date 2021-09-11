@@ -115,7 +115,7 @@ const columns: GridColDef[] = [
       const CfStackId = params.getValue(params.id, "CfStackId");
       const UserId = params.getValue(params.id, "user_id");
 
-      return CfTemplateUpToDate === true ? (
+      return !CfTemplateUpToDate ? (
         <a
           href={`https://eu-west-1.console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/update?stackId=${CfStackId}&templateURL=https%3A%2F%2Fs3.eu-west-1.amazonaws.com%2Fkloudsec-public-assets%2FKloudSecCustomerRole.yaml&param_ExternalID=${UserId}`}
           target="_blank"
