@@ -24,12 +24,12 @@ const docNavigations = [
           {
             title: "Data Protection",
             url: "/docs/aws/data-protection",
-        children: [
-          {
-            title: "Unencrypted s3 bucket",
-            url: "/docs/KS_AWS_S3_00066",
-          },
-	],
+		children: [
+		  {
+		    title: "Unencrypted s3 bucket",
+		    url: "/docs/KS_AWS_S3_00066",
+		  },
+		],
           },
           {
             title: "Network",
