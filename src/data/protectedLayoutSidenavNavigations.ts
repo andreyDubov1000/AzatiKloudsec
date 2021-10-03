@@ -3,6 +3,7 @@ import {
   Dashboard,
   Extension,
   FindInPage,
+  GppBad,
   GppMaybe,
 } from "@material-ui/icons";
 
@@ -16,6 +17,11 @@ const protectedLayoutSidenavNavigations = [
     title: "Incidents",
     path: "/incidents",
     icon: GppMaybe,
+  },
+  {
+    title: "Security Exceptions",
+    path: "/security-exceptions",
+    icon: GppBad,
   },
   {
     title: "Integrations",

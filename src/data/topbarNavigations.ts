@@ -32,10 +32,10 @@ const topbarNavigations = [
     title: "Docs",
     url: "/docs",
   },
-  {
-    title: "Book demo",
-    url: "/book-demo",
-  },
+  // {
+  //   title: "Book demo",
+  //   url: "/book-demo",
+  // },
   {
     title: "Login",
     url: "/login",

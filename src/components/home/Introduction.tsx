@@ -1,6 +1,7 @@
 import CustomBox from "@component/atoms/CustomBox";
 import FlexBox from "@component/atoms/CustomFlexBox";
 import { H1, Paragraph } from "@component/atoms/Typography";
+import { landingConstants } from "@data/constants";
 import { Button, Container, Grid } from "@material-ui/core";
 import { alpha, styled } from "@material-ui/core/styles";
 import React from "react";
@@ -58,19 +59,27 @@ const Introduction = () => {
                   Get Started For Free
                 </Button>
               </Scroll>
-              <Button
-                variant="outlined"
-                color="secondary"
-                sx={{
-                  borderColor: "rgba(255,255,255,0.53)",
-                  color: "white",
-                  px: "1.5rem",
-                  m: "0.5rem",
-                  borderRadius: 300,
-                }}
+
+              <Scroll
+                to="schedule-a-demo"
+                duration={400}
+                smooth={true}
+                offset={-landingConstants.fixedTopbarHeight}
               >
-                Schedule A Demo
-              </Button>
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  sx={{
+                    borderColor: "rgba(255,255,255,0.53)",
+                    color: "white",
+                    px: "1.5rem",
+                    m: "0.5rem",
+                    borderRadius: 300,
+                  }}
+                >
+                  Schedule A Demo
+                </Button>
+              </Scroll>
             </FlexBox>
           </Grid>
           <Grid item sm={6} xs={12}>

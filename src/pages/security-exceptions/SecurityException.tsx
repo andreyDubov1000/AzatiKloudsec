@@ -5,26 +5,18 @@ import { IncidentCardProps } from "@component/incidents/IncidentCard";
 import IncidentDetails from "@component/incidents/IncidentDetails";
 import IncidentList from "@component/incidents/IncidentList";
 import { useAppSelector } from "@redux/hooks";
-import { useQuery, uuid } from "@utils";
+import { uuid } from "@utils";
 import { debounce } from "lodash";
 import React, { useCallback, useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import {
-  getOverallUserAccountStatus,
-  getUserAccountStatus,
-} from "services/incidentService";
+import { getAllSecurityExcepions } from "services/securityExceptionService";
 
-const UserIncidents = () => {
+const SecurityException = () => {
   const [loading, setLoading] = useState(true);
   const [motherList, setMotherList] = useState<IncidentCardProps[]>([]);
-  const [incidentList, setIncidentList] = useState<IncidentCardProps[]>([]);
+  const [exceptionList, setExceptionList] = useState<IncidentCardProps[]>([]);
   const [selectedIncident, setSelectedIncident] = useState<any>(null);
 
   const { user } = useAppSelector((store) => store.auth);
-  const { search } = useLocation();
-  const { slug }: any = useParams();
-
-  const vulnerability = useQuery(search).get("vulnerability");
 
   const loadData = useCallback(async () => {
     if (user?.user_id) {
@@ -32,42 +24,26 @@ const UserIncidents = () => {
       let list: IncidentCardProps[] = [];
 
       try {
-        if (slug) {
-          const data = await getUserAccountStatus(user.user_id, slug);
-          if (data) {
-            list = data.Vulnerabilities;
-          }
-        } else {
-          const data = await getOverallUserAccountStatus(user.user_id);
-          if (data) {
-            const { LOW, MEDIUM, HIGH, CRITICAL } =
-              data.UserSecurityVulnerabilityStatus;
+        const data = await getAllSecurityExcepions(
+          user.user_id,
+          "922706684423"
+        );
 
-            list = [...LOW, ...MEDIUM, ...HIGH, ...CRITICAL];
-          }
-        }
+        list = data?.SecurityExceptions || [];
 
-        list = list
-          .map((item) => ({
-            id: uuid(),
-            ...item,
-          }))
-          .filter((i) => i.IsSilentVulnerability);
+        list = list.map((item) => ({
+          id: uuid(),
+          ...item,
+        }));
 
-        if (!!vulnerability) {
-          list = list.filter((item) =>
-            item.Severity?.toLocaleLowerCase()?.match(vulnerability)
-          );
-        }
-
-        setIncidentList(list);
+        setExceptionList(list);
         setMotherList(list);
         setLoading(false);
       } catch (error) {
         setLoading(false);
       }
     }
-  }, [slug, user, vulnerability]);
+  }, [user]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleSearch = useCallback(
@@ -81,9 +57,9 @@ const UserIncidents = () => {
             item.VulnerabilityId?.toLocaleLowerCase()?.match(query) ||
             item.Category?.toLocaleLowerCase()?.match(query)
         );
-        setIncidentList(filteredList);
+        setExceptionList(filteredList);
       } else {
-        setIncidentList(motherList);
+        setExceptionList(motherList);
       }
     }, 20),
     [motherList]
@@ -91,7 +67,7 @@ const UserIncidents = () => {
 
   const sortList = useCallback(
     (sortField: keyof IncidentCardProps, sortOrder?: "asc" | "desc") => {
-      const list = incidentList.sort((a: any, b: any) => {
+      const list = exceptionList.sort((a: any, b: any) => {
         if (sortField === "VulnerabilityDate") {
           try {
             if (new Date(a[sortField]) < new Date(b[sortField])) {
@@ -111,9 +87,9 @@ const UserIncidents = () => {
         }
       });
 
-      setIncidentList([...list]);
+      setExceptionList([...list]);
     },
-    [incidentList]
+    [exceptionList]
   );
 
   useEffect(() => {
@@ -126,7 +102,7 @@ const UserIncidents = () => {
     <CustomFlexBox>
       <PageTitle title="Current Security Incidents" />
       <IncidentList
-        incidentList={incidentList}
+        incidentList={exceptionList}
         selectedIncident={selectedIncident}
         setSelectedIncident={setSelectedIncident}
         sortList={sortList}
@@ -137,4 +113,4 @@ const UserIncidents = () => {
   );
 };
 
-export default UserIncidents;
+export default SecurityException;

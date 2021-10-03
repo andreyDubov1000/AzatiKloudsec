@@ -1,4 +1,16 @@
-const docNavigations = [
+type Navigation =
+  | {
+      title: string;
+      url: string;
+      children?: never;
+    }
+  | {
+      title: string;
+      url?: never;
+      children: Array<Navigation>;
+    };
+
+const docNavigations: Array<Navigation> = [
   {
     title: "Introduction",
     url: "/docs/introduction",
@@ -23,13 +35,16 @@ const docNavigations = [
           },
           {
             title: "Data Protection",
-            url: "/docs/aws/data-protection",
-		children: [
-		  {
-		    title: "Unencrypted s3 bucket",
-		    url: "/docs/KS_AWS_S3_00066",
-		  },
-		],
+            children: [
+              {
+                title: "Data Protection",
+                url: "/docs/aws/data-protection",
+              },
+              {
+                title: "Unencrypted s3 bucket",
+                url: "/docs/KS_AWS_S3_00066",
+              },
+            ],
           },
           {
             title: "Network",

@@ -1,6 +1,5 @@
 import { lazy } from "react";
 import { Redirect } from "react-router-dom";
-// import { Redirect } from "react-router-dom";
 
 const integrationRoutes = [
   {

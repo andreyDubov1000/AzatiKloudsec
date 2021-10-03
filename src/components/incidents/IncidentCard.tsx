@@ -24,6 +24,7 @@ export interface IncidentCardProps {
   VulnerabilityDoc: string;
   VulnerabilityId: string;
   SecurityGroupId: string;
+  IsSilentVulnerability?: string;
   onClick: (incident: any) => void;
 }
 

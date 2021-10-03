@@ -7,6 +7,22 @@ import React from "react";
 import ScrollBar from "react-perfect-scrollbar";
 import { NavLink } from "react-router-dom";
 
+type Navigation = {
+  title: string;
+  path: string;
+};
+
+type NavigationGroup = {
+  title?: string;
+  navlist?: Navigation[];
+};
+
+type IntegrationsSidenavProps = {
+  title?: string;
+  navigations?: NavigationGroup[];
+  children?: never;
+};
+
 const StyledNavLink = styled(NavLink)(({ theme }) => ({
   display: "block",
   marginTop: "0.75rem",
@@ -17,7 +33,7 @@ const StyledNavLink = styled(NavLink)(({ theme }) => ({
   },
 }));
 
-const IntegrationsSidenav = () => {
+const IntegrationsSidenav: React.FC<IntegrationsSidenavProps> = () => {
   return (
     <ScrollBar>
       <CustomBox

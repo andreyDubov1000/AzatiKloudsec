@@ -29,7 +29,6 @@ const IncidentDetails: React.FC<IncidentDetailsProps> = ({ incident }) => {
         height: "100vh",
       }}
     >
-      {" "}
       {incident ? (
         <ScrollBar>
           <H5 mb="0.5rem">{incident.VulnerabilityDescription}</H5>

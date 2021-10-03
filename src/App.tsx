@@ -2,7 +2,6 @@ import Loader from "@component/atoms/Loader";
 import ProtectedLayout from "@component/layouts/ProtectedLayout";
 import MuiTheme from "@component/theme/MuiTheme";
 import reduxStore from "@redux/reduxStore";
-import Home from "pages/home/Home";
 import React, { Suspense } from "react";
 import { NotificationContainer } from "react-notifications";
 import "react-notifications/lib/notifications.css";
@@ -21,7 +20,6 @@ const App = () => {
               {simpleRoutes.map((item) => (
                 <Route {...item} key={item.path} />
               ))}
-              <Route path="/" component={Home} exact />
               <Route path="/" component={ProtectedLayout} />
             </Switch>
           </Suspense>

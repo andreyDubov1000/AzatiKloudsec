@@ -56,6 +56,18 @@ class KloudApi {
       return KloudApi.handleError(error);
     }
   };
+
+  public static delete = async (
+    url: string,
+    config?: AxiosRequestConfig | undefined
+  ) => {
+    try {
+      const response = await KloudApi.axios.delete(url, config);
+      return response.data;
+    } catch (error) {
+      return KloudApi.handleError(error);
+    }
+  };
 }
 
 export default KloudApi;

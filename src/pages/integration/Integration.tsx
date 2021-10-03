@@ -21,7 +21,6 @@ const Integration = () => {
   useEffect(() => {
     const getAccountList = async (user_id: string) => {
       const list = await getAWSAccounts(user_id);
-      console.log(list);
 
       if (list) {
         setAccountList(
