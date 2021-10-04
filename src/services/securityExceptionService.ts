@@ -22,7 +22,11 @@ export const createSecurityException = async (
   );
 };
 
-export const getAllSecurityExcepions = async (
+export const getAllSecurityExcepions = async (user_id: string) => {
+  return KloudApi.get(`/users/${user_id}/providers/aws/security-exceptions`);
+};
+
+export const getAWSSecurityExcepions = async (
   user_id: string,
   account_id: string
 ) => {

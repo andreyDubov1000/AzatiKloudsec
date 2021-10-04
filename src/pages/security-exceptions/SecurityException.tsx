@@ -21,20 +21,20 @@ const SecurityException = () => {
   const loadData = useCallback(async () => {
     if (user?.user_id) {
       setLoading(true);
-      let list: IncidentCardProps[] = [];
+      let list: any[] = [];
 
       try {
-        const data = await getAllSecurityExcepions(
-          user.user_id,
-          "922706684423"
-        );
+        const data = await getAllSecurityExcepions(user.user_id);
 
         list = data?.SecurityExceptions || [];
 
-        list = list.map((item) => ({
+        list = list.map(({ VulnerabilityDetails = {}, ...item }) => ({
           id: uuid(),
           ...item,
+          ...VulnerabilityDetails,
         }));
+
+        console.log(list);
 
         setExceptionList(list);
         setMotherList(list);
@@ -100,7 +100,7 @@ const SecurityException = () => {
     <Loader />
   ) : (
     <CustomFlexBox>
-      <PageTitle title="Current Security Incidents" />
+      <PageTitle title="Security Exceptions" />
       <IncidentList
         incidentList={exceptionList}
         selectedIncident={selectedIncident}

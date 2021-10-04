@@ -47,12 +47,10 @@ const UserIncidents = () => {
           }
         }
 
-        list = list
-          .map((item) => ({
-            id: uuid(),
-            ...item,
-          }))
-          .filter((i) => i.IsSilentVulnerability);
+        list = list.map((item) => ({
+          id: uuid(),
+          ...item,
+        }));
 
         if (!!vulnerability) {
           list = list.filter((item) =>
