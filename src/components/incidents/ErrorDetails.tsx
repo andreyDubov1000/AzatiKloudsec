@@ -32,8 +32,6 @@ const ErrorDetails: React.FC<IncidentCardProps> = ({
           cloud_service: props.CloudService,
           security_exception_comment: comment,
           security_exception_author: `${user?.given_name} ${user?.family_name}`,
-          VulnerabilityDoc,
-          ...props,
         }
       );
 
