@@ -96,6 +96,8 @@ const SecurityException = () => {
     loadData();
   }, [loadData]);
 
+  console.log(exceptionList);
+
   return loading ? (
     <Loader />
   ) : (
