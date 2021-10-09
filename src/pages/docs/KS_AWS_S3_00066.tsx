@@ -20,6 +20,7 @@ const KS_AWS_S3_00066: React.FC<KS_AWS_S3_00066Props> = () => {
         <Divider
           sx={{ borderWidth: "1px", borderColor: "grey.300", my: "1.75rem" }}
         />
+	</Card>
 
         <H2 mb="0.75rem">Overview</H2>
         <Paragraph lineHeight="1.625" mb="1.75rem">
