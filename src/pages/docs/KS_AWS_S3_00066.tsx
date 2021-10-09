@@ -11,6 +11,7 @@ export interface KS_AWS_S3_00066Props {}
 const KS_AWS_S3_00066: React.FC<KS_AWS_S3_00066Props> = () => {
   return (
     <CustomFlexBox>
+
       <PageTitle title="Data Protection | Unencrypted s3 bucket" />
       <Card sx={{ flex: "1 1 0", p: "1.5rem", bgcolor: "white", m: "1rem" }}>
         <H1 mb="0.75rem">Unencrypted s3 bucket</H1>
@@ -109,41 +110,6 @@ aws s3api put-bucket-encryption \
     --server-side-encryption-configuration '{"Rules": [{"ApplyServerSideEncryptionByDefault": {"SSEAlgorithm": "aws:kms","KMSMasterKeyID": "my-key-id"}}]}'
  `.trim()}
          </Code>
-
-        </Paragraph>
-
-        <H2 mb="0.75rem" mt="1.75rem">
-          How to fix the problem using boto3 and python
-        </H2>
-        <Paragraph lineHeight="1.625" mb="1rem">
-	  After installing and setting up boto3 (https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html), you can run the following script:
-
-	  <Code language="python">
-           {`
-import boto3
-
-client = boto3.client('s3')
-
-response = client.put_bucket_encryption(
-    Bucket='string',
-    ContentMD5='string',
-    ServerSideEncryptionConfiguration={
-        'Rules': [
-            {
-                'ApplyServerSideEncryptionByDefault': {
-                    'SSEAlgorithm': 'AES256'|'aws:kms',
-                    'KMSMasterKeyID': 'string'
-                },
-                'BucketKeyEnabled': True|False
-            },
-        ]
-    },
-    ExpectedBucketOwner='string'
-)
- `.trim()}
-         </Code>
-
-        </Paragraph>
 
     </CustomFlexBox>
   );
