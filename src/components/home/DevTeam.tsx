@@ -5,7 +5,7 @@ import React from "react";
 
 const DevTeam = () => {
   return (
-    <Box py="5rem" id="dev-team">
+    <Box py="5rem" id="products">
       <Container>
         <Grid container spacing={4} alignItems="center" justifyContent="center">
           {compnayLogoList.map((item, ind) => (

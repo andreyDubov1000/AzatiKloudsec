@@ -5,6 +5,8 @@ import { Container, Grid } from "@material-ui/core";
 import TouchRipple from "@material-ui/core/ButtonBase";
 import { alpha, styled } from "@material-ui/core/styles";
 import React from "react";
+import { Link } from "react-router-dom";
+import { Link as Scroll } from "react-scroll";
 
 const Section = styled("section")(({ theme: { palette } }) => ({
   paddingTop: "5rem",
@@ -31,59 +33,56 @@ const Section = styled("section")(({ theme: { palette } }) => ({
 }));
 
 const Footer = () => {
-  const productLink = ["feature", "use cases", "pricing"];
-  const supportLink = ["Blog", "FAQ", "Support"];
-  const companyLink = ["About", "Privacy Policy", "Terms of Service"];
-
   return (
     <Section id="footer">
       <Container>
         <Grid container spacing={3} justifyContent="center">
           <Grid item md={2} xs={6}>
             <H5 mb="1rem">PRODUCT</H5>
-
-            {productLink.map((item, ind) => (
-              <TouchRipple className="ripple-link" key={ind}>
-                {item}
-              </TouchRipple>
-            ))}
+            <Link to="/">
+              <TouchRipple className="ripple-link">Features</TouchRipple>
+            </Link>
+            <Link to="/">
+              <TouchRipple className="ripple-link">Use Cases</TouchRipple>
+            </Link>
+            <Scroll to="pricing" duration={400} smooth={true}>
+              <TouchRipple className="ripple-link">Pricing</TouchRipple>
+            </Scroll>
           </Grid>
+
           <Grid item md={2} xs={6}>
             <H5 mb="1rem">SUPPORT</H5>
-
-            {supportLink.map((item, ind) => (
-              <TouchRipple className="ripple-link" key={ind}>
-                {item}
-              </TouchRipple>
-            ))}
+            {supportLink.map((item, ind) =>
+              item.extLink ? (
+                <a
+                  href={item.extLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  key={ind}
+                >
+                  <TouchRipple className="ripple-link" key={ind}>
+                    {item.title}
+                  </TouchRipple>
+                </a>
+              ) : (
+                <Link to={`${item.url}`} key={ind}>
+                  <TouchRipple className="ripple-link">
+                    {item.title}
+                  </TouchRipple>
+                </Link>
+              )
+            )}
           </Grid>
+
           <Grid item md={2} xs={6}>
             <H5 mb="1rem">COMPANY</H5>
-
             {companyLink.map((item, ind) => (
-              <TouchRipple className="ripple-link" key={ind}>
-                {item}
-              </TouchRipple>
+              <Link to={item.url} key={ind}>
+                <TouchRipple className="ripple-link">{item.title}</TouchRipple>
+              </Link>
             ))}
           </Grid>
-          {/* <Grid item md={2} xs={6}>
-            <H5 mb="1rem">FEATURES</H5>
 
-            {productLink.map((item, ind) => (
-              <TouchRipple className='ripple-link' key={ind}>
-                {item}
-              </TouchRipple>
-            ))}
-          </Grid> */}
-          {/* <Grid item md={2} xs={6}>
-            <H5 mb="1rem">FREQUENT LINKS</H5>
-
-            {supportLink.map((item, ind) => (
-              <TouchRipple className='ripple-link' key={ind}>
-                {item}
-              </TouchRipple>
-            ))}
-          </Grid> */}
           <Grid item md={2} xs={6}>
             <FlexBox
               sx={{ flexDirection: "column", alignItems: "center", width: 84 }}
@@ -94,17 +93,22 @@ const Footer = () => {
                 height="44px"
                 sx={{ mb: "1rem" }}
               />
-
               <FlexBox>
                 {socialLinks.map((item, ind) => (
-                  <CustomImage
-                    src={item.imgUrl}
-                    alt="social-icon"
-                    width="20px"
-                    height="20px"
-                    sx={{ mx: "0.25rem", cursor: "pointer" }}
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     key={ind}
-                  />
+                  >
+                    <CustomImage
+                      src={item.imgUrl}
+                      alt="social-icon"
+                      width="20px"
+                      height="20px"
+                      sx={{ mx: "0.25rem" }}
+                    />
+                  </a>
                 ))}
               </FlexBox>
             </FlexBox>
@@ -115,15 +119,48 @@ const Footer = () => {
   );
 };
 
+const supportLink = [
+  {
+    title: "Blog",
+    extLink: "https://www.wordpress.com",
+  },
+  {
+    title: "FAQ",
+    url: "/faq",
+  },
+  {
+    title: "Support",
+    url: "/",
+  },
+];
+
+const companyLink = [
+  {
+    title: "About",
+    url: "/about-ur",
+  },
+  {
+    title: "Privacy Policy",
+    url: "/privacy-policy",
+  },
+  {
+    title: "Terms of Service",
+    url: "/terms-of-service",
+  },
+];
+
 const socialLinks = [
   {
-    imgUrl: "/assets/images/facebook.svg",
+    imgUrl: "/assets/images/github.svg",
+    url: "https://github.com/CloudinitFrance",
   },
   {
     imgUrl: "/assets/images/twitter.svg",
+    url: "https://twitter.com/cloudinit",
   },
   {
     imgUrl: "/assets/images/youtube.svg",
+    url: "https://www.youtube.com/`",
   },
 ];
 

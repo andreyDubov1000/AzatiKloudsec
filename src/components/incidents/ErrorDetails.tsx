@@ -1,3 +1,4 @@
+import NotificationManager from "@component/atoms/NotificationManager";
 import { Span } from "@component/atoms/Typography";
 import { Button, TextField, Typography } from "@material-ui/core";
 import { useAppSelector } from "@redux/hooks";
@@ -34,6 +35,12 @@ const ErrorDetails: React.FC<IncidentCardProps> = ({
           security_exception_author: `${user?.given_name} ${user?.family_name}`,
         }
       );
+
+      if (data) {
+        NotificationManager.success("Exception created successfully.");
+      } else {
+        NotificationManager.error("Couldn't create exception.");
+      }
 
       console.log(data);
     }

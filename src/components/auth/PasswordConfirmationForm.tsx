@@ -1,16 +1,24 @@
 import NotificationManager from "@component/atoms/NotificationManager";
 import { H4 } from "@component/atoms/Typography";
-import { TextField } from "@material-ui/core";
+import { TextField, Typography } from "@material-ui/core";
 import { LoadingButton } from "@material-ui/lab";
 import { Formik } from "formik";
+import { generate } from "generate-password";
 import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { confirmPassword } from "services/authService";
 import * as yup from "yup";
 
+const randomPassword = generate({
+  length: 14,
+  lowercase: true,
+  uppercase: true,
+  numbers: true,
+  symbols: true,
+});
+
 const PasswordConfirmationForm = () => {
   const [loading, setLoading] = useState(false);
-
   const history = useHistory();
   const { search } = useLocation();
 
@@ -73,13 +81,24 @@ const PasswordConfirmationForm = () => {
             label="New Password"
             type="password"
             fullWidth
-            sx={{ mb: "1.5rem" }}
+            sx={{ mb: "1rem" }}
             onBlur={handleBlur}
             onChange={handleChange}
             value={values.new_password || ""}
             error={!!touched.new_password && !!errors.new_password}
             helperText={touched.new_password && errors.new_password}
           />
+          <Typography
+            sx={{
+              color: "grey.600",
+              marginBottom: "1.5rem",
+              fontSize: 12,
+            }}
+          >
+            Password:-
+            {randomPassword}
+          </Typography>
+
           <LoadingButton
             variant="contained"
             color="primary"

@@ -167,11 +167,22 @@ const Topbar = () => {
                       elevation={6}
                       sx={{ minWidth: 120, marginTop: "0.8rem", py: "0.25rem" }}
                     >
-                      {item.children.map((child, ind) => (
-                        <Link to={child.url} key={child.title}>
-                          <MenuItem>{child.title}</MenuItem>
-                        </Link>
-                      ))}
+                      {item.children.map((child) =>
+                        child.extlink ? (
+                          <a
+                            href={child.extlink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            key={child.title}
+                          >
+                            <MenuItem>{child.title}</MenuItem>
+                          </a>
+                        ) : (
+                          <Link to={`${child.url}`} key={child.title}>
+                            <MenuItem>{child.title}</MenuItem>
+                          </Link>
+                        )
+                      )}
                     </Card>
                   </Box>
                 </Box>

@@ -19,8 +19,6 @@ const LoginForm: React.FC<LoginFormProps> = () => {
   const handleFormSubmit = async (values: any, { resetForm }: any) => {
     const loggedUser = await login(values);
 
-    console.log(loggedUser);
-
     if (loggedUser) {
       setUser(loggedUser);
 

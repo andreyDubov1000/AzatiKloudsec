@@ -5,6 +5,8 @@ import { Button, Card, Grid } from "@material-ui/core";
 import { Done } from "@material-ui/icons";
 import { Box } from "@material-ui/system";
 import React from "react";
+import { Link } from "react-router-dom";
+import { Link as Scroll } from "react-scroll";
 
 const Pricing = () => {
   return (
@@ -68,19 +70,39 @@ const Pricing = () => {
                     {plan.offerings}
                   </Paragraph>
 
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    fullWidth
-                    sx={{
-                      borderRadius: 300,
-                      height: 44,
-                      mb: "2rem",
-                      bgcolor: plan.color,
-                    }}
-                  >
-                    {plan.buttonText}
-                  </Button>
+                  {plan.scrollId ? (
+                    <Scroll to={plan.scrollId} duration={400} smooth={true}>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        fullWidth
+                        sx={{
+                          borderRadius: 300,
+                          height: 44,
+                          mb: "2rem",
+                          bgcolor: plan.color,
+                        }}
+                      >
+                        {plan.buttonText}
+                      </Button>
+                    </Scroll>
+                  ) : (
+                    <Link to={`${plan.url}`}>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        fullWidth
+                        sx={{
+                          borderRadius: 300,
+                          height: 44,
+                          mb: "2rem",
+                          bgcolor: plan.color,
+                        }}
+                      >
+                        {plan.buttonText}
+                      </Button>
+                    </Link>
+                  )}
 
                   <div>
                     {plan.serviceList.map((item, ind) => (
@@ -111,6 +133,7 @@ const planList = [
     price: 15,
     offerings: "For up to 100 resources",
     buttonText: "START FREE TRIAL",
+    scrollId: "schedule-a-demo",
     serviceList: [
       "Api Key: 10 calls per day",
       "Scheduled Scans: Once every 24 hours",
@@ -125,6 +148,7 @@ const planList = [
     price: 79,
     offerings: "For up to 200 resources",
     buttonText: "SCHEDULE A DEMO",
+    url: "/signup",
     serviceList: [
       "Everything in Developer",
       "Api Key: 50 calls per day",
@@ -140,6 +164,7 @@ const planList = [
     price: 799,
     offerings: "Starting from 201 resources",
     buttonText: "SCHEDULE A DEMO",
+    url: "/signup",
     serviceList: [
       "Everything in Standard",
       "Api Key: starting from 51 calls per day",

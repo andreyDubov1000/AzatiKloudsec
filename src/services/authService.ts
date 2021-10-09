@@ -61,6 +61,10 @@ export const getUserInfo = async (): Promise<User> => {
   return await KloudApi.get(`/userinfos`);
 };
 
+export const signOut = async (data: any) => {
+  return await KloudApi.post(`/logout`, data);
+};
+
 export const setApiHeader = (id_token: string) => {
   KloudApi.setHeader(id_token);
 };

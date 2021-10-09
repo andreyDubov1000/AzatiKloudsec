@@ -3,9 +3,13 @@ import CustomImage from "@component/atoms/CustomImage";
 import protectedLayoutSidenavNavigations from "@data/protectedLayoutSidenavNavigations";
 import { MenuItem, Tooltip } from "@material-ui/core";
 import { styled } from "@material-ui/core/styles";
+import { Logout } from "@material-ui/icons";
+import { SIGN_OUT } from "@redux/auth/authTypes";
+import { useAppDispatch, useAppSelector } from "@redux/hooks";
 import React from "react";
 import ScrollBar from "react-perfect-scrollbar";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
+import { signOut } from "services/authService";
 
 const SidenavMenuItem = styled(MenuItem)({
   justifyContent: "center",
@@ -20,15 +24,21 @@ const SidenavMenuItem = styled(MenuItem)({
 });
 
 const ProtectedLayoutSidenav = () => {
-  // const history = useHistory();
-  // const { store } = useContext(AppContext);
-  // const { user } = store;
-  // const isPublisher = user?.user_type === "publisher";
+  const history = useHistory();
+  const dispatch = useAppDispatch();
+  const { token } = useAppSelector((state) => state.auth);
 
-  // const handleSignOut = async () => {
-  //   await signOut();
-  //   history.push("/signin");
-  // };
+  const handleSignOut = async () => {
+    const data = await signOut({
+      email: token?.email,
+      access_token: token?.access_token,
+    });
+
+    if (data) {
+      dispatch({ type: SIGN_OUT });
+      history.push("/signin");
+    }
+  };
 
   return (
     <CustomBox
@@ -70,6 +80,12 @@ const ProtectedLayoutSidenav = () => {
             </Tooltip>
           </NavLink>
         ))}
+
+        <Tooltip title="Logout" placement="right">
+          <SidenavMenuItem onClick={handleSignOut}>
+            <Logout fontSize="inherit" />
+          </SidenavMenuItem>
+        </Tooltip>
       </ScrollBar>
     </CustomBox>
   );

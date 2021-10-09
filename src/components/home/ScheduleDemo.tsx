@@ -5,15 +5,17 @@ import { Card, Grid, TextField } from "@material-ui/core";
 import { LoadingButton } from "@material-ui/lab";
 import { Formik } from "formik";
 import React from "react";
+import { scheduleDemo } from "services/homeService";
 import * as yup from "yup";
 
 export interface ScheduleDemoProps {}
 
 const ScheduleDemo: React.FC<ScheduleDemoProps> = () => {
-  const handleFormSubmit = async (values: any) => {
-    const user = "dfdsfsd";
+  const handleFormSubmit = async (values: any, { resetForm }: any) => {
+    const data = await scheduleDemo(values);
 
-    if (user) {
+    if (data) {
+      resetForm();
       NotificationManager.success(
         "Thanks for your interest in using KloudSec. We will contact you shortly."
       );
@@ -92,21 +94,15 @@ const ScheduleDemo: React.FC<ScheduleDemoProps> = () => {
                   </Grid>
                   <Grid item sm={6} xs={12}>
                     <TextField
-                      name="mobile_phone_number"
+                      name="mobile_number"
                       label="Mobile Number"
                       placeholder="+33XXXXXXXXX"
                       fullWidth
                       onBlur={handleBlur}
                       onChange={handleChange}
-                      value={values.mobile_phone_number || ""}
-                      error={
-                        !!touched.mobile_phone_number &&
-                        !!errors.mobile_phone_number
-                      }
-                      helperText={
-                        touched.mobile_phone_number &&
-                        errors.mobile_phone_number
-                      }
+                      value={values.mobile_number || ""}
+                      error={!!touched.mobile_number && !!errors.mobile_number}
+                      helperText={touched.mobile_number && errors.mobile_number}
                     />
                   </Grid>
                   <Grid item sm={6} xs={12}>
@@ -135,16 +131,20 @@ const ScheduleDemo: React.FC<ScheduleDemoProps> = () => {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
-                      name="description"
+                      name="contact_message"
                       label="Tell us a bit about your infrastructure and how we can help"
                       fullWidth
                       multiline
                       minRows={6}
                       onBlur={handleBlur}
                       onChange={handleChange}
-                      value={values.description || ""}
-                      error={!!touched.description && !!errors.description}
-                      helperText={touched.description && errors.description}
+                      value={values.contact_message || ""}
+                      error={
+                        !!touched.contact_message && !!errors.contact_message
+                      }
+                      helperText={
+                        touched.contact_message && errors.contact_message
+                      }
                     />
                   </Grid>
                 </Grid>
@@ -178,9 +178,9 @@ const initialValues = {
   last_name: "",
   company_name: "",
   job_title: "",
-  description: "",
+  contact_message: "",
   email: "",
-  mobile_phone_number: "",
+  mobile_number: "",
 };
 
 const formSchema = yup.object().shape({
@@ -188,7 +188,9 @@ const formSchema = yup.object().shape({
   last_name: yup.string().required("required"),
   company_name: yup.string().required("required"),
   email: yup.string().email("invalid email").required("required"),
-  mobile_phone_number: yup.string().required("required"),
+  mobile_number: yup.string().required("required"),
+  contact_message: yup.string().required("required"),
+  job_title: yup.string().required("required"),
 });
 
 export default ScheduleDemo;

@@ -1,7 +1,7 @@
 const topbarNavigations = [
   {
     title: "Product",
-    sectionId: "product",
+    sectionId: "products",
   },
   {
     title: "Customers",
@@ -16,15 +16,15 @@ const topbarNavigations = [
     children: [
       {
         title: "Blog",
-        url: "/blog",
-      },
-      {
-        title: "About Us",
-        url: "/about-us",
+        extlink: "https://www.wordpress.com",
       },
       {
         title: "Careers",
         url: "/careers",
+      },
+      {
+        title: "About Us",
+        url: "/about-us",
       },
     ],
   },
@@ -32,10 +32,6 @@ const topbarNavigations = [
     title: "Docs",
     url: "/docs",
   },
-  // {
-  //   title: "Book demo",
-  //   url: "/book-demo",
-  // },
   {
     title: "Login",
     url: "/login",

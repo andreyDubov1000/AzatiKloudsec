@@ -65,17 +65,34 @@ const LandingSidenav: React.FC<LandingSidenavProps> = ({
               key={item.title}
             >
               <CustomBox sx={{ bgcolor: "grey.100" }}>
-                {item.children.map((child, ind) => (
-                  <Link to={child.url} key={child.title}>
-                    <Button
-                      fullWidth
-                      sx={{ justifyContent: "flex-start", mb: "0.25rem" }}
-                      onClick={toggleSidenav}
+                {item.children.map((child) =>
+                  child.extlink ? (
+                    <a
+                      href={child.extlink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      key={child.title}
                     >
-                      {child.title}
-                    </Button>
-                  </Link>
-                ))}
+                      <Button
+                        fullWidth
+                        sx={{ justifyContent: "flex-start", mb: "0.25rem" }}
+                        onClick={toggleSidenav}
+                      >
+                        {child.title}
+                      </Button>
+                    </a>
+                  ) : (
+                    <Link to={`${child.url}`} key={child.title}>
+                      <Button
+                        fullWidth
+                        sx={{ justifyContent: "flex-start", mb: "0.25rem" }}
+                        onClick={toggleSidenav}
+                      >
+                        {child.title}
+                      </Button>
+                    </Link>
+                  )
+                )}
               </CustomBox>
             </CustomAccordion>
           ) : item.sectionId ? (
