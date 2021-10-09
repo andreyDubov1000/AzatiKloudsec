@@ -93,24 +93,6 @@ const KS_AWS_S3_00066: React.FC<KS_AWS_S3_00066Props> = () => {
 	  Step 2:
 	  To enable SSE-S3 Type into the console
 
-	  <Code language="shellSession">
-           {`
-    aws s3api put-bucket-encryption \
-    --bucket my-bucket \
-    --server-side-encryption-configuration '{"Rules": [{"ApplyServerSideEncryptionByDefault": {"SSEAlgorithm": "AES256"}}]}'
- `.trim()}
-         </Code>
-
-	  To enable SSE-KMS Type into the console
-
-	  <Code language="shellSession">
-           {`
-aws s3api put-bucket-encryption \
-    --bucket my-bucket \
-    --server-side-encryption-configuration '{"Rules": [{"ApplyServerSideEncryptionByDefault": {"SSEAlgorithm": "aws:kms","KMSMasterKeyID": "my-key-id"}}]}'
- `.trim()}
-         </Code>
-
     </CustomFlexBox>
   );
 };
