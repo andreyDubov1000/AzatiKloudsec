@@ -93,6 +93,59 @@ const KS_AWS_S3_00066: React.FC<KS_AWS_S3_00066Props> = () => {
 	  Step 2:
 	  To enable SSE-S3 Type into the console
 
+	  <Code language="shellSession">
+           {`
+    aws s3api put-bucket-encryption \
+    --bucket my-bucket \
+    --server-side-encryption-configuration '{"Rules": [{"ApplyServerSideEncryptionByDefault": {"SSEAlgorithm": "AES256"}}]}'
+ `.trim()}
+         </Code>
+
+	  To enable SSE-KMS Type into the console
+
+	  <Code language="shellSession">
+           {`
+aws s3api put-bucket-encryption \
+    --bucket my-bucket \
+    --server-side-encryption-configuration '{"Rules": [{"ApplyServerSideEncryptionByDefault": {"SSEAlgorithm": "aws:kms","KMSMasterKeyID": "my-key-id"}}]}'
+ `.trim()}
+         </Code>
+
+        </Paragraph>
+
+        <H2 mb="0.75rem" mt="1.75rem">
+          How to fix the problem using boto3 and python
+        </H2>
+        <Paragraph lineHeight="1.625" mb="1rem">
+	  After installing and setting up boto3 (https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html), you can run the following script:
+
+	  <Code language="python">
+           {`
+import boto3
+
+client = boto3.client('s3')
+
+response = client.put_bucket_encryption(
+    Bucket='string',
+    ContentMD5='string',
+    ServerSideEncryptionConfiguration={
+        'Rules': [
+            {
+                'ApplyServerSideEncryptionByDefault': {
+                    'SSEAlgorithm': 'AES256'|'aws:kms',
+                    'KMSMasterKeyID': 'string'
+                },
+                'BucketKeyEnabled': True|False
+            },
+        ]
+    },
+    ExpectedBucketOwner='string'
+)
+ `.trim()}
+         </Code>
+
+        </Paragraph>
+
     </CustomFlexBox>
   );
 };
