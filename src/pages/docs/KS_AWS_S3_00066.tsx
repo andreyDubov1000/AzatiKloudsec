@@ -92,11 +92,11 @@ const KS_AWS_S3_00066: React.FC<KS_AWS_S3_00066Props> = () => {
         <Paragraph lineHeight="1.625" mb="1rem">
           To enable more complex way of encryption configuration, one can refer
           to the page:
-	  <a href="https://docs.aws.amazon.com/cli/latest/reference/s3api/put-bucket-encryption.html" style="color:#FF0000;" target="_blank" rel="noopener noreferrer">put-bucket-encryption</a><br>
+	  <a href="https://docs.aws.amazon.com/cli/latest/reference/s3api/put-bucket-encryption.html" style="color:#FF0000;" target="_blank" rel="noopener noreferrer">put-bucket-encryption</a>
           Step 1:
 	  Download and install the AWS CLI <a href="https://aws.amazon.com/cli/" style="color:#FF0000;" target="_blank" rel="noopener noreferrer">awscli </a>
           Make sure the CLI user has the s3:PutEncryptionConfiguration
-          permission.<br>
+          permission.
 	  Step 2: To enable SSE-S3 Type into your favorite shell
           <Code language="bash">
             {`
