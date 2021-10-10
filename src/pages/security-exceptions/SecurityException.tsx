@@ -14,7 +14,7 @@ const SecurityException = () => {
   const [loading, setLoading] = useState(true);
   const [motherList, setMotherList] = useState<IncidentCardProps[]>([]);
   const [exceptionList, setExceptionList] = useState<IncidentCardProps[]>([]);
-  const [selectedIncident, setSelectedIncident] = useState<any>(null);
+  const [selectedException, setSelectedException] = useState<any>(null);
 
   const { user } = useAppSelector((store) => store.auth);
 
@@ -96,7 +96,9 @@ const SecurityException = () => {
     loadData();
   }, [loadData]);
 
-  console.log(exceptionList);
+  useEffect(() => {
+    setSelectedException(null);
+  }, [exceptionList.length]);
 
   return loading ? (
     <Loader />
@@ -105,12 +107,15 @@ const SecurityException = () => {
       <PageTitle title="Security Exceptions" />
       <IncidentList
         incidentList={exceptionList}
-        selectedIncident={selectedIncident}
-        setSelectedIncident={setSelectedIncident}
+        selectedIncident={selectedException}
+        setSelectedIncident={setSelectedException}
         sortList={sortList}
         handleSearch={handleSearch}
       />
-      <IncidentDetails incident={selectedIncident} />
+      <IncidentDetails
+        incident={selectedException}
+        setIncidentList={setExceptionList}
+      />
     </CustomFlexBox>
   );
 };

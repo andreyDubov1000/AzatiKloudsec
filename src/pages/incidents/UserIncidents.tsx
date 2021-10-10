@@ -118,6 +118,10 @@ const UserIncidents = () => {
     loadData();
   }, [loadData]);
 
+  useEffect(() => {
+    setSelectedIncident(null);
+  }, [incidentList.length]);
+
   return loading ? (
     <Loader />
   ) : (
@@ -130,7 +134,10 @@ const UserIncidents = () => {
         sortList={sortList}
         handleSearch={handleSearch}
       />
-      <IncidentDetails incident={selectedIncident} />
+      <IncidentDetails
+        incident={selectedIncident}
+        setIncidentList={setIncidentList}
+      />
     </CustomFlexBox>
   );
 };

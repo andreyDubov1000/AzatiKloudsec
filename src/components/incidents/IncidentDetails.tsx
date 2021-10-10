@@ -11,9 +11,13 @@ import { IncidentCardProps } from "./IncidentCard";
 
 export interface IncidentDetailsProps {
   incident: Omit<IncidentCardProps, "sx">;
+  setIncidentList?: any;
 }
 
-const IncidentDetails: React.FC<IncidentDetailsProps> = ({ incident }) => {
+const IncidentDetails: React.FC<IncidentDetailsProps> = ({
+  incident,
+  setIncidentList,
+}) => {
   const [tabIndex, setTabIndex] = useState(0);
 
   const handleTabChange = async (_: any, value: number) => {
@@ -56,7 +60,9 @@ const IncidentDetails: React.FC<IncidentDetailsProps> = ({ incident }) => {
             <Tab value={1} label="Error Fix" />
           </Tabs>
 
-          {tabIndex === 0 && <ErrorDetails {...incident} />}
+          {tabIndex === 0 && (
+            <ErrorDetails {...incident} setIncidentList={setIncidentList} />
+          )}
           {tabIndex === 1 && <ErrorFix {...incident} />}
         </ScrollBar>
       ) : (
