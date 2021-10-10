@@ -90,11 +90,10 @@ const KS_AWS_S3_00066: React.FC<KS_AWS_S3_00066Props> = () => {
           How to fix the problem using AWS CLI
         </H2>
         <Paragraph lineHeight="1.625" mb="1rem">
-          To enable more complex way of encryption configuration, one can refer
-          to the page:
-	  <a href="https://docs.aws.amazon.com/cli/latest/reference/s3api/put-bucket-encryption.html" target="_blank" rel="noopener noreferrer">put-bucket-encryption</a>
+          To enable more complex way of encryption configuration, one can refer to the page:
+	  <a href="https://docs.aws.amazon.com/cli/latest/reference/s3api/put-bucket-encryption.html" target="_blank" rel="noopener noreferrer"> put-bucket-encryption </a>
           Step 1:
-	  Download and install the AWS CLI <a href="https://aws.amazon.com/cli/" target="_blank" rel="noopener noreferrer">awscli </a>
+	  Download and install the AWS CLI <a href="https://aws.amazon.com/cli/" target="_blank" rel="noopener noreferrer"> awscli </a>
           Make sure the CLI user has the s3:PutEncryptionConfiguration
           permission.
 	  Step 2: To enable SSE-S3 Type into your favorite shell
@@ -115,7 +114,7 @@ aws s3api put-bucket-encryption --bucket my-bucket --server-side-encryption-conf
           How to fix the problem using boto3 and python
         </H2>
         <Paragraph lineHeight="1.625" mb="1rem">
-          After installing and setting up <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html" target="_blank" rel="noopener noreferrer">boto3</a>, you can run the following script:
+          After installing and setting up <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html" target="_blank" rel="noopener noreferrer"> boto3 </a>, you can run the following script:
           <Code language="python">
             {`
 import boto3
