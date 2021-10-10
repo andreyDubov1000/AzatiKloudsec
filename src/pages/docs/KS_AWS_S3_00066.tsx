@@ -56,18 +56,21 @@ const KS_AWS_S3_00066: React.FC<KS_AWS_S3_00066Props> = () => {
         <Paragraph lineHeight="1.625" mb="1.75rem">
           Step 1: Navigate to the Unencrypted bucket and click on the Properties
           tab.
+
           <CustomImage
             src="https://kloudsec-public-assets.s3.eu-west-1.amazonaws.com/KS_AWS_S3_00066-1.png"
             width="100%"
             sx={{ borderRadius: 1 }}
           />
           Step 2: Click on the Edit button in the Default encryption panel.
+
           <CustomImage
             src="https://kloudsec-public-assets.s3.eu-west-1.amazonaws.com/KS_AWS_S3_00066-2.png"
             width="100%"
             sx={{ borderRadius: 1 }}
           />
           Step 3: Select Enable.
+
           <CustomImage
             src="https://kloudsec-public-assets.s3.eu-west-1.amazonaws.com/KS_AWS_S3_00066-3.png"
             width="100%"
@@ -75,6 +78,7 @@ const KS_AWS_S3_00066: React.FC<KS_AWS_S3_00066Props> = () => {
           />
           Step 4: Select the desired encryption type, by default, SSE-S3 will be
           selected.
+
           <CustomImage
             src="https://kloudsec-public-assets.s3.eu-west-1.amazonaws.com/KS_AWS_S3_00066-4.png"
             width="100%"
@@ -88,23 +92,21 @@ const KS_AWS_S3_00066: React.FC<KS_AWS_S3_00066Props> = () => {
         <Paragraph lineHeight="1.625" mb="1rem">
           To enable more complex way of encryption configuration, one can refer
           to the page:
-          https://docs.aws.amazon.com/cli/latest/reference/s3api/put-bucket-encryption.html
-          Step 1: Download and install the AWS CLI, https://aws.amazon.com/cli/
+	  <a href="https://docs.aws.amazon.com/cli/latest/reference/s3api/put-bucket-encryption.html" target="_blank" rel="noopener noreferrer">put-bucket-encryption</a>
+          Step 1:
+	  Download and install the AWS CLI <a href="https://aws.amazon.com/cli/" target="_blank" rel="noopener noreferrer">awscli</a>
           Make sure the CLI user has the s3:PutEncryptionConfiguration
-          permission. Step 2: To enable SSE-S3 Type into the console
+          permission.
+	  Step 2: To enable SSE-S3 Type into your favorite shell
           <Code language="bash">
             {`
-    aws s3api put-bucket-encryption \
-    --bucket my-bucket \
-    --server-side-encryption-configuration '{"Rules": [{"ApplyServerSideEncryptionByDefault": {"SSEAlgorithm": "AES256"}}]}'
+    aws s3api put-bucket-encryption --bucket my-bucket --server-side-encryption-configuration '{"Rules": [{"ApplyServerSideEncryptionByDefault": {"SSEAlgorithm": "AES256"}}]}'
  `.trim()}
           </Code>
-          To enable SSE-KMS Type into the console
+          To enable SSE-KMS Type into your favorite shell
           <Code language="bash">
             {`
-aws s3api put-bucket-encryption \
-    --bucket my-bucket \
-    --server-side-encryption-configuration '{"Rules": [{"ApplyServerSideEncryptionByDefault": {"SSEAlgorithm": "aws:kms","KMSMasterKeyID": "my-key-id"}}]}'
+aws s3api put-bucket-encryption --bucket my-bucket --server-side-encryption-configuration '{"Rules": [{"ApplyServerSideEncryptionByDefault": {"SSEAlgorithm": "aws:kms","KMSMasterKeyID": "my-key-id"}}]}'
  `.trim()}
           </Code>
         </Paragraph>
@@ -113,9 +115,7 @@ aws s3api put-bucket-encryption \
           How to fix the problem using boto3 and python
         </H2>
         <Paragraph lineHeight="1.625" mb="1rem">
-          After installing and setting up boto3
-          (https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html),
-          you can run the following script:
+          After installing and setting up <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html" target="_blank" rel="noopener noreferrer">boto3</a>, you can run the following script:
           <Code language="python">
             {`
 import boto3
