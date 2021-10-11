@@ -48,6 +48,38 @@ const docNavigations: Array<Navigation> = [
                 title: "Access Analyzer has active findings",
                 url: "/docs/KS_AWS_ACCESS_ANALYZER_00121",
               },
+              {
+                title: "ACM Certificate Expired",
+                url: "/docs/KS_AWS_ACM_00117",
+              },
+              {
+                title: "ACM Certificate will expire in the less than 30 days",
+                url: "/docs/KS_AWS_ACM_00118",
+              },
+              {
+                title: "ACM Certificate Wildcard Usage",
+                url: "/docs/KS_AWS_ACM_00119",
+              },
+              {
+                title: "Athena workgroup query results are not encrypted",
+                url: "/docs/KS_AWS_ATHENA_00107",
+              },
+              {
+                title: "Cloudformation output expose secrets",
+                url: "/docs/KS_AWS_CLOUDFORMATION_00092",
+              },
+              {
+                title: "Unencrypted cloudwatch log group",
+                url: "/docs/KS_AWS_CLOUDWATCH_00093",
+              },
+              {
+                title: "Amazon Comprehend job output results data are not encrypted",
+                url: "/docs/KS_AWS_COMPREHEND_00124",
+              },
+              {
+                title: "Trail not encrypted",
+                url: "/docs/KS_AWS_CT_00082",
+              },
             ],
           },
           {
