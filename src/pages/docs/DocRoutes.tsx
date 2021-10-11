@@ -227,6 +227,22 @@ const docRoutes = [
     component: lazy(() => import("./KS_AWS_WORKSPACES_00114")),
   },
   {
+    path: "/docs/KS_AWS_ORGANIZATIONS_00100",
+    component: lazy(() => import("./KS_AWS_ORGANIZATIONS_00100")),
+  },
+  {
+    path: "/docs/KS_AWS_EC2_00039",
+    component: lazy(() => import("./KS_AWS_EC2_00039")),
+  },
+  {
+    path: "/docs/KS_AWS_ORGANIZATIONS_00099",
+    component: lazy(() => import("./KS_AWS_ORGANIZATIONS_00099")),
+  },
+  {
+    path: "/docs/KS_AWS_EC2_00042",
+    component: lazy(() => import("./KS_AWS_EC2_00042")),
+  },
+  {
     path: "/docs",
     component: () => <Redirect to="/docs/introduction" />,
   },

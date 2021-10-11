@@ -28,6 +28,20 @@ const docNavigations: Array<Navigation> = [
           {
             title: "Identity and Access Management",
             url: "/docs/aws/iam",
+            children: [
+              {
+                title: "A change was performed on the aws account Alternate Contacts",
+                url: "/docs/KS_AWS_ORGANIZATIONS_00100",
+              },
+              {
+                title: "EC2 IMDSV2 is not enabled",
+                url: "/docs/KS_AWS_EC2_00039",
+              },
+              {
+                title: "A change was performed on the aws account Contact Information",
+                url: "/docs/KS_AWS_ORGANIZATIONS_00099",
+              },
+	    ],
           },
           {
             title: "Logging and Monitoring",
@@ -269,6 +283,12 @@ const docNavigations: Array<Navigation> = [
           {
             title: "General",
             url: "/docs/aws/general",
+            children: [
+              {
+                title: "EC2 without any tag",
+                url: "/docs/KS_AWS_EC2_00042",
+              },
+	    ],
           },
         ],
       },
