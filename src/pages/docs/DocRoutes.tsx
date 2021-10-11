@@ -143,6 +143,90 @@ const docRoutes = [
     component: lazy(() => import("./KS_AWS_FSX_00108")),
   },
   {
+    path: "/docs/KS_AWS_GLUE_00104",
+    component: lazy(() => import("./KS_AWS_GLUE_00104")),
+  },
+  {
+    path: "/docs/KS_AWS_IAM_00070",
+    component: lazy(() => import("./KS_AWS_IAM_00070")),
+  },
+  {
+    path: "/docs/KS_AWS_IAM_00091",
+    component: lazy(() => import("./KS_AWS_IAM_00091")),
+  },
+  {
+    path: "/docs/KS_AWS_KAFKA_00123",
+    component: lazy(() => import("./KS_AWS_KAFKA_00123")),
+  },
+  {
+    path: "/docs/KS_AWS_KINESIS_00087",
+    component: lazy(() => import("./KS_AWS_KINESIS_00087")),
+  },
+  {
+    path: "/docs/KS_AWS_MACIE_00125",
+    component: lazy(() => import("./KS_AWS_MACIE_00125")),
+  },
+  {
+    path: "/docs/KS_AWS_MACIE_00126",
+    component: lazy(() => import("./KS_AWS_MACIE_00126")),
+  },
+  {
+    path: "/docs/KS_AWS_MQ_00122",
+    component: lazy(() => import("./KS_AWS_MQ_00122")),
+  },
+  {
+    path: "/docs/KS_AWS_NEPTUNE_00128",
+    component: lazy(() => import("./KS_AWS_NEPTUNE_00128")),
+  },
+  {
+    path: "/docs/KS_AWS_RDS_00071",
+    component: lazy(() => import("./KS_AWS_RDS_00071")),
+  },
+  {
+    path: "/docs/KS_AWS_RDS_00072",
+    component: lazy(() => import("./KS_AWS_RDS_00072")),
+  },
+  {
+    path: "/docs/KS_AWS_RDS_00115",
+    component: lazy(() => import("./KS_AWS_RDS_00115")),
+  },
+  {
+    path: "/docs/KS_AWS_REDSHIFT_00105",
+    component: lazy(() => import("./KS_AWS_REDSHIFT_00105")),
+  },
+  {
+    path: "/docs/KS_AWS_REDSHIFT_00106",
+    component: lazy(() => import("./KS_AWS_REDSHIFT_00106")),
+  },
+  {
+    path: "/docs/KS_AWS_S3_00067",
+    component: lazy(() => import("./KS_AWS_S3_00067")),
+  },
+  {
+    path: "/docs/KS_AWS_SAGEMAKER_00102",
+    component: lazy(() => import("./KS_AWS_SAGEMAKER_00102")),
+  },
+  {
+    path: "/docs/KS_AWS_SAGEMAKER_00103",
+    component: lazy(() => import("./KS_AWS_SAGEMAKER_00103")),
+  },
+  {
+    path: "/docs/KS_AWS_SNS_00086",
+    component: lazy(() => import("./KS_AWS_SNS_00086")),
+  },
+  {
+    path: "/docs/KS_AWS_SQS_00083",
+    component: lazy(() => import("./KS_AWS_SQS_00083")),
+  },
+  {
+    path: "/docs/KS_AWS_WORKSPACES_00113",
+    component: lazy(() => import("./KS_AWS_WORKSPACES_00113")),
+  },
+  {
+    path: "/docs/KS_AWS_WORKSPACES_00114",
+    component: lazy(() => import("./KS_AWS_WORKSPACES_00114")),
+  },
+  {
     path: "/docs",
     component: () => <Redirect to="/docs/introduction" />,
   },
