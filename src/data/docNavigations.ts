@@ -44,6 +44,10 @@ const docNavigations: Array<Navigation> = [
                 title: "Unencrypted s3 bucket",
                 url: "/docs/KS_AWS_S3_00066",
               },
+              {
+                title: "Access Analyzer has active findings",
+                url: "/docs/KS_AWS_ACCESS_ANALYZER_00121",
+              },
             ],
           },
           {

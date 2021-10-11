@@ -15,6 +15,10 @@ const docRoutes = [
     component: lazy(() => import("./KS_AWS_S3_00066")),
   },
   {
+    path: "/docs/KS_AWS_ACCESS_ANALYZER_00121",
+    component: lazy(() => import("./KS_AWS_ACCESS_ANALYZER_00121")),
+  },
+  {
     path: "/docs",
     component: () => <Redirect to="/docs/introduction" />,
   },
