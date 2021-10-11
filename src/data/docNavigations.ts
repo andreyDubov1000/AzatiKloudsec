@@ -80,6 +80,50 @@ const docNavigations: Array<Navigation> = [
                 title: "Trail not encrypted",
                 url: "/docs/KS_AWS_CT_00082",
               },
+              {
+                title: "DocumentDB Cluster storage is not encrypted",
+                url: "/docs/KS_AWS_DOCUMENTDB_00116",
+              },
+              {
+                title: "Dynamodb table is not encrypted",
+                url: "/docs/KS_AWS_DYNAMODB_00088",
+              },
+              {
+                title: "Public ami",
+                url: "/docs/KS_AWS_EC2_00031",
+              },
+              {
+                title: "Unencrypted ami",
+                url: "/docs/KS_AWS_EC2_00032",
+              },
+              {
+                title: "Unencrypted snapshot",
+                url: "/docs/KS_AWS_EC2_00033",
+              },
+              {
+                title: "Unencrypted volume",
+                url: "/docs/KS_AWS_EC2_00034",
+              },
+              {
+                title: "Volume without backup or recent backup",
+                url: "/docs/KS_AWS_EC2_00036",
+              },
+              {
+                title: "EC2 user data contains secrets",
+                url: "/docs/KS_AWS_EC2_00041",
+              },
+              {
+                title: "ELB with old TLS version",
+                url: "/docs/KS_AWS_EC2_00064",
+              },
+              {
+                title: "ALB with old TLS version",
+                url: "/docs/KS_AWS_EC2_00068",
+              },
+              {
+                title: "ALB with non HTTPS listeners",
+                url: "/docs/KS_AWS_EC2_00069",
+              },
             ],
           },
           {
