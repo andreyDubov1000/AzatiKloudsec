@@ -6,14 +6,14 @@ import { H1, H2, Paragraph, Span } from "@component/atoms/Typography";
 import { Card, Divider } from "@material-ui/core";
 import React from "react";
 
-export interface KS_AWS_ACM_00118Props {}
+export interface KS_AWS_FSX_00108Props {}
 
-const KS_AWS_ACM_00118: React.FC<KS_AWS_ACM_00118Props> = () => {
+const KS_AWS_FSX_00108: React.FC<KS_AWS_FSX_00108Props> = () => {
   return (
     <CustomFlexBox>
-      <PageTitle title="Data Protection | ACM Certificate will expire in less than 30 days" />
+      <PageTitle title="Data Protection | FSX not encrypted using customer managed KEY" />
       <Card sx={{ flex: "1 1 0", p: "1.5rem", bgcolor: "white", m: "1rem" }}>
-        <H1 mb="0.75rem">ACM Certificate will expire in less than 30 days</H1>
+        <H1 mb="0.75rem">FSX not encrypted using customer managed KEY</H1>
         <Span>Prevent data leak</Span>
 
         <Divider
@@ -22,7 +22,7 @@ const KS_AWS_ACM_00118: React.FC<KS_AWS_ACM_00118Props> = () => {
 
         <H2 mb="0.75rem">Overview</H2>
         <Paragraph lineHeight="1.625" mb="1.75rem">
-		ACM Certificate will expire in less than 30 days
+		FSX not encrypted using customer managed KEY
         </Paragraph>
 
         <H2 mb="0.75rem">How to fix it using the AWS console</H2>
@@ -45,4 +45,4 @@ const KS_AWS_ACM_00118: React.FC<KS_AWS_ACM_00118Props> = () => {
   );
 };
 
-export default KS_AWS_ACM_00118;
+export default KS_AWS_FSX_00108;

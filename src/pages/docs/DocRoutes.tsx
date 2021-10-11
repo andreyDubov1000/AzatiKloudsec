@@ -95,6 +95,54 @@ const docRoutes = [
     component: lazy(() => import("./KS_AWS_EC2_00069")),
   },
   {
+    path: "/docs/KS_AWS_ECS_00096",
+    component: lazy(() => import("./KS_AWS_ECS_00096")),
+  },
+  {
+    path: "/docs/KS_AWS_ECR_00097",
+    component: lazy(() => import("./KS_AWS_ECR_00097")),
+  },
+  {
+    path: "/docs/KS_AWS_EFS_00085",
+    component: lazy(() => import("./KS_AWS_EFS_00085")),
+  },
+  {
+    path: "/docs/KS_AWS_EKS_00098",
+    component: lazy(() => import("./KS_AWS_EKS_00098")),
+  },
+  {
+    path: "/docs/KS_AWS_ELASTICACHE_00111",
+    component: lazy(() => import("./KS_AWS_ELASTICACHE_00111")),
+  },
+  {
+    path: "/docs/KS_AWS_ELASTICACHE_00112",
+    component: lazy(() => import("./KS_AWS_ELASTICACHE_00112")),
+  },
+  {
+    path: "/docs/KS_AWS_ES_00074",
+    component: lazy(() => import("./KS_AWS_ES_00074")),
+  },
+  {
+    path: "/docs/KS_AWS_ES_00075",
+    component: lazy(() => import("./KS_AWS_ES_00075")),
+  },
+  {
+    path: "/docs/KS_AWS_ES_00076",
+    component: lazy(() => import("./KS_AWS_ES_00076")),
+  },
+  {
+    path: "/docs/KS_AWS_ES_00077",
+    component: lazy(() => import("./KS_AWS_ES_00077")),
+  },
+  {
+    path: "/docs/KS_AWS_ES_00078",
+    component: lazy(() => import("./KS_AWS_ES_00078")),
+  },
+  {
+    path: "/docs/KS_AWS_FSX_00108",
+    component: lazy(() => import("./KS_AWS_FSX_00108")),
+  },
+  {
     path: "/docs",
     component: () => <Redirect to="/docs/introduction" />,
   },
