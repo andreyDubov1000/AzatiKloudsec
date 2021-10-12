@@ -27,10 +27,14 @@ const docNavigations: Array<Navigation> = [
           },
           {
             title: "Identity and Access Management",
-            url: "/docs/aws/iam",
             children: [
               {
-                title: "A change was performed on the aws account Alternate Contacts",
+                title: "Identity and Access Management",
+                url: "/docs/aws/iam",
+              },
+              {
+                title:
+                  "A change was performed on the aws account Alternate Contacts",
                 url: "/docs/KS_AWS_ORGANIZATIONS_00100",
               },
               {
@@ -38,10 +42,11 @@ const docNavigations: Array<Navigation> = [
                 url: "/docs/KS_AWS_EC2_00039",
               },
               {
-                title: "A change was performed on the aws account Contact Information",
+                title:
+                  "A change was performed on the aws account Contact Information",
                 url: "/docs/KS_AWS_ORGANIZATIONS_00099",
               },
-	    ],
+            ],
           },
           {
             title: "Logging and Monitoring",
@@ -87,7 +92,8 @@ const docNavigations: Array<Navigation> = [
                 url: "/docs/KS_AWS_CLOUDWATCH_00093",
               },
               {
-                title: "Amazon Comprehend job output results data are not encrypted",
+                title:
+                  "Amazon Comprehend job output results data are not encrypted",
                 url: "/docs/KS_AWS_COMPREHEND_00124",
               },
               {
@@ -219,7 +225,8 @@ const docNavigations: Array<Navigation> = [
                 url: "/docs/KS_AWS_MQ_00122",
               },
               {
-                title: "Amazon Neptune database instance storage is not encrypted",
+                title:
+                  "Amazon Neptune database instance storage is not encrypted",
                 url: "/docs/KS_AWS_NEPTUNE_00128",
               },
               {
@@ -282,13 +289,13 @@ const docNavigations: Array<Navigation> = [
           },
           {
             title: "General",
-            url: "/docs/aws/general",
             children: [
+              { title: "General", url: "/docs/aws/general" },
               {
                 title: "EC2 without any tag",
                 url: "/docs/KS_AWS_EC2_00042",
               },
-	    ],
+            ],
           },
         ],
       },
