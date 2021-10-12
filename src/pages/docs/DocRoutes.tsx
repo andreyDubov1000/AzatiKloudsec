@@ -243,6 +243,34 @@ const docRoutes = [
     component: lazy(() => import("./KS_AWS_EC2_00042")),
   },
   {
+    path: "/docs/KS_AWS_EC2_00040",
+    component: lazy(() => import("./KS_AWS_EC2_00040")),
+  },
+  {
+    path: "/docs/KS_AWS_KMS_00095",
+    component: lazy(() => import("./KS_AWS_KMS_00095")),
+  },
+  {
+    path: "/docs/KS_AWS_RDS_00073",
+    component: lazy(() => import("./KS_AWS_RDS_00073")),
+  },
+  {
+    path: "/docs/KS_AWS_COMPUTE-OPTIMIZER_00127",
+    component: lazy(() => import("./KS_AWS_COMPUTE-OPTIMIZER_00127")),
+  },
+  {
+    path: "/docs/KS_AWS_INSPECTOR_00089",
+    component: lazy(() => import("./KS_AWS_INSPECTOR_00089")),
+  },
+  {
+    path: "/docs/KS_AWS_LAMBDA_00079",
+    component: lazy(() => import("./KS_AWS_LAMBDA_00079")),
+  },
+  {
+    path: "/docs/KS_AWS_CLOUDFRONT_00094",
+    component: lazy(() => import("./KS_AWS_CLOUDFRONT_00094")),
+  },
+  {
     path: "/docs",
     component: () => <Redirect to="/docs/introduction" />,
   },
