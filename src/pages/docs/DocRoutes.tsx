@@ -271,6 +271,34 @@ const docRoutes = [
     component: lazy(() => import("./KS_AWS_CLOUDFRONT_00094")),
   },
   {
+    path: "/docs/KS_AWS_EC2_00065",
+    component: lazy(() => import("./KS_AWS_EC2_00065")),
+  },
+  {
+    path: "/docs/KS_AWS_GUARDDUTY_00109",
+    component: lazy(() => import("./KS_AWS_GUARDDUTY_00109")),
+  },
+  {
+    path: "/docs/KS_AWS_EC2_00038",
+    component: lazy(() => import("./KS_AWS_EC2_00038")),
+  },
+  {
+    path: "/docs/KS_AWS_HEALTH_00120",
+    component: lazy(() => import("./KS_AWS_HEALTH_00120")),
+  },
+  {
+    path: "/docs/KS_AWS_CT_00081",
+    component: lazy(() => import("./KS_AWS_CT_00081")),
+  },
+  {
+    path: "/docs/KS_AWS_API_GATEWAY_00084",
+    component: lazy(() => import("./KS_AWS_API_GATEWAY_00084")),
+  },
+  {
+    path: "/docs/KS_AWS_CONFIG_00101",
+    component: lazy(() => import("./KS_AWS_CONFIG_00101")),
+  },
+  {
     path: "/docs",
     component: () => <Redirect to="/docs/introduction" />,
   },
