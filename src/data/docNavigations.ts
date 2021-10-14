@@ -310,6 +310,10 @@ const docNavigations: Array<Navigation> = [
                 title: "Workspace Root Volume not encrypted",
                 url: "/docs/KS_AWS_WORKSPACES_00114",
               },
+              {
+                title: "DKIM Not Enabled for the given identity",
+                url: "/docs/KS_AWS_SES_00129",
+              },
             ],
           },
           {

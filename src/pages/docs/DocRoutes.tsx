@@ -299,6 +299,10 @@ const docRoutes = [
     component: lazy(() => import("./KS_AWS_CONFIG_00101")),
   },
   {
+    path: "/docs/KS_AWS_SES_00129",
+    component: lazy(() => import("./KS_AWS_SES_00129")),
+  },
+  {
     path: "/docs",
     component: () => <Redirect to="/docs/introduction" />,
   },
