@@ -243,6 +243,66 @@ const docRoutes = [
     component: lazy(() => import("./KS_AWS_EC2_00042")),
   },
   {
+    path: "/docs/KS_AWS_EC2_00040",
+    component: lazy(() => import("./KS_AWS_EC2_00040")),
+  },
+  {
+    path: "/docs/KS_AWS_KMS_00095",
+    component: lazy(() => import("./KS_AWS_KMS_00095")),
+  },
+  {
+    path: "/docs/KS_AWS_RDS_00073",
+    component: lazy(() => import("./KS_AWS_RDS_00073")),
+  },
+  {
+    path: "/docs/KS_AWS_COMPUTE-OPTIMIZER_00127",
+    component: lazy(() => import("./KS_AWS_COMPUTE-OPTIMIZER_00127")),
+  },
+  {
+    path: "/docs/KS_AWS_INSPECTOR_00089",
+    component: lazy(() => import("./KS_AWS_INSPECTOR_00089")),
+  },
+  {
+    path: "/docs/KS_AWS_LAMBDA_00079",
+    component: lazy(() => import("./KS_AWS_LAMBDA_00079")),
+  },
+  {
+    path: "/docs/KS_AWS_CLOUDFRONT_00094",
+    component: lazy(() => import("./KS_AWS_CLOUDFRONT_00094")),
+  },
+  {
+    path: "/docs/KS_AWS_EC2_00065",
+    component: lazy(() => import("./KS_AWS_EC2_00065")),
+  },
+  {
+    path: "/docs/KS_AWS_GUARDDUTY_00109",
+    component: lazy(() => import("./KS_AWS_GUARDDUTY_00109")),
+  },
+  {
+    path: "/docs/KS_AWS_EC2_00038",
+    component: lazy(() => import("./KS_AWS_EC2_00038")),
+  },
+  {
+    path: "/docs/KS_AWS_HEALTH_00120",
+    component: lazy(() => import("./KS_AWS_HEALTH_00120")),
+  },
+  {
+    path: "/docs/KS_AWS_CT_00081",
+    component: lazy(() => import("./KS_AWS_CT_00081")),
+  },
+  {
+    path: "/docs/KS_AWS_API_GATEWAY_00084",
+    component: lazy(() => import("./KS_AWS_API_GATEWAY_00084")),
+  },
+  {
+    path: "/docs/KS_AWS_CONFIG_00101",
+    component: lazy(() => import("./KS_AWS_CONFIG_00101")),
+  },
+  {
+    path: "/docs/KS_AWS_SES_00129",
+    component: lazy(() => import("./KS_AWS_SES_00129")),
+  },
+  {
     path: "/docs",
     component: () => <Redirect to="/docs/introduction" />,
   },

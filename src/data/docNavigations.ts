@@ -33,8 +33,7 @@ const docNavigations: Array<Navigation> = [
                 url: "/docs/aws/iam",
               },
               {
-                title:
-                  "A change was performed on the aws account Alternate Contacts",
+                title: "A change was performed on the aws account Alternate Contacts",
                 url: "/docs/KS_AWS_ORGANIZATIONS_00100",
               },
               {
@@ -51,6 +50,40 @@ const docNavigations: Array<Navigation> = [
           {
             title: "Logging and Monitoring",
             url: "/docs/aws/logging-and-monitoring",
+            children: [
+              {
+                title: "Logging And Monitoring",
+                url: "/docs/aws/logging-and-monitoring",
+              },
+              {
+                title: "ELB without logging",
+                url: "/docs/KS_AWS_EC2_00065",
+              },
+              {
+                title: "AWS GuardDuty service is disabled on this region",
+                url: "/docs/KS_AWS_GUARDDUTY_00109",
+              },
+              {
+                title: "EC2 without detailed monitoring",
+                url: "/docs/KS_AWS_EC2_00038",
+              },
+              {
+                title: "AWS Health not enabled for the organization",
+                url: "/docs/KS_AWS_HEALTH_00120",
+              },
+              {
+                title: "Trail not unabled for multi region",
+                url: "/docs/KS_AWS_CT_00081",
+              },
+              {
+                title: "API Gateway stage without access logging",
+                url: "/docs/KS_AWS_API_GATEWAY_00084",
+              },
+              {
+                title: "AWS Config service is disabled or no active recorder on this region",
+                url: "/docs/KS_AWS_CONFIG_00101",
+              },
+            ],
           },
           {
             title: "Data Protection",
@@ -276,6 +309,10 @@ const docNavigations: Array<Navigation> = [
               {
                 title: "Workspace Root Volume not encrypted",
                 url: "/docs/KS_AWS_WORKSPACES_00114",
+              },
+              {
+                title: "DKIM Not Enabled for the given identity",
+                url: "/docs/KS_AWS_SES_00129",
               },
             ],
           },
