@@ -69,16 +69,16 @@ const ErrorDetails: React.FC<IncidentCardProps & ErrorDetailsProps> = ({
     setLoading(true);
 
     if (user) {
-      const data = await deleteSecurityException(
-        user.user_id,
-        props.AwsAccount,
-        props.ResourceVulnerabilityId
-      );
+      try {
+        await deleteSecurityException(
+          user.user_id,
+          props.AwsAccount,
+          props.ResourceVulnerabilityId
+        );
 
-      if (data) {
         deleteItemFromList();
         NotificationManager.success("Exception deleted successfully.");
-      } else {
+      } catch (error) {
         NotificationManager.error("Couldn't delete exception.");
       }
     }

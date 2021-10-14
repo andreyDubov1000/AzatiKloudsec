@@ -1,7 +1,8 @@
 import CustomFlexBox from "@component/atoms/CustomFlexBox";
 import NotificationManager from "@component/atoms/NotificationManager";
 import { H4, Span } from "@component/atoms/Typography";
-import { TextField } from "@material-ui/core";
+import { TextField, Tooltip } from "@material-ui/core";
+import { Help } from "@material-ui/icons";
 import { LoadingButton } from "@material-ui/lab";
 import { Formik } from "formik";
 import React from "react";
@@ -81,6 +82,17 @@ const SignupForm: React.FC<SignupFormProps> = () => {
             onBlur={handleBlur}
             onChange={handleChange}
             value={values.mobile_phone_number || ""}
+            InputProps={{
+              sx: { pr: 1 },
+              endAdornment: (
+                <Tooltip title="+(country code)(phone number)">
+                  <Help
+                    fontSize="small"
+                    sx={{ color: "grey.700", cursor: "pointer" }}
+                  />
+                </Tooltip>
+              ),
+            }}
             error={
               !!touched.mobile_phone_number && !!errors.mobile_phone_number
             }

@@ -94,6 +94,40 @@ const AccountConfirmationForm: React.FC<AccountConfirmationFormProps> = () => {
       >
         Confirm Account
       </LoadingButton>
+
+      <a
+        href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en&gl=US"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Span
+          display="block"
+          color="primary.main"
+          mt="2rem"
+          textAlign="center"
+          letterSpacing="1.1"
+          fontSize="12px"
+        >
+          Google Authenticator (Android)
+        </Span>
+      </a>
+
+      <a
+        href="https://apps.apple.com/app/google-authenticator/id388497605"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Span
+          display="block"
+          color="primary.main"
+          mt="0.5rem"
+          textAlign="center"
+          letterSpacing="1.1"
+          fontSize="12px"
+        >
+          Google Authenticator (iOS)
+        </Span>
+      </a>
     </Fragment>
   );
 };

@@ -61,12 +61,13 @@ class KloudApi {
     url: string,
     config?: AxiosRequestConfig | undefined
   ) => {
-    try {
-      const response = await KloudApi.axios.delete(url, config);
-      return response.data;
-    } catch (error) {
-      return KloudApi.handleError(error);
-    }
+    await KloudApi.axios.delete(url, config);
+    // try {
+    //   const response = await KloudApi.axios.delete(url, config);
+    //   return response.data;
+    // } catch (error) {
+    //   return KloudApi.handleError(error);
+    // }
   };
 }
 

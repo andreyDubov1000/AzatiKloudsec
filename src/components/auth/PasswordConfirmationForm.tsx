@@ -111,7 +111,7 @@ const PasswordConfirmationForm = () => {
               borderRadius: "50px",
             }}
           >
-            Confirm Password
+            Confirm New Password
           </LoadingButton>
         </form>
       )}
@@ -126,7 +126,14 @@ const initialValues = {
 
 const formSchema = yup.object().shape({
   temporary_password: yup.string().required("required").max(250),
-  new_password: yup.string().required("required").max(250),
+  new_password: yup
+    .string()
+    .oneOf([yup.ref("temporary_password"), null], "Passwords must match")
+    .matches(
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&`(){}[\]^;:'",.])(.*){14,}/,
+      "Must Contain 14 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
+    )
+    .required("required"),
 });
 
 export default PasswordConfirmationForm;
