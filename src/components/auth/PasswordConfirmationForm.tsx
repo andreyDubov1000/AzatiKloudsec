@@ -1,6 +1,6 @@
 import NotificationManager from "@component/atoms/NotificationManager";
 import { H4 } from "@component/atoms/Typography";
-import { TextField, Typography } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import { LoadingButton } from "@material-ui/lab";
 import { Formik } from "formik";
 import { generate } from "generate-password";
@@ -26,10 +26,13 @@ const PasswordConfirmationForm = () => {
   const user_id = searchParams.get("user_id");
   const email = searchParams.get("email");
 
-  const handleFormSubmit = async (values: any) => {
+  const handleFormSubmit = async (values: typeof initialValues) => {
     if (user_id && email) {
       setLoading(true);
-      const user = await confirmPassword({ email, ...values }, user_id);
+      const user = await confirmPassword(
+        { email, new_password: values.new_password },
+        user_id
+      );
       setLoading(false);
 
       if (user) {
@@ -57,7 +60,6 @@ const PasswordConfirmationForm = () => {
         handleChange,
         handleBlur,
         handleSubmit,
-        setFieldValue,
       }) => (
         <form onSubmit={handleSubmit}>
           <H4 mb="2rem" color="primary.main" textAlign="center">
@@ -81,23 +83,25 @@ const PasswordConfirmationForm = () => {
             label="New Password"
             type="password"
             fullWidth
-            sx={{ mb: "1rem" }}
+            sx={{ mb: "1.25rem" }}
             onBlur={handleBlur}
             onChange={handleChange}
             value={values.new_password || ""}
             error={!!touched.new_password && !!errors.new_password}
             helperText={touched.new_password && errors.new_password}
           />
-          <Typography
-            sx={{
-              color: "grey.600",
-              marginBottom: "1.5rem",
-              fontSize: 12,
-            }}
-          >
-            Password:-
-            {randomPassword}
-          </Typography>
+          <TextField
+            name="confirm_password"
+            label="Temporary Password"
+            type="password"
+            fullWidth
+            sx={{ mb: "1.5rem" }}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            value={values.confirm_password || ""}
+            error={!!touched.confirm_password && !!errors.confirm_password}
+            helperText={touched.confirm_password && errors.confirm_password}
+          />
 
           <LoadingButton
             variant="contained"
@@ -122,18 +126,23 @@ const PasswordConfirmationForm = () => {
 const initialValues = {
   temporary_password: "",
   new_password: "",
+  confirm_password: "",
 };
 
 const formSchema = yup.object().shape({
   temporary_password: yup.string().required("required").max(250),
   new_password: yup
     .string()
-    .oneOf([yup.ref("temporary_password"), null], "Passwords must match")
     .matches(
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&`(){}[\]^;:'",.])(.*){14,}/,
       "Must Contain 14 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
     )
     .required("required"),
+  confirm_password: yup
+    .string()
+    .oneOf([yup.ref("new_password"), null], "Passwords must match")
+    .required("required")
+    .max(250),
 });
 
 export default PasswordConfirmationForm;
