@@ -33,7 +33,8 @@ const docNavigations: Array<Navigation> = [
                 url: "/docs/aws/iam",
               },
               {
-                title: "A change was performed on the aws account Alternate Contacts",
+                title:
+                  "A change was performed on the aws account Alternate Contacts",
                 url: "/docs/KS_AWS_ORGANIZATIONS_00100",
               },
               {
@@ -49,8 +50,11 @@ const docNavigations: Array<Navigation> = [
           },
           {
             title: "Logging and Monitoring",
-            url: "/docs/aws/logging-and-monitoring",
             children: [
+              {
+                title: "Logging and Monitoring",
+                url: "/docs/aws/logging-and-monitoring",
+              },
               {
                 title: "Logging And Monitoring",
                 url: "/docs/aws/logging-and-monitoring",
@@ -80,7 +84,8 @@ const docNavigations: Array<Navigation> = [
                 url: "/docs/KS_AWS_API_GATEWAY_00084",
               },
               {
-                title: "AWS Config service is disabled or no active recorder on this region",
+                title:
+                  "AWS Config service is disabled or no active recorder on this region",
                 url: "/docs/KS_AWS_CONFIG_00101",
               },
             ],
