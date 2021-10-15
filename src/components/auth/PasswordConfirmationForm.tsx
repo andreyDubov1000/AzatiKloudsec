@@ -30,7 +30,11 @@ const PasswordConfirmationForm = () => {
     if (user_id && email) {
       setLoading(true);
       const user = await confirmPassword(
-        { email, new_password: values.new_password },
+        {
+          email,
+          new_password: values.new_password,
+          temporary_password: values.temporary_password,
+        },
         user_id
       );
       setLoading(false);
@@ -92,7 +96,7 @@ const PasswordConfirmationForm = () => {
           />
           <TextField
             name="confirm_password"
-            label="Temporary Password"
+            label="Confirm New Password"
             type="password"
             fullWidth
             sx={{ mb: "1.5rem" }}
@@ -135,8 +139,9 @@ const formSchema = yup.object().shape({
     .string()
     .matches(
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&`(){}[\]^;:'",.])(.*){14,}/,
-      "Must Contain 14 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
+      "Must contain one Uppercase, one Lowercase, one Number and one special case character"
     )
+    .min(14, "Must contain 14 characters")
     .required("required"),
   confirm_password: yup
     .string()
