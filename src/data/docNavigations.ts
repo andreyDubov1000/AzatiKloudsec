@@ -317,7 +317,11 @@ const docNavigations: Array<Navigation> = [
               },
               {
                 title: "DKIM Not Enabled for the given identity",
-                url: "/docs/KS_AWS_SES_00129",
+                url: "/docs/KS_AWS_SES_00130",
+              },
+              {
+                title: "SSM parameter is not encrypted",
+                url: "/docs/KS_AWS_SSM_00131",
               },
             ],
           },

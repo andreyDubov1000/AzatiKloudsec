@@ -6,14 +6,14 @@ import { H1, H2, Paragraph, Span } from "@component/atoms/Typography";
 import { Card, Divider } from "@material-ui/core";
 import React from "react";
 
-export interface KS_AWS_SES_00129Props {}
+export interface KS_AWS_SSM_00131Props {}
 
-const KS_AWS_SES_00129: React.FC<KS_AWS_SES_00129Props> = () => {
+const KS_AWS_SSM_00131: React.FC<KS_AWS_SSM_00131Props> = () => {
   return (
     <CustomFlexBox>
-      <PageTitle title="Data Protection | DKIM Not Enabled for the given identity" />
+      <PageTitle title="Data Protection | SSM parameter is not encrypted" />
       <Card sx={{ flex: "1 1 0", p: "1.5rem", bgcolor: "white", m: "1rem" }}>
-        <H1 mb="0.75rem">DKIM Not Enabled for the given identity</H1>
+        <H1 mb="0.75rem">SSM parameter is not encrypted</H1>
         <Span>Prevent data leak</Span>
 
         <Divider
@@ -22,7 +22,7 @@ const KS_AWS_SES_00129: React.FC<KS_AWS_SES_00129Props> = () => {
 
         <H2 mb="0.75rem">Overview</H2>
         <Paragraph lineHeight="1.625" mb="1.75rem">
-		DKIM Not Enabled for the given identity
+		SSM parameter is not encrypted
         </Paragraph>
 
         <H2 mb="0.75rem">How to fix it using the AWS console</H2>
@@ -45,4 +45,4 @@ const KS_AWS_SES_00129: React.FC<KS_AWS_SES_00129Props> = () => {
   );
 };
 
-export default KS_AWS_SES_00129;
+export default KS_AWS_SSM_00131;
