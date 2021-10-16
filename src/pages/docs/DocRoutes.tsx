@@ -307,6 +307,10 @@ const docRoutes = [
     component: lazy(() => import("./KS_AWS_SSM_00131")),
   },
   {
+    path: "/docs/KS_AWS_SECRETSMANAGER_00132",
+    component: lazy(() => import("./KS_AWS_SECRETSMANAGER_00132")),
+  },
+  {
     path: "/docs",
     component: () => <Redirect to="/docs/introduction" />,
   },

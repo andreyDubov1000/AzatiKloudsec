@@ -323,6 +323,10 @@ const docNavigations: Array<Navigation> = [
                 title: "SSM parameter is not encrypted",
                 url: "/docs/KS_AWS_SSM_00131",
               },
+              {
+                title: "Secret is not encrypted using customer managed key",
+                url: "/docs/KS_AWS_SECRETSMANAGER_00132",
+              },
             ],
           },
           {
