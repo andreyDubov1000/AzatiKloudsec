@@ -327,6 +327,10 @@ const docNavigations: Array<Navigation> = [
                 title: "Secret is not encrypted using customer managed key",
                 url: "/docs/KS_AWS_SECRETSMANAGER_00132",
               },
+              {
+                title: "Amazon Storage Gateway is not encrypted using customer managed key",
+                url: "/docs/KS_AWS_STORAGE_GATEWAY_00134",
+              },
             ],
           },
           {
