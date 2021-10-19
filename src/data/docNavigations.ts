@@ -331,6 +331,10 @@ const docNavigations: Array<Navigation> = [
                 title: "Amazon Storage Gateway is not encrypted using customer managed key",
                 url: "/docs/KS_AWS_STORAGE_GATEWAY_00134",
               },
+              {
+                title: "EMR cluster is not encrypting data In-Transit and At-Rest",
+                url: "/docs/KS_AWS_EMR_00135",
+              },
             ],
           },
           {

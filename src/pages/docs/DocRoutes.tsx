@@ -315,6 +315,10 @@ const docRoutes = [
     component: lazy(() => import("./KS_AWS_STORAGE_GATEWAY_00134")),
   },
   {
+    path: "/docs/KS_AWS_EMR_00135",
+    component: lazy(() => import("./KS_AWS_EMR_00135")),
+  },
+  {
     path: "/docs",
     component: () => <Redirect to="/docs/introduction" />,
   },
