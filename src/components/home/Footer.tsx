@@ -137,7 +137,7 @@ const supportLink = [
 const companyLink = [
   {
     title: "About",
-    url: "/about-ur",
+    url: "/about-us",
   },
   {
     title: "Privacy Policy",
