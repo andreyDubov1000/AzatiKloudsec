@@ -16,7 +16,7 @@ const topbarNavigations = [
     children: [
       {
         title: "Blog",
-        extlink: "https://www.wordpress.com",
+        extlink: "https://kloudsec.medium.com",
       },
       {
         title: "Careers",

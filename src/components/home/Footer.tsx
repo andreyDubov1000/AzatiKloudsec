@@ -122,7 +122,7 @@ const Footer = () => {
 const supportLink = [
   {
     title: "Blog",
-    extLink: "https://www.wordpress.com",
+    extLink: "https://kloudsec.medium.com",
   },
   {
     title: "FAQ",

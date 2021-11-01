@@ -133,7 +133,7 @@ const planList = [
     price: 15,
     offerings: "For up to 100 resources",
     buttonText: "START FREE TRIAL",
-    scrollId: "schedule-a-demo",
+    url: "/signup",
     serviceList: [
       "Api Key: 10 calls per day",
       "Scheduled Scans: Once every 24 hours",
@@ -148,7 +148,7 @@ const planList = [
     price: 79,
     offerings: "For up to 200 resources",
     buttonText: "SCHEDULE A DEMO",
-    url: "/signup",
+    scrollId: "schedule-a-demo",
     serviceList: [
       "Everything in Developer",
       "Api Key: 50 calls per day",
@@ -164,7 +164,7 @@ const planList = [
     price: 799,
     offerings: "Starting from 201 resources",
     buttonText: "SCHEDULE A DEMO",
-    url: "/signup",
+    scrollId: "schedule-a-demo",
     serviceList: [
       "Everything in Standard",
       "Api Key: starting from 51 calls per day",
