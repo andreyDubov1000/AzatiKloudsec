@@ -1,17 +1,22 @@
-import s from '../../css/sidenav.module.css'
+import s from './sidenav.module.css'
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation, useRouteMatch } from 'react-router-dom'
 
 interface SidenavMenuItemProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string
   to: string
   icon: () => React.ReactNode
+  iconActive: () => React.ReactNode
 }
 
-const SidenavMenuItem = ({ title, icon, to }: SidenavMenuItemProps) => {
+const SidenavMenuItem = ({ title, icon, iconActive, to }: SidenavMenuItemProps) => {
+  const location = useLocation()
+  const regExp = new RegExp(`${to}($|/)`)
+  const isMatchLocation = location.pathname.match(regExp)
+
   return (
     <NavLink className={s.menu_item} activeClassName={s.active} to={to}>
-      {icon()}
+      {isMatchLocation ? iconActive() : icon()}
       <span>{title}</span>
     </NavLink>
   )

@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../../css/sidenav.module.css'
+import styles from './sidenav.module.css'
 import { ReactComponent as Exit } from '../../assets/Exit normal.svg'
 import SidenavMenuItem from './SidenavMenuItem'
 import protectedLayoutSidenavNavigations from '@data/protectedLayoutSidenavNavigations'
@@ -33,7 +33,13 @@ const SidenavMenuPanel = () => {
       </Link>
 
       {protectedLayoutSidenavNavigations.map((item) => (
-        <SidenavMenuItem to={item.path} key={item.path} title={item.title} icon={() => <item.icon className={styles.link_icon} />} />
+        <SidenavMenuItem
+          to={item.path}
+          key={item.path}
+          title={item.title}
+          icon={() => <item.icon className={styles.link_icon} />}
+          iconActive={() => <img src={item.iconActive} className={styles.link_icon} />}
+        />
       ))}
       <div className={`${styles.menu_item} ${styles.menu_item_exit}`} onClick={handleSignOut}>
         <Exit className={styles.link_icon} />
