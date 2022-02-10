@@ -1,4 +1,4 @@
-import s from './sidenav.module.css'
+import styles from './sidenav.module.css'
 import React from 'react'
 import { NavLink, useLocation, useRouteMatch } from 'react-router-dom'
 
@@ -15,7 +15,7 @@ const SidenavMenuItem = ({ title, icon, iconActive, to }: SidenavMenuItemProps) 
   const isMatchLocation = location.pathname.match(regExp)
 
   return (
-    <NavLink className={s.menu_item} activeClassName={s.active} to={to}>
+    <NavLink className={styles.menu_item} activeClassName={styles.active} to={to}>
       {isMatchLocation ? iconActive() : icon()}
       <span>{title}</span>
     </NavLink>

@@ -1,0 +1,30 @@
+.incidents_layout {
+  display: flex;
+  box-sizing: border-box;
+  margin: 0;
+  height: 100vh;
+  background-image: url('../../assets/backgrounds/mainlayoutbackgroundblue.png'),
+    url('../../assets/backgrounds/mainlayoutbackgroundlightblue.png');
+  background-size: 100% 80%, 100% 90%;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+
+.incident_list {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0px 8px 12px rgba(154, 154, 154, 0.25);
+  min-width: 27rem;
+  min-height: 39.6rem;
+  width: 30%;
+  height: calc(100vh - 150px);
+  margin: 2rem;
+  padding: 1.25rem;
+  border: 2px solid black;
+}
+
+/* .filters_panel {
+  display: flex;
+} */
