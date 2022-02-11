@@ -8,6 +8,7 @@ interface IInputSearchProps extends React.DetailedHTMLProps<React.InputHTMLAttri
 
 const InputSearch: React.FC<IInputSearchProps> = ({ onClick, ...props }) => {
   const handleClick = () => {}
+  // const onChange = (event)=> {setEnteredSearchValue(event.target.value)}
 
   return (
     <div className={styles.search_bar} onClick={onClick || handleClick}>

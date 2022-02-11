@@ -21,5 +21,5 @@ export function useSearchFilter<P extends ISearchItem<keyof P>>(items: P[], filt
     })
   }
 
-  return [availableItems, enteredSearchValue, setEnteredSearchValue]
+  return { availableItems, enteredSearchValue, setEnteredSearchValue }
 }

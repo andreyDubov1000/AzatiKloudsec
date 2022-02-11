@@ -22,9 +22,9 @@
   height: calc(100vh - 150px);
   margin: 2rem;
   padding: 1.25rem;
-  border: 2px solid black;
 }
 
-/* .filters_panel {
+.filters_panel {
   display: flex;
-} */
+  align-items: center;
+}

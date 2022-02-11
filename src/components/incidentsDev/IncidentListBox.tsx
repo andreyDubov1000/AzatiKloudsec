@@ -1,12 +1,10 @@
 import styles from './incidents.module.css'
 import { useSearchFilter } from './searchFilter'
-import CustomMenu from '@component/atoms/CustomMenu'
-import { IconButton, MenuItem, TextField } from '@material-ui/core'
-import { ArrowDownward, ArrowUpward, Search, Tune } from '@material-ui/icons'
 import React, { useCallback, useState } from 'react'
 import ScrollBar from 'react-perfect-scrollbar'
 import IncidentCard, { IncidentCardProps } from './IncidentCard'
 import InputSearch from '../../elements/InputSearch'
+import DropDownMenu from './DropDownMenu'
 
 export interface IncidentListProps {
   incidentList: IncidentCardProps[]
@@ -24,8 +22,9 @@ const IncidentList: React.FC<IncidentListProps> = ({
   setSelectedIncident,
 }) => {
   const [dateOrder, setDateOrder] = useState<'asc' | 'desc' | null>(null)
+
   const queryProps = ['AccountId', 'Severity', 'VulnerabilityId', 'Category']
-  const [availableItems, enteredSearchValue, setEnteredSearchValue] = useSearchFilter<any>(incidentList, queryProps)
+  const { availableItems, enteredSearchValue, setEnteredSearchValue } = useSearchFilter<any>(incidentList, queryProps)
 
   const onSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event?.target?.value?.toLowerCase()
@@ -52,30 +51,22 @@ const IncidentList: React.FC<IncidentListProps> = ({
   const handleMenuClick = () => {
     if (dateOrder) setDateOrder(dateOrder === 'desc' ? 'asc' : 'desc')
     else setDateOrder('desc')
-
     sortList('VulnerabilityDate', dateOrder || 'asc')
   }
+
+  // const onInputSearchQuery = useCallback(
+  //   (event: React.ChangeEvent<HTMLInputElement>) => {
+  //
+  //     setEnteredSearchValue(event.target.value)
+  //   },
+  //   [setEnteredSearchValue]
+  // )
 
   return (
     <div className={styles.incident_list}>
       <div className={styles.filters_panel}>
         <InputSearch />
-        <CustomMenu
-          handler={
-            <IconButton sx={{ ml: '0.75rem' }}>
-              <Tune fontSize='small' />
-            </IconButton>
-          }
-        >
-          <MenuItem onClick={handleMenuClick}>
-            Sort by Date
-            {dateOrder && dateOrder === 'asc' ? (
-              <ArrowUpward fontSize='small' sx={{ fontSize: 12, color: 'grey.600', ml: '0.5rem' }} />
-            ) : (
-              <ArrowDownward fontSize='small' sx={{ fontSize: 12, color: 'grey.600', ml: '0.5rem' }} />
-            )}
-          </MenuItem>
-        </CustomMenu>
+        <DropDownMenu />
       </div>
       <ScrollBar className='scrollbar'>
         {incidentList.map((item) => (
