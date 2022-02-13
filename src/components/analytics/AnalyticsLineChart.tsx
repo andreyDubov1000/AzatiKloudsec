@@ -178,7 +178,7 @@ const AnalyticsLineChart: React.FC<AnalyticsLineChartProps> = ({
           height: "60vh",
         }}
       >
-        <Line type="line" data={data} options={options} plugins={plugins} />
+        {/* <Line type="line" data={data} options={options} plugins={plugins} /> */}
       </CustomBox>
     </Card>
   );
