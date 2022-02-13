@@ -1,0 +1,113 @@
+.button {
+  outline: none;
+  border: none;
+  font-weight: bold;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none;
+  word-spacing: 8px;
+  text-transform: capitalize;
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  &.low {
+    background: linear-gradient(
+      77.57deg,
+      #ea6aff 28.64%,
+      rgba(254, 188, 74, 0.73) 182.17%
+    );
+
+    &.inactive,
+    &:disabled {
+      opacity: 0.5;
+    }
+    &:hover {
+      box-shadow: 0px 4px 12px rgba(134, 22, 152, 0.6);
+    }
+    &:active:focus,
+    &.asClicked {
+      box-shadow: inset 0px 4px 4px #a900c5;
+    }
+  }
+  &.medium {
+    background: linear-gradient(
+      82.33deg,
+      #febc4a 41.92%,
+      rgba(241, 127, 71, 0.64) 152.36%
+    );
+
+    &.inactive,
+    &:disabled {
+      opacity: 0.5;
+    }
+    &:hover {
+      box-shadow: 0px 4px 12px rgba(204, 123, 0, 0.6);
+    }
+    &:active:focus,
+    &.asClicked {
+      box-shadow: inset 0px 4px 4px #c27500;
+    }
+  }
+  &.high {
+    background: linear-gradient(
+      80.58deg,
+      #f17f47 60.65%,
+      rgba(229, 59, 59, 0.57) 126.55%
+    );
+
+    &.inactive,
+    &:disabled {
+      opacity: 0.5;
+    }
+    &:hover {
+      box-shadow: 0px 4px 12px rgba(196, 78, 46, 0.6);
+    }
+    &:active:focus,
+    &.asClicked {
+      box-shadow: inset 0px 4px 4px #d22d00;
+    }
+  }
+  &.critical {
+    background: linear-gradient(
+      81.19deg,
+      rgba(235, 65, 116, 0.93) -13.53%,
+      #de2f2f 79.45%
+    );
+
+    &.inactive,
+    &:disabled {
+      opacity: 0.5;
+    }
+    &:hover {
+      box-shadow: 0px 4px 12px rgba(205, 0, 6, 0.6);
+    }
+    &:active:focus,
+    &.asClicked {
+      box-shadow: inset 0px 4px 4px #ac0207;
+    }
+  }
+  &.big {
+    width: 224px;
+    height: 80px;
+    font-size: 18px;
+    line-height: 28px;
+    border-radius: 16px;
+  }
+  &.small {
+    font-style: normal;
+    font-weight: 600;
+    width: 35px;
+    height: 28px;
+  }
+  &.circle {
+    width: 24px;
+    height: 24px;
+  }
+  &.ring {
+    width: 24px;
+    height: 24px;
+  }
+}

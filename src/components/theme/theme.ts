@@ -254,6 +254,7 @@ const theme = createTheme({
       },
     },
   },
+  
 });
 
 theme.shadows[1] = "0px 1px 3px rgba(3, 0, 71, 0.09)";

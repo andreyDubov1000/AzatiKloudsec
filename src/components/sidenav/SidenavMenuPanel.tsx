@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './sidenav.module.css'
+import styles from './sidenav.module.scss'
 import { ReactComponent as Exit } from '../../assets/Exit normal.svg'
 import SidenavMenuItem from './SidenavMenuItem'
 import protectedLayoutSidenavNavigations from '@data/protectedLayoutSidenavNavigations'

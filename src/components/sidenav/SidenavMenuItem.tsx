@@ -1,4 +1,4 @@
-import s from './sidenav.module.css'
+import s from './sidenav.module.scss'
 import React from 'react'
 import { NavLink, useLocation, useRouteMatch } from 'react-router-dom'
 
