@@ -1,22 +1,28 @@
 import React, { useState } from 'react'
 import styles from './DropDownMenu.module.css'
-
-import { ReactComponent as DropdownIcon } from '../../assets/Dropdown.svg'
 import DropDownItem from './DropDownItem'
 import { dropDownAccounts, idAccType } from './incidentAccounts'
+import { useLocalStorage } from './useLocalStorage'
 
 const DropDownMenu = () => {
-  const [accId, setAccId] = useState<idAccType>(null)
-  const [dateOrder, setDateOrder] = useState<'asc' | 'desc'>('desc')
+  const [savedSelectedAcc, setSavedSelectedAcc] = useLocalStorage<idAccType>(null, 'selectedAcc')
+  const [savedSelectedDateOrder, setSavedSelectedDateOrder] = useLocalStorage<'asc' | 'desc'>('desc', 'selectedDateOrder')
+  const [dateOrder, setDateOrder] = useState(savedSelectedDateOrder)
+  const [accId, setAccId] = useState(savedSelectedAcc)
 
   const onAccClick = (event: React.MouseEvent) => {
     const item: Element = event.currentTarget
-    const selectedAcc = item.getAttribute('data-account') as idAccType
-    selectedAcc === accId ? setAccId(null) : setAccId(selectedAcc)
+    let nameAcc = item.getAttribute('data-account') as idAccType
+
+    if (nameAcc === accId) nameAcc = null
+    setAccId(nameAcc)
+    setSavedSelectedAcc(nameAcc)
   }
 
-  const onDateOrderClick = (event: React.MouseEvent) => {
-    setDateOrder(dateOrder === 'desc' ? 'asc' : 'desc')
+  const onDateOrderClick = () => {
+    const newDateOrder = dateOrder === 'desc' ? 'asc' : 'desc'
+    setDateOrder(newDateOrder)
+    setSavedSelectedDateOrder(newDateOrder)
 
     // sortList('VulnerabilityDate', dateOrder || 'asc')
   }

@@ -1,3 +1,5 @@
+@import './vars.css';
+
 .search_bar,
 .search_border {
   box-sizing: border-box;
@@ -11,7 +13,9 @@
   padding-left: 1rem;
   padding-right: 1rem;
   background: transparent;
+
   font: inherit;
+  font-weight: 600;
 }
 
 .search_border {
@@ -29,9 +33,10 @@
   outline: none;
   font: inherit;
   background: transparent;
-  z-index: 1;
   padding-left: 1.2rem;
   transition: all 0.3s ease-out;
+
+  z-index: var(--z-index-high);
 }
 
 .search_bar input::-webkit-search-decoration,
@@ -46,7 +51,6 @@
   user-select: none;
   text-indent: 0rem;
   transition: 0.3s ease-out;
-  font-weight: 600;
 }
 
 .search_icon {

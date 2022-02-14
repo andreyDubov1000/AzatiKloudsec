@@ -12,19 +12,19 @@
   width: 2.5rem;
 }
 
-.menu_handler.active:first-child {
-  background-image: url('../../assets/Dropdown\ click.png');
+.menu_handler.active {
+  background-image: url('../../assets/icons/Dropdown\ click.png');
 }
 
-.menu_handler:first-child {
-  background-image: url('../../assets/Dropdown\ regular.png');
+.menu_handler {
+  background-image: url('../../assets/icons/Dropdown\ regular.png');
   background-repeat: no-repeat;
   background-size: initial;
   background-position: center;
   transition: all 0.3s ease-out;
 }
-.menu_handler:hover:first-child {
-  background-image: url('../../assets/Dropdown\ hover.png');
+.menu_handler:hover {
+  background-image: url('../../assets/icons/Dropdown\ hover.png');
 }
 
 .menu_handler:hover ~ .menu_list {
@@ -46,7 +46,7 @@
   filter: drop-shadow(0px, 4px, 8px, rgba(25, 62, 174, 0.2));
   background-color: #ffffff;
   min-width: 10rem;
-  box-shadow: 0px 8px 12px 1px rgba(154, 154, 154, 0.25);
+  box-shadow: 0 0.5rem 0.75rem 1px rgba(154, 154, 154, 0.25);
   z-index: 1;
 }
 
@@ -79,7 +79,7 @@
   visibility: hidden;
   opacity: 0;
 
-  border-radius: 0px 0px 8px 8px;
+  border-radius: 0 0 0.5rem 0.5rem;
 }
 
 .menu_list svg {

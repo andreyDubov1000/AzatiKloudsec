@@ -1,8 +1,7 @@
-import CustomFlexBox from '@component/atoms/CustomFlexBox'
-import styles from './incidents.module.css'
+import styles from './Incidents.module.css'
 import Loader from '@component/atoms/Loader'
 import PageTitle from '@component/atoms/PageTitle'
-import { IncidentCardProps } from '@component/incidents/IncidentCard'
+import { IncidentCardProps } from '@component/incidentsDev/IncidentCard'
 import IncidentDetails from '@component/incidents/IncidentDetails'
 import IncidentList from './IncidentListBox'
 import { useAppSelector } from '@redux/hooks'
@@ -11,8 +10,17 @@ import { debounce } from 'lodash'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { getOverallUserAccountStatus, getUserAccountStatus } from 'services/incidentService'
+import { IIncidentsStateCard } from '@redux/incidents/incidentsReducer'
 
-const UserIncidents = () => {
+interface IUserIncidentsProps {
+  low: IIncidentsStateCard[]
+  medium: IIncidentsStateCard[]
+  high: IIncidentsStateCard[]
+  critical: IIncidentsStateCard[]
+  getAllAccStatus: any
+}
+
+const UserIncidents = ({ low, medium, high, critical, getAllAccStatus }: IUserIncidentsProps) => {
   const [loading, setLoading] = useState(true)
   const [motherList, setMotherList] = useState<IncidentCardProps[]>([])
   const [incidentList, setIncidentList] = useState<IncidentCardProps[]>([])
@@ -27,7 +35,6 @@ const UserIncidents = () => {
     if (user?.user_id) {
       setLoading(true)
       let list: IncidentCardProps[] = []
-
       try {
         if (slug) {
           const data = await getUserAccountStatus(user.user_id, slug)
@@ -35,12 +42,9 @@ const UserIncidents = () => {
             list = data.Vulnerabilities
           }
         } else {
-          const data = await getOverallUserAccountStatus(user.user_id)
-          if (data) {
-            const { LOW, MEDIUM, HIGH, CRITICAL } = data.UserSecurityVulnerabilityStatus
-
-            list = [...LOW, ...MEDIUM, ...HIGH, ...CRITICAL]
-          }
+          getAllAccStatus(user.user_id)
+          list = [...low, ...medium, ...high, ...critical]
+          console.log(list)
         }
 
         list = list.map((item) => ({

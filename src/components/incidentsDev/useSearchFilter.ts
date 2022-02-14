@@ -3,7 +3,7 @@ import { useDebounce } from './debounce'
 
 type ISearchItem<T extends string | number | symbol> = Record<T, any>
 
-export function useSearchFilter<P extends ISearchItem<keyof P>>(items: P[], filterProps: (keyof P)[]) {
+export function useSearchFilter<P extends Partial<ISearchItem<keyof P>>>(items: P[], filterProps: (keyof P)[]) {
   const [enteredSearchValue, setEnteredSearchValue] = useState<string>('')
   const activeSearchValue = useDebounce(enteredSearchValue, 300)
   let availableItems = items

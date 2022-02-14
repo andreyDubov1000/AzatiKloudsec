@@ -1,0 +1,76 @@
+.container {
+  box-sizing: border-box;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  margin: 0.75rem 1.625rem;
+}
+
+.container div {
+  height: 2.5rem;
+  width: 2.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.container input {
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.container div .low {
+  background: url('../../assets/icons/Low hover.svg') center no-repeat;
+  box-shadow: 0 0.25rem 0.75rem rgba(134, 22, 152, 0.6);
+}
+
+.container div:hover .low {
+  background: url('../../assets/icons/Low hover.svg') center no-repeat;
+  box-shadow: none;
+}
+
+.container div:active .low {
+  /* background: black; */
+  background: url('../../assets/icons/Low\ active.svg') center no-repeat;
+  box-shadow: none;
+}
+
+.container .medium {
+  background: url('../../assets/icons/Medium hover.svg') center no-repeat;
+  /* background-image: linear-gradient(82.33deg, #febc4a 41.92%, rgba(241, 127, 71, 0.64) 152.36%); */
+  box-shadow: 0 0.25rem 0.75rem rgba(204, 123, 0, 0.6);
+}
+.container div:hover .medium {
+  background: url('../../assets/icons/Medium hover.svg') center no-repeat;
+  box-shadow: none;
+}
+
+.container .high {
+  background: url('../../assets/icons/High hover.svg') center no-repeat;
+  /* background-image: linear-gradient(80.58deg, #f17f47 60.65%, rgba(229, 59, 59, 0.57) 126.55%); */
+  box-shadow: 0 0.25rem 0.75rem rgba(196, 78, 46, 0.6);
+}
+
+.container div:hover .high {
+  background: url('../../assets/icons/High hover.svg') center no-repeat;
+  box-shadow: none;
+}
+
+.container .critical {
+  background: url('../../assets/icons/Critical hover.svg') center no-repeat;
+  /* background-image: linear-gradient(81.19deg, rgba(235, 65, 116, 0.93) -13.53%, #de2f2f64 79.45%); */
+  box-shadow: 0 0.25rem 0.75rem rgba(196, 78, 46, 0.6);
+}
+
+.container div:hover .critical {
+  background: url('../../assets/icons/Critical hover.svg') center no-repeat;
+  box-shadow: none;
+}

@@ -5,12 +5,11 @@ import { vulnerabilityColor } from '@data/constants'
 import { Vulnerability } from '@data/types'
 import { Card } from '@material-ui/core'
 import { RadioButtonChecked } from '@material-ui/icons'
-import { SxProps } from '@material-ui/system'
 import { format } from 'date-fns'
 import React from 'react'
+import { IIncidentsStateCard } from '@redux/incidents/incidentsReducer'
 
-export interface IncidentCardProps {
-  sx?: SxProps
+export interface IncidentCardProps extends IIncidentsStateCard {
   id?: string
   AccountId: string
   Category: string
@@ -25,28 +24,21 @@ export interface IncidentCardProps {
   VulnerabilityId: string
   SecurityGroupId: string
   IsSilentVulnerability?: string
-  onClick: (incident: any) => void
+  onClick?: (incident: any) => void
 }
 
-const IncidentCard: React.FC<IncidentCardProps> = ({
-  sx = {},
-  VulnerabilityDescription,
-  VulnerabilityDate,
-  Severity,
-  VulnerabilityId,
-  onClick,
-}) => {
+const IncidentCard: React.FC<IncidentCardProps> = ({ VulnerabilityDescription, VulnerabilityDate, Severity, VulnerabilityId, onClick }) => {
   return (
     <Card
-      sx={{
-        display: 'flex',
-        p: '1rem',
-        mb: '1px',
-        bgcolor: 'primary.contrastText',
-        cursor: 'pointer',
-        borderLeft: '3px solid transparent',
-        ...sx,
-      }}
+      // sx={{
+      //   display: 'flex',
+      //   p: '1rem',
+      //   mb: '1px',
+      //   bgcolor: 'primary.contrastText',
+      //   cursor: 'pointer',
+      //   borderLeft: '3px solid transparent',
+      //   ...sx,
+      // }}
       onClick={onClick}
     >
       <CustomBox sx={{ mr: '1.5rem', flex: '1 1 0' }}>

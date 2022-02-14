@@ -1,6 +1,6 @@
 import styles from './sidenav.module.css'
 import React from 'react'
-import { NavLink, useLocation, useRouteMatch } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 
 interface SidenavMenuItemProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string

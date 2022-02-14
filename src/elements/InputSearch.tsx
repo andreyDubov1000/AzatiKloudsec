@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './InputSearch.module.css'
-import { ReactComponent as SearchIcon } from '../assets/Icons search.svg'
+import { ReactComponent as SearchIcon } from 'assets/icons/search bold.svg'
 
 interface IInputSearchProps extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   onClick?: (e: React.MouseEvent) => void

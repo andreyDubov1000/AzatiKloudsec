@@ -1,0 +1,104 @@
+@import './vars.css';
+
+.modal_overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: var(--z-index-max);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 21.375rem;
+  min-width: 21.375rem;
+  height: 18.375rem;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 0.75rem rgba(154, 154, 154, 0.25);
+  padding: 3.31rem 2.81rem 3.81rem 2.81rem;
+  user-select: none;
+  transition: all 0.3s ease-out;
+  transform: scale(0);
+}
+
+.content.active {
+  transform: scale(1);
+}
+
+.content span,
+.content h4 {
+  text-align: center;
+}
+
+.content h4 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  color: #727787;
+
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.content span {
+  margin-bottom: 2rem;
+  color: #0f2978;
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.87rem;
+  line-height: 1.5rem;
+}
+
+.exit_cross {
+  align-content: center;
+  align-self: flex-end;
+  border: none;
+  outline: none;
+  height: 2.5rem;
+  width: 2.5rem;
+  padding: 0;
+  margin-left: 0.75rem;
+  margin-top: 0.75rem;
+  background-color: transparent;
+  margin-right: -2.06rem;
+  margin-top: -2.56rem;
+}
+
+.exit_cross {
+  transition: all 0.3s ease-out;
+  fill: #bbc0d0;
+}
+
+.exit_cross:hover,
+.exit_cross:focus {
+  fill: #023ae0;
+}
+
+.exit_cross:active {
+  fill: #f66996;
+}
+
+.buttons_container {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 2.5rem;
+  align-items: baseline;
+}
+
+.buttons_container button:not(:first-child) {
+  margin-left: 0.75rem;
+}
