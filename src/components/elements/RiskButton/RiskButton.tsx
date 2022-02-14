@@ -38,7 +38,7 @@ const RiskButton = ({
       onClick={onClick}
     >
       {variant === "big" && `${children} ${risk}`}
-      {variant === "small" && risk}
+      {variant === "small" && children}
     </Button>
   );
 };
