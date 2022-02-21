@@ -14,7 +14,7 @@ div.navbar {
   font-size: 1rem;
   font-style: normal;
   line-height: 1.12rem;
-  font-weight: 600;
+  font-weight: 600 !important;
   a {
     color: white;
     text-decoration: none;
@@ -29,7 +29,7 @@ div.navbar {
 
 .navbar_logo {
   display: block;
-  content: url('../../assets/logo-white.svg');
+  content: url('../../assets/icons/logo-white.svg');
   width: 5.75rem;
 }
 
@@ -40,7 +40,7 @@ div.navbar {
   width: 12.5rem;
   height: 2.5rem;
   padding: 0.8rem;
-  border-radius: 40px;
+  border-radius: 2.5rem;
   margin-bottom: 0.65rem;
   transition: 0.3s ease-out;
 }

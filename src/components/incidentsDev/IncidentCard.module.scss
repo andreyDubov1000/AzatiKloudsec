@@ -1,0 +1,62 @@
+.card {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 100%;
+  height: fit-content;
+  border-radius: 8px;
+  padding: {
+    top: 14px;
+    bottom: 13px;
+    right: 20px;
+  }
+  background-color: #f8f8f8;
+  margin: 8px 0px;
+
+  div:first-child {
+    text-align: center;
+    margin: auto 0;
+    width: 60px;
+  }
+
+  .text {
+    width: 223px;
+    display: flex;
+    flex-direction: column;
+
+    .description {
+      color: #0f2978;
+      font-weight: bold;
+      font-size: 15px;
+      line-height: 28px;
+      margin-bottom: 8px;
+    }
+    .id {
+      color: #727787;
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+
+  .data {
+    display: flex;
+    align-items: center;
+    width: 80px;
+    font-size: 12px;
+    line-height: 16px;
+    color: #727787;
+    text-align: center;
+  }
+
+  &:hover {
+    .description,
+    .data,
+    .id {
+      color: #023ae0;
+    }
+  }
+
+  &.active {
+    background-color: #e6f5f9;
+  }
+}

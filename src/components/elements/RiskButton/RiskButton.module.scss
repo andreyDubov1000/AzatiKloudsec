@@ -14,11 +14,7 @@
     box-shadow: none;
   }
   &.low {
-    background: linear-gradient(
-      77.57deg,
-      #ea6aff 28.64%,
-      rgba(254, 188, 74, 0.73) 182.17%
-    );
+    background: linear-gradient(77.57deg, #ea6aff 28.64%, rgba(254, 188, 74, 0.73) 182.17%);
 
     &.inactive,
     &:disabled {
@@ -33,11 +29,7 @@
     }
   }
   &.medium {
-    background: linear-gradient(
-      82.33deg,
-      #febc4a 41.92%,
-      rgba(241, 127, 71, 0.64) 152.36%
-    );
+    background: linear-gradient(82.33deg, #febc4a 41.92%, rgba(241, 127, 71, 0.64) 152.36%);
 
     &.inactive,
     &:disabled {
@@ -52,11 +44,7 @@
     }
   }
   &.high {
-    background: linear-gradient(
-      80.58deg,
-      #f17f47 60.65%,
-      rgba(229, 59, 59, 0.57) 126.55%
-    );
+    background: linear-gradient(80.58deg, #f17f47 60.65%, rgba(229, 59, 59, 0.57) 126.55%);
 
     &.inactive,
     &:disabled {
@@ -71,11 +59,7 @@
     }
   }
   &.critical {
-    background: linear-gradient(
-      81.19deg,
-      rgba(235, 65, 116, 0.93) -13.53%,
-      #de2f2f 79.45%
-    );
+    background: linear-gradient(81.19deg, rgba(235, 65, 116, 0.93) -13.53%, #de2f2f 79.45%);
 
     &.inactive,
     &:disabled {
@@ -105,6 +89,7 @@
   &.circle {
     width: 24px;
     height: 24px;
+    border-radius: 50%;
   }
   &.ring {
     width: 24px;

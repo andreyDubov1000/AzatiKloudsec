@@ -1,40 +1,33 @@
-import Menu from "@material-ui/core/Menu";
-import { CSSProperties } from "@material-ui/styles";
-import React, { Children, cloneElement, Fragment, ReactElement } from "react";
+import Menu from '@material-ui/core/Menu'
+import { CSSProperties } from '@material-ui/styles'
+import React, { Children, cloneElement, Fragment, ReactElement } from 'react'
 
 interface MenuProps {
-  open?: boolean;
-  direction?: "left" | "right" | "center";
-  children: ReactElement | ReactElement[];
-  handler: ReactElement;
-  className?: string;
-  style?: CSSProperties;
-  shouldCloseOnItemClick?: boolean;
-  elevation?: number;
+  open?: boolean
+  direction?: 'left' | 'right' | 'center'
+  children: ReactElement | ReactElement[]
+  handler: ReactElement
+  className?: string
+  style?: CSSProperties
+  shouldCloseOnItemClick?: boolean
+  elevation?: number
 }
 
-const CustomMenu: React.FC<MenuProps> = ({
-  open,
-  handler,
-  direction,
-  shouldCloseOnItemClick,
-  children,
-  ...props
-}) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+const CustomMenu: React.FC<MenuProps> = ({ open, handler, direction, shouldCloseOnItemClick, children, ...props }) => {
+  const [anchorEl, setAnchorEl] = React.useState(null)
 
   const handleClick = (event: any) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
 
   const handleClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
   const handleMenuItemClick = (customOnClick: any) => () => {
-    if (customOnClick) customOnClick();
-    if (shouldCloseOnItemClick) handleClose();
-  };
+    if (customOnClick) customOnClick()
+    if (shouldCloseOnItemClick) handleClose()
+  }
 
   return (
     <Fragment>
@@ -48,12 +41,12 @@ const CustomMenu: React.FC<MenuProps> = ({
         open={open !== undefined ? open : !!anchorEl}
         onClose={handleClose}
         anchorOrigin={{
-          vertical: "bottom",
-          horizontal: direction || "left",
+          vertical: 'bottom',
+          horizontal: direction || 'left',
         }}
         transformOrigin={{
-          vertical: "top",
-          horizontal: direction || "left",
+          vertical: 'top',
+          horizontal: direction || 'left',
         }}
         {...props}
       >
@@ -64,12 +57,12 @@ const CustomMenu: React.FC<MenuProps> = ({
         )}
       </Menu>
     </Fragment>
-  );
-};
+  )
+}
 
 CustomMenu.defaultProps = {
-  direction: "left",
+  direction: 'left',
   shouldCloseOnItemClick: true,
-};
+}
 
-export default CustomMenu;
+export default CustomMenu

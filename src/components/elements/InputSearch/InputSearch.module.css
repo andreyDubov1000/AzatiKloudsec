@@ -1,0 +1,92 @@
+@import '../vars.css';
+
+.search_bar,
+.search_border {
+  box-sizing: border-box;
+  display: flex;
+  position: relative;
+  align-items: center;
+  height: 2.5rem;
+  border-radius: 1.5rem;
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background: transparent;
+
+  font: inherit;
+  font-weight: 600;
+}
+
+.search_border {
+  position: absolute;
+  border: solid 2px #bbc0d0;
+  top: 0;
+  left: 0;
+  transition: 0.3s ease-out;
+}
+
+.search_bar input {
+  height: 2rem;
+  width: 100%;
+  border: none;
+  outline: none;
+  font: inherit;
+  background: transparent;
+  padding-left: 1.2rem;
+  transition: all 0.3s ease-out;
+
+  z-index: var(--z-index-high);
+}
+
+.search_bar input::-webkit-search-decoration,
+.search_bar input::-webkit-search-cancel-button,
+.search_bar input::-webkit-search-results-button,
+.search_bar input::-webkit-search-results-decoration {
+  display: none;
+}
+
+.search_bar input::-webkit-input-placeholder {
+  color: #bbc0d0;
+  user-select: none;
+  text-indent: 0rem;
+  transition: 0.3s ease-out;
+}
+
+.search_icon {
+  position: absolute;
+  left: 0.8rem;
+  height: 1.125rem;
+  width: 1.125rem;
+  fill: #bbc0d0;
+  transition: 0.2s ease-out;
+}
+
+.search_bar:hover {
+  border: transparent;
+}
+
+.search_bar input:hover ~ .search_border {
+  border: solid 2px #0f2978;
+}
+
+.search_bar:hover :-webkit-input-placeholder {
+  color: #0f2978;
+}
+
+.search_bar input:focus {
+  color: #0f2978;
+  caret-color: 0f2978;
+  padding-left: 0;
+}
+
+.search_bar input:focus ~ .search_border {
+  border: solid 2px #0f2978;
+}
+
+.search_bar input:focus ~ .search_icon {
+  fill: transparent;
+}
+
+.search_bar input:focus::-webkit-input-placeholder {
+  text-indent: -5rem;
+}

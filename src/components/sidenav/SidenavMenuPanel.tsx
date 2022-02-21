@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './sidenav.module.scss'
-import { ReactComponent as Exit } from '../../assets/Exit normal.svg'
+import { ReactComponent as Exit } from 'assets/icons/Exit normal.svg'
 import SidenavMenuItem from './SidenavMenuItem'
-import protectedLayoutSidenavNavigations from '@data/protectedLayoutSidenavNavigations'
+import protectedLayoutSidenavNavigations from '@component/sidenav/SidenavNavigations'
 import { SIGN_OUT } from '@redux/auth/authTypes'
 import { useAppDispatch, useAppSelector } from '@redux/hooks'
 import ScrollBar from 'react-perfect-scrollbar'
@@ -38,7 +38,7 @@ const SidenavMenuPanel = () => {
           key={item.path}
           title={item.title}
           icon={() => <item.icon className={styles.link_icon} />}
-          iconActive={() => <img src={item.iconActive} className={styles.link_icon} />}
+          iconActive={() => <img src={item.iconActive} className={styles.link_icon} alt={'icon'} />}
         />
       ))}
       <div className={`${styles.menu_item} ${styles.menu_item_exit}`} onClick={handleSignOut}>
