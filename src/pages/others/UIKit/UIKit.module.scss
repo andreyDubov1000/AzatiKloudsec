@@ -1,10 +1,19 @@
 .kit {
   margin: 15px;
 }
+
+.kitList {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  justify-content: center;
+}
+
 .card {
   border-radius: 4px;
+  width: 100%;
   max-width: 300px;
-  margin: 15px 0;
+  margin: 20px;
   border: 1px solid rgba(0, 0, 0, 0.12);
   overflow: hidden;
 }
