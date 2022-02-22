@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
-import { ButtonSimple, InputSearch, ModalPopUP, RiskButton } from '@component/elements';
-import AvatarEl from '@component/elements/AvatarEl/AvatarEl';
-import ToggleButton from '@component/elements/ToggleButton/ToggleButton';
+import {
+  AvatarEl,
+  ButtonSimple,
+  InputSearch,
+  ModalPopUP,
+  RiskButton,
+  ToggleButton,
+  PlanCard,
+} from '@component/elements';
 
 import s from './UIKit.module.scss';
 
@@ -33,11 +39,11 @@ const UIKit = () => {
       title: 'No',
       handler: () => {},
     },
-  ]
+  ];
 
   return (
     <div className={s.kit}>
-      <h1 style={{textAlign: 'center'}}>Ui Kit</h1>
+      <h1 style={{ textAlign: 'center' }}>Ui Kit</h1>
       <div className={s.kitList}>
         <UiKitCard title='Risk Button'>
           <RiskButton />
@@ -49,22 +55,25 @@ const UIKit = () => {
           <InputSearch />
         </UiKitCard>
         <UiKitCard title='Modal Popup'>
-        <div>
-          <ModalPopUP
-            modalActive={modalActive}
-            setModalActive={setModalActive}
-            titleOne={'Exceptions'}
-            titleTwo={'Do you want to see all the exceptions?'}
-            buttons={buttons}
-          />
-          <ButtonSimple title='Open Modal' onClick={() => setModalActive(true)} />
-        </div>
+          <div>
+            <ModalPopUP
+              modalActive={modalActive}
+              setModalActive={setModalActive}
+              titleOne={'Exceptions'}
+              titleTwo={'Do you want to see all the exceptions?'}
+              buttons={buttons}
+            />
+            <ButtonSimple title='Open Modal' onClick={() => setModalActive(true)} />
+          </div>
         </UiKitCard>
         <UiKitCard title='Avatar'>
           <AvatarEl imgSrc='/assets/images/faces/testAvatar.png' size='big' />
         </UiKitCard>
         <UiKitCard title='Toggle Button'>
           <ToggleButton onChange={(state) => console.log(state)} />
+        </UiKitCard>
+        <UiKitCard title='Plan Card'>
+          <PlanCard amount='$150' term='/per month' desc='For up to 100 resources' type='Developer' />
         </UiKitCard>
       </div>
     </div>
