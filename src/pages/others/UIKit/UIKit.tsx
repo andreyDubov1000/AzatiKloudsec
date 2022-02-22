@@ -7,18 +7,20 @@ import {
   RiskButton,
   ToggleButton,
   PlanCard,
+  TextTab,
 } from '@component/elements';
 
 import s from './UIKit.module.scss';
 
 interface UiKitCardPropsType {
   title: string;
+  bgColor?: string;
   children: JSX.Element;
 }
 
-const UiKitCard = ({ title, children }: UiKitCardPropsType) => {
+const UiKitCard = ({ title, bgColor, children }: UiKitCardPropsType) => {
   return (
-    <div className={s.card}>
+    <div style={{ background: bgColor }} className={s.card}>
       <div className={s.desc}>
         <p>{title}</p>
       </div>
@@ -74,6 +76,12 @@ const UIKit = () => {
         </UiKitCard>
         <UiKitCard title='Plan Card'>
           <PlanCard amount='$150' term='/per month' desc='For up to 100 resources' type='Developer' />
+        </UiKitCard>
+        <UiKitCard title='Text Tab'>
+          <TextTab
+            title='Overview'
+            desc='The Kloudsec security allows you to run confidently your cloud related resources without ever worrying about security vulnerabilities. Whether you need to continuously run...'
+          />
         </UiKitCard>
       </div>
     </div>

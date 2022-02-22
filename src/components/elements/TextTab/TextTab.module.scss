@@ -1,0 +1,30 @@
+.textTab {
+  padding: 14px;
+  border-radius: 15px;
+  background-color: #fff;
+  color: #0f2978;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+
+  &:hover {
+    background-color: #f8f8f8;
+    color: #023ae0;
+  }
+
+  &:active {
+    background-color: #e6f5f9;
+    color: #0f2978;
+  }
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.desc {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+}

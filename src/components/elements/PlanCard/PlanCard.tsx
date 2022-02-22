@@ -14,7 +14,7 @@ interface PlanCardPropTypes {
   className?: string;
 }
 
-export const PlanCard = ({ badge = true, badgeText = 'Available', onClick, amount, term, desc, type, className }: PlanCardPropTypes) => {
+const PlanCard = ({ badge = true, badgeText = 'Available', onClick, amount, term, desc, type, className }: PlanCardPropTypes) => {
   const [active, setActive] = useState(false);
 
   const toggle = () => {
@@ -42,3 +42,5 @@ export const PlanCard = ({ badge = true, badgeText = 'Available', onClick, amoun
     </div>
   );
 };
+
+export default PlanCard;
