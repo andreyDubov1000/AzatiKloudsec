@@ -21,6 +21,10 @@ const otherRoutes = [
     path: "/terms-of-service",
     component: lazy(() => import("./TermsOfService")),
   },
+  {
+    path: "/ui-kit",
+    component: lazy(() => import("./UIKit/UIKit")),
+  },
 ];
 
 export default otherRoutes;
