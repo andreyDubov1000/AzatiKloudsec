@@ -1,14 +1,15 @@
 import React from 'react'
 import styles from './Incidents.module.css'
-import { Vulnerability } from './useSeverityFilter'
+import { SeverityType, Vulnerability } from './useSeverityFilter'
 import RiskButton from '../elements/RiskButton/RiskButton'
 
-interface ISeverityFilter extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+interface ISeverityFilter {
   handler: (e: any) => any
   hasSeverityArr: number[]
+  severitySet: Set<SeverityType>
 }
 
-const SeverityFilter = ({ handler, hasSeverityArr, ...props }: ISeverityFilter) => {
+const SeverityFilter = ({ handler, hasSeverityArr, severitySet }: ISeverityFilter) => {
   return (
     <div className={styles.severity_container}>
       {Vulnerability.map((item, i) => {
@@ -19,6 +20,7 @@ const SeverityFilter = ({ handler, hasSeverityArr, ...props }: ISeverityFilter) 
             risk={item.toLowerCase() as 'low' | 'medium' | 'high' | 'critical'}
             onClick={handler}
             disabled={!hasSeverityArr[i]}
+            showAsClicked={!!severitySet.size && severitySet.has(item)}
           />
         )
       })}

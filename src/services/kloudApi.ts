@@ -21,6 +21,10 @@ class KloudApi {
   }
 
   private static handleError = (error: any) => {
+    if (_axios.isCancel(error)) {
+      console.log(error)
+      return
+    }
     const message = error.response?.data?.error_message || error.response?.data?.message || 'Unknown error'
     NotificationManager.error(message)
 
@@ -29,7 +33,7 @@ class KloudApi {
     return null
   }
 
-  public static get = async (url: string, config?: AxiosRequestConfig | undefined) => {
+  public static get = async (url: string, config?: AxiosRequestConfig) => {
     try {
       const response = await KloudApi.axios.get(url, config)
       return response.data

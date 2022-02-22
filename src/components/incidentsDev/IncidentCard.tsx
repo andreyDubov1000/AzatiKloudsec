@@ -1,8 +1,8 @@
 import styles from './IncidentCard.module.scss'
-import low from '../../assets/icons/low mini.png'
-import medium from '../../assets/icons/medium mini.png'
-import high from '../../assets/icons/high mini.png'
-import critical from '../../assets/icons/critical mini.png'
+import lowIcon from '../../assets/icons/low mini.png'
+import mediumIcon from '../../assets/icons/medium mini.png'
+import highIcon from '../../assets/icons/high mini.png'
+import criticalIcon from '../../assets/icons/critical mini.png'
 import { Vulnerability } from '@data/types'
 import { format } from 'date-fns'
 import React from 'react'
@@ -28,10 +28,10 @@ export interface IncidentCardProps {
 }
 
 export const severityIcons = {
-  CRITICAL: critical,
-  HIGH: high,
-  MEDIUM: medium,
-  LOW: low,
+  CRITICAL: criticalIcon,
+  HIGH: highIcon,
+  MEDIUM: mediumIcon,
+  LOW: lowIcon,
 }
 
 const IncidentCard: React.FC<IncidentCardProps> = ({
@@ -45,7 +45,7 @@ const IncidentCard: React.FC<IncidentCardProps> = ({
   return (
     <div className={`${styles.card}  ${isActive ? styles.active : null}`} onClick={onClick}>
       <div>
-        <img src={severityIcons[Severity]} />
+        <img src={severityIcons[Severity]} alt={'Risk icon'} />
       </div>
       <div className={styles.text}>
         <span className={styles.description}>{VulnerabilityDescription}</span>

@@ -9,7 +9,7 @@ type PopUpButtonsType = {
   handler: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
-interface modalPopUPProps {
+interface modalPopUpProps {
   modalActive: boolean
   setModalActive: React.Dispatch<React.SetStateAction<boolean>>
   titleOne?: string
@@ -19,7 +19,7 @@ interface modalPopUPProps {
   children?: React.ReactNode
 }
 
-const ModalPopUP = ({ modalActive, handlerReset, buttons, setModalActive, children, ...props }: modalPopUPProps) => {
+const ModalPopUp = ({ modalActive, handlerReset, buttons, setModalActive, children, ...props }: modalPopUpProps) => {
   const ref = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
@@ -70,4 +70,4 @@ const ModalPopUP = ({ modalActive, handlerReset, buttons, setModalActive, childr
   )
 }
 
-export default ModalPopUP
+export default ModalPopUp

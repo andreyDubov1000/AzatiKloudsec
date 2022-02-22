@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { IncidentCardProps } from './IncidentCard'
 import { useLocalStorage } from './useLocalStorage'
 
@@ -7,7 +7,6 @@ export const Vulnerability: SeverityType[] = ['LOW', 'MEDIUM', 'HIGH', 'CRITICAL
 
 export const useSeverityFilter = (list: IncidentCardProps[]) => {
   const [savedSeveritySet, setSavedSeveritySet] = useLocalStorage<SeverityType[] | null>(null, 'severitySet')
-
   const [severitySet, setSeveritySet] = useState<Set<SeverityType>>(new Set(savedSeveritySet))
   const currentSet = severitySet.size ? severitySet : new Set(Vulnerability)
 
@@ -16,15 +15,10 @@ export const useSeverityFilter = (list: IncidentCardProps[]) => {
     return false
   })
 
-  const setSeverity = useCallback(
-    async (setFunc: (set: Set<SeverityType>) => Set<SeverityType>) => {
-      setSeveritySet(setFunc)
-      const SeverityArr = Array.from(severitySet)
-      setSavedSeveritySet(SeverityArr)
-      //debugger
-    },
-    [setSavedSeveritySet, setSeveritySet]
-  )
+  useEffect(() => {
+    const SeverityArr = Array.from(severitySet)
+    setSavedSeveritySet(SeverityArr)
+  }, [severitySet, setSavedSeveritySet])
 
-  return [severityList, severitySet, setSeverity] as const
+  return [severityList, severitySet, setSeveritySet] as const
 }

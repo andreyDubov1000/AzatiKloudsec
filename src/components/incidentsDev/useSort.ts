@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocalStorage } from './useLocalStorage'
 
 type ISearchItem<T extends string | number | symbol> = Record<T, any>
@@ -23,13 +23,9 @@ export function useSort<P extends Partial<ISearchItem<keyof P>>>(list: P[], filt
     return 0
   })
 
-  const setOrder = useCallback(
-    (order: 'asc' | 'desc') => {
-      setSortOrder(order)
-      setSavedSelectedSortOrder(order)
-    },
-    [setSortOrder, setSavedSelectedSortOrder]
-  )
+  useEffect(() => {
+    setSavedSelectedSortOrder(sortOrder)
+  }, [sortOrder, setSavedSelectedSortOrder])
 
-  return [sortedList, sortOrder, setOrder] as const
+  return [sortedList, sortOrder, setSortOrder] as const
 }

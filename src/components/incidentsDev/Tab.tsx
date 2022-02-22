@@ -8,7 +8,6 @@ interface ITabsProps {
 const Tabs: React.FC<ITabsProps> = ({ first, second }) => {
   const [activeTab, setActiveTab] = useState(1)
 
-  const toggleTab = () => {}
   return (
     <div className={styles.container}>
       <div className={styles.bloc_tabs}>

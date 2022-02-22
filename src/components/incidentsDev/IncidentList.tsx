@@ -1,10 +1,11 @@
 import styles from './Incidents.module.css'
-import React, { useCallback, useState } from 'react'
+import React, { useState } from 'react'
 import ScrollBar from 'react-perfect-scrollbar'
 import IncidentCard, { IncidentCardProps } from './IncidentCard'
 import DropDownMenu from './DropDownMenu'
-import { ModalPopUP, InputSearch } from '../elements/index'
+import { ModalPopUp, InputSearch } from '../elements/index'
 import SeverityFilter from './SeverityFilter'
+import { SeverityType } from './useSeverityFilter'
 
 export interface IncidentListProps {
   incidentList: IncidentCardProps[]
@@ -16,8 +17,11 @@ export interface IncidentListProps {
   dateOrder: 'asc' | 'desc'
   handleDateSort: () => void
   onSeverityClickHandler: (event: React.MouseEvent) => void
+  severitySet: Set<SeverityType>
   lastBookElementRef: (node: any) => void
   handleIncidentCardClick: (incident: IncidentCardProps) => () => any
+  onAccCloudClick: (event: React.MouseEvent) => any
+  accCloud: string
 }
 
 const IncidentList: React.FC<IncidentListProps> = ({
@@ -29,8 +33,11 @@ const IncidentList: React.FC<IncidentListProps> = ({
   handleDateSort,
   dateOrder,
   onSeverityClickHandler,
+  severitySet,
   lastBookElementRef,
   handleIncidentCardClick,
+  onAccCloudClick,
+  accCloud,
 }) => {
   console.log('render IncidentList')
 
@@ -49,7 +56,7 @@ const IncidentList: React.FC<IncidentListProps> = ({
 
   return (
     <div className={styles.incident_list}>
-      <ModalPopUP
+      <ModalPopUp
         modalActive={modalActive}
         setModalActive={setModalActive}
         titleOne={'Exceptions'}
@@ -58,9 +65,9 @@ const IncidentList: React.FC<IncidentListProps> = ({
       />
       <div className={styles.filters_panel}>
         <InputSearch onChange={handleSearch} value={enteredSearchValue} />
-        <DropDownMenu handleDateSort={handleDateSort} dateOrder={dateOrder} />
+        <DropDownMenu handleDateSort={handleDateSort} dateOrder={dateOrder} onAccCloudClick={onAccCloudClick} accCloud={accCloud} />
       </div>
-      <SeverityFilter handler={onSeverityClickHandler} hasSeverityArr={hasSeverityArr} />
+      <SeverityFilter handler={onSeverityClickHandler} hasSeverityArr={hasSeverityArr} severitySet={severitySet} />
 
       <input type='button' onClick={() => setModalActive(true)} />
 
