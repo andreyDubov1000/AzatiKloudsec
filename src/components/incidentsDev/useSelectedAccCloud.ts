@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { IncidentCardProps } from './IncidentCard'
+import { IncidentCardTypes } from './IncidentCard'
 import { useLocalStorage } from './useLocalStorage'
 import { useSearchFilter } from './useSearchFilter'
 
@@ -27,9 +27,9 @@ export const dropDownAccounts = [
   },
 ]
 
-const useSelectedAccCloud = (list: IncidentCardProps[]) => {
+const useSelectedAccCloud = (list: IncidentCardTypes[]) => {
   const [savedSelectedAccCloud, setSavedSelectedAccCloud] = useLocalStorage<AccServiceType>('AWS', 'selectedAccCloud')
-  const [filteredList, accCloud, setAccCloud] = useSearchFilter<IncidentCardProps>(
+  const [filteredList, accCloud, setAccCloud] = useSearchFilter<IncidentCardTypes>(
     list,
     ['VulnerabilityId'],
     savedSelectedAccCloud as string

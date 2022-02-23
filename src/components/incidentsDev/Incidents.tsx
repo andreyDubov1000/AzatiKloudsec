@@ -1,7 +1,7 @@
 import styles from './Incidents.module.css'
 import Loader from '@component/atoms/Loader'
 import PageTitle from '@component/atoms/PageTitle'
-import { IncidentCardProps } from '@component/incidentsDev/IncidentCard'
+import { IncidentCardTypes } from '@component/incidentsDev/IncidentCard'
 import IncidentDetails from '@component/incidentsDev/IncidentDetails'
 import IncidentList from './IncidentList'
 import { useAppSelector } from '@redux/hooks'
@@ -18,17 +18,15 @@ import useSelectedAccCloud, { AccServiceType } from './useSelectedAccCloud'
 const UserIncidents = () => {
   console.log('render UserIncidents')
 
-  const queryProps = ['AccountId', 'Severity', 'VulnerabilityId', 'Category', 'VulnerabilityDescription'] as Array<
-    keyof Omit<IncidentCardProps, 'onClick' | 'isActive'>
-  >
-  const [sourceOverallRef, getUserAllAccountStatus] = useGetOverallUserAccountStatus()
+  const queryProps = ['AccountId', 'Severity', 'VulnerabilityId', 'Category', 'VulnerabilityDescription'] as Array<keyof IncidentCardTypes>
+  const [sourceOverallRef, getOverallUserAccountStatus] = useGetOverallUserAccountStatus()
   const [loading, setLoading] = useState(true)
   const [hasSeverityArr, setHasSeverityArr] = useState<number[]>([])
-  const [selectedIncident, setSelectedIncident] = useState<any>(null)
-  const [motherList, setMotherList] = useState<IncidentCardProps[]>([])
+  const [selectedIncident, setSelectedIncident] = useState<IncidentCardTypes | null>(null)
+  const [motherList, setMotherList] = useState<IncidentCardTypes[]>([])
   const [severityList, severitySet, setSeveritySet] = useSeverityFilter(motherList)
   const [searchList, enteredSearchValue, setEnteredSearchValue] = useSearchFilter(severityList, queryProps)
-  const [orderedList, sortOrder, setOrder] = useSort<IncidentCardProps>(searchList, 'VulnerabilityDate')
+  const [orderedList, sortOrder, setOrder] = useSort<IncidentCardTypes>(searchList, 'VulnerabilityDate')
   const [filteredList, accCloud, setAccCloud] = useSelectedAccCloud(orderedList)
   const [incidentList, lastBookElementRef, setPageNum] = usePagination(filteredList, 10)
   const { user } = useAppSelector((store) => store.auth)
@@ -40,14 +38,14 @@ const UserIncidents = () => {
   const loadData = useCallback(async () => {
     if (user?.user_id) {
       setLoading(true)
-      let list: IncidentCardProps[] = []
+      let list: IncidentCardTypes[] = []
       let severityArr: number[] = []
       try {
         if (slug) {
           const data = await getUserAccountStatus(user.user_id, slug)
           list = data?.Vulnerabilities
         } else {
-          const data = await getUserAllAccountStatus(user.user_id)
+          const data = await getOverallUserAccountStatus(user.user_id)
           if (data && data.UserSecurityVulnerabilityStatus) {
             const { LOW = [], MEDIUM = [], HIGH = [], CRITICAL = [] } = data.UserSecurityVulnerabilityStatus
             severityArr = [LOW.length, MEDIUM.length, HIGH.length, CRITICAL.length]
@@ -65,7 +63,7 @@ const UserIncidents = () => {
         setLoading(false)
       }
     }
-  }, [slug, user, getUserAllAccountStatus])
+  }, [slug, user, getOverallUserAccountStatus])
 
   const handleSearch = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -76,8 +74,8 @@ const UserIncidents = () => {
     [setEnteredSearchValue, setPageNum]
   )
 
-  const handleIncidentCardClick = useCallback(
-    (incident: IncidentCardProps) => () => {
+  const onIncidentCardClickhandler = useCallback(
+    (incident: IncidentCardTypes) => () => {
       setSelectedIncident(incident)
     },
     [setSelectedIncident]
@@ -141,11 +139,11 @@ const UserIncidents = () => {
           selectedIncident={selectedIncident}
           setSelectedIncident={setSelectedIncident}
           lastBookElementRef={lastBookElementRef}
-          handleIncidentCardClick={handleIncidentCardClick}
+          onIncidentCardClickhandler={onIncidentCardClickhandler}
           onAccCloudClick={onAccCloudClick}
           accCloud={accCloud}
         />
-        <IncidentDetails incident={selectedIncident} setIncidentList={setMotherList} />
+        <IncidentDetails selectedIncident={selectedIncident} setIncidentList={setMotherList} />
       </div>
     </div>
   )

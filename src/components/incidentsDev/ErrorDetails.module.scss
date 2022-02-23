@@ -63,7 +63,33 @@
 }
 
 .error_details {
+  width: 100%;
   margin-bottom: 16px;
+
+  div {
+    display: table-row;
+    margin-bottom: 4px;
+
+    span {
+      display: table-cell;
+      padding-left: 4px;
+      font-size: 14px;
+      line-height: 24px;
+      font-weight: 400;
+      color: #0f2978;
+    }
+
+    span:first-child {
+      width: 25%;
+      min-width: 164px;
+      padding-left: 0px;
+    }
+
+    span:last-child {
+      padding-left: 24px;
+      font-weight: 600;
+    }
+  }
 }
 
 .exception_button {

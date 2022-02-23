@@ -46,11 +46,48 @@
   color: #bbc0d0;
 }
 
-.tab-content {
-  background-color: aquamarine;
-}
-
 .incident_details {
   width: 60%;
   margin-left: 0;
+}
+
+.incident_details h2 {
+  margin-bottom: 6px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28px;
+  color: #0f2978;
+}
+
+.Details_title {
+  display: flex;
+  align-items: center;
+  justify-content: baseline;
+  margin-bottom: 26px;
+}
+
+.Details_title span {
+  margin: 0 4px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  color: #0f2978;
+}
+
+.Details_title .devider {
+  margin: 0 6px;
+  width: 0;
+  border: 1px solid #0f2978;
+  height: 28px;
+}
+
+.Details_title img {
+  height: 16px;
+  width: 16px;
+}
+
+.Details_title .vulnerabilityId {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
 }

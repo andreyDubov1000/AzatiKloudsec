@@ -1,11 +1,11 @@
 import React from 'react'
 import styles from './ButtonPopUp.module.css'
 
-interface IButtonSimple extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+interface IButtonPopUp extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   title?: string
 }
 
-const ButtonSimple: React.FC<IButtonSimple> = ({ title, ...props }) => {
+const ButtonPopUp: React.FC<IButtonPopUp> = ({ title, ...props }) => {
   return (
     <button type={'button'} className={styles.button_simple} {...props}>
       {title}
@@ -13,4 +13,4 @@ const ButtonSimple: React.FC<IButtonSimple> = ({ title, ...props }) => {
   )
 }
 
-export default ButtonSimple
+export default ButtonPopUp

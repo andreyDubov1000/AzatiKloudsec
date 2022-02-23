@@ -7,7 +7,7 @@ import { Vulnerability } from '@data/types'
 import { format } from 'date-fns'
 import React from 'react'
 
-export interface IncidentCardProps {
+export interface IncidentCardTypes {
   id?: string
   AccountId: string
   Category: string
@@ -23,8 +23,10 @@ export interface IncidentCardProps {
   SecurityExceptionComment?: string
   SecurityGroupId: string
   IsSilentVulnerability?: string
-  isActive: boolean
+}
+interface IncidentCardProps extends IncidentCardTypes {
   onClick?: (incident: any) => any
+  isActive: boolean
 }
 
 export const severityIcons = {

@@ -22,17 +22,20 @@
   font-size: 15px;
   line-height: 28px;
 
+  &.asClicked,
   &:focus,
   &:active:focus {
     @extend %reset_style;
     background-image: linear-gradient(99.66%, #f66996 12.44%, #ff7070 90.29%);
   }
+
   &:hover {
     @extend %reset_style;
     background-color: #e6f5f9;
     color: #023ae0;
     border: solid 1px #023ae0;
   }
+  &.inactive,
   &:disabled {
     @extend %reset_style;
     background-color: #bbc0d0;

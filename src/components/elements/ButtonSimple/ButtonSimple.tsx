@@ -16,7 +16,7 @@ const ButtonSimple = ({ children, showAsClicked, onClick, className, inactive, d
   return (
     <Button
       disabled={disabled}
-      className={classNames(styles.button, showAsClicked && styles.asClicked, inactive && 'inactive', className)}
+      className={classNames(styles.button, showAsClicked && styles.asClicked, inactive && styles.inactive, className)}
       onClick={onClick}
     >
       {children}

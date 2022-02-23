@@ -1,8 +1,8 @@
 import { Link } from '@material-ui/core'
 import React from 'react'
-import { IncidentCardProps } from './IncidentCard'
+import { IncidentCardTypes } from './IncidentCard'
 
-const ErrorFix: React.FC<IncidentCardProps> = ({ VulnerabilityDoc }) => {
+const ErrorFix: React.FC<IncidentCardTypes> = ({ VulnerabilityDoc }) => {
   return (
     <>
       <Link href={VulnerabilityDoc} target='_blank' rel='noopener noreferrer'>

@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import styles from './ModalPopUp.module.scss'
 import { ReactComponent as Cross } from 'assets/icons/times-square-Regular.svg'
-import { ButtonSimple } from '../index'
 import { trapFocusTab } from './trapFocusTab'
+import ButtonPopUp from './ButtonPopUp'
 
 type PopUpButtonsType = {
   title: string
@@ -57,9 +57,9 @@ const ModalPopUp = ({ modalActive, handlerReset, buttons, setModalActive, childr
               {buttons && buttons.length
                 ? buttons.map((item, i, array) => {
                     if (i === array.length - 1) {
-                      return <ButtonSimple key={i} onClick={item.handler} title={item.title} autoFocus={true} />
+                      return <ButtonPopUp key={i} onClick={item.handler} title={item.title} autoFocus={true} />
                     }
-                    return <ButtonSimple key={i} onClick={item.handler} title={item.title} />
+                    return <ButtonPopUp key={i} onClick={item.handler} title={item.title} />
                   })
                 : null}
             </div>
