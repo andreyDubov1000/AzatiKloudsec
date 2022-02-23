@@ -54,7 +54,11 @@ const IncidentDetails: React.FC<IncidentDetailsProps> = ({ selectedIncident, set
           />
         </>
       ) : (
-        <div></div>
+        <div className={styles.empty_list}>
+          <span>No account has been integrated.</span>
+          <span>Click here to add your first account.</span>
+          <div></div>
+        </div>
       )}
     </div>
   )

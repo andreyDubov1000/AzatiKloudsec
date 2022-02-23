@@ -122,7 +122,7 @@ const UserIncidents = () => {
   return loading ? (
     <Loader />
   ) : (
-    <div>
+    <>
       <h1>Incidents</h1>
       <div className={styles.incidents_layout}>
         <PageTitle title='Current Security Incidents' />
@@ -144,7 +144,7 @@ const UserIncidents = () => {
         />
         <IncidentDetails selectedIncident={selectedIncident} setIncidentList={setMotherList} />
       </div>
-    </div>
+    </>
   )
 }
 

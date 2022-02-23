@@ -76,7 +76,7 @@ const ErrorDetails: React.FC<IncidentCardTypes & ErrorDetailsProps> = ({
     setComment(target.value)
   }
 
-  console.log(SecurityExceptionComment, props)
+  console.log(props)
   const regExp = /[A-Z]/g
 
   return (
