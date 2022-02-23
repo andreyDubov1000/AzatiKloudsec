@@ -3,13 +3,14 @@ import {
   AvatarEl,
   ButtonSimple,
   InputSearch,
-  ModalPopUP,
+  ModalPopUp,
   RiskButton,
   ToggleButton,
   PlanCard,
   TextTab,
   SecondMenu,
 } from '@component/elements';
+import {Link} from 'react-router-dom';
 
 import s from './UIKit.module.scss';
 import menuNav from '@component/elements/SecondMenu/menuNav';
@@ -47,27 +48,28 @@ const UIKit = () => {
 
   return (
     <div className={s.kit}>
+      <Link to={'/dashboard/risk-management'}>Back</Link>
       <h1 style={{ textAlign: 'center' }}>Ui Kit</h1>
       <div className={s.kitList}>
         <UiKitCard title='Risk Button'>
           <RiskButton />
         </UiKitCard>
         <UiKitCard title='Simple Button'>
-          <ButtonSimple title='Accept' />
+          <ButtonSimple>Accept</ButtonSimple>
         </UiKitCard>
         <UiKitCard title='Input Search'>
           <InputSearch />
         </UiKitCard>
         <UiKitCard title='Modal Popup'>
           <div>
-            <ModalPopUP
+            <ModalPopUp
               modalActive={modalActive}
               setModalActive={setModalActive}
               titleOne={'Exceptions'}
               titleTwo={'Do you want to see all the exceptions?'}
               buttons={buttons}
             />
-            <ButtonSimple title='Open Modal' onClick={() => setModalActive(true)} />
+            <ButtonSimple onClick={() => setModalActive(true)} >Open Modal</ButtonSimple>
           </div>
         </UiKitCard>
         <UiKitCard title='Avatar'>

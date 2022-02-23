@@ -1,5 +1,5 @@
 import RiskButton from './RiskButton/RiskButton'
-import ButtonSimple from './ModalPopUp/ButtonSimple'
+import ButtonSimple from './ButtonSimple/ButtonSimple'
 import ModalPopUp from './ModalPopUp/ModalPopUp'
 import InputSearch from './InputSearch/InputSearch'
 import AvatarEl from './AvatarEl/AvatarEl'
