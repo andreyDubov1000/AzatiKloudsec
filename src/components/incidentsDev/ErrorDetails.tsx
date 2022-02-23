@@ -3,11 +3,11 @@ import { Button } from '@material-ui/core'
 import { useAppSelector } from '@redux/hooks'
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import ScrollBar from 'react-perfect-scrollbar'
-import { useLocation, useHistory } from 'react-router'
+import { useLocation } from 'react-router'
 import { createSecurityException, deleteSecurityException } from 'services/securityExceptionService'
 import { IncidentCardTypes } from './IncidentCard'
 import styles from './ErrorDetails.module.scss'
-import { ModalPopUp, ButtonSimple } from '@component/elements'
+import { ButtonSimple } from '@component/elements'
 
 type ErrorDetailsProps = {
   setIncidentList?: any

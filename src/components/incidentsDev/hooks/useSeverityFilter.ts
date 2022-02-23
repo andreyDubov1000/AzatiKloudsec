@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { IncidentCardTypes } from './IncidentCard'
+import { IncidentCardTypes } from '../IncidentCard'
 import { useLocalStorage } from './useLocalStorage'
 
 export type SeverityType = 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL'

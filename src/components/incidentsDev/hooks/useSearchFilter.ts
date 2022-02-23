@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useDebounce } from './debounce'
+import { useDebounce } from './useDebounce'
 
 type ISearchItem<T extends string | number | symbol> = Record<T, any>
 

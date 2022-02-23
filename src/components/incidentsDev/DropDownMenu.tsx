@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './DropDownMenu.module.css'
 import DropDownItem from './DropDownItem'
-import { dropDownAccounts } from './useSelectedAccCloud'
+import { dropDownAccounts } from './hooks/useSelectedAccCloud'
 
 interface IDropDownMenu {
   dateOrder: 'asc' | 'desc'

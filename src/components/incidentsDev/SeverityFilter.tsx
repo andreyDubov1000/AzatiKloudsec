@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Incidents.module.css'
-import { SeverityType, Vulnerability } from './useSeverityFilter'
-import RiskButton from '../elements/RiskButton/RiskButton'
+import { SeverityType, Vulnerability } from './hooks/useSeverityFilter'
+import {RiskButton} from '@component/elements'
 
 interface ISeverityFilter {
   handler: (e: any) => any

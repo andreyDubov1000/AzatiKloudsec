@@ -5,15 +5,15 @@ import { IncidentCardTypes } from '@component/incidentsDev/IncidentCard'
 import IncidentDetails from '@component/incidentsDev/IncidentDetails'
 import IncidentList from './IncidentList'
 import { useAppSelector } from '@redux/hooks'
-import { useQuery, uuid } from '@utils'
+import { uuid } from '@utils'
 import React, { useCallback, useEffect, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { getUserAccountStatus, useGetOverallUserAccountStatus } from 'services/incidentService'
-import { useSeverityFilter, SeverityType } from './useSeverityFilter'
-import { useSearchFilter } from './useSearchFilter'
-import { usePagination } from './usePagination'
-import { useSort } from './useSort'
-import useSelectedAccCloud, { AccServiceType } from './useSelectedAccCloud'
+import { useSeverityFilter, SeverityType } from './hooks/useSeverityFilter'
+import { useSearchFilter } from './hooks/useSearchFilter'
+import { usePagination } from './hooks/usePagination'
+import { useSort } from './hooks/useSort'
+import useSelectedAccCloud, { AccServiceType } from './hooks/useSelectedAccCloud'
 
 const UserIncidents = () => {
   console.log('render UserIncidents')
@@ -30,10 +30,9 @@ const UserIncidents = () => {
   const [filteredList, accCloud, setAccCloud] = useSelectedAccCloud(orderedList)
   const [incidentList, lastBookElementRef, setPageNum] = usePagination(filteredList, 10)
   const { user } = useAppSelector((store) => store.auth)
-  const { search } = useLocation()
   const { slug }: any = useParams()
-
-  const vulnerability = useQuery(search).get('vulnerability')
+  // const { search } = useLocation()
+  // const vulnerability = useQuery(search).get('vulnerability')
 
   const loadData = useCallback(async () => {
     if (user?.user_id) {
