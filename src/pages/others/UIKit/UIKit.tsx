@@ -8,9 +8,11 @@ import {
   ToggleButton,
   PlanCard,
   TextTab,
+  SecondMenu,
 } from '@component/elements';
 
 import s from './UIKit.module.scss';
+import menuNav from '@component/elements/SecondMenu/menuNav';
 
 interface UiKitCardPropsType {
   title: string;
@@ -82,6 +84,9 @@ const UIKit = () => {
             title='Overview'
             desc='The Kloudsec security allows you to run confidently your cloud related resources without ever worrying about security vulnerabilities. Whether you need to continuously run...'
           />
+        </UiKitCard>
+        <UiKitCard bgColor='#ccc' title='Text Tab'>
+          <SecondMenu items={menuNav} />
         </UiKitCard>
       </div>
     </div>

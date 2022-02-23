@@ -6,6 +6,7 @@ import AvatarEl from './AvatarEl/AvatarEl'
 import ToggleButton from './ToggleButton/ToggleButton'
 import PlanCard from './PlanCard/PlanCard'
 import TextTab from './TextTab/TextTab'
+import SecondMenu from './SecondMenu/SecondMenu'
 
-export { RiskButton, ButtonSimple, ModalPopUP, InputSearch,AvatarEl, ToggleButton, PlanCard, TextTab  }
+export { RiskButton, ButtonSimple, ModalPopUP, InputSearch, AvatarEl, ToggleButton, PlanCard, TextTab, SecondMenu  }
 
