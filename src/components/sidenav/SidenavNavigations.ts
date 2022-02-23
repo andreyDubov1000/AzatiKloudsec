@@ -72,6 +72,12 @@ const protectedLayoutSidenavNavigations = [
     icon: Documentation,
     iconActive: DocumentationActive,
   },
+  {
+    title: 'UI Kit',
+    path: '/ui-kit',
+    icon: Documentation,
+    iconActive: DocumentationActive,
+  },
 ]
 
 export default protectedLayoutSidenavNavigations
