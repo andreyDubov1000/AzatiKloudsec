@@ -9,8 +9,10 @@ import {
   PlanCard,
   TextTab,
   SecondMenu,
+  ActionButton,
+  CommentForm,
 } from '@component/elements';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import s from './UIKit.module.scss';
 import menuNav from '@component/elements/SecondMenu/menuNav';
@@ -69,7 +71,7 @@ const UIKit = () => {
               titleTwo={'Do you want to see all the exceptions?'}
               buttons={buttons}
             />
-            <ButtonSimple onClick={() => setModalActive(true)} >Open Modal</ButtonSimple>
+            <ButtonSimple onClick={() => setModalActive(true)}>Open Modal</ButtonSimple>
           </div>
         </UiKitCard>
         <UiKitCard title='Avatar'>
@@ -87,8 +89,14 @@ const UIKit = () => {
             desc='The Kloudsec security allows you to run confidently your cloud related resources without ever worrying about security vulnerabilities. Whether you need to continuously run...'
           />
         </UiKitCard>
-        <UiKitCard bgColor='#ccc' title='Text Tab'>
+        <UiKitCard bgColor='#ececec' title='Second Menu'>
           <SecondMenu items={menuNav} />
+        </UiKitCard>
+        <UiKitCard title='Action Button'>
+          <ActionButton icon='/assets/images/icons/assets/delete-user.svg'>Delete account</ActionButton>
+        </UiKitCard>
+        <UiKitCard bgColor='#ececec' title='Comment Form'>
+          <CommentForm placeholder='Exception comment' onChange={(value) => console.log(value)}></CommentForm>
         </UiKitCard>
       </div>
     </div>

@@ -7,6 +7,8 @@ import ToggleButton from './ToggleButton/ToggleButton'
 import PlanCard from './PlanCard/PlanCard'
 import TextTab from './TextTab/TextTab'
 import SecondMenu from './SecondMenu/SecondMenu'
+import ActionButton from './ActionButton/ActionButton'
+import CommentForm from './CommentForm/CommentForm'
 
-export { RiskButton, ButtonSimple, ModalPopUp, InputSearch, AvatarEl, ToggleButton, PlanCard, TextTab, SecondMenu  }
+export { RiskButton, ButtonSimple, ModalPopUp, InputSearch, AvatarEl, ToggleButton, PlanCard, TextTab, SecondMenu, ActionButton, CommentForm  }
 

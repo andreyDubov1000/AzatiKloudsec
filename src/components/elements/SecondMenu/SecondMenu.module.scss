@@ -8,37 +8,10 @@
   padding: 20px;
   border-radius: 16px;
   background-color: #fff;
+  transition: all 0.3s ease-out;
 }
 
 .content {
-}
-
-.item {
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 28px;
-  color: #0f2978;
-  padding: 6px 10px;
-  margin-bottom: 4px;
-  border-radius: 8px;
-  cursor: pointer;
-
-  &:hover {
-    color: #023ae0;
-  }
-
-  &:active {
-    background-color: #effcef;
-    color: #0f2978;
-  }
-}
-
-.active {
-  background-color: #ffefe2;
-}
-
-.activeSingle {
-  background-color: #e6f5f9;
 }
 
 .settings {
