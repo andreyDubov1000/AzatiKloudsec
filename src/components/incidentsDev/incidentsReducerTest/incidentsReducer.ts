@@ -1,5 +1,5 @@
-import { getOverallUserAccountStatus } from './../../services/securityExceptionService'
-import { Vulnerability } from '@data/types'
+//import { getOverallUserAccountStatus } from './../../services/securityExceptionService'
+import { SeverityType } from '@data/types'
 import { Dispatch } from 'react'
 
 export interface IIncidentsStateCard {
@@ -9,7 +9,7 @@ export interface IIncidentsStateCard {
   HasMfa: boolean
   IamUser: string
   Region: string
-  Severity: Vulnerability
+  Severity: SeverityType
   VulnerabilityDate: string
   VulnerabilityDescription: string
   VulnerabilityDoc: string
@@ -72,8 +72,8 @@ export const incidentsReducer = (state = initialState, action: IncidentActionTyp
 
 // ThunkCreators
 export const getAllAccStatusThunkCreators = (user_id: string) => async (dispath: Dispatch<IncidentActionType>) => {
-  const data = await getOverallUserAccountStatus(user_id)
-  if (data) {
-    dispath(setAccountStatusActionCreator(data.UserSecurityVulnerabilityStatus))
-  }
+  // const data = await getOverallUserAccountStatus(user_id)
+  // if (data) {
+  //   dispath(setAccountStatusActionCreator(data.UserSecurityVulnerabilityStatus))
+  // }
 }

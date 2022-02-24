@@ -7,21 +7,35 @@ import IncidentList from './IncidentList'
 import { useAppSelector } from '@redux/hooks'
 import { uuid } from '@utils'
 import React, { useCallback, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { getUserAccountStatus, useGetOverallUserAccountStatus } from 'services/incidentService'
-import { useSeverityFilter, SeverityType } from './hooks/useSeverityFilter'
+import { useLocation } from 'react-router-dom'
+import { useGetOverallUserAccountStatus } from 'services/incidentService'
+import { useSeverityFilter } from './hooks/useSeverityFilter'
+import { SeverityType } from '@data/types'
 import { useSearchFilter } from './hooks/useSearchFilter'
 import { usePagination } from './hooks/usePagination'
 import { useSort } from './hooks/useSort'
 import useSelectedAccCloud, { AccServiceType } from './hooks/useSelectedAccCloud'
+import { useGetAllSecurityExceptions } from 'services/securityExceptionService'
+
+const queryProps = [
+  'AccountId',
+  'Severity',
+  'VulnerabilityId',
+  'Category',
+  'VulnerabilityDescription',
+  'SecurityExceptionAuthor',
+  'SecurityExceptionComment',
+  'SecurityExceptionDate',
+  'SecurityExceptionId',
+] as Array<keyof IncidentCardTypes>
 
 const UserIncidents = () => {
   console.log('render UserIncidents')
 
-  const queryProps = ['AccountId', 'Severity', 'VulnerabilityId', 'Category', 'VulnerabilityDescription'] as Array<keyof IncidentCardTypes>
-  const [sourceOverallRef, getOverallUserAccountStatus] = useGetOverallUserAccountStatus()
   const [loading, setLoading] = useState(true)
   const [hasSeverityArr, setHasSeverityArr] = useState<number[]>([])
+  const [sourceStatusRef, getOverallUserAccountStatus] = useGetOverallUserAccountStatus()
+  const [sourceExceptionsRef, getAllSecurityExceptions] = useGetAllSecurityExceptions()
   const [selectedIncident, setSelectedIncident] = useState<IncidentCardTypes | null>(null)
   const [motherList, setMotherList] = useState<IncidentCardTypes[]>([])
   const [severityList, severitySet, setSeveritySet] = useSeverityFilter(motherList)
@@ -30,7 +44,10 @@ const UserIncidents = () => {
   const [filteredList, accCloud, setAccCloud] = useSelectedAccCloud(orderedList)
   const [incidentList, lastBookElementRef, setPageNum] = usePagination(filteredList, 10)
   const { user } = useAppSelector((store) => store.auth)
-  const { slug }: any = useParams()
+  const { pathname } = useLocation()
+  const isExceptionPage = pathname.includes('exceptions')
+
+  //  const { slug }: any = useParams()
   // const { search } = useLocation()
   // const vulnerability = useQuery(search).get('vulnerability')
 
@@ -40,9 +57,17 @@ const UserIncidents = () => {
       let list: IncidentCardTypes[] = []
       let severityArr: number[] = []
       try {
-        if (slug) {
-          const data = await getUserAccountStatus(user.user_id, slug)
-          list = data?.Vulnerabilities
+        if (isExceptionPage) {
+          const data = await getAllSecurityExceptions(user.user_id)
+          const dataList = data?.SecurityExceptions || []
+          list = dataList.map(({ VulnerabilityDetails = {}, ...item }) => {
+            return {
+              id: uuid(),
+              ...item,
+              ...VulnerabilityDetails,
+            }
+          })
+          severityArr = [1, 1, 1, 1]
         } else {
           const data = await getOverallUserAccountStatus(user.user_id)
           if (data && data.UserSecurityVulnerabilityStatus) {
@@ -50,11 +75,11 @@ const UserIncidents = () => {
             severityArr = [LOW.length, MEDIUM.length, HIGH.length, CRITICAL.length]
             list = [...LOW, ...MEDIUM, ...HIGH, ...CRITICAL]
           }
+          list = list.map((item) => ({
+            id: uuid(),
+            ...item,
+          }))
         }
-        list = list.map((item) => ({
-          id: uuid(),
-          ...item,
-        }))
         setHasSeverityArr(severityArr)
         setMotherList(list)
         setLoading(false)
@@ -62,7 +87,7 @@ const UserIncidents = () => {
         setLoading(false)
       }
     }
-  }, [slug, user, getOverallUserAccountStatus])
+  }, [user, isExceptionPage, getOverallUserAccountStatus, getAllSecurityExceptions])
 
   const handleSearch = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -111,9 +136,10 @@ const UserIncidents = () => {
   useEffect(() => {
     loadData()
     return () => {
-      if (sourceOverallRef.current) sourceOverallRef.current.cancel('Incidents cancel getting AllAccountStatus')
+      if (sourceStatusRef.current) sourceStatusRef.current.cancel('Incidents cancel getting AllAccountStatus')
+      if (sourceExceptionsRef.current) sourceExceptionsRef.current.cancel('Incidents cancel getting AllAccountExceptions')
     }
-  }, [loadData, sourceOverallRef])
+  }, [loadData, sourceStatusRef, sourceExceptionsRef])
 
   useEffect(() => {
     setSelectedIncident(null)
@@ -123,9 +149,9 @@ const UserIncidents = () => {
     <Loader />
   ) : (
     <>
-      <h1>Incidents</h1>
+      {isExceptionPage ? <h1>Exceptions</h1> : <h1>Incidents</h1>}
       <div className={styles.incidents_layout}>
-        <PageTitle title='Current Security Incidents' />
+        <PageTitle title={isExceptionPage ? 'Security Incidents' : 'Security Exceptions'} />
         <IncidentList
           incidentList={incidentList}
           dateOrder={sortOrder}
@@ -142,7 +168,7 @@ const UserIncidents = () => {
           onAccCloudClick={onAccCloudClick}
           accCloud={accCloud}
         />
-        <IncidentDetails selectedIncident={selectedIncident} setIncidentList={setMotherList} />
+        <IncidentDetails selectedIncident={selectedIncident} setIncidentList={setMotherList} isExceptionPage={isExceptionPage} />
       </div>
     </>
   )

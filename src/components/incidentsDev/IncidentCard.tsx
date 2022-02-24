@@ -1,11 +1,8 @@
 import styles from './IncidentCard.module.scss'
-import lowIcon from '../../assets/icons/low mini.png'
-import mediumIcon from '../../assets/icons/medium mini.png'
-import highIcon from '../../assets/icons/high mini.png'
-import criticalIcon from '../../assets/icons/critical mini.png'
-import { Vulnerability } from '@data/types'
+import { SeverityType } from '@data/types'
 import { format } from 'date-fns'
 import React from 'react'
+import { severityIcons } from '@data/constants'
 
 export interface IncidentCardTypes {
   id?: string
@@ -15,25 +12,23 @@ export interface IncidentCardTypes {
   HasMfa: boolean
   IamUser: string
   Region: string
-  Severity: Vulnerability
+  Severity: SeverityType
   VulnerabilityDate: string
   VulnerabilityDescription: string
   VulnerabilityDoc: string
   VulnerabilityId: string
-  SecurityExceptionComment?: string
+  ResourceVulnerabilityId: string
   SecurityGroupId: string
   IsSilentVulnerability?: string
+  AwsAccount: string
+  SecurityExceptionAuthor?: string
+  SecurityExceptionComment?: string
+  SecurityExceptionDate?: string
+  SecurityExceptionId?: string
 }
 interface IncidentCardProps extends IncidentCardTypes {
   onClick?: (incident: any) => any
   isActive: boolean
-}
-
-export const severityIcons = {
-  CRITICAL: criticalIcon,
-  HIGH: highIcon,
-  MEDIUM: mediumIcon,
-  LOW: lowIcon,
 }
 
 const IncidentCard: React.FC<IncidentCardProps> = ({
