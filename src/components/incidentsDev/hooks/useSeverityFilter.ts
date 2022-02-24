@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { SeverityType } from '@data/types'
+import { useEffect, useMemo, useState } from 'react'
 import { IncidentCardTypes } from '../IncidentCard'
 import { useLocalStorage } from './useLocalStorage'
 
-export type SeverityType = 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL'
 export const Vulnerability: SeverityType[] = ['LOW', 'MEDIUM', 'HIGH', 'CRITICAL']
 
 export const useSeverityFilter = (list: IncidentCardTypes[]) => {
@@ -10,10 +10,7 @@ export const useSeverityFilter = (list: IncidentCardTypes[]) => {
   const [severitySet, setSeveritySet] = useState<Set<SeverityType>>(new Set(savedSeveritySet))
   const currentSet = severitySet.size ? severitySet : new Set(Vulnerability)
 
-  const severityList = list.filter((listItem) => {
-    if (listItem.Severity) return currentSet.has(listItem.Severity)
-    return false
-  })
+  const severityList = useMemo(() => list.filter((listItem) => listItem.Severity && currentSet.has(listItem.Severity)), [currentSet, list])
 
   useEffect(() => {
     const SeverityArr = Array.from(severitySet)

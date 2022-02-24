@@ -2,7 +2,7 @@ import CustomBox from '@component/atoms/CustomBox'
 import CustomFlexBox from '@component/atoms/CustomFlexBox'
 import { Small, Span } from '@component/atoms/Typography'
 import { vulnerabilityColor } from '@data/constants'
-import { Vulnerability } from '@data/types'
+import { SeverityType } from '@data/types'
 import { Card } from '@material-ui/core'
 import { RadioButtonChecked } from '@material-ui/icons'
 import { SxProps } from '@material-ui/system'
@@ -19,7 +19,7 @@ export interface IncidentCardProps {
   HasMfa: boolean
   IamUser: string
   Region: string
-  Severity: Vulnerability
+  Severity: SeverityType
   VulnerabilityDate: string
   VulnerabilityDescription: string
   VulnerabilityDoc: string

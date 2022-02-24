@@ -25,9 +25,9 @@ const SecurityException = () => {
 
       try {
         const data = await getAllSecurityExceptions(user.user_id)
-
+        console.log(data)
         list = data?.SecurityExceptions || []
-        console.log(list)
+        //console.log(list)
         list = list.map(({ VulnerabilityDetails = {}, ...item }) => {
           return {
             id: uuid(),
@@ -37,7 +37,7 @@ const SecurityException = () => {
           }
         })
 
-        console.log(list)
+        //console.log(list)
 
         setExceptionList(list)
         setMotherList(list)

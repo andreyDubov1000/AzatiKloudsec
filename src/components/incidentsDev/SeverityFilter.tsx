@@ -1,15 +1,16 @@
 import React from 'react'
 import styles from './Incidents.module.css'
-import { SeverityType, Vulnerability } from './hooks/useSeverityFilter'
-import {RiskButton} from '@component/elements'
+import { Vulnerability } from './hooks/useSeverityFilter'
+import { RiskButton } from '@component/elements'
+import { SeverityType } from '@data/types'
 
-interface ISeverityFilter {
+interface ISeverityFilterProps {
   handler: (e: any) => any
   hasSeverityArr: number[]
   severitySet: Set<SeverityType>
 }
 
-const SeverityFilter = ({ handler, hasSeverityArr, severitySet }: ISeverityFilter) => {
+const SeverityFilter = ({ handler, hasSeverityArr, severitySet }: ISeverityFilterProps) => {
   return (
     <div className={styles.severity_container}>
       {Vulnerability.map((item, i) => {

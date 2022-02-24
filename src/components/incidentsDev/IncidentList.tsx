@@ -5,7 +5,7 @@ import IncidentCard, { IncidentCardTypes } from './IncidentCard'
 import DropDownMenu from './DropDownMenu'
 import { InputSearch } from '../elements/index'
 import SeverityFilter from './SeverityFilter'
-import { SeverityType } from './hooks/useSeverityFilter'
+import { SeverityType } from '@data/types'
 
 export interface IncidentListProps {
   incidentList: IncidentCardTypes[]

@@ -1,21 +1,79 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import ErrorDetails from './ErrorDetails'
 import ErrorFix from './ErrorFix'
-import { IncidentCardTypes, severityIcons } from './IncidentCard'
+import { IncidentCardTypes } from './IncidentCard'
 import Tabs from './Tab'
 import styles from './Incidents.module.css'
 import { ModalPopUp } from '@component/elements'
 import { useHistory } from 'react-router-dom'
+import { severityIcons } from '@data/constants'
+import { useAppSelector } from '@redux/hooks'
+import NotificationManager from '@component/atoms/NotificationManager'
+import { useCreateSecurityException, useDeleteSecurityException } from 'services/securityExceptionService'
 
 export interface IncidentDetailsProps {
   selectedIncident: IncidentCardTypes | null
-  setIncidentList?: React.Dispatch<IncidentCardTypes[]>
+  setIncidentList?: any
+  isExceptionPage: boolean
 }
 
-const IncidentDetails: React.FC<IncidentDetailsProps> = ({ selectedIncident, setIncidentList }) => {
+const IncidentDetails: React.FC<IncidentDetailsProps> = ({ selectedIncident, setIncidentList, isExceptionPage }) => {
   const [modalActive, setModalActive] = useState<boolean>(false)
+  const [exceptionCreateRef, createSecurityException] = useCreateSecurityException()
+  const [exceptionDeleteRef, deleteSecurityException] = useDeleteSecurityException()
+  const [comment, setComment] = useState('')
+  const [isLoading, setLoading] = useState(false)
+
   const history = useHistory()
-  const ModalPopUpbuttons = [
+  const { user } = useAppSelector((state) => state.auth)
+
+  const deleteItemFromList = useCallback(() => {
+    if (setIncidentList && selectedIncident) {
+      setIncidentList((list: IncidentCardTypes[]) => list.filter((item) => item.id !== selectedIncident.id))
+    }
+  }, [selectedIncident, setIncidentList])
+
+  const onMarckAsExceptionClickhandler = useCallback(async () => {
+    setLoading(true)
+    if (user && selectedIncident) {
+      const data = await createSecurityException(user.user_id, selectedIncident.AccountId, {
+        resource_vulnerability_id: selectedIncident.ResourceVulnerabilityId,
+        cloud_service: selectedIncident.CloudService,
+        security_exception_comment: comment,
+        security_exception_author: `${user?.given_name} ${user?.family_name}`,
+      })
+      if (data) {
+        setLoading(false)
+        deleteItemFromList()
+        NotificationManager.success('Exception created successfully.')
+        setModalActive(true)
+      } else {
+        NotificationManager.error("Couldn't create exception.")
+      }
+    }
+    setLoading(false)
+  }, [deleteItemFromList, createSecurityException, user, comment, selectedIncident])
+
+  const handleDeleteException = useCallback(async () => {
+    setLoading(true)
+    if (user && selectedIncident) {
+      try {
+        await deleteSecurityException(user.user_id, selectedIncident.AwsAccount, selectedIncident.ResourceVulnerabilityId)
+        deleteItemFromList()
+        NotificationManager.success('Exception deleted successfully.')
+      } catch (error) {
+        NotificationManager.error("Couldn't delete exception.")
+      }
+    }
+    setModalActive(false)
+    setLoading(false)
+  }, [user, selectedIncident, deleteItemFromList, deleteSecurityException])
+
+  const handleCommentChange = useCallback(async ({ target }: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setComment(target.value)
+  }, [])
+
+  const IncidentsModalPopUpbuttons = [
     {
       title: 'Yes',
       handler: () => {
@@ -29,14 +87,26 @@ const IncidentDetails: React.FC<IncidentDetailsProps> = ({ selectedIncident, set
       },
     },
   ]
+  const ExceptionsModalPopUpbuttons = [
+    {
+      title: 'Yes',
+      handler: handleDeleteException,
+    },
+    {
+      title: 'No',
+      handler: () => {
+        setModalActive(false)
+      },
+    },
+  ]
   return (
     <div className={styles.incident_details}>
       <ModalPopUp
         modalActive={modalActive}
         setModalActive={setModalActive}
-        titleOne={'Exceptions'}
-        titleTwo={'Do you want to see all the exceptions?'}
-        buttons={ModalPopUpbuttons}
+        titleOne={isExceptionPage ? 'Remove from exceptions' : 'Exceptions'}
+        titleTwo={isExceptionPage ? 'You want to remove this incident from exceptions?' : 'Do you want to see all the exceptions?'}
+        buttons={isExceptionPage ? ExceptionsModalPopUpbuttons : IncidentsModalPopUpbuttons}
       />
       {selectedIncident ? (
         <>
@@ -49,7 +119,21 @@ const IncidentDetails: React.FC<IncidentDetailsProps> = ({ selectedIncident, set
             <span className={styles.vulnerabilityId}>{selectedIncident.VulnerabilityId}</span>
           </div>
           <Tabs
-            first={<ErrorDetails {...selectedIncident} setIncidentList={setIncidentList} setModalActive={setModalActive} />}
+            first={
+              <ErrorDetails
+                {...selectedIncident}
+                comment={comment}
+                onMarckAsExceptionClickhandler={onMarckAsExceptionClickhandler}
+                isExceptionPage={isExceptionPage}
+                exceptionCreateRef={exceptionCreateRef}
+                exceptionDeleteRef={exceptionDeleteRef}
+                isLoading={isLoading}
+                setComment={setComment}
+                setModalActive={setModalActive}
+                handleDeleteException={handleDeleteException}
+                handleCommentChange={handleCommentChange}
+              />
+            }
             second={<ErrorFix {...selectedIncident} />}
           />
         </>

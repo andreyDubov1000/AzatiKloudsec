@@ -1,3 +1,8 @@
+import lowIcon from '../assets/icons/low mini.png'
+import mediumIcon from '../assets/icons/medium mini.png'
+import highIcon from '../assets/icons/high mini.png'
+import criticalIcon from '../assets/icons/critical mini.png'
+
 export const layoutConstants = {}
 
 export const landingConstants = {
@@ -29,4 +34,11 @@ export const vulnerabilityColor = {
     bgColor: 'yellow',
     color: 'inherit',
   },
+}
+
+export const severityIcons = {
+  CRITICAL: criticalIcon,
+  HIGH: highIcon,
+  MEDIUM: mediumIcon,
+  LOW: lowIcon,
 }
