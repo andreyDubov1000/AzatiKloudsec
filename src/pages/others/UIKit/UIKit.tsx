@@ -96,7 +96,7 @@ const UIKit = () => {
           <ActionButton icon='/assets/images/icons/assets/delete-user.svg'>Delete account</ActionButton>
         </UiKitCard>
         <UiKitCard bgColor='#ececec' title='Comment Form'>
-          <CommentForm placeholder='Exception comment' onChange={(value) => console.log(value)}></CommentForm>
+          <CommentForm placeholder='Exception comment' onChange={(value) => console.log(value)}/>
         </UiKitCard>
       </div>
     </div>

@@ -1,19 +1,42 @@
-import classNames from 'classnames';
 import React, { useState } from 'react';
-import styles from './CommentForm.module.scss';
+import { TextField } from "@material-ui/core";
+import { styled } from "@material-ui/core/styles";
 
 interface CommentFormPropTypes {
-  name?: string;
   id?: string;
-  cols?: number;
   rows?: number;
+  fullWidth?: boolean;
   placeholder?: string;
   onChange?: (value: string) => any;
 }
 
-const CommentForm = ({ onChange, placeholder, name, id, cols, rows }: CommentFormPropTypes) => {
+const CommentTextField = styled(TextField)({
+  '& .MuiInputBase-root': {
+    backgroundColor: '#fff',
+    '&.Mui-focused': {
+      backgroundColor: 'transparent'
+    }
+  },
+  '& label.Mui-focused': {
+    color: '#023AE0',
+  },
+  '&:hover': {
+    '& label': {
+      color: '#023AE0',
+    },
+  },
+  '& .MuiOutlinedInput-root': {
+    '&:hover fieldset': {
+      borderColor: '#ccc',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#023AE0',
+    },
+  },
+})
+
+const CommentForm = ({ onChange, placeholder, id, rows = 4, fullWidth = true }: CommentFormPropTypes) => {
   const [value, setValue] = useState('');
-  const [focused, setFocused] = useState(false);
 
   const changeHandler = (el: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(el.target.value);
@@ -23,27 +46,16 @@ const CommentForm = ({ onChange, placeholder, name, id, cols, rows }: CommentFor
     }
   };
 
-  const blurHandler = () => {
-    if (value) return;
-    setFocused(false);
-  };
-
   return (
-    <p className={styles.commentForm}>
-      <label className={classNames(styles.placeholder, { [styles.focused]: focused })} htmlFor={id}>
-        {placeholder}
-      </label>
-      <textarea
-        onFocus={() => setFocused(true)}
-        onBlur={blurHandler}
-        className={classNames(styles.textArea, { [styles.focusedArea]: focused })}
-        onChange={changeHandler}
-        value={value}
-        name={name}
-        id={id}
-        cols={cols}
-        rows={rows}></textarea>
-    </p>
+    <CommentTextField
+      id={id}
+      label={placeholder}
+      multiline
+      rows={rows}
+      fullWidth={fullWidth}
+      value={value}
+      onChange={changeHandler}
+    />
   );
 };
 
