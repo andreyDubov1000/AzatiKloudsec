@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './sidenav.module.scss'
 import { ReactComponent as Exit } from 'assets/icons/Exit normal.svg'
+import { ReactComponent as Logo } from 'assets/icons/logo-white.svg'
 import SidenavMenuItem from './SidenavMenuItem'
 import protectedLayoutSidenavNavigations from '@component/sidenav/SidenavNavigations'
 import { SIGN_OUT } from '@redux/auth/authTypes'
@@ -28,8 +29,8 @@ const SidenavMenuPanel = () => {
 
   return (
     <ScrollBar className={styles.navbar} options={{ suppressScrollX: true }}>
-      <Link to='/'>
-        <img className={styles.navbar_logo} alt='logo' />
+      <Link to='/' className={styles.navbar_logo}>
+        <Logo />
       </Link>
 
       {protectedLayoutSidenavNavigations.map((item) => (

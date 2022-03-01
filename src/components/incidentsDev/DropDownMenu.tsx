@@ -11,11 +11,9 @@ interface IDropDownMenu {
 }
 
 const DropDownMenu = ({ dateOrder, handleDateSort, onAccCloudClick, accCloud }: IDropDownMenu) => {
-  const accService = 'AZU'
-
   return (
     <div className={styles.dropdown}>
-      <div className={`${styles.menu_handler} ${accService && styles.active} `}></div>
+      <div className={`${styles.menu_handler} ${accCloud && styles.active} `}></div>
       <ul className={styles.menu_list}>
         <DropDownItem title={'Sort by date'} dateOrder={dateOrder} onClick={handleDateSort} />
         <DropDownItem title={'Sort by accounts'} className={styles.sub_menu_handler} />

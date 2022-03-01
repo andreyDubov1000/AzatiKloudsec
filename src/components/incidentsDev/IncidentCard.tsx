@@ -26,6 +26,7 @@ export interface IncidentCardTypes {
   SecurityExceptionDate?: string
   SecurityExceptionId?: string
 }
+
 interface IncidentCardProps extends IncidentCardTypes {
   onClick?: (incident: any) => any
   isActive: boolean

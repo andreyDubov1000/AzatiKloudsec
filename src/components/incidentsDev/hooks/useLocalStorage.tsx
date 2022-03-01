@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react'
 
-export const classNames = (...names: string[]) => names.join(' ')
-
 export function useLocalStorage<T>(initialValue: T, key: string) {
   const getValue = (): T => {
     const storage = localStorage.getItem(key)

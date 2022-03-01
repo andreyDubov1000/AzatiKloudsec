@@ -10,7 +10,6 @@ import { SeverityType } from '@data/types'
 export interface IncidentListProps {
   incidentList: IncidentCardTypes[]
   hasSeverityArr: number[]
-  enteredSearchValue: string
   handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void
   selectedIncident: IncidentCardTypes | null
   setSelectedIncident: (incident: IncidentCardTypes) => void
@@ -19,7 +18,7 @@ export interface IncidentListProps {
   onSeverityClickHandler: (event: React.MouseEvent) => void
   severitySet: Set<SeverityType>
   lastBookElementRef: (node: any) => void
-  onIncidentCardClickhandler: (incident: IncidentCardTypes) => () => any
+  onIncidentCardClickHandler: (incident: IncidentCardTypes) => () => any
   onAccCloudClick: (event: React.MouseEvent) => any
   accCloud: string
 }
@@ -29,13 +28,12 @@ const IncidentList: React.FC<IncidentListProps> = ({
   hasSeverityArr = [],
   selectedIncident,
   handleSearch,
-  enteredSearchValue,
   handleDateSort,
   dateOrder,
   onSeverityClickHandler,
   severitySet,
   lastBookElementRef,
-  onIncidentCardClickhandler,
+  onIncidentCardClickHandler,
   onAccCloudClick,
   accCloud,
 }) => {
@@ -44,7 +42,7 @@ const IncidentList: React.FC<IncidentListProps> = ({
   return (
     <div className={styles.incident_list}>
       <div className={styles.filters_panel}>
-        <InputSearch onChange={handleSearch} value={enteredSearchValue} />
+        <InputSearch onChange={handleSearch} />
         <DropDownMenu handleDateSort={handleDateSort} dateOrder={dateOrder} onAccCloudClick={onAccCloudClick} accCloud={accCloud} />
       </div>
       <SeverityFilter handler={onSeverityClickHandler} hasSeverityArr={hasSeverityArr} severitySet={severitySet} />
@@ -55,11 +53,11 @@ const IncidentList: React.FC<IncidentListProps> = ({
             const isLastElement = incidentList.length === i + 1
             return isLastElement ? (
               <div key={item.id} ref={lastBookElementRef}>
-                <IncidentCard {...item} onClick={onIncidentCardClickhandler(item)} isActive={item?.id === selectedIncident?.id} />
+                <IncidentCard {...item} onClick={onIncidentCardClickHandler(item)} isActive={item?.id === selectedIncident?.id} />
               </div>
             ) : (
               <div key={item.id}>
-                <IncidentCard {...item} onClick={onIncidentCardClickhandler(item)} isActive={item?.id === selectedIncident?.id} />
+                <IncidentCard {...item} onClick={onIncidentCardClickHandler(item)} isActive={item?.id === selectedIncident?.id} />
               </div>
             )
           })

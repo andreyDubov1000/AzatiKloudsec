@@ -11,7 +11,7 @@ type PopUpButtonsType = {
 
 interface modalPopUpProps {
   modalActive: boolean
-  setModalActive: React.Dispatch<React.SetStateAction<boolean>>
+  setModalActive: React.Dispatch<boolean>
   titleOne?: string
   titleTwo?: string
   buttons?: PopUpButtonsType[]
@@ -26,11 +26,10 @@ const ModalPopUp = ({ modalActive, handlerReset, buttons, setModalActive, childr
     const elem = ref.current
 
     if (elem) {
-      const onTabDown = trapFocusTab(elem)
+      const onTabDown = trapFocusTab(elem, setModalActive)
       const onLayoutClick = (event: MouseEvent) => {
         if (event.target === event.currentTarget) setModalActive(false)
       }
-
       elem.classList.add(`${styles.active}`)
       elem.parentElement?.addEventListener('click', onLayoutClick)
       elem.addEventListener('keydown', onTabDown)

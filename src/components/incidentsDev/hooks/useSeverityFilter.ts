@@ -8,9 +8,11 @@ export const Vulnerability: SeverityType[] = ['LOW', 'MEDIUM', 'HIGH', 'CRITICAL
 export const useSeverityFilter = (list: IncidentCardTypes[]) => {
   const [savedSeveritySet, setSavedSeveritySet] = useLocalStorage<SeverityType[] | null>(null, 'severitySet')
   const [severitySet, setSeveritySet] = useState<Set<SeverityType>>(new Set(savedSeveritySet))
-  const currentSet = severitySet.size ? severitySet : new Set(Vulnerability)
 
-  const severityList = useMemo(() => list.filter((listItem) => listItem.Severity && currentSet.has(listItem.Severity)), [currentSet, list])
+  const severityList = useMemo(() => {
+    const currentSet = severitySet.size ? severitySet : new Set(Vulnerability)
+    return list.filter((listItem) => listItem.Severity && currentSet.has(listItem.Severity))
+  }, [severitySet, list])
 
   useEffect(() => {
     const SeverityArr = Array.from(severitySet)
