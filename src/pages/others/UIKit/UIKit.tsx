@@ -11,6 +11,7 @@ import {
   SecondMenu,
   ActionButton,
   CommentForm,
+  Calendar, Comment,
 } from '@component/elements';
 import { Link } from 'react-router-dom';
 
@@ -95,8 +96,11 @@ const UIKit = () => {
         <UiKitCard title='Action Button'>
           <ActionButton icon='/assets/images/icons/assets/delete-user.svg'>Delete account</ActionButton>
         </UiKitCard>
-        <UiKitCard bgColor='#ececec' title='Comment Form'>
-          <CommentForm placeholder='Exception comment' onChange={(value) => console.log(value)}/>
+        <UiKitCard bgColor='#E6F5F9' title='Comment'>
+          <Comment onChange={(value) => console.log(value)} />
+        </UiKitCard>
+        <UiKitCard bgColor='#ececec' title='Calendar'>
+          <Calendar onChange={(date) => console.log(date)}/>
         </UiKitCard>
       </div>
     </div>

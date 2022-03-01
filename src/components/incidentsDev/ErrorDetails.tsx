@@ -7,7 +7,7 @@ import { useLocation } from 'react-router'
 import { createSecurityException, deleteSecurityException } from 'services/securityExceptionService'
 import { IncidentCardTypes } from './IncidentCard'
 import styles from './ErrorDetails.module.scss'
-import { ButtonSimple } from '@component/elements'
+import { ButtonSimple, Comment } from '@component/elements'
 
 type ErrorDetailsProps = {
   setIncidentList?: any
@@ -72,8 +72,8 @@ const ErrorDetails: React.FC<IncidentCardTypes & ErrorDetailsProps> = ({
     setLoading(false)
   }
 
-  const handleCommentChange = async ({ target }: ChangeEvent<HTMLTextAreaElement>) => {
-    setComment(target.value)
+  const handleCommentChange = (value: string) => {
+    setComment(value)
   }
 
   console.log(props)
@@ -113,10 +113,7 @@ const ErrorDetails: React.FC<IncidentCardTypes & ErrorDetailsProps> = ({
         </Button>
       ) : (
         <>
-          <div className={styles.textarea_container}>
-            <textarea className={styles.textarea_bar} wrap='soft' value={comment} required onChange={handleCommentChange} />
-            <label className={styles.textarea_label}>Exception comment</label>
-          </div>
+          <Comment onChange={handleCommentChange} />
           <div className={styles.exception_button}>
             <ButtonSimple disabled={!comment || loading} onClick={onMarckAsExceptionClickhandler}>
               Mark as Exception
