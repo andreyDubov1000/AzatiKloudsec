@@ -1,0 +1,50 @@
+.customInputField {
+  background-color: #ECECEC;
+  border-radius: 8px;
+  transition: all 0.3s ease-out;
+
+  & .MuiOutlinedInput-notchedOutline {
+    display: none;
+  }
+
+  & .MuiOutlinedInput-input {
+    color: #0F2978;
+
+    &::placeholder {
+      color: #727787;
+      opacity: 1;
+      transition: all 0.3s ease-out;
+    }
+  }
+
+  & .Mui-focused {
+    background-color: #E6F5F9;
+    border-radius: 8px;
+    transition: all 0.3s ease-out;
+
+    & .MuiOutlinedInput-input {
+      &::placeholder {
+        color: #BBC0D0;
+      }
+    }
+  }
+
+  &:hover {
+    background-color: #F8F8F8;
+  }
+
+  &--filled {
+    background-color: #E6F5F9;
+    border-radius: 8px;
+
+    &:hover {
+      background-color: #E6F5F9;
+    }
+  }
+
+  .MuiOutlinedInput-input {
+    &:-webkit-autofill {
+      border-radius: 8px;
+    }
+  }
+}

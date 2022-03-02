@@ -12,6 +12,7 @@ import {
   ActionButton,
   Calendar,
   Comment,
+  InputField,
 } from '@component/elements';
 import { Link } from 'react-router-dom';
 
@@ -61,7 +62,7 @@ const UIKit = () => {
           <ButtonSimple>Accept</ButtonSimple>
         </UiKitCard>
         <UiKitCard title='Input Search'>
-          <InputSearch  />
+          <InputSearch />
         </UiKitCard>
         <UiKitCard title='Modal Popup'>
           <div>
@@ -100,7 +101,13 @@ const UIKit = () => {
           <Comment onChange={(value) => console.log(value)} />
         </UiKitCard>
         <UiKitCard bgColor='#979797' title='Calendar'>
-          <Calendar onChange={(date) => console.log(date)}/>
+          <Calendar onChange={(date) => console.log(date)} />
+        </UiKitCard>
+        <UiKitCard bgColor='#979797' title='Input Field'>
+          <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '10vh'}}>
+            <InputField type='email' placeholder='E-mail' onChange={(value) => console.log(value)} />
+            <InputField type='password' placeholder='Password' onChange={(value) => console.log(value)} />
+          </div>
         </UiKitCard>
       </div>
     </div>
