@@ -33,9 +33,11 @@
   }
 
   & .react-datepicker__day {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     color: #0f2978;
+    width: 2.7rem;
+    line-height: 2.7rem;
 
     &:hover {
       color: #023AE0;
@@ -45,6 +47,10 @@
     &--selected {
       color: #fff;
       background-color: #0F2978;
+    }
+
+    &--keyboard-selected {
+      color: #fff;
     }
   }
 }

@@ -10,8 +10,8 @@ import {
   TextTab,
   SecondMenu,
   ActionButton,
-  CommentForm,
-  Calendar, Comment,
+  Calendar,
+  Comment,
 } from '@component/elements';
 import { Link } from 'react-router-dom';
 
@@ -61,7 +61,7 @@ const UIKit = () => {
           <ButtonSimple>Accept</ButtonSimple>
         </UiKitCard>
         <UiKitCard title='Input Search'>
-          <InputSearch />
+          <InputSearch  />
         </UiKitCard>
         <UiKitCard title='Modal Popup'>
           <div>
@@ -99,7 +99,7 @@ const UIKit = () => {
         <UiKitCard bgColor='#E6F5F9' title='Comment'>
           <Comment onChange={(value) => console.log(value)} />
         </UiKitCard>
-        <UiKitCard bgColor='#ececec' title='Calendar'>
+        <UiKitCard bgColor='#979797' title='Calendar'>
           <Calendar onChange={(date) => console.log(date)}/>
         </UiKitCard>
       </div>

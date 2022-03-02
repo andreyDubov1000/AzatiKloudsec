@@ -25,7 +25,7 @@
 .container {
   background-color: #fff;
   border-radius: 15px;
-  padding: 20px 28px 26px;
+  padding: 20px;
 }
 
 
@@ -36,17 +36,35 @@
 
 .calendarInputContainer {
   position: relative;
+
+  &:hover {
+    .customInput {
+      &::placeholder {
+        color: rgba(15, 41, 120, 0.4);
+      }
+    }
+    .calendarIcon {
+      fill: rgba(15, 41, 120, 1);
+    }
+  }
 }
 
 .calendarIcon {
   position: absolute;
-  top: 45%;
+  top: 50%;
   left: 10px;
   transform: translateY(-50%);
   pointer-events: none;
+  fill: rgba(15, 41, 120, 0.6);
+  transition: all 0.3s ease-out;
+
+  &_filled {
+    fill: rgba(15, 41, 120, 1);
+  }
 }
 
 .customInput {
+  width: 100%;
   font-size: 15px;
   font-weight: 600;
   line-height: 28px;
@@ -54,6 +72,21 @@
   padding: 6px 0 6px 38px;
   border: none;
   color: #0F2978;
+  outline: none;
+  transition: all 0.3s ease-out;
+
+  &::placeholder {
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 28px;
+    color: rgba(15, 41, 120, 0.6);
+    transition: all 0.3s ease-out;
+  }
+
+  &_filled {
+    background-color: #E6F5F9;
+  }
 }
 
 
