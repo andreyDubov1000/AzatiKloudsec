@@ -24,6 +24,12 @@ To create service for get request:
 Implementation:
 
 ```
+const [sourceRef, getRequest] = useGetRequest()
+```
+
+...
+
+```
     useEffect(() => {
       getRequest(id)
     return () => {

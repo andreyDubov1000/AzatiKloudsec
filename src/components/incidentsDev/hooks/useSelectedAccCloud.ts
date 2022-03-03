@@ -27,13 +27,11 @@ export const dropDownAccounts = [
   },
 ]
 
+const filteredProps = ['VulnerabilityId'] as Array<keyof IncidentCardTypes>
+
 const useSelectedAccCloud = (list: IncidentCardTypes[]) => {
   const [savedSelectedAccCloud, setSavedSelectedAccCloud] = useLocalStorage<AccServiceType>('AWS', 'selectedAccCloud')
-  const [filteredList, accCloud, setAccCloud] = useSearchFilter<IncidentCardTypes>(
-    list,
-    ['VulnerabilityId'],
-    savedSelectedAccCloud as string
-  )
+  const [filteredList, accCloud, setAccCloud] = useSearchFilter<IncidentCardTypes>(list, filteredProps, savedSelectedAccCloud as string)
 
   useEffect(() => {
     setSavedSelectedAccCloud(accCloud as AccServiceType)

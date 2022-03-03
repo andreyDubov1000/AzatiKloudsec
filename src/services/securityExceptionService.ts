@@ -1,12 +1,34 @@
-import { useCallback } from 'react'
+import { debounce } from 'lodash'
+import { useCallback, useState } from 'react'
 import KloudApi from './kloudApi'
 import { useCancelToken } from './utils'
+import { useDebounce } from '../components/incidentsDev/hooks/useDebounce'
+import { useLocation, useHistory } from 'react-router-dom'
 
 type SecurityException = {
   resource_vulnerability_id: string
   cloud_service: string
   security_exception_comment: string
   security_exception_author: string
+}
+
+export function useSearchQuery(initialSearchValue: string = '') {
+  const [sourceRef, getCancelToken] = useCancelToken()
+  const [enteredSearchValue, setEnteredSearchValue] = useState(initialSearchValue)
+
+  const getSearch = useCallback(
+    (user_id: string, value: string) => {
+      if (value) {
+        if (sourceRef.current) sourceRef.current.cancel('Search query cancel')
+        return KloudApi.get(`/users/${user_id}/providers/aws/security-exceptions`, {
+          cancelToken: getCancelToken(),
+        })
+      }
+    },
+    [getCancelToken]
+  )
+
+  return [sourceRef, enteredSearchValue, setEnteredSearchValue, getSearch] as const
 }
 
 export const useCreateSecurityException = () => {

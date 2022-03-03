@@ -2,8 +2,14 @@ import NotificationManager from '@component/atoms/NotificationManager'
 import _axios, { AxiosRequestConfig } from 'axios'
 
 class KloudApi {
+  private static _baseURL = {
+    development: process.env.REACT_APP_API_BASE_URL_DEV,
+    production: process.env.REACT_APP_API_BASE_URL_PROD,
+    test: process.env.REACT_APP_API_BASE_URL_UAT,
+  }
+
   private static axios = _axios.create({
-    baseURL: process.env.REACT_APP_API_BASE_URL,
+    baseURL: KloudApi._baseURL[process.env.NODE_ENV],
     headers: {
       common: {
         'x-api-key': process.env.REACT_APP_X_API_KEY,

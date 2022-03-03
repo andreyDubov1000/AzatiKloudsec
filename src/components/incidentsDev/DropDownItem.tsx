@@ -2,7 +2,7 @@ import React from 'react'
 import { ReactComponent as ArrowUp } from 'assets/icons/arrow up mini.svg'
 import { ReactComponent as ArrowDown } from 'assets/icons/arrow down mini.svg'
 
-interface IDropDownItemProps extends React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement> {
+interface IDropDownItemProps extends React.LiHTMLAttributes<HTMLLIElement> {
   title: string
   dateOrder?: 'asc' | 'desc' | null
 }

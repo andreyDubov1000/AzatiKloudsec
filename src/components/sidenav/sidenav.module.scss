@@ -23,15 +23,32 @@ div.navbar {
 }
 
 .navbar a:first-child {
-  margin-bottom: 2.9rem;
+  margin-bottom: 40px;
   margin-top: 1rem;
   align-self: center;
 }
 
 .navbar_logo {
   display: block;
-  content: url('../../assets/icons/logo-white.svg');
-  width: 5.75rem;
+  background: no-repeat url('../../assets/icons/Logo on click.svg');
+  background-position: bottom;
+  width: 92px;
+  height: 87px;
+
+  & svg {
+    display: block;
+    fill: #f8f8f8;
+    width: 92px;
+    height: 80px;
+    transition: 0.3s ease-out;
+
+    &:hover {
+      fill: #0f2978;
+      &:active {
+        opacity: 0;
+      }
+    }
+  }
 }
 
 .menu_item {

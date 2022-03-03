@@ -91,7 +91,6 @@ const UIKit = () => {
         <UiKitCard title='Select Service Type'>
           <SelectService />
         </UiKitCard>
-
         <UiKitCard bgColor='#ccc' title='Text Tab'>
           <SecondMenu items={menuNav} />
         </UiKitCard>

@@ -2,6 +2,7 @@ import lowIcon from '../assets/icons/low mini.png'
 import mediumIcon from '../assets/icons/medium mini.png'
 import highIcon from '../assets/icons/high mini.png'
 import criticalIcon from '../assets/icons/critical mini.png'
+import { IncidentCardTypes } from '@component/incidentsDev/IncidentCard'
 
 export const layoutConstants = {}
 
@@ -42,3 +43,18 @@ export const severityIcons = {
   MEDIUM: mediumIcon,
   LOW: lowIcon,
 }
+export const queryProps = [
+  'AccountId',
+  'Severity',
+  'VulnerabilityId',
+  'Category',
+  'CloudService',
+  'Region',
+  'VulnerabilityDate',
+  'VulnerabilityDescription',
+  'ResourceVulnerabilityId',
+  'SecurityExceptionAuthor',
+  'SecurityExceptionComment',
+  'SecurityExceptionDate',
+  'SecurityExceptionId',
+] as Array<keyof IncidentCardTypes>

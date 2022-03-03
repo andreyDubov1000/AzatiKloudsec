@@ -1,11 +1,11 @@
-import React, { useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useDebounce } from './useDebounce'
 
 type ISearchItem<T extends string | number | symbol> = Record<T, any>
 
 export function useSearchFilter<P extends Partial<ISearchItem<keyof P>>>(
   items: P[],
-  filterProps: (keyof P)[],
+  filteredProps: (keyof P)[],
   initialSearchValue: string = ''
 ) {
   const [enteredSearchValue, setEnteredSearchValue] = useState<string>(initialSearchValue)
@@ -15,14 +15,14 @@ export function useSearchFilter<P extends Partial<ISearchItem<keyof P>>>(
     if (!activeSearchValue) return items
     const regExp = RegExp(activeSearchValue, 'i')
     return items.filter((item) => {
-      return filterProps.reduce((isMatch, prop) => {
+      return filteredProps.reduce((isMatch, prop) => {
         if (item[prop] && typeof item[prop] === 'string') {
           return isMatch || regExp.test(item[prop])
         }
         return isMatch
       }, false as boolean)
     })
-  }, [activeSearchValue, items])
+  }, [activeSearchValue, items, filteredProps])
 
   return [availableItems, enteredSearchValue, setEnteredSearchValue] as const
 }
