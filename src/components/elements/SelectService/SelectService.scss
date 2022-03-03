@@ -1,0 +1,176 @@
+.autocomplete_root {
+  .MuiAutocomplete-root {
+    width: 240px;
+    height: 40px;
+    border-radius: 8px;
+
+    .MuiFormControl-root {
+      justify-content: center;
+      align-items: center;
+
+      .MuiFormLabel-root {
+        background-color: white;
+        padding: 0 5px;
+        top: -4px;
+        margin-left: 20px;
+
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 28px;
+        color: #0f2978;
+      }
+
+      .MuiOutlinedInput-root {
+        border-radius: 8px;
+        height: 40px;
+        border: solid 2px transparent;
+
+        .MuiOutlinedInput-notchedOutline {
+          border-color: transparent;
+        }
+
+        .MuiChip-root {
+          display: flex;
+          flex-wrap: nowrap;
+          overflow: hidden;
+          justify-content: space-between;
+          min-height: 22px;
+          width: 152px;
+          background-color: #0f2978;
+
+          color: #f8f8f8;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 20px;
+
+          svg {
+            fill: #f8f8f8;
+          }
+        }
+
+        &.MuiInputBase-adornedStart {
+          padding-right: 20px;
+          border: solid 2px #0f2978;
+
+          .MuiAutocomplete-endAdornment {
+            display: flex;
+            flex-wrap: nowrap;
+            top: 7px;
+          }
+
+          .MuiOutlinedInput-input {
+            height: 0;
+            padding: 0;
+          }
+        }
+
+        &.Mui-focused {
+          border-color: #023ae0;
+          height: auto;
+          .MuiOutlinedInput-notchedOutline {
+            border-color: transparent;
+          }
+          &.MuiInputBase-adornedStart {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-items: baseline;
+            max-height: 150px;
+            overflow-y: scroll;
+
+            // &::-webkit-scrollbar {
+            //   width: 4px;
+            //   background-color: #bbc0d0;
+            //   border-radius: 5px;
+            //   cursor: pointer;
+            // }
+            // &::-webkit-scrollbar-thumb {
+            //   width: 4px;
+            //   background-color: #0f2978;
+            //   height: 16px;
+            //   border-radius: 5px;
+            // }
+
+            .MuiAutocomplete-endAdornment {
+              top: calc(50% - 14px);
+            }
+
+            .MuiOutlinedInput-input {
+              height: auto;
+              width: 150px;
+              padding: 2.5px 6px;
+            }
+
+            .MuiChip-root {
+              background-color: #023ae0;
+            }
+          }
+
+          .MuiAutocomplete-clearIndicator {
+            display: block;
+          }
+        }
+      }
+    }
+    &:hover {
+      .MuiFormLabel-root {
+        color: #023ae0;
+      }
+
+      .MuiAutocomplete-clearIndicator {
+        display: none;
+      }
+
+      & .MuiOutlinedInput-root.MuiInputBase-adornedStart {
+        border: solid 2px #023ae0;
+        .MuiChip-root {
+          background-color: #023ae0;
+        }
+      }
+    }
+
+    &[aria-expanded='true'] .MuiFormControl-root .MuiOutlinedInput-root.Mui-focused {
+      border-radius: 8px 8px 0 0;
+      border-bottom: transparent;
+    }
+
+    &[aria-expanded='false'] ~ .MuiAutocomplete-popper {
+      border-color: transparent;
+      box-shadow: 0rem 0.5rem 0.75rem rgba(154, 154, 154, 0.25);
+    }
+  }
+
+  .MuiAutocomplete-popper {
+    border-radius: 0 0 8px 8px;
+    border: solid 2px #023ae0;
+    border-top: transparent;
+
+    li {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: space-between;
+      div {
+        display: flex;
+        overflow: hidden;
+        width: 180px;
+
+        span {
+          align-self: flex-start;
+          font-size: 15px;
+          font-weight: 600;
+          line-height: 28px;
+
+          color: #0f2978;
+          white-space: nowrap;
+        }
+
+        img {
+          margin-right: 8px;
+          width: 20px;
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import {
   AvatarEl,
   ButtonSimple,
@@ -9,16 +9,17 @@ import {
   PlanCard,
   TextTab,
   SecondMenu,
-} from '@component/elements';
-import {Link} from 'react-router-dom';
+  SelectService,
+} from '@component/elements'
+import { Link } from 'react-router-dom'
 
-import s from './UIKit.module.scss';
-import menuNav from '@component/elements/SecondMenu/menuNav';
+import s from './UIKit.module.scss'
+import menuNav from '@component/elements/SecondMenu/menuNav'
 
 interface UiKitCardPropsType {
-  title: string;
-  bgColor?: string;
-  children: JSX.Element;
+  title: string
+  bgColor?: string
+  children: JSX.Element
 }
 
 const UiKitCard = ({ title, bgColor, children }: UiKitCardPropsType) => {
@@ -29,11 +30,11 @@ const UiKitCard = ({ title, bgColor, children }: UiKitCardPropsType) => {
       </div>
       <div className={s.el}>{children}</div>
     </div>
-  );
-};
+  )
+}
 
 const UIKit = () => {
-  const [modalActive, setModalActive] = useState(false);
+  const [modalActive, setModalActive] = useState(false)
 
   const buttons = [
     {
@@ -44,7 +45,7 @@ const UIKit = () => {
       title: 'No',
       handler: () => {},
     },
-  ];
+  ]
 
   return (
     <div className={s.kit}>
@@ -69,7 +70,7 @@ const UIKit = () => {
               titleTwo={'Do you want to see all the exceptions?'}
               buttons={buttons}
             />
-            <ButtonSimple onClick={() => setModalActive(true)} >Open Modal</ButtonSimple>
+            <ButtonSimple onClick={() => setModalActive(true)}>Open Modal</ButtonSimple>
           </div>
         </UiKitCard>
         <UiKitCard title='Avatar'>
@@ -87,12 +88,16 @@ const UIKit = () => {
             desc='The Kloudsec security allows you to run confidently your cloud related resources without ever worrying about security vulnerabilities. Whether you need to continuously run...'
           />
         </UiKitCard>
+        <UiKitCard title='Select Service Type'>
+          <SelectService />
+        </UiKitCard>
+
         <UiKitCard bgColor='#ccc' title='Text Tab'>
           <SecondMenu items={menuNav} />
         </UiKitCard>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default UIKit;
+export default UIKit
