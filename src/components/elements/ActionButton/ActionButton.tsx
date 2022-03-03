@@ -6,16 +6,25 @@ import classNames from 'classnames'
 interface ActionButtonPropTypes {
   children?: JSX.Element | string;
   icon?: string;
+  disabled?: boolean;
   className?: string;
+  type?: 'outlined' | 'icon' | 'filled';
   onClick?: () => any;
 }
 
-const ActionButton = ({ children, icon, className, onClick }: ActionButtonPropTypes) => {
-  
+const ActionButton = ({ children, icon, className, onClick, type = 'filled', disabled }: ActionButtonPropTypes) => {
   return (
-    <button onClick={onClick} className={classNames(styles.button, className)}>
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      className={classNames(styles.button, {
+        [styles.outlined]: type === 'outlined',
+        [styles.fill]: type === 'filled',
+        [styles.iconButton]: type === 'icon',
+        [styles.disabled]: disabled
+      }, className)}>
       {icon && (
-        <div className='icon'>
+        <div className={styles.iconBox}>
           <img className={styles.icon} src={icon} alt='' />
         </div>
       )}

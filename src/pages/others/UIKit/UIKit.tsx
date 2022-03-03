@@ -96,7 +96,19 @@ const UIKit = () => {
           <SecondMenu items={menuNav} />
         </UiKitCard>
         <UiKitCard title='Action Button'>
-          <ActionButton icon='/assets/images/icons/assets/delete-user.svg'>Delete account</ActionButton>
+          <div style={{ width: '100%' }}>
+            <ActionButton type="icon" icon='/assets/images/icons/assets/delete-user.svg'>Icon Button</ActionButton>
+            <br />
+            <ActionButton type='outlined'>Outlined</ActionButton>
+            <br />
+            <ActionButton type='filled'>Filled</ActionButton>
+            <br />
+            <ActionButton disabled type="icon" icon='/assets/images/icons/assets/delete-user.svg'>Disabled Icon Button</ActionButton>
+            <br/>
+            <ActionButton disabled type='outlined'>Disabled Outline</ActionButton>
+            <br/>
+            <ActionButton disabled type='filled'>Disabled Fill</ActionButton>
+          </div>
         </UiKitCard>
         <UiKitCard bgColor='#E6F5F9' title='Comment'>
           <Comment onChange={(value) => console.log(value)} />
