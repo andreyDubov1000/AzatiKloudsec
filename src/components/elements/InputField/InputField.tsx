@@ -14,6 +14,8 @@ interface InputFieldPropTypes {
   name?: string;
   margin?: 'none' | 'dense' | 'normal';
   visibilityIcon?: boolean;
+  helperText?: string;
+  error?: boolean;
   onChange?: (value: string) => any;
 }
 
@@ -27,6 +29,8 @@ const InputField = (
     margin,
     fullWidth = true,
     name,
+    helperText,
+    error,
     visibilityIcon = false
   }: InputFieldPropTypes) => {
   const [fieldValue, setFieldValue] = useState(value);
@@ -55,23 +59,26 @@ const InputField = (
   };
 
   return (
-    <TextField className={classNames('customInputField', { ['customInputField--filled']: fieldValue }, className)}
-               name={name}
-               placeholder={placeholder}
-               type={newType}
-               margin={margin}
-               fullWidth={fullWidth}
-               value={fieldValue}
-               onChange={onChangeHandler}
-               InputProps={{
-                 endAdornment: visibilityIcon && (
-                   <InputAdornment
-                     className={'customInputField__passwordIcon'}
-                     position="start"
-                     onClick={handleClickShowPassword}>
-                     {showPassword ? <PasswordHide /> : <PasswordShow />}
-                   </InputAdornment>)
-               }}
+    <TextField
+      className={classNames('customInputField', { ['customInputField--filled']: fieldValue }, className)}
+      name={name}
+      placeholder={placeholder}
+      type={newType}
+      margin={margin}
+      fullWidth={fullWidth}
+      value={fieldValue}
+      onChange={onChangeHandler}
+      helperText={helperText}
+      error={error}
+      InputProps={{
+        endAdornment: visibilityIcon && (
+          <InputAdornment
+            className={'customInputField__passwordIcon'}
+            position="start"
+            onClick={handleClickShowPassword}>
+            {showPassword ? <PasswordHide /> : <PasswordShow />}
+          </InputAdornment>)
+      }}
     />
   )
 };

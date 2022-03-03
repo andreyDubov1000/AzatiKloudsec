@@ -38,6 +38,7 @@ const UiKitCard = ({ title, bgColor, children }: UiKitCardPropsType) => {
 
 const UIKit = () => {
   const [modalActive, setModalActive] = useState(false);
+  const [inputValue, setInputValue] = useState('error');
 
   const buttons = [
     {
@@ -105,9 +106,31 @@ const UIKit = () => {
         </UiKitCard>
         <UiKitCard bgColor='#979797' title='Input Field'>
           <div>
-            <InputField type='email' placeholder='E-mail' margin='normal' onChange={(value) => console.log(value)} />
-            <InputField type='password' placeholder='Password' margin='normal' visibilityIcon onChange={(value) => console.log(value)} />
-            <InputField type='text' placeholder='Text' margin='normal' onChange={(value) => console.log(value)} />
+            <form>
+              <InputField
+                type='email'
+                placeholder='E-mail'
+                margin='normal' onChange={(value) => console.log(value)} />
+              <InputField
+                type='password'
+                placeholder='Password'
+                margin='normal' visibilityIcon
+                onChange={(value) => console.log(value)} />
+              <InputField
+                type='text'
+                placeholder='Text'
+                margin='normal'
+                onChange={(value) => console.log(value)} />
+              <InputField
+                type='password'
+                placeholder='Password'
+                value={inputValue}
+                error={inputValue === 'error'}
+                helperText={inputValue === 'error' ? 'Incorrect Password' : 'Minimum 14 characters in upper and lower case'}
+                visibilityIcon
+                margin='normal'
+                onChange={setInputValue} />
+            </form>
           </div>
         </UiKitCard>
       </div>
