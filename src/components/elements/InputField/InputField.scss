@@ -15,6 +15,15 @@
       opacity: 1;
       transition: all 0.3s ease-out;
     }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus, {
+      border-radius: 8px;
+      -webkit-text-fill-color: #0F2978;
+      -webkit-box-shadow: 0 0 0px 1000px #E6F5F9 inset;
+      transition: background-color 5000s ease-in-out 0s;
+    }
   }
 
   & .Mui-focused {
@@ -42,9 +51,10 @@
     }
   }
 
-  .MuiOutlinedInput-input {
-    &:-webkit-autofill {
-      border-radius: 8px;
-    }
+  &__passwordIcon {
+    cursor: pointer;
   }
 }
+
+
+

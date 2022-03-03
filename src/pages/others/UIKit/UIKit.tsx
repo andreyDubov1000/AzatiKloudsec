@@ -104,9 +104,10 @@ const UIKit = () => {
           <Calendar onChange={(date) => console.log(date)} />
         </UiKitCard>
         <UiKitCard bgColor='#979797' title='Input Field'>
-          <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '10vh'}}>
-            <InputField type='email' placeholder='E-mail' onChange={(value) => console.log(value)} />
-            <InputField type='password' placeholder='Password' onChange={(value) => console.log(value)} />
+          <div>
+            <InputField type='email' placeholder='E-mail' margin='normal' onChange={(value) => console.log(value)} />
+            <InputField type='password' placeholder='Password' margin='normal' visibilityIcon onChange={(value) => console.log(value)} />
+            <InputField type='text' placeholder='Text' margin='normal' onChange={(value) => console.log(value)} />
           </div>
         </UiKitCard>
       </div>
