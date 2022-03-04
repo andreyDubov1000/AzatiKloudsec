@@ -14,7 +14,8 @@ import {
   Calendar,
   Comment,
   InputField,
-  SecurityTab
+  SecurityTab,
+  SingleSelect
 } from '@component/elements'
 import { Link } from 'react-router-dom'
 
@@ -26,6 +27,16 @@ interface UiKitCardPropsType {
   bgColor?: string;
   children: JSX.Element;
 }
+
+const selectTestItems = [
+  { id: 1, title: 'All accounts', value: 'all' },
+  { id: 2, title: 'AWS', value: 'aws' },
+  { id: 3, title: 'Azure', value: 'azure' },
+  { id: 4, title: 'Alibaba cloud', value: 'alibaba' },
+  { id: 5, title: 'Google cloud', value: 'google' },
+  { id: 6, title: 'IBM cloud', value: 'ibm' },
+]
+
 
 const UiKitCard = ({ title, bgColor, children }: UiKitCardPropsType) => {
   return (
@@ -116,6 +127,19 @@ const UIKit = () => {
             <ActionButton disabled type='filled'>Disabled Fill</ActionButton>
           </div>
         </UiKitCard>
+        <UiKitCard bgColor='#979797' title='Single Select'>
+          <div style={{display: 'flex', width: '100%'}}>
+            <SingleSelect
+              type='filled'
+              items={selectTestItems}
+              onChange={(activeSelect) => console.log(activeSelect)} />
+            <br />
+            <SingleSelect
+              type='outlined'
+              items={selectTestItems}
+              onChange={(activeSelect) => console.log(activeSelect)} />
+          </div>
+        </UiKitCard>
         <UiKitCard bgColor='#E6F5F9' title='Comment'>
           <Comment onChange={(value) => console.log(value)} />
         </UiKitCard>
@@ -152,7 +176,8 @@ const UIKit = () => {
           </div>
         </UiKitCard>
         <UiKitCard bgColor='#ececec' title='Security Tab'>
-          <SecurityTab data={{ title: 'kloudsec-sandbox', accountId: '922706684423', server: 'AWS' }} onClick={(state) => console.log(state)}/>
+          <SecurityTab data={{ title: 'kloudsec-sandbox', accountId: '922706684423', server: 'AWS' }}
+                       onClick={(state) => console.log(state)} />
         </UiKitCard>
       </div>
     </div>

@@ -1,0 +1,59 @@
+.singleSelect {
+  transition: all 0.3s ease-out;
+  width: 100%;
+
+  & .MuiOutlinedInput-notchedOutline {
+    border: none;
+  }
+
+  & .MuiSelect-select {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 28px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease-out;
+  }
+
+  &:hover {
+    & .MuiSelect-select {
+      background-color: #E6F5F9;
+      color: #023AE0;
+    }
+
+    & .MuiSvgIcon-root {
+      fill: #023AE0;
+    }
+  }
+
+  &__filled {
+    & .MuiSelect-select {
+      background-color: #fff;
+      color: #0F2978;
+    }
+
+    & .MuiSvgIcon-root {
+      fill: #0F2978;
+      transition: all 0.3s ease-out;
+    }
+  }
+
+  &__outlined {
+    & .MuiSelect-select {
+      background-color: transparent;
+      color: #fff;
+    }
+
+    & .MuiSvgIcon-root {
+      fill: #fff;
+      transition: all 0.3s ease-out;
+    }
+  }
+}
+
+.MuiMenuItem-root {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #0F2978;
+}

@@ -14,6 +14,7 @@ import Calendar from './Calendar/Calendar'
 import Comment from './Comment/Comment'
 import InputField from './InputField/InputField'
 import SecurityTab from './SecurityTab/SecurityTab'
+import SingleSelect from './SingleSelect/SingleSelect'
 
 export {
   RiskButton,
@@ -31,6 +32,7 @@ export {
   Calendar,
   Comment,
   InputField,
-  SecurityTab
+  SecurityTab,
+  SingleSelect
 }
 
