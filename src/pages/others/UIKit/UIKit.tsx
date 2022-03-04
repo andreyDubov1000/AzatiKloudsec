@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import {
   AvatarEl,
   ButtonSimple,
@@ -10,16 +10,20 @@ import {
   TextTab,
   SecondMenu,
   SelectService,
+  ActionButton,
+  Calendar,
+  Comment,
+  InputField,
 } from '@component/elements'
 import { Link } from 'react-router-dom'
 
-import s from './UIKit.module.scss'
-import menuNav from '@component/elements/SecondMenu/menuNav'
+import s from './UIKit.module.scss';
+import menuNav from '@component/elements/SecondMenu/menuNav';
 
 interface UiKitCardPropsType {
-  title: string
-  bgColor?: string
-  children: JSX.Element
+  title: string;
+  bgColor?: string;
+  children: JSX.Element;
 }
 
 const UiKitCard = ({ title, bgColor, children }: UiKitCardPropsType) => {
@@ -30,11 +34,12 @@ const UiKitCard = ({ title, bgColor, children }: UiKitCardPropsType) => {
       </div>
       <div className={s.el}>{children}</div>
     </div>
-  )
-}
+  );
+};
 
 const UIKit = () => {
-  const [modalActive, setModalActive] = useState(false)
+  const [modalActive, setModalActive] = useState(false);
+  const [inputValue, setInputValue] = useState('error');
 
   const buttons = [
     {
@@ -45,7 +50,7 @@ const UIKit = () => {
       title: 'No',
       handler: () => {},
     },
-  ]
+  ];
 
   return (
     <div className={s.kit}>
@@ -70,7 +75,7 @@ const UIKit = () => {
               titleTwo={'Do you want to see all the exceptions?'}
               buttons={buttons}
             />
-            <ButtonSimple onClick={() => setModalActive(true)}>Open Modal</ButtonSimple>
+            <ButtonSimple onClick={() => setModalActive(true)} >Open Modal</ButtonSimple>
           </div>
         </UiKitCard>
         <UiKitCard title='Avatar'>
@@ -91,13 +96,62 @@ const UIKit = () => {
         <UiKitCard title='Select Service Type'>
           <SelectService />
         </UiKitCard>
-
-        <UiKitCard bgColor='#ccc' title='Text Tab'>
+        <UiKitCard bgColor='#ececec' title='Second Menu'>
           <SecondMenu items={menuNav} />
+        </UiKitCard>
+        <UiKitCard title='Action Button'>
+          <div style={{ width: '100%' }}>
+            <ActionButton type="icon" icon='/assets/images/icons/assets/delete-user.svg'>Icon Button</ActionButton>
+            <br />
+            <ActionButton type='outlined'>Outlined</ActionButton>
+            <br />
+            <ActionButton type='filled'>Filled</ActionButton>
+            <br />
+            <ActionButton disabled type="icon" icon='/assets/images/icons/assets/delete-user.svg'>Disabled Icon Button</ActionButton>
+            <br/>
+            <ActionButton disabled type='outlined'>Disabled Outline</ActionButton>
+            <br/>
+            <ActionButton disabled type='filled'>Disabled Fill</ActionButton>
+          </div>
+        </UiKitCard>
+        <UiKitCard bgColor='#E6F5F9' title='Comment'>
+          <Comment onChange={(value) => console.log(value)} />
+        </UiKitCard>
+        <UiKitCard bgColor='#979797' title='Calendar'>
+          <Calendar onChange={(date) => console.log(date)} />
+        </UiKitCard>
+        <UiKitCard bgColor='#979797' title='Input Field'>
+          <div>
+            <form>
+              <InputField
+                type='email'
+                placeholder='E-mail'
+                margin='normal' onChange={(value) => console.log(value)} />
+              <InputField
+                type='password'
+                placeholder='Password'
+                margin='normal' visibilityIcon
+                onChange={(value) => console.log(value)} />
+              <InputField
+                type='text'
+                placeholder='Text'
+                margin='normal'
+                onChange={(value) => console.log(value)} />
+              <InputField
+                type='password'
+                placeholder='Password'
+                value={inputValue}
+                error={inputValue === 'error'}
+                helperText={inputValue === 'error' ? 'Incorrect Password' : 'Minimum 14 characters in upper and lower case'}
+                visibilityIcon
+                margin='normal'
+                onChange={setInputValue} />
+            </form>
+          </div>
         </UiKitCard>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default UIKit
+export default UIKit;

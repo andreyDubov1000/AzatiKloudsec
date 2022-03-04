@@ -8,5 +8,12 @@ import PlanCard from './PlanCard/PlanCard'
 import TextTab from './TextTab/TextTab'
 import SecondMenu from './SecondMenu/SecondMenu'
 import SelectService from './SelectService/SelectService'
+import ActionButton from './ActionButton/ActionButton'
+import CommentForm from './CommentForm/CommentForm'
+import Calendar from './Calendar/Calendar'
+import Comment from './Comment/Comment'
+import InputField from './InputField/InputField'
 
-export { RiskButton, ButtonSimple, ModalPopUp, InputSearch, AvatarEl, ToggleButton, PlanCard, TextTab, SecondMenu, SelectService }
+
+export { RiskButton, ButtonSimple, ModalPopUp, InputSearch, AvatarEl, ToggleButton, PlanCard, TextTab, SecondMenu, SelectService, ActionButton, CommentForm, Calendar, Comment, InputField }
+

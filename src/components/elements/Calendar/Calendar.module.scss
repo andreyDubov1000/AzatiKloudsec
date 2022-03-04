@@ -1,0 +1,93 @@
+.datePicker {
+  border-radius: 8px;
+}
+
+.inputBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 28px;
+  padding: 10.25px 8px 10.25px 36px;
+  border-radius: 8px;
+  border: none;
+}
+
+.dateIcon {
+  position: absolute;
+  left: -8px;
+}
+
+.container {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+
+.calendarContainer {
+  border: none !important;
+  color: #0F2978;
+}
+
+.calendarInputContainer {
+  position: relative;
+
+  &:hover {
+    .customInput {
+      &::placeholder {
+        color: rgba(15, 41, 120, 0.4);
+      }
+    }
+    .calendarIcon {
+      fill: rgba(15, 41, 120, 1);
+    }
+  }
+}
+
+.calendarIcon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  fill: rgba(15, 41, 120, 0.6);
+  transition: all 0.3s ease-out;
+
+  &_filled {
+    fill: rgba(15, 41, 120, 1);
+  }
+}
+
+.customInput {
+  width: 100%;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 28px;
+  border-radius: 8px;
+  padding: 6px 0 6px 38px;
+  border: none;
+  color: #0F2978;
+  outline: none;
+  transition: all 0.3s ease-out;
+
+  &::placeholder {
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 28px;
+    color: rgba(15, 41, 120, 0.6);
+    transition: all 0.3s ease-out;
+  }
+
+  &_filled {
+    background-color: #E6F5F9;
+  }
+}
+
+
+
