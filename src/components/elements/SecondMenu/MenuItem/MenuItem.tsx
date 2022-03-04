@@ -1,40 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import styles from './SecondMenu.module.scss';
-import Settings from 'assets/icons/Settings.svg';
-import { hasChildren } from './utils';
-import { Collapse, List } from '@material-ui/core';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
+import { MenuNav } from '../menuNav';
+import { hasChildren } from '../utils';
 import classNames from 'classnames';
-import { MenuNav } from './menuNav';
-
-interface SecondMenuPropsTypes {
-  items: MenuNav[];
-}
+import styles from './MenuItem.module.scss';
+import { Collapse, List } from '@material-ui/core';
 
 interface MenuItemPropsTypes {
   item: MenuNav;
 }
 
-const SecondMenu = ({ items }: SecondMenuPropsTypes) => {
-  return (
-    <div className={styles.menu}>
-      <div className={styles.content}>
-        {items.map((item: MenuNav, key: number) => (
-          <MenuItem key={key} item={item} />
-        ))}
-      </div>
-      <div className={styles.bottom}>
-        <Link to='/'>
-          <img className={styles.settings} src={Settings} alt='settings' />
-        </Link>
-      </div>
-    </div>
-  );
-};
-
 const MenuItem = ({ item }: MenuItemPropsTypes) => {
   const Component = hasChildren(item) ? MultiLevel : SingleLevel;
-  return <Component item={item}/>;
+  return <Component item={item} />;
 };
 
 const SingleLevel = ({ item }: MenuItemPropsTypes) => {
@@ -67,7 +45,7 @@ const SingleLevel = ({ item }: MenuItemPropsTypes) => {
 const MultiLevel = ({ item }: MenuItemPropsTypes) => {
   const [active, setActive] = useState(false);
   const { children } = item;
-
+  
   const activate = () => {
     setActive((prev) => !prev);
   };
@@ -78,7 +56,7 @@ const MultiLevel = ({ item }: MenuItemPropsTypes) => {
         {item.title}
       </p>
       <Collapse in={active} timeout='auto' unmountOnExit>
-        <List component='div' disablePadding>
+        <List component='div' disablePadding className={styles.menuItemList}>
           {children ? children.map((child, key) => <MenuItem key={key} item={child} />) : ''}
         </List>
       </Collapse>
@@ -86,4 +64,4 @@ const MultiLevel = ({ item }: MenuItemPropsTypes) => {
   );
 };
 
-export default SecondMenu;
+export default MenuItem;

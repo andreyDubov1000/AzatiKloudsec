@@ -1,0 +1,38 @@
+.item {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #0f2978;
+  padding: 6px 10px;
+  margin-bottom: 4px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    color: #023ae0;
+  }
+
+  &:active {
+    background-color: #effcef;
+    color: #0f2978;
+  }
+}
+
+.menuItemList {
+  margin-left: 28px;
+}
+
+.active {
+  background-color: #ffefe2;
+}
+
+.activeSingle {
+  background-color: #e6f5f9;
+}
+
+.active,
+.activeSingle {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 28px;
+}

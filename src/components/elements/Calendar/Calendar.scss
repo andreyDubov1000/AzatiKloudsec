@@ -1,0 +1,58 @@
+.calendar {
+  & .react-datepicker__header {
+    background-color: transparent;
+    border-bottom: none;
+  }
+
+  & .react-datepicker__current-month {
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+    color: #0F2978;
+    margin-bottom: 10px;
+  }
+
+  & .react-datepicker__navigation {
+    top: 10px;
+  }
+
+  & .react-datepicker__navigation-icon::before {
+    border-color: #0F2978;
+  }
+
+  & .react-datepicker__navigation:hover *::before {
+    border-color: rgba(15, 41, 120, 0.6);
+  }
+
+  & .react-datepicker__day-name {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 28px;
+    color: #0F2978;
+  }
+
+  & .react-datepicker__day {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0f2978;
+    width: 2.7rem;
+    line-height: 2.7rem;
+
+    &:hover {
+      color: #023AE0;
+      background-color: #E6F5F9;
+    }
+
+    &--selected {
+      color: #fff;
+      background-color: #0F2978;
+    }
+
+    &--keyboard-selected {
+      color: #fff;
+    }
+  }
+}
+
+

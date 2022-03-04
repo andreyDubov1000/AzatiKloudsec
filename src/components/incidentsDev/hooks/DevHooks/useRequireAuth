@@ -1,0 +1,70 @@
+// import React, { useState, useEffect, useContext, createContext } from 'react'
+
+// export function useRequireAuth(redirectUrl = '/signup') {
+//   const auth = useAuth()
+//   const router = useRouter()
+
+//   useEffect(() => {
+//     if (auth.user) {
+//       router.push(redirectUrl)
+//     }
+//   }, [auth, router])
+//   return auth
+// }
+
+// const initialValue = {
+//   apiKey: '',
+//   authDomain: '',
+//   user: '',
+// }
+
+// const authContext = createContext(initialValue)
+
+// export function ProvideAuth({ children }) {
+//   const auth = useProvideAuth()
+//   return <authContext.Provider value={auth}>{children}</authContext.Provider>
+// }
+
+// export const useAuth = () => {
+//   return useContext(authContext)
+// }
+
+// function useProvideAuth() {
+//   const [user, setUser] = useState<string | null>(null)
+
+//   const signin = (email, password) => {
+//     setUser('user')
+//   }
+
+//   const signup = (email, password) => {
+//     setUser('user')
+//   }
+
+//   const signout = () => {
+//     setUser(null)
+//   }
+
+//   const sendPasswordResetEmail = (email) => {}
+
+//   const confirmPasswordReset = (code, password) => {}
+
+//   useEffect(() => {
+//     const unsubscribe = onAuthStateChanged((user) => {
+//       if (user) {
+//         setUser(user)
+//       } else {
+//         setUser(false)
+//       }
+//     })
+//     return () => unsubscribe()
+//   }, [])
+
+//   return {
+//     user,
+//     signin,
+//     signup,
+//     signout,
+//     sendPasswordResetEmail,
+//     confirmPasswordReset,
+//   }
+// }
