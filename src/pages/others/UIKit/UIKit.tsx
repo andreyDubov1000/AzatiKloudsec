@@ -14,6 +14,7 @@ import {
   Calendar,
   Comment,
   InputField,
+  SecurityTab
 } from '@component/elements'
 import { Link } from 'react-router-dom'
 
@@ -75,7 +76,7 @@ const UIKit = () => {
               titleTwo={'Do you want to see all the exceptions?'}
               buttons={buttons}
             />
-            <ButtonSimple onClick={() => setModalActive(true)} >Open Modal</ButtonSimple>
+            <ButtonSimple onClick={() => setModalActive(true)}>Open Modal</ButtonSimple>
           </div>
         </UiKitCard>
         <UiKitCard title='Avatar'>
@@ -107,10 +108,11 @@ const UIKit = () => {
             <br />
             <ActionButton type='filled'>Filled</ActionButton>
             <br />
-            <ActionButton disabled type="icon" icon='/assets/images/icons/assets/delete-user.svg'>Disabled Icon Button</ActionButton>
-            <br/>
+            <ActionButton disabled type="icon" icon='/assets/images/icons/assets/delete-user.svg'>Disabled Icon
+              Button</ActionButton>
+            <br />
             <ActionButton disabled type='outlined'>Disabled Outline</ActionButton>
-            <br/>
+            <br />
             <ActionButton disabled type='filled'>Disabled Fill</ActionButton>
           </div>
         </UiKitCard>
@@ -148,6 +150,9 @@ const UIKit = () => {
                 onChange={setInputValue} />
             </form>
           </div>
+        </UiKitCard>
+        <UiKitCard bgColor='#ececec' title='Security Tab'>
+          <SecurityTab data={{ title: 'kloudsec-sandbox', accountId: '922706684423', server: 'AWS' }} onClick={(state) => console.log(state)}/>
         </UiKitCard>
       </div>
     </div>
