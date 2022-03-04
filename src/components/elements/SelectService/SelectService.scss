@@ -11,13 +11,14 @@
       .MuiFormLabel-root {
         background-color: white;
         padding: 0 5px;
-        top: -4px;
+        top: 0;
         margin-left: 20px;
 
         font-weight: 400;
         font-size: 15px;
-        line-height: 28px;
+        line-height: 18px;
         color: #0f2978;
+        border-radius: 4px;
       }
 
       .MuiOutlinedInput-root {
@@ -77,19 +78,6 @@
             align-items: baseline;
             max-height: 150px;
             overflow-y: scroll;
-
-            // &::-webkit-scrollbar {
-            //   width: 4px;
-            //   background-color: #bbc0d0;
-            //   border-radius: 5px;
-            //   cursor: pointer;
-            // }
-            // &::-webkit-scrollbar-thumb {
-            //   width: 4px;
-            //   background-color: #0f2978;
-            //   height: 16px;
-            //   border-radius: 5px;
-            // }
 
             .MuiAutocomplete-endAdornment {
               top: calc(50% - 14px);

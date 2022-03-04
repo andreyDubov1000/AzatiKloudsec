@@ -126,10 +126,9 @@ const UserIncidents = () => {
   )
 
   const handleDateSort = useCallback(() => {
-    const newDateOrder = sortOrder === 'desc' ? 'asc' : 'desc'
-    setOrder(newDateOrder)
+    setOrder((state) => !state)
     setPageNum(1)
-  }, [setOrder, setPageNum, sortOrder])
+  }, [setOrder, setPageNum])
 
   const onAccCloudClick = useCallback(
     (event: React.MouseEvent) => {

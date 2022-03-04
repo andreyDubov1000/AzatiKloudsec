@@ -6,6 +6,7 @@ import DropDownMenu from './DropDownMenu'
 import { InputSearch } from '../elements/index'
 import SeverityFilter from './SeverityFilter'
 import { SeverityType } from '@data/types'
+import useWhyDidYouUpdate from './hooks/DevHooks/useWhyDidYouUpdate'
 
 export interface IncidentListProps {
   incidentList: IncidentCardTypes[]
@@ -13,7 +14,7 @@ export interface IncidentListProps {
   handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void
   selectedIncident: IncidentCardTypes | null
   setSelectedIncident: (incident: IncidentCardTypes) => void
-  dateOrder: 'asc' | 'desc'
+  dateOrder: boolean
   handleDateSort: () => void
   onSeverityClickHandler: (event: React.MouseEvent) => void
   severitySet: Set<SeverityType>
@@ -38,7 +39,20 @@ const IncidentList: React.FC<IncidentListProps> = ({
   accCloud,
 }) => {
   console.log('render IncidentList')
-
+  useWhyDidYouUpdate('IncidentList', {
+    incidentList,
+    hasSeverityArr,
+    selectedIncident,
+    handleSearch,
+    handleDateSort,
+    dateOrder,
+    onSeverityClickHandler,
+    severitySet,
+    lastBookElementRef,
+    onIncidentCardClickHandler,
+    onAccCloudClick,
+    accCloud,
+  })
   return (
     <div className={styles.incident_list}>
       <div className={styles.filters_panel}>

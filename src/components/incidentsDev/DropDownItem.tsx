@@ -4,14 +4,14 @@ import { ReactComponent as ArrowDown } from 'assets/icons/arrow down mini.svg'
 
 interface IDropDownItemProps extends React.LiHTMLAttributes<HTMLLIElement> {
   title: string
-  dateOrder?: 'asc' | 'desc' | null
+  dateOrder?: boolean
 }
 
-const DropDownItem: React.FC<IDropDownItemProps> = ({ title, dateOrder = null, ...props }) => {
+const DropDownItem: React.FC<IDropDownItemProps> = ({ title, dateOrder, ...props }) => {
   return (
     <li {...props}>
       <span>{title}</span>
-      {!dateOrder ? null : dateOrder === 'desc' ? <ArrowDown /> : <ArrowUp />}
+      {dateOrder === undefined ? null : dateOrder ? <ArrowDown /> : <ArrowUp />}
     </li>
   )
 }

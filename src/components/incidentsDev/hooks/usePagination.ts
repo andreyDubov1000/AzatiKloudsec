@@ -1,12 +1,16 @@
-import { useCallback, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 export function usePagination<T>(list: T[], cardsOnPage: number) {
   const [pageNum, setPageNum] = useState(1)
+  const [book, setBook] = useState<T[]>([])
   const totalCardsNum = list.length - 1
   const hasMore = totalCardsNum / cardsOnPage > pageNum
   const observer = useRef<IntersectionObserver>()
 
-  const book = useMemo(() => list.slice(0, pageNum * cardsOnPage), [pageNum, cardsOnPage, list])
+  useEffect(() => {
+    const newBook = list.slice(0, pageNum * cardsOnPage)
+    setBook(newBook)
+  }, [pageNum, cardsOnPage, list])
 
   const lastBookElementRef = useCallback(
     (node) => {

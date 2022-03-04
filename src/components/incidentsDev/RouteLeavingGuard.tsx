@@ -26,7 +26,6 @@ const RouteLeavingGuard: React.FC<IRouteLeavingGuardProps> = ({ isBlocked = true
   const alertUser = (event: BeforeUnloadEvent) => {
     event.preventDefault()
     event.returnValue = ''
-    console.log(event)
   }
 
   useEffect(() => {

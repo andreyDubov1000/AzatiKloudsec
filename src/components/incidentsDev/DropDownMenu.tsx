@@ -4,7 +4,7 @@ import DropDownItem from './DropDownItem'
 import { dropDownAccounts } from './hooks/useSelectedAccCloud'
 
 interface IDropDownMenu {
-  dateOrder: 'asc' | 'desc'
+  dateOrder: boolean
   handleDateSort: (event: React.MouseEvent) => any
   onAccCloudClick: (event: React.MouseEvent) => any
   accCloud: string

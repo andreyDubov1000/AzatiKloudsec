@@ -4,8 +4,8 @@ import { useLocalStorage } from './useLocalStorage'
 type ISearchItem<T extends string | number | symbol> = Record<T, any>
 
 export function useSort<P extends Partial<ISearchItem<keyof P>>>(list: P[], filterProp: keyof P) {
-  const [savedSelectedSortOrder, setSavedSelectedSortOrder] = useLocalStorage<'asc' | 'desc'>('desc', 'selectedDateOrder')
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>(savedSelectedSortOrder)
+  const [savedSelectedSortOrder, setSavedSelectedSortOrder] = useLocalStorage<boolean>(true, 'selectedDateOrder')
+  const [sortOrder, setSortOrder] = useState<boolean>(savedSelectedSortOrder)
 
   const sortedList = useMemo(() => {
     return list.slice().sort((a: P, b: P) => {
@@ -17,9 +17,9 @@ export function useSort<P extends Partial<ISearchItem<keyof P>>>(list: P[], filt
         itemB = new Date(b[filterProp])
       }
       if (itemA < itemB) {
-        return sortOrder === 'asc' ? 1 : -1
+        return sortOrder ? -1 : 1
       } else if (itemA > itemB) {
-        return sortOrder === 'asc' ? -1 : 1
+        return sortOrder ? 1 : -1
       }
       return 0
     })
