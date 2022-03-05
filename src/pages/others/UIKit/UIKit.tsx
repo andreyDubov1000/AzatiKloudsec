@@ -19,6 +19,7 @@ import { Link } from 'react-router-dom'
 
 import s from './UIKit.module.scss'
 import menuNav from '@component/elements/SecondMenu/menuNav'
+import MySignupForm from '@component/incidentsDev/MySignupForm'
 
 interface UiKitCardPropsType {
   title: string
@@ -123,17 +124,26 @@ const UIKit = () => {
           </div>
         </UiKitCard>
         <UiKitCard bgColor='#E6F5F9' title='Comment'>
-          <Comment onChange={(value) => console.log(value)} />
+          <Comment onChange={(value: string) => console.log(value)} />
         </UiKitCard>
         <UiKitCard bgColor='#979797' title='Calendar'>
-          <Calendar onChange={(date) => console.log(date)} />
+          <Calendar onChange={() => {}} />
+        </UiKitCard>
+        <UiKitCard bgColor='#979797' title='SignUp Form'>
+          <MySignupForm />
         </UiKitCard>
         <UiKitCard bgColor='#979797' title='Input Field'>
           <div>
             <form>
-              <InputField type='email' placeholder='E-mail' margin='normal' onChange={(value) => console.log(value)} />
-              <InputField type='password' placeholder='Password' margin='normal' visibilityIcon onChange={(value) => console.log(value)} />
-              <InputField type='text' placeholder='Text' margin='normal' onChange={(value) => console.log(value)} />
+              <InputField type='email' placeholder='E-mail' margin='normal' onChange={(value: React.ChangeEvent) => console.log(value)} />
+              <InputField
+                type='password'
+                placeholder='Password'
+                margin='normal'
+                visibilityIcon
+                onChange={(value: React.ChangeEvent) => console.log(value)}
+              />
+              <InputField type='text' placeholder='Text' margin='normal' onChange={(value: React.ChangeEvent) => console.log(value)} />
               <InputField
                 type='password'
                 placeholder='Password'
@@ -142,7 +152,7 @@ const UIKit = () => {
                 helperText={inputValue === 'error' ? 'Incorrect Password' : 'Minimum 14 characters in upper and lower case'}
                 visibilityIcon
                 margin='normal'
-                onChange={setInputValue}
+                onChange={() => {}}
               />
             </form>
           </div>
