@@ -15,7 +15,7 @@ interface InputFieldPropTypes {
   margin?: 'none' | 'dense' | 'normal'
   visibilityIcon?: boolean
   helperText?: string | boolean
-  error?: boolean
+  isError?: boolean
   onBlur?: {
     (e: React.FocusEvent<any, Element>): void
     <T = any>(fieldOrEvent: T): T extends string ? (e: any) => void : void
@@ -37,7 +37,7 @@ const InputField = ({
   fullWidth = true,
   name,
   helperText,
-  error,
+  isError,
   visibilityIcon = false,
 }: InputFieldPropTypes) => {
   const [showPassword, setShowPassword] = useState(false)
@@ -68,7 +68,7 @@ const InputField = ({
       onBlur={onBlur}
       onChange={onChange}
       helperText={helperText}
-      error={error}
+      error={isError}
       autoComplete='new-password'
       InputProps={{
         endAdornment: visibilityIcon && (

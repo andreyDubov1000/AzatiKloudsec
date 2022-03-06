@@ -19,7 +19,7 @@ import { Link } from 'react-router-dom'
 
 import s from './UIKit.module.scss'
 import menuNav from '@component/elements/SecondMenu/menuNav'
-import MySignupForm from '@component/incidentsDev/MySignupForm'
+import MySignupForm from '@component/elements/PasswordPattern/MySignupForm'
 
 interface UiKitCardPropsType {
   title: string
@@ -148,7 +148,7 @@ const UIKit = () => {
                 type='password'
                 placeholder='Password'
                 value={inputValue}
-                error={inputValue === 'error'}
+                isError={inputValue === 'error'}
                 helperText={inputValue === 'error' ? 'Incorrect Password' : 'Minimum 14 characters in upper and lower case'}
                 visibilityIcon
                 margin='normal'
