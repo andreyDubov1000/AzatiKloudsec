@@ -15,7 +15,7 @@ import {
   Comment,
   InputField,
   SecurityTab,
-  SingleSelect
+  SingleSelect,
 } from '@component/elements'
 import { Link } from 'react-router-dom'
 
@@ -36,7 +36,6 @@ const selectTestItems = [
   { id: 5, title: 'Google cloud', value: 'google' },
   { id: 6, title: 'IBM cloud', value: 'ibm' },
 ]
-
 
 const UiKitCard = ({ title, bgColor, children }: UiKitCardPropsType) => {
   return (
@@ -121,7 +120,6 @@ const UIKit = () => {
             <br />
             <ActionButton type='filled'>Filled</ActionButton>
             <br />
-<<<<<<< HEAD
             <ActionButton disabled type='icon' icon='/assets/images/icons/assets/delete-user.svg'>
               Disabled Icon Button
             </ActionButton>
@@ -133,27 +131,13 @@ const UIKit = () => {
             <ActionButton disabled type='filled'>
               Disabled Fill
             </ActionButton>
-=======
-            <ActionButton disabled type="icon" icon='/assets/images/icons/assets/delete-user.svg'>Disabled Icon
-              Button</ActionButton>
-            <br />
-            <ActionButton disabled type='outlined'>Disabled Outline</ActionButton>
-            <br />
-            <ActionButton disabled type='filled'>Disabled Fill</ActionButton>
->>>>>>> 1622801d85bd44984d5621ec6aa8c5f4127c957d
           </div>
         </UiKitCard>
         <UiKitCard bgColor='#979797' title='Single Select'>
-          <div style={{display: 'flex', width: '100%'}}>
-            <SingleSelect
-              type='filled'
-              items={selectTestItems}
-              onChange={(activeSelect) => console.log(activeSelect)} />
+          <div style={{ display: 'flex', width: '100%' }}>
+            <SingleSelect type='filled' items={selectTestItems} onChange={(activeSelect) => console.log(activeSelect)} />
             <br />
-            <SingleSelect
-              type='outlined'
-              items={selectTestItems}
-              onChange={(activeSelect) => console.log(activeSelect)} />
+            <SingleSelect type='outlined' items={selectTestItems} onChange={(activeSelect) => console.log(activeSelect)} />
           </div>
         </UiKitCard>
         <UiKitCard bgColor='#E6F5F9' title='Comment'>
@@ -182,8 +166,10 @@ const UIKit = () => {
           </div>
         </UiKitCard>
         <UiKitCard bgColor='#ececec' title='Security Tab'>
-          <SecurityTab data={{ title: 'kloudsec-sandbox', accountId: '922706684423', server: 'AWS' }}
-                       onClick={(state) => console.log(state)} />
+          <SecurityTab
+            data={{ title: 'kloudsec-sandbox', accountId: '922706684423', server: 'AWS' }}
+            onClick={(state) => console.log(state)}
+          />
         </UiKitCard>
       </div>
     </div>
