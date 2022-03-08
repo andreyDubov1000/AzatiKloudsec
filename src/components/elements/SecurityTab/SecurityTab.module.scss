@@ -1,0 +1,78 @@
+.securityTab {
+  width: 100%;
+  max-width: 156px;
+  border-radius: 8px;
+  background-color: #F8F8F8;
+  box-shadow: 0 4px 8px #DEDEDE;
+  color: #0F2978;
+  cursor: pointer;
+
+
+  &__header {
+    background-color: #FFEFE2;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 8px 10px;
+
+    .title {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 20px;
+    }
+
+    .accountId {
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 16px;
+    }
+
+    .server {
+      font-size: 10px;
+      font-weight: 600;
+      line-height: 16px;
+    }
+
+    .title, .accountId, .server {
+      transition: all 0.3s ease-out;
+    }
+  }
+
+  &__body {
+    padding: 18px 8px;
+    text-align: center;
+
+    .progress {
+      font-size: 36px;
+      font-weight: 600;
+      line-height: 28px;
+      margin-left: 17px;
+
+      > span {
+        font-weight: 600;
+        font-size: 24px;
+      }
+    }
+
+    .progressText {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 28px;
+    }
+  }
+
+  &.active {
+    box-shadow: inset 0 4px 4px rgba(1, 71, 157, 0.54);
+    .securityTab__header {
+      box-shadow: inset 0 4px 4px rgba(1, 71, 157, 0.54);
+      background-color: #E6F5F9;
+    }
+  }
+
+  &:hover {
+    .title,
+    .accountId,
+    .server {
+      color: #023AE0;
+    }
+  }
+}

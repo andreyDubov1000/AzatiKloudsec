@@ -13,7 +13,26 @@ import CommentForm from './CommentForm/CommentForm'
 import Calendar from './Calendar/Calendar'
 import Comment from './Comment/Comment'
 import InputField from './InputField/InputField'
+import SecurityTab from './SecurityTab/SecurityTab'
+import SingleSelect from './SingleSelect/SingleSelect'
 
-
-export { RiskButton, ButtonSimple, ModalPopUp, InputSearch, AvatarEl, ToggleButton, PlanCard, TextTab, SecondMenu, SelectService, ActionButton, CommentForm, Calendar, Comment, InputField }
+export {
+  RiskButton,
+  ButtonSimple,
+  ModalPopUp,
+  InputSearch,
+  AvatarEl,
+  ToggleButton,
+  PlanCard,
+  TextTab,
+  SecondMenu,
+  SelectService,
+  ActionButton,
+  CommentForm,
+  Calendar,
+  Comment,
+  InputField,
+  SecurityTab,
+  SingleSelect
+}
 
