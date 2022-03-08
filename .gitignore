@@ -8,6 +8,7 @@
 # testing
 /coverage
 
+/src/components/incidentsDev/forms
 /src/components/incidentsDev/hooks/DevHooks
 # production
 /build
