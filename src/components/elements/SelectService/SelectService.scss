@@ -1,9 +1,14 @@
+@import '../vars.css';
+
 .autocomplete_root {
   .MuiAutocomplete-root {
     width: 240px;
     height: 40px;
     border-radius: 8px;
 
+    .MuiSvgIcon-root {
+      fill: #0f2978;
+    }
     .MuiFormControl-root {
       justify-content: center;
       align-items: center;
@@ -19,6 +24,10 @@
         font-size: 15px;
         line-height: 18px;
         color: #0f2978;
+
+        &.Mui-focused {
+          z-index: 4;
+        }
       }
 
       .MuiOutlinedInput-root {
@@ -68,9 +77,11 @@
         &.Mui-focused {
           border-color: #023ae0;
           height: auto;
+
           .MuiOutlinedInput-notchedOutline {
             border-color: transparent;
           }
+
           &.MuiInputBase-adornedStart {
             display: flex;
             flex-direction: column;
@@ -78,6 +89,8 @@
             align-items: baseline;
             max-height: 150px;
             overflow-y: scroll;
+            z-index: 3;
+            background-color: #ffffff;
 
             .MuiAutocomplete-endAdornment {
               top: calc(50% - 14px);
@@ -104,7 +117,9 @@
       .MuiFormLabel-root {
         color: #023ae0;
       }
-
+      .MuiSvgIcon-root {
+        fill: #023ae0;
+      }
       .MuiAutocomplete-clearIndicator {
         display: none;
       }
@@ -117,10 +132,9 @@
       }
     }
 
-    &[aria-expanded='true'] .MuiFormControl-root .MuiOutlinedInput-root.Mui-focused {
-      border-radius: 8px 8px 0 0;
-      border-bottom: transparent;
-    }
+    // &[aria-expanded='true'] .MuiFormControl-root .MuiOutlinedInput-root.Mui-focused {
+    //   z-index: 999;
+    // }
 
     &[aria-expanded='false'] ~ .MuiAutocomplete-popper {
       border-color: transparent;
@@ -129,9 +143,9 @@
   }
 
   .MuiAutocomplete-popper {
-    border-radius: 0 0 8px 8px;
+    border-radius: 8px;
     border: solid 2px #023ae0;
-    border-top: transparent;
+    // border-top: transparent;
 
     li {
       display: flex;

@@ -62,8 +62,8 @@ const IncidentList: React.FC<IncidentListProps> = ({
             )
           })
         ) : (
-          <div className={styles.empty_list}>
-            <span>Incident history is empty</span>
+          <div className={styles.empty_incidents}>
+            <p>Incident history is empty</p>
           </div>
         )}
       </ScrollBar>

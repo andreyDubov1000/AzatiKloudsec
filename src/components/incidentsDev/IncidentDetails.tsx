@@ -4,7 +4,7 @@ import ErrorFix from './ErrorFix'
 import { IncidentCardTypes } from './IncidentCard'
 import Tabs from './Tab'
 import styles from './Incidents.module.css'
-import { ModalPopUp } from '@component/elements'
+import { ModalPopUp, EmptyList } from '@component/elements'
 import { useHistory } from 'react-router-dom'
 import { severityIcons } from '@data/constants'
 import { useAppSelector } from '@redux/hooks'
@@ -138,11 +138,7 @@ const IncidentDetails: React.FC<IncidentDetailsProps> = ({ selectedIncident, set
           />
         </>
       ) : (
-        <div className={styles.empty_list}>
-          <span>No account has been integrated.</span>
-          <span>Click here to add your first account.</span>
-          <div></div>
-        </div>
+        <EmptyList />
       )}
     </div>
   )

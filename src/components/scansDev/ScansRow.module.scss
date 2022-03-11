@@ -1,0 +1,33 @@
+.row {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  border-bottom: solid 1px #e6f5f9;
+
+  .title {
+    width: 150px;
+    color: #0f2978;
+    font-weight: 400;
+
+    & p:first-child {
+      font-size: 15px;
+      line-height: 28px;
+    }
+
+    & p:last-child {
+      font-size: 10px;
+      line-height: 16px;
+    }
+  }
+  .select {
+    width: 240px;
+  }
+  .button {
+    width: 168px;
+    min-width: 100px;
+    margin-left: 8px;
+  }
+}

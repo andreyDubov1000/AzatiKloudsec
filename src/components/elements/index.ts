@@ -15,6 +15,8 @@ import Comment from './Comment/Comment'
 import InputField from './InputField/InputField'
 import SecurityTab from './SecurityTab/SecurityTab'
 import SingleSelect from './SingleSelect/SingleSelect'
+import EmptyList from './EmptyList/EmptyList'
+import PaginationSimple from './PaginationSimple/PaginationSimple'
 
 export {
   RiskButton,
@@ -33,6 +35,7 @@ export {
   Comment,
   InputField,
   SecurityTab,
-  SingleSelect
+  SingleSelect,
+  EmptyList,
+  PaginationSimple,
 }
-

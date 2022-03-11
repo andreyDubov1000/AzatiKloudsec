@@ -15,6 +15,8 @@ interface SelectServiceTypes {
   label?: string
   items?: ServiceListItemType[]
   iconsUrl?: typeof ServiceIconsUrl
+  checkedList: ServiceListItemType[]
+  setCheckedList: React.Dispatch<ServiceListItemType[]>
 }
 
 const SelectService = ({
@@ -23,8 +25,10 @@ const SelectService = ({
   iconsUrl = ServiceIconsUrl,
   className,
   onClick,
+  checkedList,
+  setCheckedList,
 }: SelectServiceTypes) => {
-  const [checkedList, setCheckedList] = useState<ServiceListItemType[]>([])
+  // const [checkedList, setCheckedList] = useState<ServiceListItemType[]>([])
   const [isAllSelected, setIsAllSelected] = useState<boolean>(false)
 
   const selectOptions = useMemo(
@@ -106,6 +110,6 @@ const SelectService = ({
 }
 
 const PopperMy = (props: PopperProps) => {
-  return <Popper {...props} style={{ width: 240 }} placement='bottom-start' />
+  return <Popper {...props} style={{ width: 240 }} placement='bottom' />
 }
 export default SelectService

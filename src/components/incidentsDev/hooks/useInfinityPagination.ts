@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
-export function usePagination<T>(list: T[], cardsOnPage: number) {
+export function useInfinityPagination<T>(list: T[], cardsOnPage: number) {
   const [pageNum, setPageNum] = useState(1)
   const [book, setBook] = useState<T[]>([])
   const totalCardsNum = list.length - 1

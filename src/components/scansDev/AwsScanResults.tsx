@@ -12,6 +12,7 @@ import { useHistory, useParams } from 'react-router-dom'
 import { checkAwsScanReqest } from 'services/scanService'
 
 const AwsScanResults = () => {
+  console.log('[AwsScanResults]')
   const [loading, setLoading] = useState(true)
   const [motherList, setMotherList] = useState<IncidentCardProps[]>([])
   const [incidentList, setIncidentList] = useState<IncidentCardProps[]>([])
@@ -19,7 +20,7 @@ const AwsScanResults = () => {
 
   const { user } = useAppSelector((store) => store.auth)
 
-  const { request_id, account_id } = useParams<any>()
+  const { cloud_id, request_id, account_id } = useParams<any>()
   const history = useHistory()
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -69,6 +70,14 @@ const AwsScanResults = () => {
     [incidentList]
   )
 
+  // window.addEventListener(
+  //   'message',
+  //   (event) => {
+  //     //if (event.origin !== window.location.origin) return
+  //     console.log(event.data)
+  //   },
+  //   false
+  // )
   useEffect(() => {
     const userId = user?.user_id
     let interval: any = null
@@ -76,12 +85,16 @@ const AwsScanResults = () => {
     if (userId && account_id && request_id) {
       interval = setInterval(() => {
         checkAwsScanReqest(userId, 'aws', account_id, request_id).then((data) => {
+          console.log(data)
           if (!data) {
             clearInterval(interval)
             setLoading(false)
-            history.push('/scans/aws')
+            console.log('нет данных')
+            // history.push('/scans/aws')
             return
           } else if (data?.Vulnerabilities) {
+            console.log('отправка сообщения', window.opener.Location)
+            window.opener.postMessage('жопа жопа жопа', '*')
             const list = data.Vulnerabilities.map((item: any) => ({
               id: uuid(),
               ...item,
@@ -94,7 +107,7 @@ const AwsScanResults = () => {
         })
       }, 5000)
     }
-  }, [account_id, history, request_id, user])
+  }, [account_id, request_id, user])
 
   return (
     <CustomBox sx={{ p: '1.5rem' }}>

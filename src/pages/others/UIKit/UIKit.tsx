@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import {
   AvatarEl,
   ButtonSimple,
@@ -16,6 +16,8 @@ import {
   InputField,
   SecurityTab,
   SingleSelect,
+  EmptyList,
+  PaginationSimple,
 } from '@component/elements'
 import { Link } from 'react-router-dom'
 
@@ -52,6 +54,9 @@ const UiKitCard = ({ title, bgColor, children }: UiKitCardPropsType) => {
 const UIKit = () => {
   const [modalActive, setModalActive] = useState(false)
   const [inputValue, setInputValue] = useState('error')
+  const [checkedList, setCheckedList] = useState<{ label: string; value: string }[]>([])
+  const [book, setBook] = useState<any[]>([])
+  const array = useMemo(() => new Array(100).fill(0), [])
 
   const buttons = [
     {
@@ -106,7 +111,7 @@ const UIKit = () => {
           />
         </UiKitCard>
         <UiKitCard title='Select Service Type'>
-          <SelectService />
+          <SelectService checkedList={checkedList} setCheckedList={setCheckedList} />
         </UiKitCard>
         <UiKitCard bgColor='#ccc' title='Text Tab'>
           <SecondMenu items={menuNav} />
@@ -180,6 +185,12 @@ const UIKit = () => {
             data={{ title: 'kloudsec-sandbox', accountId: '922706684423', server: 'AWS' }}
             onClick={(state) => console.log(state)}
           />
+        </UiKitCard>
+        <UiKitCard bgColor='#ececec' title='Empty List'>
+          <EmptyList />
+        </UiKitCard>
+        <UiKitCard bgColor='#ececec' title='Pagination'>
+          <PaginationSimple accountList={array} numOnPage={10} setBook={setBook} />
         </UiKitCard>
       </div>
     </div>

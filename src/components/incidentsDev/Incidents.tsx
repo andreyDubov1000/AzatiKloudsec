@@ -7,18 +7,19 @@ import RouteLeavingGuard from './RouteLeavingGuard'
 import IncidentList from './IncidentList'
 import { useAppSelector } from '@redux/hooks'
 import { uuid } from '@utils'
-import React, { useCallback, useEffect, useState } from 'react'
-import { useLocation, useHistory, Prompt } from 'react-router-dom'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { useLocation, useHistory, useParams } from 'react-router-dom'
 import { useGetOverallUserAccountStatus } from 'services/incidentService'
 import { useSeverityFilter } from './hooks/useSeverityFilter'
 import { SeverityType } from '@data/types'
 import { useSearchFilter } from './hooks/useSearchFilter'
-import { usePagination } from './hooks/usePagination'
+import { useInfinityPagination } from './hooks/useInfinityPagination'
 import { useSort } from './hooks/useSort'
 import useSelectedAccCloud, { AccServiceType } from './hooks/useSelectedAccCloud'
 import { useGetAllSecurityExceptions, useSearchQuery } from 'services/securityExceptionService'
 import { queryProps } from '@data/constants'
 import { debounce } from 'lodash'
+import { checkAwsScanReqest } from 'services/scanService'
 
 const UserIncidents = () => {
   console.log('render UserIncidents')
@@ -35,9 +36,12 @@ const UserIncidents = () => {
   const [searchList, enteredSearchValue, setEnteredSearchValue] = useSearchFilter(severityList, queryProps)
   const [orderedList, sortOrder, setOrder] = useSort<IncidentCardTypes>(searchList, 'VulnerabilityDate')
   const [filteredList, accCloud, setAccCloud] = useSelectedAccCloud(orderedList)
-  const [incidentList, lastBookElementRef, setPageNum] = usePagination(filteredList, 10)
+  const [incidentList, lastBookElementRef, setPageNum] = useInfinityPagination(filteredList, 10)
   const { pathname } = useLocation()
+  const { cloud_id, request_id, account_id } = useParams<any>()
   const isExceptionPage = pathname.includes('exceptions')
+  const matchPath = pathname.match('exceptions') || pathname.match('incidents') || pathname.match('scans')!
+  const currentPage = matchPath[0] as 'exceptions' | 'incidents' | 'scans'
   const history = useHistory()
   //  const { slug }: any = useParams()
   // const { search } = useLocation()
@@ -55,6 +59,17 @@ const UserIncidents = () => {
     setMotherList(list)
   }, [])
 
+  const scansDataHandler = useCallback((data: any) => {
+    const dataList = data?.Vulnerabilities || []
+    const list: IncidentCardTypes[] = dataList.map((item: any) => {
+      return {
+        id: uuid(),
+        ...item,
+      }
+    })
+    setMotherList(list)
+  }, [])
+
   const incidentDataHandler = useCallback((data: any) => {
     const dataObject = data?.UserSecurityVulnerabilityStatus || {}
     const { LOW = [], MEDIUM = [], HIGH = [], CRITICAL = [] } = dataObject
@@ -67,23 +82,32 @@ const UserIncidents = () => {
     setMotherList(list)
   }, [])
 
+  const loadingDataHandler = useMemo(
+    () => ({
+      exceptions: async function (user_id: string) {
+        const data = await getAllSecurityExceptions(user_id)
+        exceptionDataHandler(data)
+      },
+      incidents: async function (user_id: string) {
+        const data = await getOverallUserAccountStatus(user_id)
+        incidentDataHandler(data)
+      },
+      scans: () => {},
+    }),
+    [incidentDataHandler, exceptionDataHandler, getAllSecurityExceptions, getOverallUserAccountStatus]
+  )
+
   const loadData = useCallback(async () => {
     if (user?.user_id) {
       try {
         setLoading(true)
-        if (isExceptionPage) {
-          const data = await getAllSecurityExceptions(user.user_id)
-          exceptionDataHandler(data)
-        } else {
-          const data = await getOverallUserAccountStatus(user.user_id)
-          incidentDataHandler(data)
-        }
+        await loadingDataHandler[currentPage](user.user_id)
         setLoading(false)
       } catch (error) {
         setLoading(false)
       }
     }
-  }, [user, isExceptionPage, exceptionDataHandler, incidentDataHandler, getOverallUserAccountStatus, getAllSecurityExceptions, getSearch])
+  }, [user, loadingDataHandler, currentPage])
 
   const setSearchValueDebounce = useCallback(debounce(setSearchValue, 500), [])
 
@@ -153,8 +177,8 @@ const UserIncidents = () => {
     if (!searchValue) {
       loadData()
     } else {
-      if (user?.user_id) {
-        const getSearchDebounce = async (searchValue: string) => {
+      const getSearchDebounce = async (searchValue: string) => {
+        if (user?.user_id) {
           history.push({
             search: searchValue ? `?p=${searchValue}` : '',
           })
@@ -162,17 +186,15 @@ const UserIncidents = () => {
             setLoading(true)
             if (isExceptionPage) {
               const data = await getSearch(user.user_id, searchValue)
-              console.log(data, searchValue)
-              if (data) exceptionDataHandler(data)
+              exceptionDataHandler(data)
             }
             setLoading(false)
           } catch (error) {
             setLoading(false)
           }
         }
-
-        getSearchDebounce(searchValue)
       }
+      getSearchDebounce(searchValue)
     }
     return () => {
       if (sourceStatusRef.current) sourceStatusRef.current.cancel('Incidents cancel getting AllAccountStatus')
@@ -186,8 +208,6 @@ const UserIncidents = () => {
   }, [motherList.length])
 
   return (
-    //   <Loader />
-    // ) : (
     <>
       <RouteLeavingGuard isBlocked={blocked} shouldBlockPath={shouldBlockPath} />
       {loading ? <Loader /> : null}

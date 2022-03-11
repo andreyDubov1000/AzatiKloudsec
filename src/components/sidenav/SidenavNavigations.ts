@@ -44,7 +44,7 @@ const protectedLayoutSidenavNavigations = [
   },
   {
     title: 'Scans',
-    path: '/scans/aws',
+    path: '/scans',
     icon: Scans,
     iconActive: ScansActive,
   },

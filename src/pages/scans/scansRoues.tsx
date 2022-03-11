@@ -1,21 +1,19 @@
-import { lazy } from "react";
-import { Redirect } from "react-router-dom";
+import { lazy } from 'react'
 
 const scansRoutes = [
   {
-    path: "/scans/aws/:account_id/:request_id",
-    component: lazy(() => import("./AwsScanResults")),
+    path: '/scans/:cloud_id/:account_id/:request_id',
+    component: lazy(() => import('../../components/scansDev/AwsScanResults')),
   },
   {
-    path: "/scans/aws",
-    component: lazy(() => import("./AwsScans")),
-    expect: true,
+    path: '/scans/:cloud_id',
+    component: lazy(() => import('../../components/scansDev/Scans')),
   },
   {
-    path: "/scans",
-    component: () => <Redirect to="/scans/aws" />,
+    path: '/scans',
+    component: lazy(() => import('../../components/scansDev/Scans')),
     exact: true,
   },
-];
+]
 
-export default scansRoutes;
+export default scansRoutes
