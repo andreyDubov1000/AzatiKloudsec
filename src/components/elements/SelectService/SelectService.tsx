@@ -13,6 +13,7 @@ interface SelectServiceTypes {
   onClick?: () => any
   className?: string
   label?: string
+  disabled?: boolean
   items?: ServiceListItemType[]
   iconsUrl?: typeof ServiceIconsUrl
   checkedList: ServiceListItemType[]
@@ -23,11 +24,13 @@ const SelectService = ({
   items = awsServiceList,
   label = 'Cloud service',
   iconsUrl = ServiceIconsUrl,
+  disabled = false,
   className,
   onClick,
   checkedList,
   setCheckedList,
 }: SelectServiceTypes) => {
+  // for SelectService use state like this in the parent componet
   // const [checkedList, setCheckedList] = useState<ServiceListItemType[]>([])
   const [isAllSelected, setIsAllSelected] = useState<boolean>(false)
 
@@ -44,9 +47,7 @@ const SelectService = ({
 
   useEffect(() => {
     items.length === checkedList.length ? setIsAllSelected(true) : setIsAllSelected(false)
-  }, [checkedList.length])
-
-  //const allSelected = items.length === checkedList.length
+  }, [checkedList.length, items.length])
 
   const handleSelectAll = (isSelected: boolean) => {
     if (isSelected) {
@@ -72,6 +73,7 @@ const SelectService = ({
   return (
     <div onClick={onClick} className={classNames(className, 'autocomplete_root')}>
       <Autocomplete
+        disabled={disabled}
         multiple
         size='small'
         limitTags={1}

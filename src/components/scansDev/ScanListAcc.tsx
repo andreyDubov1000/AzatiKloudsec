@@ -20,7 +20,6 @@ interface ScanListAccPropsType {
 }
 
 const ScanListAcc: React.FC<ScanListAccPropsType> = ({ accountList, user_id, cloud_id }) => {
-  //const { book, pageNum, totalPages, onNextPage, onPrevPage } = usePagination(accountList, 10)
   const [book, setBook] = useState<typeof accountList>([])
 
   return (

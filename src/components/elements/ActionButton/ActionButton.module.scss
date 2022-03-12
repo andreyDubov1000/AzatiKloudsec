@@ -15,7 +15,8 @@
     background-color: #023ae0;
   }
 
-  &:active {
+  &:active,
+  &.active {
     background: linear-gradient(99.66deg, #f76996 12.44%, #ff7070 90.29%);
   }
 
@@ -23,21 +24,23 @@
     border-radius: 8px;
     padding: 6px 10px;
     font-size: 1rem;
-    color: #F66996;
+    color: #f66996;
     border: solid 2px transparent;
-    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(99.66deg, #F76996 12.44%, #FF7070 90.29%);
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
+      linear-gradient(99.66deg, #f76996 12.44%, #ff7070 90.29%);
     background-origin: border-box;
     background-clip: content-box, border-box;
     box-shadow: 2px 1000px 1px #fff inset;
 
     &:hover {
-      background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(99.66deg, #FF8170 12.44%, #FF8170 90.29%);
+      background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
+        linear-gradient(99.66deg, #ff8170 12.44%, #ff8170 90.29%);
       color: #fff;
       box-shadow: none;
     }
 
     &:active {
-      background: linear-gradient(99.66deg, #F76996 12.44%, #FF7070 90.29%);
+      background: linear-gradient(99.66deg, #f76996 12.44%, #ff7070 90.29%);
       color: #fff;
     }
 
@@ -46,11 +49,13 @@
     }
 
     &.disabled {
-      background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(99.66deg, #F76996 12.44%, #FF7070 90.29%);
+      background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
+        linear-gradient(99.66deg, #f76996 12.44%, #ff7070 90.29%);
       color: #f76996;
 
       &:hover {
-        background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(99.66deg, #F76996 12.44%, #FF7070 90.29%);
+        background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
+          linear-gradient(99.66deg, #f76996 12.44%, #ff7070 90.29%);
         color: #f76996;
         box-shadow: 2px 1000px 1px #fff inset;
       }
@@ -60,17 +65,17 @@
   &.fill {
     border-radius: 8px;
     padding: 6px 10px;
-    background-color: #F8F8F8;
-    color: #0F2978;
+    background-color: #f8f8f8;
+    color: #0f2978;
 
     &:hover {
-      background-color: #E6F5F9;
-      color: #023AE0;
+      background-color: #e6f5f9;
+      color: #023ae0;
       transition: background-color 0.3s ease-out;
     }
 
     &:active {
-      background: linear-gradient(99.66deg, #F76996 12.44%, #FF7070 90.29%);
+      background: linear-gradient(99.66deg, #f76996 12.44%, #ff7070 90.29%);
       color: #fff;
     }
 
@@ -80,11 +85,11 @@
 
     &.disabled {
       opacity: 0.5;
-      background-color: #ECECEC;
+      background-color: #ececec;
       color: #727787;
 
       &:hover {
-        background-color: #ECECEC;
+        background-color: #ececec;
         color: #727787;
       }
     }
@@ -101,7 +106,8 @@
     opacity: 0.5;
     cursor: auto;
 
-    .title, .iconBox {
+    .title,
+    .iconBox {
       pointer-events: none;
     }
   }

@@ -71,7 +71,7 @@ const IncidentCard: React.FC<IncidentCardProps> = ({
             {format(new Date(VulnerabilityDate), 'dd MMM, yy hh:mm a')}
           </Small>
         )}
-        <RadioButtonChecked fontSize='small' sx={{ color: vulnerabilityColor[Severity].bgColor }} />
+        <RadioButtonChecked fontSize='small' sx={{ color: vulnerabilityColor[Severity]?.bgColor }} />
       </CustomFlexBox>
     </Card>
   )

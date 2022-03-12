@@ -10,11 +10,12 @@ const EmptyList: React.FC<EmptyListPropsType> = ({ handlerClick = () => {}, clas
   const refBox = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    refBox.current?.addEventListener('click', handlerClick)
+    const element = refBox.current
+    element?.addEventListener('click', handlerClick)
     return () => {
-      refBox.current?.removeEventListener('click', handlerClick)
+      element?.removeEventListener('click', handlerClick)
     }
-  }, [refBox.current, handlerClick])
+  }, [handlerClick])
 
   return (
     <div className={classNames(styles.empty_list, className)}>

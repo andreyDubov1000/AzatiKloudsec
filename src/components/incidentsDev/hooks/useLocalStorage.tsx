@@ -10,7 +10,6 @@ export function useLocalStorage<T>(initialValue: T, key: string, save?: (i: T) =
 
   useEffect(() => {
     const isSave = save ? save(value) : true
-
     if (isSave) {
       localStorage.setItem(key, JSON.stringify(value))
     } else {

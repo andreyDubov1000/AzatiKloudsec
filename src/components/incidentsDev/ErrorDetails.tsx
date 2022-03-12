@@ -7,7 +7,7 @@ import { CancelTokenSource } from 'axios'
 
 type ErrorDetailsProps = {
   onMarckAsExceptionClickhandler: () => void
-  isExceptionPage: boolean
+  currentPage: 'exceptions' | 'incidents' | 'scans'
   exceptionCreateRef: React.MutableRefObject<CancelTokenSource | null>
   exceptionDeleteRef: React.MutableRefObject<CancelTokenSource | null>
   handleDeleteException: () => void
@@ -20,7 +20,7 @@ type ErrorDetailsProps = {
 
 const ErrorDetails: React.FC<IncidentCardTypes & ErrorDetailsProps> = ({
   SecurityExceptionComment,
-  isExceptionPage,
+  currentPage,
   isLoading,
   setComment,
   setModalActive,
@@ -67,13 +67,14 @@ const ErrorDetails: React.FC<IncidentCardTypes & ErrorDetailsProps> = ({
           </div>
         )}
       </ScrollBar>
-      {isExceptionPage ? (
+      {currentPage === 'exceptions' ? (
         <div className={styles.exception_button}>
           <ButtonSimple disabled={isLoading} onClick={() => setModalActive(true)}>
             Delete Exception
           </ButtonSimple>
         </div>
-      ) : (
+      ) : null}
+      {currentPage === 'incidents' ? (
         <>
           <div className={styles.textarea_container}>
             <textarea id={'comment'} className={styles.textarea_bar} wrap='soft' value={comment} required onChange={handleCommentChange} />
@@ -87,7 +88,7 @@ const ErrorDetails: React.FC<IncidentCardTypes & ErrorDetailsProps> = ({
             </ButtonSimple>
           </div>
         </>
-      )}
+      ) : null}
     </>
   )
 }

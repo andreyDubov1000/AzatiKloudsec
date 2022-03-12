@@ -9,7 +9,6 @@ import { uuid } from '@utils'
 import { debounce } from 'lodash'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
-import { checkAwsScanReqest } from 'services/scanService'
 
 const AwsScanResults = () => {
   console.log('[AwsScanResults]')
@@ -17,11 +16,8 @@ const AwsScanResults = () => {
   const [motherList, setMotherList] = useState<IncidentCardProps[]>([])
   const [incidentList, setIncidentList] = useState<IncidentCardProps[]>([])
   const [selectedIncident, setSelectedIncident] = useState<any>(null)
-
   const { user } = useAppSelector((store) => store.auth)
-
-  const { cloud_id, request_id, account_id } = useParams<any>()
-  const history = useHistory()
+  const { account_id } = useParams<any>()
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleSearch = useCallback(
@@ -70,44 +66,28 @@ const AwsScanResults = () => {
     [incidentList]
   )
 
-  // window.addEventListener(
-  //   'message',
-  //   (event) => {
-  //     //if (event.origin !== window.location.origin) return
-  //     console.log(event.data)
-  //   },
-  //   false
-  // )
-  useEffect(() => {
-    const userId = user?.user_id
-    let interval: any = null
+  const messageReceiver = useCallback(
+    (event: MessageEvent<any>) => {
+      if (event.origin !== window.location.origin) return
+      if (event.data[0] === account_id) {
+        const list = event.data[1].map((item: any) => ({
+          id: uuid(),
+          ...item,
+        }))
+        setMotherList(list)
+        setIncidentList(list)
+        setLoading(false)
+      }
+    },
+    [account_id]
+  )
 
-    if (userId && account_id && request_id) {
-      interval = setInterval(() => {
-        checkAwsScanReqest(userId, 'aws', account_id, request_id).then((data) => {
-          console.log(data)
-          if (!data) {
-            clearInterval(interval)
-            setLoading(false)
-            console.log('нет данных')
-            // history.push('/scans/aws')
-            return
-          } else if (data?.Vulnerabilities) {
-            console.log('отправка сообщения', window.opener.Location)
-            window.opener.postMessage('жопа жопа жопа', '*')
-            const list = data.Vulnerabilities.map((item: any) => ({
-              id: uuid(),
-              ...item,
-            }))
-            setMotherList(list)
-            setIncidentList(list)
-            setLoading(false)
-            if (interval) clearInterval(interval)
-          }
-        })
-      }, 5000)
+  useEffect(() => {
+    window.addEventListener('message', messageReceiver, false)
+    return () => {
+      window.removeEventListener('message', messageReceiver, false)
     }
-  }, [account_id, request_id, user])
+  }, [messageReceiver])
 
   return (
     <CustomBox sx={{ p: '1.5rem' }}>

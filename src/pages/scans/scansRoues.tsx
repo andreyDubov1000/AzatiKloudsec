@@ -3,7 +3,7 @@ import { lazy } from 'react'
 const scansRoutes = [
   {
     path: '/scans/:cloud_id/:account_id/:request_id',
-    component: lazy(() => import('../../components/scansDev/AwsScanResults')),
+    component: lazy(() => import('../../components/incidentsDev/Incidents')),
   },
   {
     path: '/scans/:cloud_id',

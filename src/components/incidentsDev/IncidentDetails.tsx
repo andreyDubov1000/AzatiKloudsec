@@ -14,10 +14,10 @@ import { useCreateSecurityException, useDeleteSecurityException } from 'services
 export interface IncidentDetailsProps {
   selectedIncident: IncidentCardTypes | null
   setIncidentList?: any
-  isExceptionPage: boolean
+  currentPage: 'exceptions' | 'incidents' | 'scans'
 }
 
-const IncidentDetails: React.FC<IncidentDetailsProps> = ({ selectedIncident, setIncidentList, isExceptionPage }) => {
+const IncidentDetails: React.FC<IncidentDetailsProps> = ({ selectedIncident, setIncidentList, currentPage }) => {
   const [modalActive, setModalActive] = useState<boolean>(false)
   const [exceptionCreateRef, createSecurityException] = useCreateSecurityException()
   const [exceptionDeleteRef, deleteSecurityException] = useDeleteSecurityException()
@@ -99,14 +99,33 @@ const IncidentDetails: React.FC<IncidentDetailsProps> = ({ selectedIncident, set
       },
     },
   ]
+
+  const modal = {
+    exceptions: {
+      titleOne: 'Remove from exceptions',
+      titleTwo: 'You want to remove this incident from exceptions?',
+      buttons: ExceptionsModalPopUpbuttons,
+    },
+    incidents: {
+      titleOne: 'Exceptions',
+      titleTwo: 'Do you want to see all the exceptions?',
+      buttons: IncidentsModalPopUpbuttons,
+    },
+    scans: {
+      titleOne: '',
+      titleTwo: '',
+      buttons: [],
+    },
+  }
+
   return (
     <div className={styles.incident_details}>
       <ModalPopUp
         modalActive={modalActive}
         setModalActive={setModalActive}
-        titleOne={isExceptionPage ? 'Remove from exceptions' : 'Exceptions'}
-        titleTwo={isExceptionPage ? 'You want to remove this incident from exceptions?' : 'Do you want to see all the exceptions?'}
-        buttons={isExceptionPage ? ExceptionsModalPopUpbuttons : IncidentsModalPopUpbuttons}
+        titleOne={modal[currentPage].titleOne}
+        titleTwo={modal[currentPage].titleTwo}
+        buttons={modal[currentPage].buttons}
       />
       {selectedIncident ? (
         <>
@@ -124,7 +143,7 @@ const IncidentDetails: React.FC<IncidentDetailsProps> = ({ selectedIncident, set
                 {...selectedIncident}
                 comment={comment}
                 onMarckAsExceptionClickhandler={onMarckAsExceptionClickhandler}
-                isExceptionPage={isExceptionPage}
+                currentPage={currentPage}
                 exceptionCreateRef={exceptionCreateRef}
                 exceptionDeleteRef={exceptionDeleteRef}
                 isLoading={isLoading}

@@ -19,7 +19,6 @@ import useSelectedAccCloud, { AccServiceType } from './hooks/useSelectedAccCloud
 import { useGetAllSecurityExceptions, useSearchQuery } from 'services/securityExceptionService'
 import { queryProps } from '@data/constants'
 import { debounce } from 'lodash'
-import { checkAwsScanReqest } from 'services/scanService'
 
 const UserIncidents = () => {
   console.log('render UserIncidents')
@@ -38,14 +37,14 @@ const UserIncidents = () => {
   const [filteredList, accCloud, setAccCloud] = useSelectedAccCloud(orderedList)
   const [incidentList, lastBookElementRef, setPageNum] = useInfinityPagination(filteredList, 10)
   const { pathname } = useLocation()
-  const { cloud_id, request_id, account_id } = useParams<any>()
-  const isExceptionPage = pathname.includes('exceptions')
+  const { account_id } = useParams<any>()
+  const history = useHistory()
+
   const matchPath = pathname.match('exceptions') || pathname.match('incidents') || pathname.match('scans')!
   const currentPage = matchPath[0] as 'exceptions' | 'incidents' | 'scans'
-  const history = useHistory()
-  //  const { slug }: any = useParams()
-  // const { search } = useLocation()
-  // const vulnerability = useQuery(search).get('vulnerability')
+  const isExceptionPage = currentPage === 'exceptions'
+  const isScanPage = currentPage === 'scans'
+  const isIncidentPage = currentPage === 'incidents'
 
   const exceptionDataHandler = useCallback((data: any) => {
     const dataList = data?.SecurityExceptions || []
@@ -54,17 +53,6 @@ const UserIncidents = () => {
         id: uuid(),
         ...item,
         ...VulnerabilityDetails,
-      }
-    })
-    setMotherList(list)
-  }, [])
-
-  const scansDataHandler = useCallback((data: any) => {
-    const dataList = data?.Vulnerabilities || []
-    const list: IncidentCardTypes[] = dataList.map((item: any) => {
-      return {
-        id: uuid(),
-        ...item,
       }
     })
     setMotherList(list)
@@ -82,7 +70,7 @@ const UserIncidents = () => {
     setMotherList(list)
   }, [])
 
-  const loadingDataHandler = useMemo(
+  const dataLoading = useMemo(
     () => ({
       exceptions: async function (user_id: string) {
         const data = await getAllSecurityExceptions(user_id)
@@ -101,15 +89,15 @@ const UserIncidents = () => {
     if (user?.user_id) {
       try {
         setLoading(true)
-        await loadingDataHandler[currentPage](user.user_id)
+        await dataLoading[currentPage](user.user_id)
         setLoading(false)
       } catch (error) {
         setLoading(false)
       }
     }
-  }, [user, loadingDataHandler, currentPage])
+  }, [user, dataLoading, currentPage])
 
-  const setSearchValueDebounce = useCallback(debounce(setSearchValue, 500), [])
+  const setSearchValueDebounce = useCallback(debounce(setSearchValue, 500), [setSearchValue])
 
   const handleSearch = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -117,7 +105,7 @@ const UserIncidents = () => {
       setBlocked(!!query)
       setSearchValueDebounce(query)
     },
-    [setSearchValue]
+    [setSearchValueDebounce]
   )
 
   const handleIncidentSearch = useCallback(
@@ -172,48 +160,81 @@ const UserIncidents = () => {
     },
     [history.location.pathname]
   )
+  const scanMessageReceiver = useCallback(
+    (event: MessageEvent<any>) => {
+      if (event.origin !== window.location.origin) return
+      if (event.data[0] === account_id) {
+        const list = event.data[1].map((item: any) => ({
+          id: uuid(),
+          ...item,
+        }))
+        setLoading(false)
+        setMotherList(list)
+      }
+    },
+    [account_id]
+  )
 
   useEffect(() => {
-    if (!searchValue) {
-      loadData()
-    } else {
-      const getSearchDebounce = async (searchValue: string) => {
-        if (user?.user_id) {
-          history.push({
-            search: searchValue ? `?p=${searchValue}` : '',
-          })
-          try {
-            setLoading(true)
-            if (isExceptionPage) {
-              const data = await getSearch(user.user_id, searchValue)
-              exceptionDataHandler(data)
-            }
-            setLoading(false)
-          } catch (error) {
-            setLoading(false)
-          }
-        }
-      }
-      getSearchDebounce(searchValue)
+    if (isScanPage) window.addEventListener('message', scanMessageReceiver, false)
+    return () => {
+      window.removeEventListener('message', scanMessageReceiver, false)
     }
+  }, [scanMessageReceiver, isScanPage])
+
+  useEffect(() => {
+    if (!isScanPage) loadData()
     return () => {
       if (sourceStatusRef.current) sourceStatusRef.current.cancel('Incidents cancel getting AllAccountStatus')
       if (sourceExceptionsRef.current) sourceExceptionsRef.current.cancel('Incidents cancel getting AllAccountExceptions')
-      if (sourceRef.current) sourceRef.current.cancel('Cancel search')
     }
-  }, [loadData, searchValue, sourceStatusRef, sourceExceptionsRef, sourceRef])
+  }, [isScanPage, loadData, sourceExceptionsRef, sourceStatusRef])
+
+  useEffect(() => {
+    // if (!searchValue) {
+    //   loadData()
+    // } else {
+    async function getSearchDebounce(searchValue: string) {
+      if (user?.user_id) {
+        history.push({
+          search: searchValue ? `?p=${searchValue}` : '',
+        })
+        try {
+          setLoading(true)
+          if (isExceptionPage) {
+            const data = await getSearch(user.user_id, searchValue)
+            exceptionDataHandler(data)
+          }
+          setLoading(false)
+        } catch (error) {
+          setLoading(false)
+        }
+      }
+    }
+    getSearchDebounce(searchValue)
+    // }
+    return () => {
+      if (sourceRef.current) sourceRef.current.cancel('Incidents cancel search')
+    }
+  }, [searchValue, sourceRef, exceptionDataHandler, getSearch, isExceptionPage, user?.user_id])
 
   useEffect(() => {
     setSelectedIncident(null)
   }, [motherList.length])
 
+  const title = {
+    exceptions: 'Security Exceptions',
+    incidents: 'Security Incidents',
+    scans: 'Security Scans',
+  }
+
   return (
     <>
       <RouteLeavingGuard isBlocked={blocked} shouldBlockPath={shouldBlockPath} />
       {loading ? <Loader /> : null}
-      {isExceptionPage ? <h1>Exceptions</h1> : <h1>Incidents</h1>}
+      <h1>{title[currentPage]}</h1>
       <div className={styles.incidents_layout}>
-        <PageTitle title={isExceptionPage ? 'Security Incidents' : 'Security Exceptions'} />
+        <PageTitle title={title[currentPage]} />
         <IncidentList
           incidentList={incidentList}
           dateOrder={sortOrder}
@@ -229,7 +250,7 @@ const UserIncidents = () => {
           onAccCloudClick={onAccCloudClick}
           accCloud={accCloud}
         />
-        <IncidentDetails selectedIncident={selectedIncident} setIncidentList={setMotherList} isExceptionPage={isExceptionPage} />
+        <IncidentDetails selectedIncident={selectedIncident} setIncidentList={setMotherList} currentPage={currentPage} />
       </div>
     </>
   )

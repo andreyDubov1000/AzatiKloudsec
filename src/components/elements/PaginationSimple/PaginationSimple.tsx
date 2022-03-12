@@ -15,7 +15,7 @@ const PaginationSimple: React.FC<PaginationSimplePropsType> = ({ accountList, nu
 
   useEffect(() => {
     setBook(book)
-  }, [book])
+  }, [book, setBook])
 
   return (
     <div className={styles.pagination}>

@@ -2,8 +2,6 @@ import { debounce } from 'lodash'
 import { useCallback, useState } from 'react'
 import KloudApi from './kloudApi'
 import { useCancelToken } from './utils'
-import { useDebounce } from '../components/incidentsDev/hooks/useDebounce'
-import { useLocation, useHistory } from 'react-router-dom'
 
 type SecurityException = {
   resource_vulnerability_id: string
