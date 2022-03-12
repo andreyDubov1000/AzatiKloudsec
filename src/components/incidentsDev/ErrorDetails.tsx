@@ -7,7 +7,7 @@ import { CancelTokenSource } from 'axios'
 
 type ErrorDetailsProps = {
   onMarckAsExceptionClickhandler: () => void
-  currentPage: 'exceptions' | 'incidents' | 'scans'
+  currentPage: 'security-exceptions' | 'incidents' | 'scans'
   exceptionCreateRef: React.MutableRefObject<CancelTokenSource | null>
   exceptionDeleteRef: React.MutableRefObject<CancelTokenSource | null>
   handleDeleteException: () => void
@@ -67,7 +67,7 @@ const ErrorDetails: React.FC<IncidentCardTypes & ErrorDetailsProps> = ({
           </div>
         )}
       </ScrollBar>
-      {currentPage === 'exceptions' ? (
+      {currentPage === 'security-exceptions' ? (
         <div className={styles.exception_button}>
           <ButtonSimple disabled={isLoading} onClick={() => setModalActive(true)}>
             Delete Exception

@@ -16,12 +16,15 @@ export function useSearchQuery(initialSearchValue: string = '') {
 
   const getSearch = useCallback(
     (user_id: string, value: string) => {
+      if (sourceRef.current) sourceRef.current.cancel('Search query cancel')
       if (value) {
-        if (sourceRef.current) sourceRef.current.cancel('Search query cancel')
         return KloudApi.get(`/users/${user_id}/providers/aws/security-exceptions`, {
           cancelToken: getCancelToken(),
         })
       }
+      return KloudApi.get(`/users/${user_id}/providers/aws/security-exceptions`, {
+        cancelToken: getCancelToken(),
+      })
     },
     [getCancelToken]
   )

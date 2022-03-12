@@ -1,3 +1,4 @@
+import { useHistory } from 'react-router-dom'
 import { useEffect } from 'react'
 import { IncidentCardTypes } from '../IncidentCard'
 import { useLocalStorage } from './useLocalStorage'
@@ -29,8 +30,9 @@ export const dropDownAccounts = [
 
 const filteredProps = ['VulnerabilityId'] as Array<keyof IncidentCardTypes>
 
-const useSelectedAccCloud = (list: IncidentCardTypes[]) => {
-  const [savedSelectedAccCloud, setSavedSelectedAccCloud] = useLocalStorage<AccServiceType>('AWS', 'selectedAccCloud')
+const useSelectedAccCloud = (list: IncidentCardTypes[], page: string) => {
+  const history = useHistory()
+  const [savedSelectedAccCloud, setSavedSelectedAccCloud] = useLocalStorage<AccServiceType>('AWS', `selectedAccCloud_${page}`)
   const [filteredList, accCloud, setAccCloud] = useSearchFilter<IncidentCardTypes>(list, filteredProps, savedSelectedAccCloud as string)
 
   useEffect(() => {

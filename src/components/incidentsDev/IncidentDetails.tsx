@@ -14,7 +14,7 @@ import { useCreateSecurityException, useDeleteSecurityException } from 'services
 export interface IncidentDetailsProps {
   selectedIncident: IncidentCardTypes | null
   setIncidentList?: any
-  currentPage: 'exceptions' | 'incidents' | 'scans'
+  currentPage: 'security-exceptions' | 'incidents' | 'scans'
 }
 
 const IncidentDetails: React.FC<IncidentDetailsProps> = ({ selectedIncident, setIncidentList, currentPage }) => {
@@ -101,7 +101,7 @@ const IncidentDetails: React.FC<IncidentDetailsProps> = ({ selectedIncident, set
   ]
 
   const modal = {
-    exceptions: {
+    'security-exceptions': {
       titleOne: 'Remove from exceptions',
       titleTwo: 'You want to remove this incident from exceptions?',
       buttons: ExceptionsModalPopUpbuttons,
