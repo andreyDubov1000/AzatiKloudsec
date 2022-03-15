@@ -19,31 +19,40 @@ import useSelectedAccCloud, { AccServiceType } from './hooks/useSelectedAccCloud
 import { useGetAllSecurityExceptions, useSearchQuery } from 'services/securityExceptionService'
 import { queryProps } from '@data/constants'
 import { debounce } from 'lodash'
+import { useStateSafe } from './hooks/useStateSafe'
+
+const keyForSelectedAccCloud = ['VulnerabilityId'] as Array<keyof IncidentCardTypes>
+export type PageType = 'security-exceptions' | 'incidents' | 'scans'
+export const exceptionsPage = 'security-exceptions'
+export const scansPage = 'scans'
+export const incidentsPage = 'incidents'
 
 const UserIncidents = () => {
   const { pathname } = useLocation()
-  const matchPath = pathname.match('security-exceptions') || pathname.match('incidents') || pathname.match('scans')!
-  const currentPage = matchPath[0] as 'security-exceptions' | 'incidents' | 'scans'
-  const isExceptionPage = currentPage === 'security-exceptions'
-  const isScanPage = currentPage === 'scans'
-  const isIncidentPage = currentPage === 'incidents'
+  const matchPath = pathname.match(exceptionsPage) || pathname.match(incidentsPage) || pathname.match(scansPage)!
+  const currentPage = matchPath[0] as PageType
+  const isExceptionPage = currentPage === exceptionsPage
+  const isScanPage = currentPage === scansPage
+  const isIncidentPage = currentPage === incidentsPage
 
+  const { account_id } = useParams<any>()
+  const history = useHistory()
   const { user } = useAppSelector((store) => store.auth)
-  const [sourceRef, searchValue, setSearchValue, getSearch] = useSearchQuery()
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useStateSafe(true)
   const [blocked, setBlocked] = useState(false)
   const [hasSeverityArr, setHasSeverityArr] = useState<number[]>([1, 1, 1, 1])
+  const [sourceRef, searchValue, setSearchValue, getSearch] = useSearchQuery()
   const [sourceStatusRef, getOverallUserAccountStatus] = useGetOverallUserAccountStatus()
   const [sourceExceptionsRef, getAllSecurityExceptions] = useGetAllSecurityExceptions()
   const [selectedIncident, setSelectedIncident] = useState<IncidentCardTypes | null>(null)
+
   const [motherList, setMotherList] = useState<IncidentCardTypes[]>([])
   const [severityList, severitySet, setSeveritySet] = useSeverityFilter(motherList)
   const [searchList, enteredSearchValue, setEnteredSearchValue] = useSearchFilter(severityList, queryProps)
   const [orderedList, sortOrder, setOrder] = useSort<IncidentCardTypes>(searchList, 'VulnerabilityDate')
-  const [filteredList, accCloud, setAccCloud] = useSelectedAccCloud(orderedList, currentPage)
+  const [filteredList, accCloud, setAccCloud] = useSelectedAccCloud(orderedList, currentPage, keyForSelectedAccCloud)
   const [incidentList, lastBookElementRef, setPageNum] = useInfinityPagination(filteredList, 10)
-  const { account_id } = useParams<any>()
-  const history = useHistory()
+
   console.log('render UserIncidents')
 
   const exceptionDataHandler = useCallback((data: any) => {
@@ -72,7 +81,7 @@ const UserIncidents = () => {
 
   const pageData = useMemo(
     () => ({
-      'security-exceptions': {
+      [exceptionsPage]: {
         load: async function (user_id: string, searchValue: string = '') {
           const data = await getSearch(user_id, searchValue)
           exceptionDataHandler(data)
@@ -91,7 +100,7 @@ const UserIncidents = () => {
         title: 'Scan',
       },
     }),
-    [incidentDataHandler, exceptionDataHandler, getAllSecurityExceptions, getOverallUserAccountStatus]
+    [incidentDataHandler, exceptionDataHandler, getOverallUserAccountStatus, getSearch]
   )
 
   const loadData = useCallback(async () => {
@@ -104,7 +113,7 @@ const UserIncidents = () => {
         setLoading(false)
       }
     }
-  }, [user, pageData, currentPage])
+  }, [user?.user_id, pageData, currentPage])
 
   const setSearchValueDebounce = useCallback(debounce(setSearchValue, 500), [setSearchValue])
 
@@ -127,7 +136,7 @@ const UserIncidents = () => {
     [setEnteredSearchValue, setPageNum]
   )
 
-  const onIncidentCardClickHandler = useCallback(
+  const onCardClickHandler = useCallback(
     (incident: IncidentCardTypes) => () => {
       setSelectedIncident(incident)
     },
@@ -146,7 +155,7 @@ const UserIncidents = () => {
     [setSeveritySet, setPageNum]
   )
 
-  const handleDateSort = useCallback(() => {
+  const onDateSortHandler = useCallback(() => {
     const newDateOrder = sortOrder === 'desc' ? 'asc' : 'desc'
     setOrder(newDateOrder)
     setPageNum(1)
@@ -169,6 +178,7 @@ const UserIncidents = () => {
     },
     [history.location.pathname]
   )
+
   const scanMessageReceiver = useCallback(
     (event: MessageEvent<any>) => {
       if (event.origin !== window.location.origin) return
@@ -179,6 +189,7 @@ const UserIncidents = () => {
         }))
         setLoading(false)
         setMotherList(list)
+        window.removeEventListener('message', scanMessageReceiver, false)
       }
     },
     [account_id]
@@ -192,7 +203,7 @@ const UserIncidents = () => {
   }, [scanMessageReceiver, isScanPage])
 
   useEffect(() => {
-    if (!isScanPage) loadData()
+    if (isIncidentPage) loadData()
     return () => {
       if (sourceStatusRef.current) sourceStatusRef.current.cancel('Incidents cancel getting AllAccountStatus')
       if (sourceExceptionsRef.current) sourceExceptionsRef.current.cancel('Incidents cancel getting AllAccountExceptions')
@@ -221,7 +232,7 @@ const UserIncidents = () => {
     return () => {
       if (sourceRef.current) sourceRef.current.cancel('Incidents cancel search')
     }
-  }, [searchValue, sourceRef, exceptionDataHandler, getSearch, isExceptionPage, user?.user_id])
+  }, [searchValue, getSearch, isExceptionPage, user?.user_id])
 
   useEffect(() => {
     setSelectedIncident(null)
@@ -237,7 +248,7 @@ const UserIncidents = () => {
         <IncidentList
           incidentList={incidentList}
           dateOrder={sortOrder}
-          handleDateSort={handleDateSort}
+          handleDateSort={onDateSortHandler}
           hasSeverityArr={hasSeverityArr}
           onSeverityClickHandler={onSeverityClickHandler}
           severitySet={severitySet}
@@ -245,7 +256,7 @@ const UserIncidents = () => {
           selectedIncident={selectedIncident}
           setSelectedIncident={setSelectedIncident}
           lastBookElementRef={lastBookElementRef}
-          onIncidentCardClickHandler={onIncidentCardClickHandler}
+          onIncidentCardClickHandler={onCardClickHandler}
           onAccCloudClick={onAccCloudClick}
           accCloud={accCloud}
         />

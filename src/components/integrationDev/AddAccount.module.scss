@@ -1,0 +1,15 @@
+.handle {
+  height: 40px;
+  padding: 6px;
+  cursor: pointer;
+
+  color: #bbc0d0;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 28px;
+  text-align: left;
+
+  &:hover {
+    color: #023ae0;
+  }
+}

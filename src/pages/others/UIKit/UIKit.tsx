@@ -190,7 +190,7 @@ const UIKit = () => {
           <EmptyList />
         </UiKitCard>
         <UiKitCard bgColor='#ececec' title='Pagination'>
-          <PaginationSimple accountList={array} numOnPage={10} setBook={setBook} />
+          <PaginationSimple accountList={array} numOnPage={10} setBook={setBook} storageKey={'UIkit'} />
         </UiKitCard>
       </div>
     </div>

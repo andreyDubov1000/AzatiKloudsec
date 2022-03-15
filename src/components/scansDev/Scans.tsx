@@ -5,19 +5,32 @@ import React, { useEffect, useState } from 'react'
 import { useGetAccounts } from 'services/integrationsService'
 import { SecondMenu } from '@component/elements'
 import styles from './Scans.module.scss'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import ScanListAcc from './ScanListAcc'
+import { useStateSafe } from '@component/incidentsDev/hooks/useStateSafe'
+import AddAccount from '@component/integrationDev/AddAccount'
+import IntegrationListAcc from '@component/integrationDev/IntegrationListAcc'
+import ScrollBar from 'react-perfect-scrollbar'
 
-export interface IAccounts {
+export interface IAccount {
   AccountId: string
   AccountAlias: string
+  CfStackId: string
+  CfTemplateVersion: string
+  KloudsecRoleCfTemplateUpToDate: boolean
+  Reachability: string
 }
 
 interface ScansPropsType {}
 
 const Scans: React.FC<ScansPropsType> = ({}) => {
-  const [loading, setLoading] = useState(true)
-  const [accountList, setAccountList] = useState<IAccounts[]>([])
+  const { pathname } = useLocation()
+  const matchPath = pathname.match('scans') || pathname.match('integrations')!
+  const currentPage = matchPath[0] as 'scans' | 'integrations'
+  const isScanPage = currentPage === 'scans'
+  const isIntegrations = currentPage === 'integrations'
+  const [loading, setLoading] = useStateSafe(true)
+  const [accountList, setAccountList] = useState<IAccount[]>([])
   const { cloud_id } = useParams<any>()
   const [sourceRefAccounts, getAccounts] = useGetAccounts()
   const { user } = useAppSelector((state) => state.auth)
@@ -26,7 +39,13 @@ const Scans: React.FC<ScansPropsType> = ({}) => {
     const getAccountList = async (user_id: string | undefined, cloud_id: string | undefined) => {
       if (cloud_id && user_id) {
         const list = (await getAccounts(user_id, cloud_id)) || []
-        setAccountList(list.AwsAccounts)
+        const dataList = list.AwsAccounts.map((item: any) => ({
+          id: item.AccountId,
+          user_id,
+          ...item,
+        }))
+        console.log(dataList)
+        setAccountList(dataList)
       }
       setLoading(false)
     }
@@ -40,11 +59,11 @@ const Scans: React.FC<ScansPropsType> = ({}) => {
   const cloudList = [
     {
       title: 'All accounts',
-      url: '/scans',
+      url: `/${currentPage}`,
     },
     {
       title: 'AWS',
-      url: '/scans/aws',
+      url: `/${currentPage}/aws`,
     },
     {
       title: 'Azure',
@@ -67,14 +86,17 @@ const Scans: React.FC<ScansPropsType> = ({}) => {
   return (
     <>
       {loading && <Loader />}
-      <PageTitle title={'Scan accounts'} />
-      <h1>{`Scan: ${cloud_id?.toUpperCase() || 'ALL'} accounts`}</h1>
+      <PageTitle title={`${currentPage} accounts`} />
+      <h1 className={styles.title}>{`${currentPage}: ${cloud_id?.toUpperCase() || 'ALL'} accounts`}</h1>
       <div className={styles.scan_layout}>
-        <div className={styles.cloud_menu}>
-          <SecondMenu items={cloudList} />
-        </div>
+        <ScrollBar className={styles.cloud_menu}>
+          <SecondMenu items={cloudList}>{isIntegrations ? <AddAccount user_id={user?.user_id} /> : null}</SecondMenu>
+        </ScrollBar>
         <div className={styles.accaunts_tab}>
-          <ScanListAcc accountList={accountList} user_id={user?.user_id} cloud_id={cloud_id} />
+          {isScanPage ? <ScanListAcc accountList={accountList} user_id={user?.user_id} cloud_id={cloud_id} /> : null}
+          {isIntegrations ? (
+            <IntegrationListAcc accountList={accountList} loading={loading} user_id={user?.user_id} cloud_id={cloud_id} />
+          ) : null}
         </div>
       </div>
     </>

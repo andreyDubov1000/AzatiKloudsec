@@ -10,11 +10,13 @@ import { severityIcons } from '@data/constants'
 import { useAppSelector } from '@redux/hooks'
 import NotificationManager from '@component/atoms/NotificationManager'
 import { useCreateSecurityException, useDeleteSecurityException } from 'services/securityExceptionService'
+import { useStateSafe } from './hooks/useStateSafe'
+import { exceptionsPage, PageType } from './Incidents'
 
 export interface IncidentDetailsProps {
   selectedIncident: IncidentCardTypes | null
   setIncidentList?: any
-  currentPage: 'security-exceptions' | 'incidents' | 'scans'
+  currentPage: PageType
 }
 
 const IncidentDetails: React.FC<IncidentDetailsProps> = ({ selectedIncident, setIncidentList, currentPage }) => {
@@ -22,7 +24,7 @@ const IncidentDetails: React.FC<IncidentDetailsProps> = ({ selectedIncident, set
   const [exceptionCreateRef, createSecurityException] = useCreateSecurityException()
   const [exceptionDeleteRef, deleteSecurityException] = useDeleteSecurityException()
   const [comment, setComment] = useState('')
-  const [isLoading, setLoading] = useState(false)
+  const [isLoading, setLoading] = useStateSafe(false)
 
   const history = useHistory()
   const { user } = useAppSelector((state) => state.auth)
@@ -77,7 +79,7 @@ const IncidentDetails: React.FC<IncidentDetailsProps> = ({ selectedIncident, set
     {
       title: 'Yes',
       handler: () => {
-        history.push('/security-exceptions')
+        history.push(exceptionsPage)
       },
     },
     {
@@ -101,7 +103,7 @@ const IncidentDetails: React.FC<IncidentDetailsProps> = ({ selectedIncident, set
   ]
 
   const modal = {
-    'security-exceptions': {
+    [exceptionsPage]: {
       titleOne: 'Remove from exceptions',
       titleTwo: 'You want to remove this incident from exceptions?',
       buttons: ExceptionsModalPopUpbuttons,

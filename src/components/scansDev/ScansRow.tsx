@@ -3,6 +3,7 @@ import { useCheckScanReqest, useScanAccount } from 'services/scanService'
 import { ActionButton, SelectService } from '@component/elements'
 import styles from './ScansRow.module.scss'
 import { useLocalStorage } from '@component/incidentsDev/hooks/useLocalStorage'
+import { useStateSafe } from '@component/incidentsDev/hooks/useStateSafe'
 
 export interface ScansRowProps {
   user_Id: string | undefined
@@ -12,7 +13,7 @@ export interface ScansRowProps {
 }
 
 const ScansRow: React.FC<ScansRowProps> = ({ user_Id, cloud_id, AccountId, AccountAlias }) => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useStateSafe(false)
   const [scanAccountRef, scanAccount] = useScanAccount()
   const [checkReqestRef, checkScanReqest] = useCheckScanReqest()
   const [checkedList, setCheckedList] = useLocalStorage<{ label: string; value: string }[]>([], AccountId, (item) => !!item.length)

@@ -1,13 +1,28 @@
 .pagination {
+  align-self: flex-end;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: flex-end;
+  width: 150px;
+  justify-content: space-between;
   height: 40px;
   margin-bottom: 0;
   margin-top: auto;
   flex-shrink: 0;
-  width: 100%;
+
+  .selectRowNumbers {
+    width: fit-content;
+  }
+
+  .pageNumber {
+    margin-right: 0;
+    margin-left: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 50%;
+    justify-content: space-between;
+  }
 
   span {
     color: #0f2978;

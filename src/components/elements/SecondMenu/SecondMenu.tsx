@@ -16,7 +16,7 @@ interface MenuItemPropsTypes {
   item: MenuNav
 }
 
-const SecondMenu = ({ items }: SecondMenuPropsTypes) => {
+const SecondMenu: React.FC<SecondMenuPropsTypes> = ({ items, children }) => {
   return (
     <div className={styles.menu}>
       <div className={styles.content}>
@@ -24,6 +24,7 @@ const SecondMenu = ({ items }: SecondMenuPropsTypes) => {
           <MenuItem key={key} item={item} />
         ))}
       </div>
+      {children}
       <div className={styles.bottom}>
         <Link to='/'>
           <img className={styles.settings} src={Settings} alt='settings' />

@@ -50,7 +50,7 @@ const protectedLayoutSidenavNavigations = [
   },
   {
     title: 'Integrations',
-    path: '/integrations/aws',
+    path: '/integrations',
     icon: Integrations,
     iconActive: IntegrationsActive,
   },

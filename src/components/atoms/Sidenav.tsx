@@ -1,65 +1,42 @@
-import { Drawer } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
-import clsx from "clsx";
-import React, { cloneElement, Fragment, useEffect, useState } from "react";
-
-const useStyles = makeStyles(() => ({
-  handle: {
-    cursor: "pointer",
-  },
-}));
+import { Drawer } from '@material-ui/core'
+import React, { cloneElement, useEffect, useState } from 'react'
 
 export interface SidenavProps {
-  position?: "left" | "right";
-  open?: boolean;
-  width?: number | string;
-  handle: React.ReactElement;
-  toggleSidenav?: () => void;
+  position?: 'left' | 'right'
+  open?: boolean
+  width?: number | string
+  handle: React.ReactElement
+  toggleSidenav?: () => void
 }
 
-const Sidenav: React.FC<SidenavProps> = ({
-  position,
-  open,
-  width,
-  handle,
-  children,
-  toggleSidenav,
-}) => {
-  const [sidenavOpen, setSidenavOpen] = useState(open);
-  const classes = useStyles();
+const Sidenav: React.FC<SidenavProps> = ({ position = 'left', open = false, width = 280, handle, children, toggleSidenav }) => {
+  const [sidenavOpen, setSidenavOpen] = useState(open)
 
   const handleToggleSidenav = () => {
-    setSidenavOpen(!sidenavOpen);
-  };
+    setSidenavOpen(!sidenavOpen)
+  }
 
   useEffect(() => {
-    setSidenavOpen(open);
-  }, [open]);
+    setSidenavOpen(open)
+  }, [open])
 
   return (
-    <Fragment>
+    <>
       <Drawer
         open={sidenavOpen}
         anchor={position}
         onClose={toggleSidenav || handleToggleSidenav}
-        SlideProps={{ style: { width: width || 280 }, unmountOnExit: true }}
+        SlideProps={{ style: { width: width }, unmountOnExit: true }}
       >
         {children}
       </Drawer>
 
       {handle &&
         cloneElement(handle, {
-          className: clsx(handle.props?.className, classes.handle),
           onClick: toggleSidenav || handleToggleSidenav,
         })}
-    </Fragment>
-  );
-};
+    </>
+  )
+}
 
-Sidenav.defaultProps = {
-  width: 260,
-  position: "left",
-  open: false,
-};
-
-export default Sidenav;
+export default Sidenav

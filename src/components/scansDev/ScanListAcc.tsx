@@ -3,18 +3,13 @@ import styles from './Scans.module.scss'
 import ScansRow from './ScansRow'
 import awsServiceList from '@data/awsServiceList'
 import { EmptyList, PaginationSimple } from '@component/elements'
-import { IAccounts } from './Scans'
+import { IAccount } from './Scans'
+import ScrollBar from 'react-perfect-scrollbar'
 
-const scanOptions = [
-  {
-    label: 'All',
-    value: 'all',
-  },
-  ...awsServiceList,
-]
+const scanOptions = [...awsServiceList]
 
 interface ScanListAccPropsType {
-  accountList: IAccounts[]
+  accountList: IAccount[]
   user_id: string | undefined
   cloud_id: string | undefined
 }
@@ -28,13 +23,16 @@ const ScanListAcc: React.FC<ScanListAccPropsType> = ({ accountList, user_id, clo
         <EmptyList />
       ) : (
         <>
-          <h3>Accounts</h3>
           <div className={styles.accounts_list}>
-            {book.map((item: any) => (
-              <ScansRow {...item} scanOptions={scanOptions} user_Id={user_id} cloud_id={cloud_id} key={item.AccountId} />
-            ))}
+            <h3>Accounts</h3>
+            <ScrollBar className={styles.scrollBar}>
+              {book.map((item: IAccount) => (
+                <ScansRow {...item} user_Id={user_id} cloud_id={cloud_id} key={item.AccountId} />
+              ))}
+            </ScrollBar>
           </div>
-          <PaginationSimple accountList={accountList} numOnPage={10} setBook={setBook} />
+
+          <PaginationSimple accountList={accountList} numOnPage={20} setBook={setBook} storageKey={'Scan'} />
         </>
       )}
     </div>

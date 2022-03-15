@@ -1,10 +1,9 @@
 .menu {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-width: 254px;
+  justify-content: baseline;
   height: 100%;
-  min-height: 634px;
+  width: 100%;
   padding: 20px;
   border-radius: 16px;
   background-color: #fff;
@@ -14,6 +13,11 @@
 .content {
 }
 
+.bottom {
+  margin-top: auto;
+  margin-bottom: 9px;
+  margin-left: 9px;
+}
 .settings {
   cursor: pointer;
 }

@@ -4,10 +4,11 @@ import { IncidentCardTypes } from './IncidentCard'
 import styles from './ErrorDetails.module.scss'
 import { ButtonSimple } from '@component/elements'
 import { CancelTokenSource } from 'axios'
+import { exceptionsPage, incidentsPage, PageType } from './Incidents'
 
 type ErrorDetailsProps = {
   onMarckAsExceptionClickhandler: () => void
-  currentPage: 'security-exceptions' | 'incidents' | 'scans'
+  currentPage: PageType
   exceptionCreateRef: React.MutableRefObject<CancelTokenSource | null>
   exceptionDeleteRef: React.MutableRefObject<CancelTokenSource | null>
   handleDeleteException: () => void
@@ -19,7 +20,6 @@ type ErrorDetailsProps = {
 }
 
 const ErrorDetails: React.FC<IncidentCardTypes & ErrorDetailsProps> = ({
-  SecurityExceptionComment,
   currentPage,
   isLoading,
   setComment,
@@ -59,22 +59,22 @@ const ErrorDetails: React.FC<IncidentCardTypes & ErrorDetailsProps> = ({
               <span className={styles.error_value}>{props[key].toString()}</span>
             </div>
           ))}
-        {SecurityExceptionComment && (
+        {/* {SecurityExceptionComment && (
           <div>
             <span className={styles.error_name}>{'SecurityExceptionComment'}</span>
             <span>:</span>
             <span className={styles.error_value}>{SecurityExceptionComment}</span>
           </div>
-        )}
+        )} */}
       </ScrollBar>
-      {currentPage === 'security-exceptions' ? (
+      {currentPage === exceptionsPage ? (
         <div className={styles.exception_button}>
           <ButtonSimple disabled={isLoading} onClick={() => setModalActive(true)}>
             Delete Exception
           </ButtonSimple>
         </div>
       ) : null}
-      {currentPage === 'incidents' ? (
+      {currentPage === incidentsPage ? (
         <>
           <div className={styles.textarea_container}>
             <textarea id={'comment'} className={styles.textarea_bar} wrap='soft' value={comment} required onChange={handleCommentChange} />

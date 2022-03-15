@@ -1,17 +1,17 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect } from 'react'
 
 export interface PageTitleProps {
-  title: string;
+  title: string
 }
 
 const PageTitle: React.FC<PageTitleProps> = ({ title, children }) => {
   useEffect(() => {
     if (title) {
-      document.title = title;
+      document.title = `${title[0].toUpperCase}${title.slice(1)}`
     }
-  }, [title]);
+  }, [title])
 
-  return <Fragment>{children}</Fragment>;
-};
+  return <Fragment>{children}</Fragment>
+}
 
-export default PageTitle;
+export default PageTitle

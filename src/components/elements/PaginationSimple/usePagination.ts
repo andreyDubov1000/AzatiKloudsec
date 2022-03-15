@@ -1,15 +1,19 @@
 import { useState, useEffect, useCallback } from 'react'
 
-function usePagination<T>(list: T[], rawsOnPage: number) {
+function usePagination<T>(list: T[], rowOnPage: number) {
   const [pageNum, setPageNum] = useState<number>(1)
   const [book, setBook] = useState<T[]>([])
   const totalRawNum = list.length - 1
-  const totalPages = Math.ceil(totalRawNum / rawsOnPage)
+  const totalPages = Math.ceil(totalRawNum / rowOnPage)
 
   useEffect(() => {
-    const newBook = list.slice((pageNum - 1) * rawsOnPage, pageNum * rawsOnPage)
+    const newBook = list.slice((pageNum - 1) * rowOnPage, pageNum * rowOnPage)
     setBook(newBook)
-  }, [pageNum, rawsOnPage, list])
+  }, [pageNum, rowOnPage, list])
+
+  useEffect(() => {
+    setPageNum(1)
+  }, [rowOnPage])
 
   const onNextPage = useCallback(() => {
     setPageNum((prevPage) => {

@@ -1,15 +1,20 @@
+.title::first-letter {
+  text-transform: uppercase;
+}
+
 .scan_layout {
   display: flex;
   box-sizing: border-box;
   height: calc(100vh - 150px);
 
   .cloud_menu {
-    width: 254px;
-    min-height: 600px;
+    min-width: 254px;
+    min-height: 735px;
     margin: 32px;
   }
   .accaunts_tab {
     min-height: 735px;
+    height: 100%;
     width: 100%;
     min-width: 500px;
     margin: 32px 32px 32px 0;
@@ -29,17 +34,42 @@
     padding: 20px;
 
     h3 {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: space-between;
+
       font-weight: 700;
       font-size: 15px;
       line-height: 28px;
       color: #0f2978;
       margin-bottom: 16px;
+
+      p {
+        text-align: center;
+        flex-basis: 150px;
+        flex-grow: 1;
+        flex-shrink: 1;
+        padding-right: 8px;
+        min-width: 100px;
+        font: inherit;
+
+        &:first-child {
+          text-align: left;
+          min-width: 150px;
+        }
+      }
     }
 
     .accounts_list {
       display: flex;
       flex-wrap: nowrap;
       flex-direction: column;
+      height: calc(100% - 40px);
+
+      .scrollBar {
+        height: 100%;
+      }
     }
   }
 }
