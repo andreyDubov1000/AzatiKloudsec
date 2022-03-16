@@ -12,11 +12,11 @@ interface PaginationSimplePropsType {
   numOnPage?: number
   setBook: React.Dispatch<any[]>
   className?: string
-  storageKey: string
+  storageKey?: string
 }
 
-const PaginationSimple: React.FC<PaginationSimplePropsType> = ({ accountList, numOnPage, setBook, className, storageKey }) => {
-  const [rowOnPage, setRowOnPage] = useLocalStorage(numOnPage || 10, `rowOnPage-${storageKey}`)
+const PaginationSimple: React.FC<PaginationSimplePropsType> = ({ accountList, numOnPage, setBook, className, storageKey = '' }) => {
+  const [rowOnPage, setRowOnPage] = useLocalStorage(numOnPage || 10, storageKey)
   const { book, pageNum, totalPages, onNextPage, onPrevPage } = usePagination(accountList, rowOnPage)
 
   useEffect(() => {

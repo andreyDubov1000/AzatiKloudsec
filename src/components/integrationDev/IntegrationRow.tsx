@@ -5,25 +5,24 @@ import { IAccount } from '@component/scansDev/Scans'
 import { ReactComponent as Chevron } from 'assets/icons/chevron-down-Bold.svg'
 
 export interface IntegrationRowProps extends IAccount {
-  user_Id: string | undefined
+  user_id: string | undefined
   cloud_id: string | undefined
 }
 
 const IntegrationRow: React.FC<IntegrationRowProps> = ({
-  user_Id,
-  cloud_id,
-  AccountId,
-  AccountAlias,
-  CfTemplateVersion,
-  Reachability,
-  KloudsecRoleCfTemplateUpToDate,
-  CfStackId,
+  user_id,
+  AccountId = '',
+  AccountAlias = '',
+  CfTemplateVersion = '',
+  Reachability = '',
+  KloudsecRoleCfTemplateUpToDate = true,
+  CfStackId = '',
 }) => {
   const UpToDate = KloudsecRoleCfTemplateUpToDate
 
   const onClick = () => {
     window.open(
-      `https://eu-west-1.console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/update?stackId=${CfStackId}&templateURL=https%3A%2F%2Fs3.eu-west-1.amazonaws.com%2Fkloudsec-public-assets%2FKloudSecCustomerRole.yaml&param_ExternalID=${user_Id}`
+      `https://eu-west-1.console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/update?stackId=${CfStackId}&templateURL=https%3A%2F%2Fs3.eu-west-1.amazonaws.com%2Fkloudsec-public-assets%2FKloudSecCustomerRole.yaml&param_ExternalID=${user_id}`
     )
   }
 

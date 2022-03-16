@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react'
 import { useDebounce } from './useDebounce'
 
-type ISearchItem<T extends string | number | symbol> = Record<T, any>
+type SearchItem<T extends string | number | symbol> = Record<T, any>
 
-export function useSearchFilter<P extends Partial<ISearchItem<keyof P>>>(
+export function useSearchFilter<P extends Partial<SearchItem<keyof P>>>(
   items: P[],
   filteredProps: (keyof P)[],
   initialSearchValue: string = ''

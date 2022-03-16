@@ -168,7 +168,7 @@ const UserIncidents = () => {
       if (nameAcc === accCloud) nameAcc = 'AWS'
       setAccCloud(nameAcc)
     },
-    [setAccCloud, accCloud, currentPage]
+    [setAccCloud, accCloud]
   )
 
   const shouldBlockPath = useCallback(
@@ -208,7 +208,7 @@ const UserIncidents = () => {
       if (sourceStatusRef.current) sourceStatusRef.current.cancel('Incidents cancel getting AllAccountStatus')
       if (sourceExceptionsRef.current) sourceExceptionsRef.current.cancel('Incidents cancel getting AllAccountExceptions')
     }
-  }, [isScanPage, loadData, sourceExceptionsRef, sourceStatusRef])
+  }, [isScanPage, loadData, isIncidentPage])
 
   useEffect(() => {
     async function search(searchValue: string) {
@@ -232,7 +232,7 @@ const UserIncidents = () => {
     return () => {
       if (sourceRef.current) sourceRef.current.cancel('Incidents cancel search')
     }
-  }, [searchValue, getSearch, isExceptionPage, user?.user_id])
+  }, [searchValue, getSearch, isExceptionPage, user?.user_id, currentPage, pageData])
 
   useEffect(() => {
     setSelectedIncident(null)

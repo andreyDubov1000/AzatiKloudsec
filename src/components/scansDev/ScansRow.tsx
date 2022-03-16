@@ -4,15 +4,14 @@ import { ActionButton, SelectService } from '@component/elements'
 import styles from './ScansRow.module.scss'
 import { useLocalStorage } from '@component/incidentsDev/hooks/useLocalStorage'
 import { useStateSafe } from '@component/incidentsDev/hooks/useStateSafe'
+import { IAccount } from './Scans'
 
-export interface ScansRowProps {
-  user_Id: string | undefined
-  AccountId: string
-  AccountAlias: string
+export interface ScansRowProps extends IAccount {
+  user_id: string | undefined
   cloud_id: string | undefined
 }
 
-const ScansRow: React.FC<ScansRowProps> = ({ user_Id, cloud_id, AccountId, AccountAlias }) => {
+const ScansRow: React.FC<ScansRowProps> = ({ user_id, cloud_id, AccountId = '', AccountAlias = '' }) => {
   const [loading, setLoading] = useStateSafe(false)
   const [scanAccountRef, scanAccount] = useScanAccount()
   const [checkReqestRef, checkScanReqest] = useCheckScanReqest()
@@ -27,16 +26,16 @@ const ScansRow: React.FC<ScansRowProps> = ({ user_Id, cloud_id, AccountId, Accou
       if (checkReqestRef.current) checkReqestRef.current.cancel('ScansRow cancel checking')
       return
     }
-    if (!!checkedList.length && user_Id && AccountId && cloud_id) {
+    if (!!checkedList.length && user_id && AccountId && cloud_id) {
       setLoading(true)
       const valueList = checkedList.map((item) => item.value)
-      const checkRequest = await scanAccount(user_Id, cloud_id, AccountId, valueList)
+      const checkRequest = await scanAccount(user_id, cloud_id, AccountId, valueList)
       const requestId = checkRequest?.RequestId
 
       if (requestId) {
         const newWindow = window.open(`${window.location.origin}/scans/${cloud_id}/${AccountId}/${requestId}`)
         intervalRef.current = setInterval(async () => {
-          const data = await checkScanReqest(user_Id, cloud_id, AccountId, requestId)
+          const data = await checkScanReqest(user_id, cloud_id, AccountId, requestId)
           if (!data) {
             if (intervalRef.current) clearInterval(intervalRef.current)
             setLoading(false)

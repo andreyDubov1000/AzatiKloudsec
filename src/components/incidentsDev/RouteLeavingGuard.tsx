@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ModalPopUp } from '@component/elements'
 import { useHistory, Prompt } from 'react-router-dom'
 

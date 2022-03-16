@@ -1,29 +1,32 @@
 import Loader from '@component/atoms/Loader'
 import PageTitle from '@component/atoms/PageTitle'
 import { useAppSelector } from '@redux/hooks'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useGetAccounts } from 'services/integrationsService'
 import { SecondMenu } from '@component/elements'
 import styles from './Scans.module.scss'
 import { useLocation, useParams } from 'react-router-dom'
-import ScanListAcc from './ScanListAcc'
+import ListAcc from './ListAcc'
 import { useStateSafe } from '@component/incidentsDev/hooks/useStateSafe'
 import AddAccount from '@component/integrationDev/AddAccount'
-import IntegrationListAcc from '@component/integrationDev/IntegrationListAcc'
 import ScrollBar from 'react-perfect-scrollbar'
+import ScansRow from './ScansRow'
+import IntegrationRow from '@component/integrationDev/IntegrationRow'
 
 export interface IAccount {
-  AccountId: string
-  AccountAlias: string
-  CfStackId: string
-  CfTemplateVersion: string
-  KloudsecRoleCfTemplateUpToDate: boolean
-  Reachability: string
+  AccountId?: string
+  AccountAlias?: string
+  CfStackId?: string
+  CfTemplateVersion?: string
+  KloudsecRoleCfTemplateUpToDate?: boolean
+  Reachability?: string
 }
+const scansListHeaders = ['Accounts']
+const integrationListHeaders = ['Accounts', ' CF template version', 'Reachability', 'Actions']
 
 interface ScansPropsType {}
 
-const Scans: React.FC<ScansPropsType> = ({}) => {
+const Scans: React.FC<ScansPropsType> = () => {
   const { pathname } = useLocation()
   const matchPath = pathname.match('scans') || pathname.match('integrations')!
   const currentPage = matchPath[0] as 'scans' | 'integrations'
@@ -56,32 +59,35 @@ const Scans: React.FC<ScansPropsType> = ({}) => {
     }
   }, [user, cloud_id])
 
-  const cloudList = [
-    {
-      title: 'All accounts',
-      url: `/${currentPage}`,
-    },
-    {
-      title: 'AWS',
-      url: `/${currentPage}/aws`,
-    },
-    {
-      title: 'Azure',
-      url: '/security-exceptions/aws',
-    },
-    {
-      title: 'IBM cloud',
-      url: '/security-exceptions/aws',
-    },
-    {
-      title: 'Google cloud',
-      url: '/security-exceptions/aws',
-    },
-    {
-      title: 'Alibaba cloud',
-      url: '/security-exceptions/aws',
-    },
-  ]
+  const cloudList = useMemo(
+    () => [
+      {
+        title: 'All accounts',
+        url: `/${currentPage}`,
+      },
+      {
+        title: 'AWS',
+        url: `/${currentPage}/aws`,
+      },
+      {
+        title: 'Azure',
+        url: `/${currentPage}/aws`,
+      },
+      {
+        title: 'IBM cloud',
+        url: `/${currentPage}/aws`,
+      },
+      {
+        title: 'Google cloud',
+        url: `/${currentPage}/aws`,
+      },
+      {
+        title: 'Alibaba cloud',
+        url: `/${currentPage}/aws`,
+      },
+    ],
+    [currentPage]
+  )
 
   return (
     <>
@@ -93,9 +99,21 @@ const Scans: React.FC<ScansPropsType> = ({}) => {
           <SecondMenu items={cloudList}>{isIntegrations ? <AddAccount user_id={user?.user_id} /> : null}</SecondMenu>
         </ScrollBar>
         <div className={styles.accaunts_tab}>
-          {isScanPage ? <ScanListAcc accountList={accountList} user_id={user?.user_id} cloud_id={cloud_id} /> : null}
+          {isScanPage ? (
+            <ListAcc
+              rowOnPage={20}
+              accountList={accountList}
+              headers={scansListHeaders}
+              rowComponent={<ScansRow user_id={user?.user_id} cloud_id={cloud_id} />}
+            />
+          ) : null}
           {isIntegrations ? (
-            <IntegrationListAcc accountList={accountList} loading={loading} user_id={user?.user_id} cloud_id={cloud_id} />
+            <ListAcc
+              rowOnPage={20}
+              accountList={accountList}
+              headers={integrationListHeaders}
+              rowComponent={<IntegrationRow user_id={user?.user_id} cloud_id={cloud_id} />}
+            />
           ) : null}
         </div>
       </div>
