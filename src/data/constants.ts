@@ -58,3 +58,42 @@ export const queryProps = [
   'SecurityExceptionDate',
   'SecurityExceptionId',
 ] as Array<keyof IncidentCardTypes>
+
+export const cloudList = (currentPage: string) => [
+  {
+    id: 1,
+    title: 'All accounts',
+    value: 'all',
+    url: `/${currentPage}`,
+  },
+  {
+    id: 2,
+    title: 'AWS',
+    value: 'aws',
+    url: `/${currentPage}/aws`,
+  },
+  {
+    id: 3,
+    title: 'Azure',
+    value: 'azure',
+    url: `/${currentPage}/aws`,
+  },
+  {
+    id: 4,
+    title: 'IBM cloud',
+    value: 'ibm',
+    url: `/${currentPage}/aws`,
+  },
+  {
+    id: 5,
+    title: 'Google cloud',
+    value: 'google',
+    url: `/${currentPage}/aws`,
+  },
+  {
+    id: 6,
+    title: 'Alibaba cloud',
+    value: 'alibaba',
+    url: `/${currentPage}/aws`,
+  },
+]

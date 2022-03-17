@@ -7,6 +7,7 @@ import integrationRoutes from '@component/integrationDev/integrationRoutes'
 import securityExceptionRoutes from '@component/SecurityExceptionDev/securityExceptionRoutes'
 import { lazy } from 'react'
 import { Redirect } from 'react-router'
+import securityRoutes from '@component/security/securityRoutes'
 
 export const simpleRoutes = [
   {
@@ -19,10 +20,6 @@ export const simpleRoutes = [
 ]
 
 export const protectedRoutes = [
-  // {
-  //   path: '/integrations',
-  //   component: lazy(() => import('@component/layouts/IntegrationsLayout')),
-  // },
   {
     path: '/docs',
     component: lazy(() => import('@component/layouts/DocLayout')),
@@ -32,6 +29,7 @@ export const protectedRoutes = [
   ...incidentRoutes,
   ...securityExceptionRoutes,
   ...scansRoutes,
+  ...securityRoutes,
   {
     path: '/',
     component: () => <Redirect to='/' />,

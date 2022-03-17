@@ -28,10 +28,10 @@
   padding: 20px;
 }
 
-
 .calendarContainer {
   border: none !important;
-  color: #0F2978;
+  color: #0f2978;
+  box-shadow: 0px 4px 8px 0px #193eae33;
 }
 
 .calendarInputContainer {
@@ -61,6 +61,10 @@
   &_filled {
     fill: rgba(15, 41, 120, 1);
   }
+
+  &_outlined {
+    fill: #fff;
+  }
 }
 
 .customInput {
@@ -71,8 +75,9 @@
   border-radius: 8px;
   padding: 6px 0 6px 38px;
   border: none;
-  color: #0F2978;
+  color: #0f2978;
   outline: none;
+  background-color: transparent;
   transition: all 0.3s ease-out;
 
   &::placeholder {
@@ -85,9 +90,14 @@
   }
 
   &_filled {
-    background-color: #E6F5F9;
+    background-color: #e6f5f9;
+  }
+
+  &_outlined {
+    color: white;
+    &:hover {
+      background-color: #e6f5f9;
+      color: #023ae0;
+    }
   }
 }
-
-
-

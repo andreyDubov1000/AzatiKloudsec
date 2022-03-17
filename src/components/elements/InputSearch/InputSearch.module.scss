@@ -1,4 +1,4 @@
-@import '../vars.css';
+@import '../../../index.scss';
 
 .search_bar,
 .search_border {
@@ -35,7 +35,7 @@
   padding-left: 1.2rem;
   transition: all 0.3s ease-out;
 
-  z-index: var(--z-index-high);
+  z-index: $z-index-high;
 }
 
 .search_bar input::-webkit-search-decoration,

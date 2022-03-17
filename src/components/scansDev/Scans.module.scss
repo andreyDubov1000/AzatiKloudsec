@@ -1,3 +1,5 @@
+@import '../../index.scss';
+
 .title::first-letter {
   text-transform: uppercase;
 }
@@ -5,15 +7,16 @@
 .scan_layout {
   display: flex;
   box-sizing: border-box;
-  height: calc(100vh - 150px);
+  height: calc(100vh - $header-height);
+  min-height: $panel-min-height;
 
   .cloud_menu {
+    height: 100%;
     min-width: 254px;
-    min-height: 735px;
     margin: 32px;
   }
+
   .accaunts_tab {
-    min-height: 735px;
     height: 100%;
     width: 100%;
     min-width: 500px;

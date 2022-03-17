@@ -4,13 +4,13 @@ import { Button } from 'react-bootstrap'
 import styles from './RiskButton.module.scss'
 
 type RiskButtonPropsType = {
-  children?: number
+  children?: number | string
   showAsClicked?: boolean
   inactive?: boolean
   disabled?: boolean
   onClick?: (e?: any) => any
   className?: string
-  variant?: 'big' | 'small' | 'circle' | 'ring'
+  variant?: 'big' | 'small' | 'circle' | 'ring' | 'transparent'
   risk?: 'low' | 'medium' | 'high' | 'critical'
 }
 
@@ -40,6 +40,7 @@ const RiskButton = ({
     >
       {variant === 'big' && `${children} ${risk}`}
       {variant === 'small' && children}
+      {variant === 'transparent' && children}
     </Button>
   )
 }

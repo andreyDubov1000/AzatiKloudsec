@@ -5,8 +5,8 @@ import { useLocalStorage } from './useLocalStorage'
 
 export const Vulnerability: SeverityType[] = ['LOW', 'MEDIUM', 'HIGH', 'CRITICAL']
 
-export const useSeverityFilter = <T extends { Severity: SeverityType }>(list: T[]) => {
-  const [savedSeveritySet, setSavedSeveritySet] = useLocalStorage<SeverityType[] | null>(null, 'severitySet')
+export const useSeverityFilter = <T extends { Severity: SeverityType }>(list: T[], saveKey?:string) => {
+  const [savedSeveritySet, setSavedSeveritySet] = useLocalStorage<SeverityType[] | null>(null, saveKey)
   const [severitySet, setSeveritySet] = useState<Set<SeverityType>>(new Set(savedSeveritySet))
 
   const severityList = useMemo(() => {

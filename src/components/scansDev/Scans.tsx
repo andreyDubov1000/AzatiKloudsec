@@ -4,6 +4,7 @@ import { useAppSelector } from '@redux/hooks'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useGetAccounts } from 'services/integrationsService'
 import { SecondMenu } from '@component/elements'
+import { cloudList } from '@data/constants'
 import styles from './Scans.module.scss'
 import { useLocation, useParams } from 'react-router-dom'
 import ListAcc from './ListAcc'
@@ -32,6 +33,7 @@ const Scans: React.FC<ScansPropsType> = () => {
   const currentPage = matchPath[0] as 'scans' | 'integrations'
   const isScanPage = currentPage === 'scans'
   const isIntegrations = currentPage === 'integrations'
+
   const [loading, setLoading] = useStateSafe(true)
   const [accountList, setAccountList] = useState<IAccount[]>([])
   const { cloud_id } = useParams<any>()
@@ -42,12 +44,11 @@ const Scans: React.FC<ScansPropsType> = () => {
     const getAccountList = async (user_id: string | undefined, cloud_id: string | undefined) => {
       if (cloud_id && user_id) {
         const list = (await getAccounts(user_id, cloud_id)) || []
-        const dataList = list.AwsAccounts.map((item: any) => ({
+        const dataList = list.AwsAccounts?.map((item: any) => ({
           id: item.AccountId,
           user_id,
           ...item,
         }))
-        console.log(dataList)
         setAccountList(dataList)
       }
       setLoading(false)
@@ -59,35 +60,7 @@ const Scans: React.FC<ScansPropsType> = () => {
     }
   }, [user, cloud_id])
 
-  const cloudList = useMemo(
-    () => [
-      {
-        title: 'All accounts',
-        url: `/${currentPage}`,
-      },
-      {
-        title: 'AWS',
-        url: `/${currentPage}/aws`,
-      },
-      {
-        title: 'Azure',
-        url: `/${currentPage}/aws`,
-      },
-      {
-        title: 'IBM cloud',
-        url: `/${currentPage}/aws`,
-      },
-      {
-        title: 'Google cloud',
-        url: `/${currentPage}/aws`,
-      },
-      {
-        title: 'Alibaba cloud',
-        url: `/${currentPage}/aws`,
-      },
-    ],
-    [currentPage]
-  )
+  const menuCloudList = useMemo(() => cloudList(currentPage), [currentPage])
 
   return (
     <>
@@ -96,7 +69,7 @@ const Scans: React.FC<ScansPropsType> = () => {
       <h1 className={styles.title}>{`${currentPage}: ${cloud_id?.toUpperCase() || 'ALL'} accounts`}</h1>
       <div className={styles.scan_layout}>
         <ScrollBar className={styles.cloud_menu}>
-          <SecondMenu items={cloudList}>{isIntegrations ? <AddAccount user_id={user?.user_id} /> : null}</SecondMenu>
+          <SecondMenu items={menuCloudList}>{isIntegrations ? <AddAccount user_id={user?.user_id} /> : null}</SecondMenu>
         </ScrollBar>
         <div className={styles.accaunts_tab}>
           {isScanPage ? (

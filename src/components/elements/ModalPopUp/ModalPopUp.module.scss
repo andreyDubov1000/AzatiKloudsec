@@ -1,4 +1,4 @@
-@import '../vars.css';
+@import '../../../index.scss';
 
 .modal_overlay {
   display: flex;
@@ -13,7 +13,7 @@
   top: 0;
   left: 0;
 
-  z-index: var(--z-index-max);
+  z-index: $z-index-max;
 }
 
 .content {

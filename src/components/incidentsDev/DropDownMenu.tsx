@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './DropDownMenu.module.css'
+import styles from './DropDownMenu.module.scss'
 import DropDownItem from './DropDownItem'
 import { dropDownAccounts } from './hooks/useSelectedAccCloud'
 

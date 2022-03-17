@@ -3,7 +3,7 @@ import { Box, FormControl, MenuItem, Select, } from "@material-ui/core";
 import classNames from "classnames";
 import './SingleSelect.scss';
 
-interface SingleSelectData {
+export interface SingleSelectData {
   id: string | number;
   title: string;
   value: string;

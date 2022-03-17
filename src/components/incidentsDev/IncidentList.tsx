@@ -1,4 +1,4 @@
-import styles from './Incidents.module.css'
+import styles from './Incidents.module.scss'
 import React from 'react'
 import ScrollBar from 'react-perfect-scrollbar'
 import IncidentCard, { IncidentCardTypes } from './IncidentCard'
@@ -45,7 +45,7 @@ const IncidentList: React.FC<IncidentListProps> = ({
         <InputSearch onChange={handleSearch} />
         <DropDownMenu handleDateSort={handleDateSort} dateOrder={dateOrder} onAccCloudClick={onAccCloudClick} accCloud={accCloud} />
       </div>
-      <SeverityFilter handler={onSeverityClickHandler} hasSeverityArr={hasSeverityArr} severitySet={severitySet} />
+      <SeverityFilter className={styles.severity_container} handler={onSeverityClickHandler} hasSeverityArr={hasSeverityArr} severitySet={severitySet} buttonVariant={'circle'} />
 
       <ScrollBar>
         {incidentList.length ? (

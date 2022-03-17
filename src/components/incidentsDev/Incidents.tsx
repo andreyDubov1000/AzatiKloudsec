@@ -1,4 +1,4 @@
-import styles from './Incidents.module.css'
+import styles from './Incidents.module.scss'
 import Loader from '@component/atoms/Loader'
 import PageTitle from '@component/atoms/PageTitle'
 import { IncidentCardTypes } from '@component/incidentsDev/IncidentCard'
@@ -47,7 +47,7 @@ const UserIncidents = () => {
   const [selectedIncident, setSelectedIncident] = useState<IncidentCardTypes | null>(null)
 
   const [motherList, setMotherList] = useState<IncidentCardTypes[]>([])
-  const [severityList, severitySet, setSeveritySet] = useSeverityFilter(motherList)
+  const [severityList, severitySet, setSeveritySet] = useSeverityFilter(motherList, 'severitySetIncident')
   const [searchList, enteredSearchValue, setEnteredSearchValue] = useSearchFilter(severityList, queryProps)
   const [orderedList, sortOrder, setOrder] = useSort<IncidentCardTypes>(searchList, 'VulnerabilityDate')
   const [filteredList, accCloud, setAccCloud] = useSelectedAccCloud(orderedList, currentPage, keyForSelectedAccCloud)

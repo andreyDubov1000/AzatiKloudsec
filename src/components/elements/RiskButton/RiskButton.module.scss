@@ -95,4 +95,27 @@
     width: 24px;
     height: 24px;
   }
+  &.transparent {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 28px;
+    width: 100px;
+    background: transparent;
+    color: #fff;
+
+    &.inactive,
+    &:disabled {
+      opacity: 0.5;
+    }
+    &:hover {
+      background-color: #e6f5f9;
+      color: #023ae0;
+      box-shadow: none;
+    }
+    &:active:focus,
+    &.asClicked {
+      color: #0f2978;
+      box-shadow: none;
+    }
+  }
 }
