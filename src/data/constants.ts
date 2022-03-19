@@ -80,19 +80,19 @@ export const cloudList = (currentPage: string) => [
   },
   {
     id: 4,
-    title: 'IBM cloud',
+    title: 'IBM',
     value: 'ibm',
     url: `/${currentPage}/aws`,
   },
   {
     id: 5,
-    title: 'Google cloud',
+    title: 'Google',
     value: 'google',
     url: `/${currentPage}/aws`,
   },
   {
     id: 6,
-    title: 'Alibaba cloud',
+    title: 'Alibaba',
     value: 'alibaba',
     url: `/${currentPage}/aws`,
   },

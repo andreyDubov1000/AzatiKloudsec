@@ -59,13 +59,6 @@ const ErrorDetails: React.FC<IncidentCardTypes & ErrorDetailsProps> = ({
               <span className={styles.error_value}>{props[key].toString()}</span>
             </div>
           ))}
-        {/* {SecurityExceptionComment && (
-          <div>
-            <span className={styles.error_name}>{'SecurityExceptionComment'}</span>
-            <span>:</span>
-            <span className={styles.error_value}>{SecurityExceptionComment}</span>
-          </div>
-        )} */}
       </ScrollBar>
       {currentPage === exceptionsPage ? (
         <div className={styles.exception_button}>

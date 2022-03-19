@@ -1,0 +1,90 @@
+.echart_age_page {
+  width: 100%;
+  height: 100%;
+}
+.chart {
+  position: relative;
+  margin-top: 24px;
+  width: 100%;
+  height: 100%;
+}
+
+.tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 4px;
+  border-radius: 4px;
+  height: fit-content;
+  width: 108px;
+  background-color: #fff;
+  box-shadow: 0 0.5rem 0.75rem 1px rgba(154, 154, 154, 0.25);
+  transition: 0.3s ease-in-out;
+
+  h5 {
+    margin: 0;
+    color: rgba(15, 41, 120, 1);
+
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 16px;
+    text-align: left;
+  }
+
+  .color {
+    margin-top: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+
+    div {
+      display: inline-block;
+      height: 16px;
+      width: 16px;
+      border-radius: 4px;
+      margin-right: 8px;
+    }
+  }
+
+  img {
+    height: 16px;
+    width: 16px;
+    margin-right: 8px;
+  }
+
+  ul,
+  li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .percent {
+    display: inline-block;
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  li {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 16px;
+    text-align: left;
+  }
+
+  span {
+    color: #0f2978;
+    text-transform: capitalize;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: left;
+    vertical-align: middle;
+  }
+}
