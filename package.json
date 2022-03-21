@@ -30,6 +30,7 @@
     "generate-password": "^1.6.1",
     "lodash": "^4.17.21",
     "pure-react-carousel": "^1.27.6",
+    "randomcolor": "^0.6.2",
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.2",
     "react-chartjs-2": "^3.0.3",

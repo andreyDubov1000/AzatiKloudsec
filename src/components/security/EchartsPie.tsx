@@ -44,15 +44,17 @@ const EchartPie = () => {
   const [state, setState] = useState<EchartPieStateType>(initialState)
   const [clickCloud, setClickCloud] = useState<string | null>(null)
   const refTooltip = useRef<HTMLDivElement>(null)
-  const standarts = {
-    name: ['CIS Level 1', 'CIS Level 2', 'ISO 27001', 'PCI-DSS', 'HIPAA', 'GDPR', 'FFIEC', 'SOC2'],
-    color: ['#9AA9AD', '#A7EAFF', '#78E0FF', '#8FCEE1', '#7399A4', '#D8F6FF', '#96E6FF', '#B3D1D9'],
-  }
-  const accountlist = (cloud: string | null) => [
-    { title: `${cloud} account #1` },
-    { title: `${cloud} account #2` },
-    { title: `${cloud} account #3` },
-  ]
+  const standarts = useMemo(
+    () => ({
+      name: ['CIS Level 1', 'CIS Level 2', 'ISO 27001', 'PCI-DSS', 'HIPAA', 'GDPR', 'FFIEC', 'SOC2'],
+      color: ['#9AA9AD', '#A7EAFF', '#78E0FF', '#8FCEE1', '#7399A4', '#D8F6FF', '#96E6FF', '#B3D1D9'],
+    }),
+    []
+  )
+  const accountlist = useCallback(
+    (cloud: string | null) => [{ title: `${cloud} account #1` }, { title: `${cloud} account #2` }, { title: `${cloud} account #3` }],
+    []
+  )
 
   const onStandartHover = useCallback((obj: EchartEventType) => {
     const data = {
@@ -88,45 +90,56 @@ const EchartPie = () => {
     const array = []
     const numCollors = accountlist(clickCloud).length
     for (let i = 0; i < numCollors; i++) {
-      array.push(`#${Math.floor(Math.random() * 16777215).toString(16)}`)
+      array.push(
+        `#${Math.floor(Math.random() * 16777215)
+          .toString(16)
+          .padStart(6, '0')
+          .toUpperCase()}`
+      )
     }
     return array
   }, [clickCloud])
 
-  function cloudAccountData(cloud: string | null) {
-    const array = cloud ? accountlist(clickCloud) : cloudList('security')
-    const length = array.length
-    const start = cloud ? 0 : 1
-    const dataArray = []
+  const cloudAccountData = useCallback(
+    (cloud: string | null) => {
+      const array = cloud ? accountlist(cloud) : cloudList('security')
+      const length = array.length
+      const start = cloud ? 0 : 1
+      const dataArray = []
 
-    for (let i = start; i < length; i++) {
-      const data = {
-        value: [100],
-        name: array[i].title,
-      }
-      dataArray.push(data)
-    }
-    return dataArray
-  }
-
-  function standartsData(cloud: string | null) {
-    const array = cloud ? accountlist(cloud) : cloudList('security')
-    const start = cloud ? 0 : 1
-    const num = array.length
-    const dataArray = []
-
-    for (let j = start; j < num; j++) {
-      for (let i = 0; i < standarts.name.length; i++) {
+      for (let i = start; i < length; i++) {
         const data = {
-          value: [100, array[j].title],
-          name: standarts.name[i],
-          groupId: array[j].title,
+          value: [100],
+          name: array[i].title,
         }
         dataArray.push(data)
       }
-    }
-    return dataArray
-  }
+      return dataArray
+    },
+    [accountlist, cloudList]
+  )
+
+  const standartsData = useCallback(
+    (cloud: string | null) => {
+      const array = cloud ? accountlist(cloud) : cloudList('security')
+      const start = cloud ? 0 : 1
+      const num = array.length
+      const dataArray = []
+
+      for (let j = start; j < num; j++) {
+        for (let i = 0; i < standarts.name.length; i++) {
+          const data = {
+            value: [100, array[j].title],
+            name: standarts.name[i],
+            groupId: array[j].title,
+          }
+          dataArray.push(data)
+        }
+      }
+      return dataArray
+    },
+    [accountlist, cloudList]
+  )
 
   const getEchartAllOptions = () => {
     let option = {
@@ -161,6 +174,7 @@ const EchartPie = () => {
           center: ['50%', '50%'],
           color: ['#43B0FF', '#FFD43D', '#05DFD2', '#E8EB00', '#61BE17'],
           data: cloudAccountData(clickCloud),
+          cursor: 'pointer',
           label: {
             show: true,
             position: 'inside',
@@ -227,6 +241,7 @@ const EchartPie = () => {
           center: ['50%', '50%'],
           color: accountCollors,
           data: cloudAccountData(clickCloud),
+          cursor: 'pointer',
           label: {
             show: true,
             position: 'inside',
