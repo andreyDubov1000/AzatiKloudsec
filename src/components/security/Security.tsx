@@ -10,7 +10,7 @@ import { useSeverityFilter } from '@component/incidentsDev/hooks/useSeverityFilt
 import { SeverityType } from '@data/types'
 import ScrollBar from 'react-perfect-scrollbar'
 import { SecurityTab } from '@component/elements'
-import EchartAge from './EchartsExample'
+import EchartPie from './EchartsPie'
 
 interface SecurityPropsType {}
 
@@ -64,7 +64,7 @@ const Security: React.FC<SecurityPropsType> = () => {
               return <SecurityTab className={styles.card} key={i} data={data} />
             })}
           </ScrollBar>
-          <EchartAge />
+          <EchartPie />
         </div>
       </div>
     </>
