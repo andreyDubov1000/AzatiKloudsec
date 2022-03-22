@@ -9,13 +9,21 @@ import { SeverityType } from '@data/types'
 
 interface SecurityHeaderType {
   onSelectCloud: (a: SingleSelectData) => any
+  selectedCloud: string | undefined
   onSelectDate: (a: Date | null) => any
   initialDate: Date | null
   severitySet: Set<SeverityType>
   onSelectSeverity: (event: React.MouseEvent) => any
 }
 
-const SecurityHeader: React.FC<SecurityHeaderType> = ({ onSelectCloud, onSelectDate, initialDate, onSelectSeverity, severitySet }) => {
+const SecurityHeader: React.FC<SecurityHeaderType> = ({
+  onSelectCloud,
+  onSelectDate,
+  initialDate,
+  onSelectSeverity,
+  severitySet,
+  selectedCloud,
+}) => {
   const [loading, setLoading] = useStateSafe(true)
 
   const listOfCloud = useMemo(() => cloudList('security'), [])
@@ -23,7 +31,13 @@ const SecurityHeader: React.FC<SecurityHeaderType> = ({ onSelectCloud, onSelectD
   return (
     <>
       <div className={styles.header}>
-        <SingleSelect className={styles.select} items={listOfCloud} type='outlined' onChange={onSelectCloud} />
+        <SingleSelect
+          className={styles.select}
+          items={listOfCloud}
+          type='outlined'
+          onChange={onSelectCloud}
+          selectedTitle={selectedCloud}
+        />
         <div className={styles.calendar}>
           <Calendar initialDate={initialDate} onChange={onSelectDate} type='outlined' />
         </div>

@@ -75,18 +75,7 @@ const ReactECharts: React.FC<ReactEChartsProps> = ({
     }
   }, [])
 
-  const setRef = useCallback((element: HTMLDivElement) => {
-    let chart: ECharts | null = null
-    if (chartRef.current !== null) {
-      chart = getInstanceByDom(chartRef.current)
-      chart.off('mouseover', onStandartHover)
-    }
-    if (element) {
-      chartRef.current = element
-    }
-  }, [])
-
-  return <div className={classNames(className)} ref={setRef} style={{ width: '100%', height: '100%', ...style }} />
+  return <div className={classNames(className)} ref={chartRef} style={{ width: '100%', height: '100%', ...style }} />
 }
 
 export default ReactECharts

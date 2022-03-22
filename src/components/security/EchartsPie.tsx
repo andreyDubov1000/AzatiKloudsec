@@ -8,6 +8,7 @@ import 'echarts/lib/component/markPoint'
 import styles from './Echarts.module.scss'
 import ReactECharts from './React-ECharts'
 import { cloudList, severityIcons } from '@data/constants'
+import { SingleSelectData } from '@component/elements/SingleSelect/SingleSelect'
 
 export type StandartDataType = {
   value: [number, string]
@@ -40,39 +41,59 @@ const initialState: EchartPieStateType = {
     cloudName: '',
   },
 }
-const EchartPie = () => {
+
+type EchartPiePropsType = {
+  selectedCloud: string | undefined
+  setSelectedCloud: React.Dispatch<string | undefined>
+}
+
+const EchartPie: React.FC<EchartPiePropsType> = ({ selectedCloud, setSelectedCloud }) => {
   const [state, setState] = useState<EchartPieStateType>(initialState)
-  const [clickCloud, setClickCloud] = useState<string | null>(null)
+  const [clickCloud, setClickCloud] = useState<string | undefined>(selectedCloud)
   const refTooltip = useRef<HTMLDivElement>(null)
   const standarts = useMemo(
     () => ({
-      name: ['CIS Level 1', 'CIS Level 2', 'ISO 27001', 'PCI-DSS', 'HIPAA', 'GDPR', 'FFIEC', 'SOC2'],
+      title: ['CIS Level 1', 'CIS Level 2', 'ISO 27001', 'PCI-DSS', 'HIPAA', 'GDPR', 'FFIEC', 'SOC2'],
+      value: ['CIS Level 1', 'CIS Level 2', 'ISO 27001', 'PCI-DSS', 'HIPAA', 'GDPR', 'FFIEC', 'SOC2'],
       color: ['#9AA9AD', '#A7EAFF', '#78E0FF', '#8FCEE1', '#7399A4', '#D8F6FF', '#96E6FF', '#B3D1D9'],
     }),
     []
   )
   const accountlist = useCallback(
-    (cloud: string | null) => [{ title: `${cloud} account #1` }, { title: `${cloud} account #2` }, { title: `${cloud} account #3` }],
+    (cloud: string | undefined) => [
+      { title: `${cloud} account #1`, value: cloud },
+      { title: `${cloud} account #2`, value: cloud },
+      { title: `${cloud} account #3`, value: cloud },
+    ],
     []
   )
 
-  const onStandartHover = useCallback((obj: EchartEventType) => {
+  const onStandartHover = useCallback((objHover: EchartEventType) => {
     const data = {
-      color: obj.color,
-      standartName: obj.data.name,
-      cloudName: obj.data.value[1],
+      color: objHover.color,
+      standartName: objHover.data.name,
+      cloudName: objHover.data.groupId,
     }
-    const coord: [number, number] = [obj.event.offsetX, obj.event.offsetY]
+    const coord: [number, number] = [objHover.event.offsetX, objHover.event.offsetY]
     setState((state) => ({ ...state, data, coord }))
   }, [])
 
   const onCloudClick = useCallback((obj: EchartEventType) => {
-    setClickCloud(obj.data.name)
+    console.log(obj.data.name)
+    setSelectedCloud(obj.data.name)
   }, [])
 
   const onBackClick = useCallback((obj: EchartEventType) => {
-    setClickCloud(null)
+    console.log(cloudList()[0].title)
+    setSelectedCloud(cloudList()[0].title)
   }, [])
+
+  useEffect(() => {
+    if (selectedCloud) {
+      console.log(selectedCloud)
+      setClickCloud(selectedCloud)
+    }
+  }, [selectedCloud])
 
   useEffect(() => {
     const container = document.getElementById('pie_chart')
@@ -101,15 +122,18 @@ const EchartPie = () => {
   }, [clickCloud])
 
   const cloudAccountData = useCallback(
-    (cloud: string | null) => {
-      const array = cloud ? accountlist(cloud) : cloudList('security')
+    (cloud: string | undefined) => {
+      const isCloudSelect = cloud && cloud !== cloudList()[0].title
+
+      const array = isCloudSelect ? accountlist(cloud) : cloudList('security')
+
       const length = array.length
-      const start = cloud ? 0 : 1
+      const start = isCloudSelect ? 0 : 1
       const dataArray = []
 
       for (let i = start; i < length; i++) {
         const data = {
-          value: [100],
+          value: [100, array[i].value],
           name: array[i].title,
         }
         dataArray.push(data)
@@ -120,17 +144,18 @@ const EchartPie = () => {
   )
 
   const standartsData = useCallback(
-    (cloud: string | null) => {
-      const array = cloud ? accountlist(cloud) : cloudList('security')
-      const start = cloud ? 0 : 1
+    (cloud: string | undefined) => {
+      const isCloudSelect = cloud && cloud !== cloudList()[0].title
+      const array = isCloudSelect ? accountlist(cloud) : cloudList('security')
+      const start = isCloudSelect ? 0 : 1
       const num = array.length
       const dataArray = []
 
       for (let j = start; j < num; j++) {
-        for (let i = 0; i < standarts.name.length; i++) {
+        for (let i = 0; i < standarts.title.length; i++) {
           const data = {
-            value: [100, array[j].title],
-            name: standarts.name[i],
+            value: [100, array[j].value],
+            name: standarts.title[i],
             groupId: array[j].title,
           }
           dataArray.push(data)
@@ -147,7 +172,7 @@ const EchartPie = () => {
         selectedMode: false,
         orient: 'vertical',
         left: 'right',
-        data: standarts.name,
+        data: standarts.title,
       },
 
       series: [
@@ -163,7 +188,7 @@ const EchartPie = () => {
           label: { show: false },
           animationType: 'scale',
           animationEasing: 'elasticOut',
-          animationDelay: (idx: number) => {
+          animationDelay: () => {
             return Math.random() * 200
           },
         },
@@ -190,7 +215,7 @@ const EchartPie = () => {
           labelLine: { show: false },
           animationType: 'scale',
           animationEasing: 'elasticOut',
-          animationDelay: (idx: number) => {
+          animationDelay: () => {
             return Math.random() * 200
           },
         },
@@ -214,7 +239,7 @@ const EchartPie = () => {
         selectedMode: false,
         orient: 'vertical',
         left: 'right',
-        data: standarts.name,
+        data: standarts.title,
       },
 
       series: [
@@ -230,7 +255,7 @@ const EchartPie = () => {
           label: { show: false },
           animationType: 'scale',
           animationEasing: 'elasticOut',
-          animationDelay: (idx: number) => {
+          animationDelay: () => {
             return Math.random() * 200
           },
         },
@@ -260,7 +285,7 @@ const EchartPie = () => {
           labelLine: { show: false },
           animationType: 'scale',
           animationEasing: 'elasticOut',
-          animationDelay: (idx: number) => {
+          animationDelay: () => {
             return Math.random() * 200
           },
         },
@@ -299,7 +324,7 @@ const EchartPie = () => {
   return (
     <div className={styles.chart} id={'pie_chart'}>
       <ReactECharts
-        option={clickCloud ? getEchartCloudOptions() : getEchartAllOptions()}
+        option={clickCloud && clickCloud !== cloudList()[0].title ? getEchartCloudOptions() : getEchartAllOptions()}
         onStandartHover={onStandartHover}
         onCloudClick={onCloudClick}
         onBackClick={onBackClick}

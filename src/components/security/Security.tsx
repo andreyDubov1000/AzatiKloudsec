@@ -17,18 +17,18 @@ interface SecurityPropsType {}
 const Security: React.FC<SecurityPropsType> = () => {
   const [loading, setLoading] = useStateSafe(true)
   const { user } = useAppSelector((state) => state.auth)
-  const [selectedCloud, setSelectedCloud] = useState<SingleSelectData>()
+  const [selectedCloud, setSelectedCloud] = useState<string>()
   const [date, setDate] = useState<Date | null>(new Date())
   const [severityList, severitySet, setSeveritySet] = useSeverityFilter([], 'severitySetSecurity')
 
   const onSelectCloud = useCallback((activeSelect: SingleSelectData) => {
-    setSelectedCloud(activeSelect)
+    setSelectedCloud(activeSelect.title)
   }, [])
 
   const onSelectDate = useCallback((activeDate: Date | null) => {
     setDate(activeDate)
   }, [])
-  console.log(severitySet)
+
   const onSelectSeverity = useCallback(
     (event: React.MouseEvent) => {
       const severity = event?.currentTarget?.getAttribute('data-risk')?.toUpperCase() as SeverityType
@@ -48,6 +48,7 @@ const Security: React.FC<SecurityPropsType> = () => {
       <div className={styles.layout}>
         <SecurityHeader
           onSelectCloud={onSelectCloud}
+          selectedCloud={selectedCloud}
           onSelectDate={onSelectDate}
           initialDate={date}
           onSelectSeverity={onSelectSeverity}
@@ -64,7 +65,7 @@ const Security: React.FC<SecurityPropsType> = () => {
               return <SecurityTab className={styles.card} key={i} data={data} />
             })}
           </ScrollBar>
-          <EchartPie />
+          <EchartPie selectedCloud={selectedCloud} setSelectedCloud={setSelectedCloud} />
         </div>
       </div>
     </>

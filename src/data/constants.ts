@@ -59,7 +59,7 @@ export const queryProps = [
   'SecurityExceptionId',
 ] as Array<keyof IncidentCardTypes>
 
-export const cloudList = (currentPage: string) => [
+export const cloudList = (currentPage?: string) => [
   {
     id: 1,
     title: 'All accounts',
