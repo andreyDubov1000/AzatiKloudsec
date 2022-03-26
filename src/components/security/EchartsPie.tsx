@@ -8,7 +8,8 @@ import 'echarts/lib/component/markPoint'
 import styles from './Echarts.module.scss'
 import ReactECharts from './React-ECharts'
 import { cloudList, severityIcons } from '@data/constants'
-import { SingleSelectData } from '@component/elements/SingleSelect/SingleSelect'
+import { getInstanceByDom } from 'echarts'
+import { ECharts } from 'echarts'
 
 export type StandartDataType = {
   value: [number, string]
@@ -50,6 +51,7 @@ type EchartPiePropsType = {
 const EchartPie: React.FC<EchartPiePropsType> = ({ selectedCloud, setSelectedCloud }) => {
   const [state, setState] = useState<EchartPieStateType>(initialState)
   const [clickCloud, setClickCloud] = useState<string | undefined>(selectedCloud)
+  const refChart = useRef<HTMLDivElement>(null)
   const refTooltip = useRef<HTMLDivElement>(null)
   const standarts = useMemo(
     () => ({
@@ -86,6 +88,21 @@ const EchartPie: React.FC<EchartPiePropsType> = ({ selectedCloud, setSelectedClo
   const onBackClick = useCallback((obj: EchartEventType) => {
     console.log(cloudList()[0].title)
     setSelectedCloud(cloudList()[0].title)
+  }, [])
+
+  useEffect(() => {
+    let chart: ECharts | undefined
+    if (refChart.current !== null) {
+      chart = getInstanceByDom(refChart.current)
+      chart.on('mouseover', { seriesName: 'standart' }, onStandartHover)
+      chart.on('click', { seriesName: 'cloud' }, onCloudClick)
+      chart.on('click', { seriesName: 'back' }, onBackClick)
+    }
+    return () => {
+      chart?.off('mouseover', onStandartHover)
+      chart?.off('click', onCloudClick)
+      chart?.off('click', onBackClick)
+    }
   }, [])
 
   useEffect(() => {
@@ -325,9 +342,7 @@ const EchartPie: React.FC<EchartPiePropsType> = ({ selectedCloud, setSelectedClo
     <div className={styles.chart} id={'pie_chart'}>
       <ReactECharts
         option={clickCloud && clickCloud !== cloudList()[0].title ? getEchartCloudOptions() : getEchartAllOptions()}
-        onStandartHover={onStandartHover}
-        onCloudClick={onCloudClick}
-        onBackClick={onBackClick}
+        ref={refChart}
       />
 
       <Tooltip ref={refTooltip} {...state.data} />

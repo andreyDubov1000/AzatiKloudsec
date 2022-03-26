@@ -43,6 +43,7 @@ export const severityIcons = {
   MEDIUM: mediumIcon,
   LOW: lowIcon,
 }
+
 export const queryProps = [
   'AccountId',
   'Severity',
@@ -80,20 +81,48 @@ export const cloudList = (currentPage?: string) => [
   },
   {
     id: 4,
-    title: 'IBM',
-    value: 'ibm',
-    url: `/${currentPage}/aws`,
-  },
-  {
-    id: 5,
     title: 'Google',
     value: 'google',
     url: `/${currentPage}/aws`,
   },
   {
-    id: 6,
+    id: 5,
     title: 'Alibaba',
     value: 'alibaba',
     url: `/${currentPage}/aws`,
+  },
+  {
+    id: 6,
+    title: 'IBM',
+    value: 'ibm',
+    url: `/${currentPage}/aws`,
+  },
+]
+
+export const userInformationMenuList = [
+  {
+    id: 1,
+    title: 'Personal information',
+    url: `/user/personal`,
+  },
+  {
+    id: 2,
+    title: 'Payments',
+    url: `/user/payments`,
+  },
+  {
+    id: 3,
+    title: 'Price',
+    url: `/user/price`,
+  },
+  {
+    id: 4,
+    title: 'Notification',
+    url: `/user/notification`,
+  },
+  {
+    id: 5,
+    title: 'Accounts management',
+    url: `/user/accounts`,
   },
 ]

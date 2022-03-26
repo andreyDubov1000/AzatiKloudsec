@@ -45,23 +45,33 @@
       transition: all 0.3s ease-out;
     }
 
+    &.Mui-disabled {
+      &::placeholder {
+        color: #727787;
+      }
+    }
+
     &:-webkit-autofill,
     &:-webkit-autofill:hover,
     &:-webkit-autofill:focus {
       border-radius: 8px;
       -webkit-text-fill-color: #0f2978;
       -webkit-box-shadow: 0 0 0px 1000px #e6f5f9 inset;
+      box-shadow: 0 0 0px 1000px #e6f5f9 inset;
       transition: background-color 5000s ease-in-out 0s;
     }
 
-    & .Mui-focused {
+    &.Mui-focused {
       background-color: #e6f5f9;
       border-radius: 8px;
       transition: all 0.3s ease-out;
 
-      & .MuiOutlinedInput-input {
+      &::placeholder {
+        color: #bbc0d0;
+      }
+      &.Mui-disabled {
         &::placeholder {
-          color: #bbc0d0;
+          color: #727787;
         }
       }
     }

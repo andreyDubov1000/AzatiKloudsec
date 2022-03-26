@@ -8,7 +8,7 @@ interface IRouteLeavingGuardProps {
   navigateTo?: (location: any) => any
 }
 
-const RouteLeavingGuard: React.FC<IRouteLeavingGuardProps> = ({ isBlocked = true, shouldBlockPath = () => true, navigateTo }) => {
+const RouteLeavingGuard: React.FC<IRouteLeavingGuardProps> = ({ isBlocked = true, shouldBlockPath, navigateTo }) => {
   const history = useHistory()
   type locationType = typeof history.location
   type StateType = {
@@ -22,7 +22,6 @@ const RouteLeavingGuard: React.FC<IRouteLeavingGuardProps> = ({ isBlocked = true
     blocked: isBlocked,
   }
   const [state, setState] = useState<StateType>(initialState)
-
   const alertUser = (event: BeforeUnloadEvent) => {
     event.preventDefault()
     event.returnValue = ''
@@ -52,8 +51,12 @@ const RouteLeavingGuard: React.FC<IRouteLeavingGuardProps> = ({ isBlocked = true
 
   const handleBlockedNavigation: PromptMessageType = (location) => {
     const { blocked } = state
+    let shouldBlock: boolean = true
     if (history.location.pathname === location.pathname) return false
-    if (blocked && shouldBlockPath(location)) {
+    if (shouldBlockPath && typeof shouldBlockPath === 'function') {
+      shouldBlock = shouldBlockPath(location)
+    }
+    if (blocked && shouldBlock) {
       showModal(location)
       return false
     }

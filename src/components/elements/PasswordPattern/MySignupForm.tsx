@@ -4,13 +4,33 @@ import React from 'react'
 import * as yup from 'yup'
 import PasswordPattern from './PasswordPattern'
 
+export function ValidateSchema<FormState extends object>(
+  // in case multipal errors messages, it should be taken into account that the function will return array of strings (errors messages)
+
+  schema: yup.ObjectSchema<any>
+): (values: FormState) => Promise<FormikErrors<FormState>> {
+  return async function (values: FormState): Promise<FormikErrors<FormState>> {
+    try {
+      await schema.validate(values, { abortEarly: false, strict: false })
+      return Promise.resolve({})
+    } catch (errorObj) {
+      const error = errorObj as yup.ValidationError
+      return error.inner.reduce((commonValidationError, { path, message }) => {
+        if (typeof path !== 'undefined') {
+          return {
+            ...commonValidationError,
+            [path]: ((commonValidationError[path as keyof FormState] as string | string[]) || []).concat(`${message}`),
+          }
+        }
+        return { ...commonValidationError }
+      }, {} as FormikErrors<FormState>)
+    }
+  }
+}
+
 export interface SignupFormProps {}
 
 const MySignupForm: React.FC<SignupFormProps> = () => {
-  const handleFormSubmit = (values: any) => {
-    console.log(values)
-  }
-
   const initialValues = {
     full_name: '',
     email: '',
@@ -39,28 +59,8 @@ const MySignupForm: React.FC<SignupFormProps> = () => {
     passwordConfirmation: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match'),
   })
 
-  function ValidateSchema<FormState extends object>(
-    // in case multipal errors messages, it should be taken into account that the function will return array of strings (errors messages)
-
-    schema: yup.ObjectSchema<any>
-  ): (values: FormState) => Promise<FormikErrors<FormState>> {
-    return async function (values: FormState): Promise<FormikErrors<FormState>> {
-      try {
-        await schema.validate(values, { abortEarly: false, strict: false })
-        return Promise.resolve({})
-      } catch (errorObj) {
-        const error = errorObj as yup.ValidationError
-        return error.inner.reduce((commonValidationError, { path, message }) => {
-          if (typeof path !== 'undefined') {
-            return {
-              ...commonValidationError,
-              [path]: ((commonValidationError[path as keyof FormState] as string | string[]) || []).concat(`${message}`),
-            }
-          }
-          return { ...commonValidationError }
-        }, {} as FormikErrors<FormState>)
-      }
-    }
+  const handleFormSubmit = (values: any) => {
+    console.log(values)
   }
 
   return (

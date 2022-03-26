@@ -6,6 +6,8 @@ import classNames from 'classnames'
 import './InputField.scss'
 
 interface InputFieldPropTypes {
+  id?: string
+  disabled?: boolean
   type?: 'email' | 'password' | 'text'
   className?: string
   value?: string
@@ -27,6 +29,8 @@ interface InputFieldPropTypes {
 }
 
 const InputField = ({
+  id,
+  disabled = false,
   type = 'text',
   className,
   onChange,
@@ -58,6 +62,8 @@ const InputField = ({
 
   return (
     <TextField
+      id={id}
+      disabled={disabled}
       className={classNames('customInputField', { ['customInputField--filled']: value }, className)}
       name={name}
       placeholder={placeholder}

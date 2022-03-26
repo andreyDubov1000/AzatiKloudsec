@@ -1,0 +1,25 @@
+@import '../../index.scss';
+
+.layout {
+  display: flex;
+  box-sizing: border-box;
+  min-height: $panel-min-height;
+  height: calc(100vh - $header-height);
+
+  .aside_menu {
+    height: 100%;
+    min-width: 254px;
+    margin: 32px;
+  }
+
+  .user_tab {
+    height: 100%;
+    width: 100%;
+    // min-width: 600px;
+    margin: 32px 32px 32px 0;
+    padding: 20px;
+    background-color: #e6f5f9;
+    box-shadow: 0px 8px 12px 0px #9a9a9a40;
+    border-radius: 16px;
+  }
+}

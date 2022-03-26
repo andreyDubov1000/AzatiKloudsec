@@ -1,0 +1,40 @@
+.user_card {
+  position: relative;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 20px;
+  width: 100%;
+  // min-width: fit-content;
+  height: 100%;
+
+  .card_icon {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    background-image: url('../../assets/icons/expand-click.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      .expend {
+        stroke: #023ae0;
+      }
+    }
+    .expend {
+      stroke: #0f2978;
+    }
+
+    &:active {
+      .expend {
+        stroke: transparent;
+      }
+    }
+  }
+}

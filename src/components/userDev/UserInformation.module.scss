@@ -1,0 +1,231 @@
+.user_cards {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  grid-template-rows: auto;
+  column-gap: 20px;
+  row-gap: 20px;
+  width: 100%;
+  border-radius: 16px;
+  height: 100%;
+  overflow: hidden;
+
+  h3 {
+    white-space: nowrap;
+    color: #0f2978;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 28px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+
+  p {
+    white-space: nowrap;
+  }
+  .card_auth {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &_header {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+
+      &_addPhoto {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 125px;
+        height: 110px;
+        border-radius: 8px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        cursor: pointer;
+
+        &_empty {
+          height: 100%;
+          width: 100%;
+        }
+
+        input {
+          display: none;
+        }
+
+        &_empty {
+          transition: 0.3s ease-in-out;
+          fill: #bbc0d0;
+          stroke: #bbc0d0;
+
+          &:hover {
+            fill: #023ae0;
+            stroke: #023ae0;
+          }
+        }
+      }
+
+      p {
+        padding-left: 12px;
+        color: #0f2978;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 28px;
+        text-align: left;
+      }
+    }
+  }
+
+  .card_payment {
+    &_box {
+      height: 80%;
+      display: flex;
+
+      p {
+        margin: auto;
+        color: #bbc0d0;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 28px;
+        text-align: center;
+      }
+    }
+  }
+
+  .card_accounts {
+    &_icons {
+      height: 80%;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: 1fr 1fr;
+      row-gap: 18px;
+      column-gap: 18px;
+    }
+
+    &_icon {
+      cursor: pointer;
+      align-self: center;
+      width: 40px;
+      height: 40px;
+      transition: 0.3s ease-in-out;
+
+      &.normal,
+      &.IBM {
+        background-image: url('../../assets/icons/AddAcc-normal.png');
+
+        &:hover {
+          background-image: url('../../assets/icons/AddAcc-hover.png');
+        }
+
+        &:active {
+          background-image: url('../../assets/icons/AddAcc-click.png');
+        }
+      }
+
+      &.AWS {
+        background-image: url('../../assets/icons/Property\ 1=AWS\,\ Propery\ 2=normal.png');
+
+        &:hover {
+          background-image: url('../../assets/icons/Property\ 1=AWS\,\ Propery\ 2=on\ hover.png');
+        }
+
+        &:active {
+          background-image: url('../../assets/icons/Property\ 1=AWS\,\ Propery\ 2=on\ click.png');
+        }
+      }
+
+      &.Azure {
+        background-image: url('../../assets/icons/Property\ 1=Azure\,\ Propery\ 2=normal.png');
+
+        &:hover {
+          background-image: url('../../assets/icons/Property\ 1=Azure\,\ Propery\ 2=on\ hover.png');
+        }
+
+        &:active {
+          background-image: url('../../assets/icons/Property\ 1=Azure\,\ Propery\ 2=on\ click.png');
+        }
+      }
+      &.Google {
+        background-image: url('../../assets/icons/Property\ 1=Google\,\ Propery\ 2=normal.png');
+
+        &:hover {
+          background-image: url('../../assets/icons/Property\ 1=Google\,\ Propery\ 2=on\ hover.png');
+        }
+
+        &:active {
+          background-image: url('../../assets/icons/Property\ 1=Google\,\ Propery\ 2=on\ click.png');
+        }
+      }
+      &.Alibaba {
+        background-image: url('../../assets/icons/Property\ 1=Alibaba\,\ Propery\ 2=normal.png');
+
+        &:hover {
+          background-image: url('../../assets/icons/Property\ 1=Alibaba\,\ Propery\ 2=on\ hover.png');
+        }
+
+        &:active {
+          background-image: url('../../assets/icons/Property\ 1=Alibaba\,\ Propery\ 2=on\ click.png');
+        }
+      }
+    }
+  }
+
+  .card_notifications {
+    &_list {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      row-gap: 12px;
+      height: 80%;
+
+      &_item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        span {
+          color: #0f2978;
+          font-size: 15px;
+          font-weight: 400;
+          line-height: 28px;
+          text-align: left;
+        }
+      }
+    }
+  }
+
+  .card_plan {
+    &_box {
+      height: 80%;
+      display: flex;
+      cursor: pointer;
+
+      p {
+        transition: 0.3s ease-in-out;
+        margin: auto;
+        color: #bbc0d0;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 28px;
+        text-align: center;
+      }
+      &:hover {
+        p {
+          color: #023ae0;
+        }
+      }
+    }
+  }
+
+  .card_other_box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 12px;
+    height: 80%;
+
+    &_button {
+      min-width: 176px;
+    }
+  }
+}

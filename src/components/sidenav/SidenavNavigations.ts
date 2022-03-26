@@ -56,7 +56,7 @@ const protectedLayoutSidenavNavigations = [
   },
   {
     title: 'User accounts',
-    path: '/accounts',
+    path: '/user',
     icon: User,
     iconActive: UserActive,
   },
